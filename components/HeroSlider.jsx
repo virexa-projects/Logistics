@@ -16,7 +16,7 @@ const slides = [
     title: "Seamless Ship Freight for Global Trade",
     desc: "We partner with leading international shipping lines to move your cargo across major trade routes. From full containers to consolidated loads, we provide dependable schedules and cost-efficient solutions worldwide.",
     img: bannerone,
-  }
+  },
   // {
   //   title: "Seamless Ship Freight for Global Trade",
   //   desc: "We partner with leading international shipping lines to move your cargo across major trade routes. From full containers to consolidated loads, we provide dependable schedules and cost-efficient solutions worldwide.",
@@ -85,9 +85,21 @@ export default function HeroSlider() {
                         <input
                           type="text"
                           placeholder=" "
-                          className="peer w-full p-3 rounded-lg bg-[#f5f5f5] outline-none border border-gray-300 focus:ring-2 focus:ring-[#013EFE] placeholder-transparent"
+                          className="peer w-full p-3 rounded-lg bg-[#f5f5f5] outline-none
+                 border border-gray-300 focus:ring-2 focus:ring-[#013EFE]
+                 placeholder-transparent"
                         />
-                        <label className="absolute left-3 top-3 text-gray-500 text-sm transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-focus:-top-2 peer-focus:text-xs peer-focus:text-[#013EFE] bg-white px-1">
+
+                        <label
+                          className="absolute left-3 top-3 text-gray-500 text-sm transition-all
+                 peer-placeholder-shown:top-3
+                 peer-placeholder-shown:text-sm
+                 peer-focus:-top-2
+                 peer-focus:text-xs
+                 peer-focus:text-[#013EFE]
+                 peer-focus:bg-white
+                 peer-focus:px-1"
+                        >
                           Pickup Location
                         </label>
                       </div>
@@ -97,14 +109,26 @@ export default function HeroSlider() {
                         <input
                           type="text"
                           placeholder=" "
-                          className="peer w-full p-3 rounded-lg bg-[#f5f5f5] outline-none border border-gray-300 focus:ring-2 focus:ring-[#013EFE] placeholder-transparent"
+                          className="peer w-full p-3 rounded-lg bg-[#f5f5f5] outline-none
+                 border border-gray-300 focus:ring-2 focus:ring-[#013EFE]
+                 placeholder-transparent"
                         />
-                        <label className="absolute left-3 top-3 text-gray-500 text-sm transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-focus:-top-2 peer-focus:text-xs peer-focus:text-[#013EFE] bg-white px-1">
+
+                        <label
+                          className="absolute left-3 top-3 text-gray-500 text-sm transition-all
+                 peer-placeholder-shown:top-3
+                 peer-placeholder-shown:text-sm
+                 peer-focus:-top-2
+                 peer-focus:text-xs
+                 peer-focus:text-[#013EFE]
+                 peer-focus:bg-white
+                 peer-focus:px-1"
+                        >
                           Drop Location
                         </label>
                       </div>
 
-                      {/* Book Now Button */}
+                      {/* Button */}
                       <button className="w-full bg-primary text-white font-semibold py-3 rounded-full hover:opacity-90 transition">
                         Book Now
                       </button>

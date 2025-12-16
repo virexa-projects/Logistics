@@ -84,7 +84,7 @@ export default function StickyStepsOverlap() {
                 businesses with fast, safe, and efficient transport across North America.
               </p>
 
-              <button className="px-6 py-3 bg-[#613BFF] text-white rounded-full">
+              <button className="px-6 py-3 bg-primary text-white rounded-full">
                 Our Services
               </button>
             </div>
@@ -95,7 +95,7 @@ export default function StickyStepsOverlap() {
             {steps.map((item, i) => (
               <div
                 key={i}
-                className="bg-white border border-gray-200 shadow-sm p-10 rounded-3xl transition-all duration-300"
+                className="bg-white border border-gray-200 p-10 rounded-3xl transition-all duration-300"
               >
                 <p className="text-xs tracking-widest text-gray-400 font-semibold mb-6">
                   {item.step}

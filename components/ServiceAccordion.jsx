@@ -73,7 +73,7 @@ export default function FAQ() {
                     animate={{ height: "auto", opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.35 }}
-                    className="mt-4 text-[#7b7881] leading-relaxed overflow-hidden"
+                    className="mt-4 text-second leading-relaxed overflow-hidden"
                   >
                     {faq.answer}
                   </motion.p>

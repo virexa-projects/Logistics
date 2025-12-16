@@ -40,7 +40,7 @@ function RateCalculator() {
                             Rate  Calculator
                         </h2>
 
-                        <p className="mt-4 text-[#7b7881]">
+                        <p className="mt-4 text-second">
                             Home <span className="text-blue-200">›</span> Rate  Calculator
                         </p>
                     </div>

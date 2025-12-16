@@ -84,7 +84,7 @@ export default function FAQ() {
                   className="flex justify-between items-center cursor-pointer"
                   onClick={() => toggle(i)}
                 >
-                  <h3 className="font-semibold text-lg">{faq.question}</h3>
+                  <h4 className="font-semibold text-lg">{faq.question}</h4>
                   <Minus className="w-6 h-6 text-gray-600" />
                 </div>
 
@@ -95,7 +95,7 @@ export default function FAQ() {
                     animate={{ height: "auto", opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.35 }}
-                    className="mt-4 text-[#7b7881] leading-relaxed overflow-hidden"
+                    className="mt-4 text-second leading-relaxed overflow-hidden"
                   >
                     {faq.answer}
                   </motion.p>

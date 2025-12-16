@@ -239,7 +239,7 @@ function ExpressServices() {
                         exit={{ height: 0, opacity: 0 }}
                         transition={{ duration: 0.25 }}
                       >
-                        <p className="text-[#7B7881] mt-3 pr-4">
+                        <p className="text-second mt-3 pr-4">
                           {step.content}
                         </p>
                       </motion.div>

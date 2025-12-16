@@ -65,7 +65,7 @@ function Trackyourpackage() {
           {/* CONTENT */}
           <div className="flex flex-col justify-center">
             <h2>Track Shipments, With Ease</h2>
-            <p className="text-[#7b7881] mt-3">
+            <p className="text-second mt-3">
               Check your parcel’s latest updates and delivery status right here.
             </p>
 
@@ -81,7 +81,7 @@ function Trackyourpackage() {
                   placeholder="Enter your tracking code"
                   className="w-full rounded-lg px-4 py-3 bg-[#f5f5f5] outline-none focus:ring-2 focus:ring-[#013EFE] transition"
                 />
-                <p className="text-[#7b7881] text-[15px] mt-2">
+                <p className="text-second text-[15px] mt-2">
                   Eg: FrisbI_0987578ABC01
                 </p>
               </div>

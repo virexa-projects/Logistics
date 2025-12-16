@@ -36,7 +36,6 @@ import ContactSection from "@/components/ContactSection";
 import CallToAction from "@/components/CallToAction";
 import Testimonials from "@/components/Testimonials";
 
-
 import StrengthSlider from "@/components/Slider";
 
 function Home() {
@@ -80,61 +79,66 @@ function Home() {
   return (
     <div>
       <HeroSlider />
-      <section
-        className="px-4 md:px-10 pb-28 py-10 w-full bg-cover bg-center bg-no-repeat overflow-x-hidden"
-        style={{ backgroundImage: "url('@/asset/background.png')" }}
-      >
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center ">
-         
-          <div>
-            <Image src={location} alt="location" width="60%" />
-          </div>
-
-         
-          <div>
-            <h2 className="mb-7">
-              How to Ship with <span className="text-primary">Frisbi</span>
-            </h2>
-
-            <p className=" mb-6">
-              Sending packages with Frisbi is effortless. Simply pack your items
-              securely, and we’ll take care of everything else
-            </p>
-
-          
-            <div>
-              {faqData.map((step) => (
-                <div key={step.id} className="border-b py-4">
-                  <button
-                    onClick={() => setOpen(open === step.id ? null : step.id)}
-                    className="flex w-full justify-between items-center text-left"
-                  >
-                    <span className="font-bold text-[22px]">{step.title}</span>
-                    {open === step.id ? (
-                      <Minus size={20} />
-                    ) : (
-                      <Plus size={20} />
-                    )}
-                  </button>
-
-                  <AnimatePresence>
-                    {open === step.id && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.25 }}
-                      >
-                        <p className="text-[#7B7881] mt-3 pr-4">
-                          {step.content}
-                        </p>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              ))}
+      <section className="w-full bg-cover bg-center bg-no-repeat overflow-x-hidden py-24"  style={{ backgroundImage: "url(/asset/background.png)" }} >
+        <div className="container mx-auto px-4 md:px-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+            {/* LEFT IMAGE */}
+            <div className="flex justify-center md:justify-start">
+              <Image
+                src={location}
+                alt="location"
+                className="w-[100%] h-auto"
+                priority
+              />
             </div>
-         
+
+            {/* RIGHT CONTENT */}
+            <div>
+              <h2 className="mb-7">
+                How to Ship with <span className="text-primary">Frisbi</span>
+              </h2>
+
+              <p className="mb-6">
+                Sending packages with Frisbi is effortless. Simply pack your
+                items securely, and we’ll take care of everything else
+              </p>
+
+              {/* FAQ */}
+              <div>
+                {faqData.map((step) => (
+                  <div key={step.id} className="border-b py-4">
+                    <button
+                      onClick={() => setOpen(open === step.id ? null : step.id)}
+                      className="flex w-full justify-between items-center text-left"
+                    >
+                      <span className="font-bold text-[20px]">
+                        {step.title}
+                      </span>
+                      {open === step.id ? (
+                        <Minus size={20} />
+                      ) : (
+                        <Plus size={20} />
+                      )}
+                    </button>
+
+                    <AnimatePresence>
+                      {open === step.id && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.25 }}
+                        >
+                          <p className="text-second mt-3 pr-4">
+                            {step.content}
+                          </p>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -143,21 +147,17 @@ function Home() {
         <CustomSlider />
       </section>
 
-      <section className="bg-[#F1F2F6] overflow-x-hidden">
-        <div className="lg:py-20 max-w-7xl mx-auto">
+      <section className="bg-[#F1F2F6]  overflow-x-hidden">
+        <div className=" lg:py-20 container  mx-auto">
           <MarqueeLogos />
         </div>
 
-        <div className="max-w-7xl mx-auto">
+        <div className="container mx-auto">
           <ServicesSection />
         </div>
 
-        <section className="relative text-white px-4 pt-10 pb-20 sm:px-6 lg:px-8 ">
-
-        
-          <div className="relative max-w-7xl mx-auto overflow-hidden rounded-3xl">
-
-           
+        <section className="  container mx-auto relative text-white px-4 pt-10 pb-20 sm:px-6 lg:px-8 ">
+          <div className="relative  mx-auto overflow-hidden rounded-3xl">
             <video
               autoPlay
               muted
@@ -169,11 +169,8 @@ function Home() {
               <source src="/videos/bg.mp4" type="video/mp4" />
             </video>
 
-
-            <div className="relative z-10 p-6 md:p-12 backdrop-blur-sm">
+            <div className="relative z-10 p-6 md:p-12 ">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-
-               
                 <div className="flex flex-col justify-center order-2 lg:order-1">
                   <h3 className="text-2xl md:text-3xl font-semibold mb-4">
                     About Us – Frisbi Luggage Delivery Service
@@ -182,8 +179,8 @@ function Home() {
                   <p className="text-white/90 mb-10">
                     At Frisbi, we are on a mission to make travel lighter,
                     stress-free, and smarter. As India’s most reliable luggage
-                    delivery service, we pick up your bags from your doorstep and
-                    deliver them safely to your destination—whether it’s the
+                    delivery service, we pick up your bags from your doorstep
+                    and deliver them safely to your destination—whether it’s the
                     airport, hotel, home, or office—so you can travel hands-free
                     and hassle-free.
                   </p>
@@ -195,7 +192,8 @@ function Home() {
                         Professional Packing
                       </h4>
                       <p className="text-white/80 text-sm md:text-base">
-                        Expert packing to protect your luggage throughout the journey.
+                        Expert packing to protect your luggage throughout the
+                        journey.
                       </p>
                     </div>
 
@@ -205,7 +203,8 @@ function Home() {
                         Pre-Move Planning
                       </h4>
                       <p className="text-white/80 text-sm md:text-base">
-                        Easy scheduling and planning for pickups & on-time delivery.
+                        Easy scheduling and planning for pickups & on-time
+                        delivery.
                       </p>
                     </div>
                   </div>
@@ -229,25 +228,17 @@ function Home() {
                     />
                   </div>
                 </div>
-
               </div>
             </div>
-
           </div>
         </section>
-
-
-
-
       </section>
 
       <section className=" px-4 overflow-x-hidden">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className=" mx-auto px-4 sm:px-6 lg:px-8">
           <Testimonials />
         </div>
       </section>
-
-
 
       <section className=" bg-[#000] mx-auto overflow-x-hidden ">
         <ContactSection />

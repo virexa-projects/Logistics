@@ -115,7 +115,7 @@ function Haveanyqueries() {
             <h3 className="text-2xl font-semibold text-gray-900">
               Get In Touch
             </h3>
-            <p className="text-[#7b7881] text-sm mt-2">
+            <p className="text-second text-sm mt-2">
               Have a question, suggestion, or want to say hi? Fill out the form
               below and we'll get back to you soon.
             </p>

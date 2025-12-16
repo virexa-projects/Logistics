@@ -154,7 +154,7 @@ function Aboutus() {
               Our Corporate Values
             </h2>
 
-            <p className="text-[#7B7881] mt-4 leading-relaxed max-w-lg">
+            <p className="text-second mt-4 leading-relaxed max-w-lg">
               Our values align to our mission, support our culture, and serve as
               a declaration of how we treat each other, our customers, and our
               partners.
@@ -164,7 +164,7 @@ function Aboutus() {
             <div className="mt-6 space-y-6">
               <div>
                 <h3 className="text-lg font-semibold">Respect</h3>
-                <p className="text-[#7B7881] text-sm mt-1 max-w-md">
+                <p className="text-second text-sm mt-1 max-w-md">
                   We recognize that the thoughts, feelings, and backgrounds of
                   others are as important as our own.
                 </p>
@@ -172,14 +172,14 @@ function Aboutus() {
 
               <div>
                 <h3 className="text-lg font-semibold">Integrity</h3>
-                <p className="text-[#7B7881] text-sm mt-1 max-w-md">
+                <p className="text-second text-sm mt-1 max-w-md">
                   We are honest, ethical, and trustworthy.
                 </p>
               </div>
 
               <div>
                 <h3 className="text-lg font-semibold">Accountability</h3>
-                <p className="text-[#7B7881] text-sm mt-1 max-w-md">
+                <p className="text-second text-sm mt-1 max-w-md">
                   We accept full responsibility for our decisions, actions, and
                   results.
                 </p>

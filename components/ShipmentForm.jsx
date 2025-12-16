@@ -112,7 +112,7 @@ const router = useRouter();
       <form onSubmit={handleSubmit}>
         <div className="max-w-4xl mx-auto">
           <h2 className="mb-4 text-center">Shipment Booking Form</h2>
-          <p className="mb-10 text-[#7b7881] text-center">
+          <p className="mb-10 text-second text-center">
             Book door-to-door luggage delivery. Share your pickup & delivery
             details.
           </p>

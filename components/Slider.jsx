@@ -22,7 +22,7 @@ const servicesData = [
       "Your bags are handled by trained professionals with secure sealing and verified partners, ensuring protection throughout the journey.",
     bgColor: "bg-white",
     textColor: "text-black",
-    descColor: "text-[#7b7881]",
+    descColor: "text-second",
     linkColor: "text-black hover:text-[#013EFE]",
     imageSrc: c1,
     imageAlt: "Excess baggage service image",
@@ -34,7 +34,7 @@ const servicesData = [
       "Skip the hassle of heavy luggage—book online, and we’ll pick up from your home and deliver anywhere in India.",
     bgColor: "bg-white",
     textColor: "text-black",
-    descColor: "text-[#7b7881]",
+    descColor: "text-second",
     linkColor: "text-black hover:text-[#013EFE]",
     imageSrc: valuesdiff,
     imageAlt: "Excess baggage service image",
@@ -46,7 +46,7 @@ const servicesData = [
       "Avoid baggage delays—our scheduled deliveries and real-time updates keep you informed until your luggage arrives.",
     bgColor: "bg-white",
     textColor: "text-black",
-    descColor: "text-[#7b7881]",
+    descColor: "text-second",
     linkColor: "text-black hover:text-[#013EFE]",
     imageSrc: courierimg,
     imageAlt: "Excess baggage service image",
@@ -58,7 +58,7 @@ const servicesData = [
       "Get real-time tracking and SMS/WhatsApp alerts, so you always know exactly where your baggage is in transit.",
     bgColor: "bg-white",
     textColor: "text-black",
-    descColor: "text-[#7b7881]",
+    descColor: "text-second",
     linkColor: "text-black hover:text-[#013EFE]",
     imageSrc: courierimg,
     imageAlt: "Excess baggage service image",
@@ -70,7 +70,7 @@ const servicesData = [
       "We provide specialised support for corporate travel, events, and group trips, ensuring seamless coordination across multiple bags and destinations.",
     bgColor: "bg-white",
     textColor: "text-black",
-    descColor: "text-[#7b7881]",
+    descColor: "text-second",
     linkColor: "text-black hover:text-[#013EFE]",
     imageSrc: courierimg,
     imageAlt: "Excess baggage service image",
@@ -82,7 +82,7 @@ const servicesData = [
       "We deliver luggage across major, tier-2, and tier-3 cities, supporting seamless travel, relocation, and baggage movement nationwide.",
     bgColor: "bg-white",
     textColor: "text-black",
-    descColor: "text-[#7b7881]",
+    descColor: "text-second",
     linkColor: "text-black hover:text-[#013EFE]",
     imageSrc: courierimg,
     imageAlt: "Excess baggage service image",
@@ -96,7 +96,7 @@ export default function Slider({ title = "Why Choose Us — India’s Trusted Lu
   const nextRef = useRef(null);
 
   return (
-    <div className="w-full max-w-7xl mx-auto pt-20 px-4 relative">
+    <div className="w-full container mx-auto pt-20 px-4 relative">
       {/* Header + Arrows */}
       <div className="absolute -top-28 lg:-top-9 w-full flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <h2 className="text-white text-sm lg:text-xl">{title}</h2>
