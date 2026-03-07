@@ -15,9 +15,11 @@ const FloatingInput = ({ label, value, onChange, type = "text", error }) => (
         ${error ? "border-red-500" : "border-gray-300"}
         focus:ring-2 focus:ring-blue-500 transition`}
     />
-    <label className="absolute left-4 top-3 text-gray-500 text-sm transition-all
+    <label
+      className="absolute left-4 top-3 text-gray-500 text-sm transition-all
       peer-focus:-top-2 peer-focus:text-xs peer-focus:bg-white peer-focus:px-1
-      peer-valid:-top-2 peer-valid:text-xs peer-valid:bg-white peer-valid:px-1">
+      peer-valid:-top-2 peer-valid:text-xs peer-valid:bg-white peer-valid:px-1"
+    >
       {label}
     </label>
     {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
@@ -25,10 +27,7 @@ const FloatingInput = ({ label, value, onChange, type = "text", error }) => (
 );
 
 /* ================= MAIN ================= */
-export default function ShipmentCalculator({
-  pickupFromUrl,
-  dropFromUrl,
-}) {
+export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
   const router = useRouter();
 
   /* ---------------- STATE ---------------- */
@@ -89,10 +88,7 @@ export default function ShipmentCalculator({
     const base = 999;
     const weightCost = Number(weight) * 10;
     const volumeCost =
-      (Number(length || 0) +
-        Number(width || 0) +
-        Number(height || 0)) *
-      0.5;
+      (Number(length || 0) + Number(width || 0) + Number(height || 0)) * 0.5;
     const bagsCost = Number(bags) * 20;
 
     setTotal(base + weightCost + volumeCost + bagsCost);
@@ -111,8 +107,8 @@ export default function ShipmentCalculator({
           bags,
           service,
           total,
-        })
-      )}`
+        }),
+      )}`,
     );
   };
 
@@ -120,7 +116,6 @@ export default function ShipmentCalculator({
   return (
     <div id="" className="w-full flex justify-center px-4 py-10 bg-[#f6f7fb]">
       <div className="w-full max-w-3xl bg-white rounded-3xl p-8 shadow-lg">
-
         <h3 className="text-center text-2xl font-bold mb-6">
           Shipment Cost Calculator
         </h3>
@@ -178,9 +173,7 @@ export default function ShipmentCalculator({
           <FloatingInput
             label="Customer Name"
             value={values.name}
-            onChange={(e) =>
-              setValues((p) => ({ ...p, name: e.target.value }))
-            }
+            onChange={(e) => setValues((p) => ({ ...p, name: e.target.value }))}
           />
           <FloatingInput
             label="Customer Phone"
@@ -224,10 +217,42 @@ export default function ShipmentCalculator({
 
         {/* Weight + Dimensions */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
-          <FloatingInput label="Weight (kg)" type="number" value={weight} onChange={(e) => setWeight(e.target.value)} error={errors.weight} />
-          <FloatingInput label="L (cm)" type="number" value={length} onChange={(e) => setLength(e.target.value)} />
-          <FloatingInput label="W (cm)" type="number" value={width} onChange={(e) => setWidth(e.target.value)} />
-          <FloatingInput label="H (cm)" type="number" value={height} onChange={(e) => setHeight(e.target.value)} />
+          <FloatingInput
+            label="Weight (kg)"
+            type="number"
+            min={0}
+            value={weight}
+            onChange={(e) => setWeight(e.target.value)}
+            onKeyDown={(e) => e.key === "-" && e.preventDefault()}
+            error={errors.weight}
+          />
+
+          <FloatingInput
+            label="L (cm)"
+            type="number"
+            min={0}
+            value={length}
+            onChange={(e) => setLength(e.target.value)}
+            onKeyDown={(e) => e.key === "-" && e.preventDefault()}
+          />
+
+          <FloatingInput
+            label="W (cm)"
+            type="number"
+            min={0}
+            value={width}
+            onChange={(e) => setWidth(e.target.value)}
+            onKeyDown={(e) => e.key === "-" && e.preventDefault()}
+          />
+
+          <FloatingInput
+            label="H (cm)"
+            type="number"
+            min={0}
+            value={height}
+            onChange={(e) => setHeight(e.target.value)}
+            onKeyDown={(e) => e.key === "-" && e.preventDefault()}
+          />
         </div>
 
         {/* Bags + Service */}
@@ -241,6 +266,9 @@ export default function ShipmentCalculator({
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
           </select>
 
           <select
@@ -263,70 +291,110 @@ export default function ShipmentCalculator({
           Calculate Price
         </button>
 
-{total !== null && (
-  <div className="bg-[#E7ECFF] rounded-3xl p-6 mt-6 space-y-5">
+        {total !== null && (
+          <div className="bg-[#E7ECFF] rounded-3xl p-6 mt-6 space-y-5">
+            <h4 className="text-lg font-semibold">Shipment Summary</h4>
 
-    <h4 className="text-lg font-semibold">Shipment Summary</h4>
+            {/* ================= FROM ================= */}
+            <div className="bg-white rounded-xl p-4 shadow-sm">
+              <h4 className="font-semibold mb-2 text-blue-700">
+                Pickup Details
+              </h4>
+              <div className="text-sm text-gray-700 grid grid-cols-2 gap-2">
+                <p>
+                  <b>Name:</b> {values.pickupName || "-"}
+                </p>
+                <p>
+                  <b>Phone:</b> {values.pickupPhone || "-"}
+                </p>
+                <p className="col-span-2">
+                  <b>Address:</b> {values.pickupAddress || "-"}
+                </p>
+                <p>
+                  <b>City:</b> {values.pickupCity || "-"}
+                </p>
+                <p>
+                  <b>State:</b> {values.pickupState || "-"}
+                </p>
+                <p>
+                  <b>Pincode:</b> {values.pickupPincode || "-"}
+                </p>
+              </div>
+            </div>
 
-    {/* ================= FROM ================= */}
-    <div className="bg-white rounded-xl p-4 shadow-sm">
-      <h4 className="font-semibold mb-2 text-blue-700">Pickup Details</h4>
-      <div className="text-sm text-gray-700 grid grid-cols-2 gap-2">
-        <p><b>Name:</b> {values.pickupName || "-"}</p>
-        <p><b>Phone:</b> {values.pickupPhone || "-"}</p>
-        <p className="col-span-2"><b>Address:</b> {values.pickupAddress || "-"}</p>
-        <p><b>City:</b> {values.pickupCity || "-"}</p>
-        <p><b>State:</b> {values.pickupState || "-"}</p>
-        <p><b>Pincode:</b> {values.pickupPincode || "-"}</p>
-      </div>
-    </div>
+            {/* ================= TO ================= */}
+            <div className="bg-white rounded-xl p-4 shadow-sm">
+              <h4 className="font-semibold mb-2 text-green-700">
+                Delivery Details
+              </h4>
+              <div className="text-sm text-gray-700 grid grid-cols-2 gap-2">
+                <p>
+                  <b>Name:</b> {values.name || "-"}
+                </p>
+                <p>
+                  <b>Phone:</b> {values.phone || "-"}
+                </p>
+                <p className="col-span-2">
+                  <b>Address:</b> {values.address || "-"}
+                </p>
+                <p>
+                  <b>City:</b> {values.dropCity || "-"}
+                </p>
+                <p>
+                  <b>State:</b> {values.dropState || "-"}
+                </p>
+                <p>
+                  <b>Pincode:</b> {values.dropPincode || "-"}
+                </p>
+              </div>
+            </div>
 
-    {/* ================= TO ================= */}
-    <div className="bg-white rounded-xl p-4 shadow-sm">
-      <h4 className="font-semibold mb-2 text-green-700">Delivery Details</h4>
-      <div className="text-sm text-gray-700 grid grid-cols-2 gap-2">
-        <p><b>Name:</b> {values.name || "-"}</p>
-        <p><b>Phone:</b> {values.phone || "-"}</p>
-        <p className="col-span-2"><b>Address:</b> {values.address || "-"}</p>
-        <p><b>City:</b> {values.dropCity || "-"}</p>
-        <p><b>State:</b> {values.dropState || "-"}</p>
-        <p><b>Pincode:</b> {values.dropPincode || "-"}</p>
-      </div>
-    </div>
+            {/* ================= PACKAGE ================= */}
+            <div className="bg-white rounded-xl p-4 shadow-sm">
+              <h4 className="font-semibold mb-2 text-purple-700">
+                Package Details
+              </h4>
+              <div className="text-sm text-gray-700 grid grid-cols-2 gap-2">
+                <p>
+                  <b>Weight:</b> {weight} kg
+                </p>
+                <p>
+                  <b>Bags:</b> {bags}
+                </p>
+                <p>
+                  <b>Length:</b> {length} cm
+                </p>
+                <p>
+                  <b>Width:</b> {width} cm
+                </p>
+                <p>
+                  <b>Height:</b> {height} cm
+                </p>
+                <p>
+                  <b>Service:</b> {service}
+                </p>
+              </div>
+            </div>
 
-    {/* ================= PACKAGE ================= */}
-    <div className="bg-white rounded-xl p-4 shadow-sm">
-      <h4 className="font-semibold mb-2 text-purple-700">Package Details</h4>
-      <div className="text-sm text-gray-700 grid grid-cols-2 gap-2">
-        <p><b>Weight:</b> {weight} kg</p>
-        <p><b>Bags:</b> {bags}</p>
-        <p><b>Length:</b> {length} cm</p>
-        <p><b>Width:</b> {width} cm</p>
-        <p><b>Height:</b> {height} cm</p>
-        <p><b>Service:</b> {service}</p>
-      </div>
-    </div>
+            <hr />
 
-    <hr />
+            {/* ================= TOTAL ================= */}
+            <div className="text-center">
+              <h3 className="text-lg font-semibold">Total Price</h3>
+              <p className="text-3xl font-bold mt-2 text-blue-600">
+                ₹{total.toFixed(2)}
+              </p>
+            </div>
 
-    {/* ================= TOTAL ================= */}
-    <div className="text-center">
-      <h3 className="text-lg font-semibold">Total Price</h3>
-      <p className="text-3xl font-bold mt-2 text-blue-600">
-        ₹{total.toFixed(2)}
-      </p>
-    </div>
-
-    {/* ================= BUTTON ================= */}
-    <button
-      onClick={handleBookNow}
-      className="w-full bg-black text-white py-3 rounded-full font-semibold hover:bg-gray-900 transition"
-    >
-      🚀 Book Now
-    </button>
-  </div>
-)}
-
+            {/* ================= BUTTON ================= */}
+            <button
+              onClick={handleBookNow}
+              className="w-full bg-black text-white py-3 rounded-full font-semibold hover:bg-gray-900 transition"
+            >
+              🚀 Book Now
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

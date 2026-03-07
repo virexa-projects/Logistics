@@ -277,11 +277,9 @@ export default function PremiumServices() {
       </section>
 
       <ServiceFAQSection />
-<section className="mt-14">
-   <MarqueeLogos />
-</section>
+
    
-      <section className="w-full px-4 py-12   md:py-20 md:pt-0 ">
+      <section className="w-full px-4 py-12   md:py-20 md:pb-0 ">
         <div className="relative container mx-auto rounded-3xl overflow-hidden">
           {/* Background Image */}
           <Image
@@ -320,6 +318,9 @@ export default function PremiumServices() {
           </motion.div>
         </div>
       </section>
+      <section className="">
+   <MarqueeLogos />
+</section>
     </div>
   );
 }

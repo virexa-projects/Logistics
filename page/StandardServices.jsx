@@ -272,9 +272,10 @@ export default function Services() {
         <ServiceFAQSection />
       </section>
 
-       <MarqueeLogos />
+      
 
       <CallToAction />
+       <MarqueeLogos />
     </div>
   );
 }

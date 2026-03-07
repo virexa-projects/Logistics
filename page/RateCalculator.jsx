@@ -49,7 +49,7 @@ function RateCalculator({  pickupFromUrl,
 
             {/* CTA */}
             <Link
-              href="#calculator"
+              href="/contact-us"
               className="btn-primary hover:scale-105 transition-all"
             >
               Calculate Your Cost
@@ -146,9 +146,9 @@ function RateCalculator({  pickupFromUrl,
       <section className="  mx-auto relative px-4 py-12 md:py-16 sm:px-6 lg:px-8">
         <Testimonials />
       </section>
-      <MarqueeLogos />
+     
 
-      <section className="w-full px-4 py-12   md:py-20 md:pt-0 ">
+      <section className="w-full px-4 py-12   md:py-20 md:pb-0 ">
         <div className="relative container mx-auto rounded-3xl overflow-hidden">
           {/* Background Image */}
           <Image
@@ -186,6 +186,8 @@ function RateCalculator({  pickupFromUrl,
           </motion.div>
         </div>
       </section>
+
+       <MarqueeLogos />
     </div>
   );
 }

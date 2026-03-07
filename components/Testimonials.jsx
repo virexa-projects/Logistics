@@ -1,20 +1,35 @@
 import React from "react";
 import Image from "next/image";
-import profile from "@/asset/profiles/profile-1.png";
+import profile from "@/asset/profiles/giri.png";
+import Mosus from "@/asset/profiles/mosus.jpg";
+import Tanya from "@/asset/profiles/tanya.jpg";
+import Parul from "@/asset/profiles/paurl.jpg";
 
 export default function Testimonials() {
   const marqueeReviews = [
     {
       img: profile,
-      name: "Kavya R.",
-      title: "Bangalore",
+      name: "Giri",
+      title: "Chennai",
       text: "Booked it Sunday night. They picked up Monday morning. Tracked it the whole way. Delivered Thursday afternoon. Exactly as promised.",
     },
     {
-      img: profile,
-      name: "Olivia",
-      title: "The guys are Amazing",
+      img: Mosus,
+      name: "Mosus",
+      title: "Pune",
       text: "Their service is incredibly reliable and professional. Delivery was faster than expected, and the costs were much lower.",
+    },
+    {
+      img: Tanya,
+      name: "Tanya",
+      title: "Indore",
+      text: "Moving hostel to home for semester break. Sent 3 bags for what I'd pay for one extra bag on a flight. Plus I didn't have to carry anything on the train.",
+    },
+    {
+      img: Parul,
+      name: "Parul",
+      title: "Bangalore",
+      text: "Had a packaging question at 11 PM. Called support. Got a person immediately. Not transferred. Not put on hold. Straight answers in 2 minutes.",
     },
   ];
 

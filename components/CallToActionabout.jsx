@@ -6,7 +6,7 @@ import bg from "@/asset/profiles/cta-banner.svg"; // <<< CHANGE TO YOUR BG IMAGE
 
 export default function CallToAction() {
   return (
-    <section className="w-full px-4 py-12  md:pt-0 md:pb-20  ">
+    <section className="w-full px-4 py-12  md:pb-0 md:pt-20  ">
       <div className="relative container mx-auto rounded-3xl overflow-hidden">
 
         {/* Background Image */}

@@ -244,9 +244,10 @@ function Aboutus() {
         <ContactSection />
       </section>
 
-      <MarqueeLogos />
+      
 
       <CallToAction />
+      <MarqueeLogos />
     </div>
   );
 }

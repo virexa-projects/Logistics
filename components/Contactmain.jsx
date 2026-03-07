@@ -198,9 +198,10 @@ export default function ContactSection() {
             </p>
 
             <div className="space-y-8 mt-8">
-              <Info icon={MapPin} title="Where to Find Us" value="India" />
+              {/* <Info icon={MapPin} title="Where to Find Us" value="India" /> */}
+               <Info icon={Phone} title="Call us" value="+91 7418152531" />
               <Info icon={Mail} title="Drop us a line" value="info@frisbi.in" />
-              <Info icon={Phone} title="Call us" value="+91 7418152531" />
+             
             </div>
           </motion.div>
 
