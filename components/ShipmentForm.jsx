@@ -235,6 +235,36 @@ export default function ShipmentBookingForm({
 
 
 
+  const sendMessage = async () => {
+  try {
+    const response = await fetch(
+      "https://api.virexa.in/v1/message/send-message?token=1a051309720abd839dd2a59adff7240a485c2f2ac8aae63d654f456fa19662cd5254d594e0b476d110e78332044d3e35802efea6ce118bde4e53feb1bb86ff28",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          to: `91${values.pickupPhone}`, // ensure correct format
+          type: "template",
+          template: {
+            language: {
+              policy: "deterministic",
+              code: "en",
+            },
+            name: "new_template_welcome",
+          },
+        }),
+      }
+    );
+
+    const data = await response.json();
+    console.log("Message Response:", data);
+  } catch (error) {
+    console.error("Message Error:", error);
+  }
+};
+
 
 
 
@@ -245,6 +275,7 @@ export default function ShipmentBookingForm({
       toast.error("Name and mobile number required");
       return;
     }
+    await sendMessage();   // WhatsApp message
 
     // ✅ WAIT FOR RAZORPAY SDK
     await new Promise((resolve) => {
@@ -396,6 +427,8 @@ export default function ShipmentBookingForm({
           // =========================
           setShowInvoice(true);
           await downloadInvoice();
+
+          await sendMessage();   // WhatsApp message
 
           // =========================
           // 4️⃣ SAVE GOOGLE SHEET
@@ -709,6 +742,7 @@ export default function ShipmentBookingForm({
 
             <input
               type="number"
+              min="0"
               placeholder="Total Weight (kg)"
               className={fieldClass}
               value={values.weight}
@@ -716,6 +750,7 @@ export default function ShipmentBookingForm({
             />
              <input
               type="number"
+              min="0"
               placeholder="Height (cm)"
               className={fieldClass}
               value={values.height}
@@ -725,6 +760,7 @@ export default function ShipmentBookingForm({
 
             <input
               type="number"
+              min="0"
               placeholder="Length (cm)"
               className={fieldClass}
               value={values.length}
@@ -734,6 +770,7 @@ export default function ShipmentBookingForm({
 
             <input
               type="number"
+              min="0"
               placeholder="Width (cm)"
               className={fieldClass}
               value={values.width}
@@ -743,6 +780,7 @@ export default function ShipmentBookingForm({
 
            <input
               type="number"
+              min="0"
               placeholder="No of Bags"
               className={fieldClass}
               value={values.bags}

@@ -53,8 +53,8 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
   const [length, setLength] = useState("");
   const [width, setWidth] = useState("");
   const [height, setHeight] = useState("");
-  const [bags, setBags] = useState("");
-  const [service, setService] = useState("");
+  const [bags, setBags] = useState("1");
+  const [service, setService] = useState("Express");
   const [total, setTotal] = useState(null);
   const [errors, setErrors] = useState({});
 
@@ -215,6 +215,35 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
         {/* ================= PACKAGE ================= */}
         <h4 className="font-semibold mb-5">Package Details</h4>
 
+
+         {/* Bags + Service */}
+        <div className="grid md:grid-cols-2 gap-4 mb-6">
+          <select
+            value={bags}
+            onChange={(e) => setBags(e.target.value)}
+            className="w-full rounded-xl px-4 py-3 border bg-[#f7f8fa]"
+          >
+            {/* <option value="">Select No of Bags</option> */}
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+          </select>
+
+          <select
+            value={service}
+            onChange={(e) => setService(e.target.value)}
+            className="w-full rounded-xl px-4 py-3 border bg-[#f7f8fa]"
+          >
+            {/* <option value="">Select the Service</option> */}
+            <option value="Express">Express</option>
+            <option value="Standard">Standard</option>
+            <option value="Premium">Premium</option>
+          </select>
+        </div>
+
         {/* Weight + Dimensions */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
           <FloatingInput
@@ -255,33 +284,7 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
           />
         </div>
 
-        {/* Bags + Service */}
-        <div className="grid md:grid-cols-2 gap-4 mb-6">
-          <select
-            value={bags}
-            onChange={(e) => setBags(e.target.value)}
-            className="w-full rounded-xl px-4 py-3 border bg-[#f7f8fa]"
-          >
-            {/* <option value="">Select No of Bags</option> */}
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-          </select>
-
-          <select
-            value={service}
-            onChange={(e) => setService(e.target.value)}
-            className="w-full rounded-xl px-4 py-3 border bg-[#f7f8fa]"
-          >
-            {/* <option value="">Select the Service</option> */}
-            <option value="Express">Express</option>
-            <option value="Standard">Standard</option>
-            <option value="Premium">Premium</option>
-          </select>
-        </div>
+       
 
         {/* ACTION */}
         <button
