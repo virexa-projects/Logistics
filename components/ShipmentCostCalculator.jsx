@@ -215,8 +215,7 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
         {/* ================= PACKAGE ================= */}
         <h4 className="font-semibold mb-5">Package Details</h4>
 
-
-         {/* Bags + Service */}
+        {/* Bags + Service */}
         <div className="grid md:grid-cols-2 gap-4 mb-6">
           <select
             value={bags}
@@ -246,32 +245,32 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
 
         {/* Weight + Dimensions */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
-<FloatingInput
-  label="Weight (kg)"
-  type="number"
-  min={0}
-  value={weight}
-  onChange={(e) => {
-    const value = e.target.value;
-    if (value >= 0) {
-      setWeight(value);
-    }
-  }}
-  onKeyDown={(e) => e.key === "-" && e.preventDefault()}
-  error={errors.weight}
-/>
+          <FloatingInput
+            label="Weight (kg)"
+            type="number"
+            min={0}
+            value={weight}
+            onChange={(e) => {
+              const value = e.target.value;
+              if (value >= 0) {
+                setWeight(value);
+              }
+            }}
+            onKeyDown={(e) => e.key === "-" && e.preventDefault()}
+            error={errors.weight}
+          />
 
           <FloatingInput
             label="L (cm)"
             type="number"
             min={0}
             value={length}
-              onChange={(e) => {
-    const value = e.target.value;
-    if (value >= 0) {
-      setLength(value);
-    }
-  }}
+            onChange={(e) => {
+              const value = e.target.value;
+              if (value >= 0) {
+                setLength(value);
+              }
+            }}
             // onChange={(e) => setLength(e.target.value)}
             onKeyDown={(e) => e.key === "-" && e.preventDefault()}
           />
@@ -281,12 +280,12 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
             type="number"
             min={0}
             value={width}
-                          onChange={(e) => {
-    const value = e.target.value;
-    if (value >= 0) {
-      setWidth(value);
-    }
-  }}
+            onChange={(e) => {
+              const value = e.target.value;
+              if (value >= 0) {
+                setWidth(value);
+              }
+            }}
             // onChange={(e) => setWidth(e.target.value)}
             onKeyDown={(e) => e.key === "-" && e.preventDefault()}
           />
@@ -296,18 +295,16 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
             type="number"
             min={0}
             value={height}
-                                      onChange={(e) => {
-    const value = e.target.value;
-    if (value >= 0) {
-      setHeight(value);
-    }
-  }}
+            onChange={(e) => {
+              const value = e.target.value;
+              if (value >= 0) {
+                setHeight(value);
+              }
+            }}
             // onChange={(e) => setHeight(e.target.value)}
             onKeyDown={(e) => e.key === "-" && e.preventDefault()}
           />
         </div>
-
-       
 
         {/* ACTION */}
         <button
