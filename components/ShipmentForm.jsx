@@ -8,14 +8,17 @@ import html2canvas from "html2canvas";
 import InvoiceContent from "./InvoiceContent";
 /* ---------------- Pricing Config ---------------- */
 
-const SERVICE_BASE_PRICE = {
-  Standard: 999,
-  Express: 1499,
-  Premium: 1999,
-};
 
-const CHECKED_BAG_PRICE = 999;
-const WEIGHT_PRICE_PER_KG = 99;
+
+// const CHECKED_BAG_PRICE = 999;
+// const WEIGHT_PRICE_PER_KG = 99;
+
+
+const SERVICE_PRICING = {
+  Express: { base: 699, perKg: 109 },
+  Standard: { base: 499, perKg: 79 },
+  Premium: { base: 999, perKg: 249 },
+};
 
 const BAG_SIZE_MULTIPLIER = {
   Small: 1,
@@ -32,10 +35,8 @@ const LUGGAGE_TYPE_MULTIPLIER = {
 };
 
 const ADDON_PRICES = {
-  Packing: 199,
-  "Priority Pickup": 299,
-  Fragile: 149,
-  Bubblewrap: 249,
+  Packing: 499,
+  "Priority Pickup": 399,
   Insurance: 399,
 };
 
@@ -43,22 +44,14 @@ const ADDON_PRICES = {
 
 const CORPORATE_DISCOUNT_PERCENT = 10;
 
-const CORPORATE_BULK_DISCOUNT = [
-  { min: 20, discount: 15 },
-  { min: 10, discount: 10 },
-  { min: 5, discount: 5 },
-];
-
 const GST_PERCENT = 18;
 
 /* ---------------- Pickup Slots ---------------- */
 
 const PICKUP_SLOTS = [
-  "6 AM - 9 AM",
   "9 AM - 12 PM",
   "12 PM - 3 PM",
   "3 PM - 6 PM",
-  "6 PM - 9 PM",
 ];
 
 /* ---------------- Google Sheet Submit ---------------- */
@@ -81,7 +74,7 @@ const submitToGoogleSheet = async (values, totalPrice, router) => {
       );
     });
 
-    console.log("formData",formData);
+    console.log("formData", formData);
 
     // ✅ IMPORTANT FIX
     await fetch(
@@ -108,33 +101,38 @@ const submitToGoogleSheet = async (values, totalPrice, router) => {
 
 
 /* ---------------- Price Calculation ---------------- */
-
 const calculatePriceBreakup = (values) => {
-  const servicePrice = SERVICE_BASE_PRICE[values.serviceType] || 0;
-  const bags = Number(values.bags || 0);
   const weight = Number(values.weight || 0);
 
-  let subtotal =
-    servicePrice + bags * CHECKED_BAG_PRICE + weight * WEIGHT_PRICE_PER_KG;
+  const service = SERVICE_PRICING[values.service] || {
+    base: 0,
+    perKg: 0,
+  };
 
+  // ✅ BASE + WEIGHT
+  let subtotal = service.base + weight * service.perKg;
+
+  // ✅ addons (optional)
   const addonTotal = (values.addons || []).reduce(
     (sum, addon) => sum + (ADDON_PRICES[addon] || 0),
     0
   );
 
   subtotal += addonTotal;
+
+  // ✅ multipliers (optional)
   subtotal *= BAG_SIZE_MULTIPLIER[values.bagSize || "Small"];
   subtotal *= LUGGAGE_TYPE_MULTIPLIER[values.luggageType || "Suitcase"];
 
+  // ✅ discount
   let discount = 0;
   if (values.customerType === "Corporate") {
     discount += (subtotal * CORPORATE_DISCOUNT_PERCENT) / 100;
-    const bulk = CORPORATE_BULK_DISCOUNT.find((b) => bags >= b.min);
-    if (bulk) discount += (subtotal * bulk.discount) / 100;
   }
 
   const discountedTotal = subtotal - discount;
 
+  // ✅ GST
   const gst =
     values.customerType === "Corporate" || values.includeGST
       ? (discountedTotal * GST_PERCENT) / 100
@@ -153,7 +151,7 @@ export default function ShipmentBookingForm({
 }) {
   const router = useRouter();
   const invoiceRef = useRef(null);
-
+  const [addonError, setAddonError] = useState("");
   const [showInvoice, setShowInvoice] = useState(false);
 
   const [values, setValues] = useState({
@@ -168,24 +166,22 @@ export default function ShipmentBookingForm({
     name: "",
     phone: "",
     email: "",
-
     // ✅ ADD THESE (NEW)
     pickupAddress: "",
     pickupState: "",
     pickupPincode: "",
-    pickupPhone:"",
-    pickupName:"",
-
+    pickupPhone: "",
+    pickupName: "",
     address: "",
     dropState: "",
     dropPincode: "",
-
-    bags: "",
+    // bags: "",
     weight: "",
     length: "",
     width: "",
     height: "",
     bagSize: "",
+    service: "",
     serviceType: "",
   });
 
@@ -193,11 +189,21 @@ export default function ShipmentBookingForm({
   console.log("values", values)
 
   /* ✅ AUTO FILL PICKUP & DROP */
+  // useEffect(() => {
+  //   if (bookingData) {
+  //     setValues((prev) => ({
+  //       ...prev,
+  //       ...bookingData,
+  //     }));
+  //   }
+  // }, [bookingData]);
+
   useEffect(() => {
     if (bookingData) {
       setValues((prev) => ({
         ...prev,
         ...bookingData,
+        service: bookingData.service || bookingData.serviceType || "Express",
       }));
     }
   }, [bookingData]);
@@ -212,13 +218,45 @@ export default function ShipmentBookingForm({
     setValues((prev) => ({ ...prev, [field]: value }));
   };
 
+  // const handleAddonChange = (addon, checked) => {
+  //   setValues((prev) => ({
+  //     ...prev,
+  //     addons: checked
+  //       ? [...prev.addons, addon]
+  //       : prev.addons.filter((a) => a !== addon),
+  //   }));
+  // };
+
   const handleAddonChange = (addon, checked) => {
-    setValues((prev) => ({
-      ...prev,
-      addons: checked
-        ? [...prev.addons, addon]
-        : prev.addons.filter((a) => a !== addon),
-    }));
+    // 🚫 Block only these two
+    if (addon === "Insurance" || addon === "Packing") {
+      setAddonError("Not your location");
+
+      // auto clear
+      setTimeout(() => setAddonError(""), 2000);
+
+      return;
+    }
+
+    setAddonError("");
+
+    setValues((prev) => {
+      let updatedAddons = [...prev.addons];
+
+      if (checked) {
+        // ✅ avoid duplicate
+        if (!updatedAddons.includes(addon)) {
+          updatedAddons.push(addon);
+        }
+      } else {
+        updatedAddons = updatedAddons.filter((a) => a !== addon);
+      }
+
+      return {
+        ...prev,
+        addons: updatedAddons,
+      };
+    });
   };
 
   const downloadInvoice = async () => {
@@ -235,33 +273,71 @@ export default function ShipmentBookingForm({
 
 
 
-  const sendMessage = async () => {
+const sendMessage = async (totalPrice) => {
   try {
-    const response = await fetch(
+    const phone = values.pickupPhone?.replace(/\D/g, ""); // only numbers
+
+    if (!phone || phone.length !== 10) {
+      console.error("Invalid phone number");
+      return;
+    }
+
+    const payload = {
+      to: `91${phone}`,
+      type: "template",
+      template: {
+        language: {
+          policy: "deterministic",
+          code: "en",
+        },
+        name: "order_confirm",
+        components: [
+          {
+            type: "body",
+            parameters: [
+              { type: "text", text: values.name || "Customer" },
+              { type: "text", text: values.orderId || "N/A" },
+              { type: "text", text: values.pickupCity || "N/A" },
+              {
+                type: "text",
+                text: `${values.weight || 0}kg`,
+              },
+              {
+                type: "text",
+                text: `${values.luggageType || 0}`,
+              },
+              {
+                type: "text",
+                text: `₹${totalPrice || 0}`,
+              },
+              {
+                type: "text",
+                text: "https://www.frisbi.in/track-your-package",
+              },
+            ],
+          },
+        ],
+      },
+    };
+
+    console.log("FINAL PAYLOAD 👉", payload); // 🔥 DEBUG
+
+    const res = await fetch(
       "https://api.virexa.in/v1/message/send-message?token=1a051309720abd839dd2a59adff7240a485c2f2ac8aae63d654f456fa19662cd5254d594e0b476d110e78332044d3e35802efea6ce118bde4e53feb1bb86ff28",
       {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          to: `91${values.pickupPhone}`, // ensure correct format
-          type: "template",
-          template: {
-            language: {
-              policy: "deterministic",
-              code: "en",
-            },
-            name: "new_template_welcome",
-          },
-        }),
+        body: JSON.stringify(payload),
       }
     );
 
-    const data = await response.json();
-    console.log("Message Response:", data);
-  } catch (error) {
-    console.error("Message Error:", error);
+    const data = await res.json();
+    console.log("API RESPONSE 👉", data);
+
+  } catch (err) {
+    console.error("WhatsApp error", err);
   }
 };
 
@@ -275,7 +351,7 @@ export default function ShipmentBookingForm({
       toast.error("Name and mobile number required");
       return;
     }
-    await sendMessage();   // WhatsApp message
+    await sendMessage(price.total);   // WhatsApp message
 
     // ✅ WAIT FOR RAZORPAY SDK
     await new Promise((resolve) => {
@@ -298,6 +374,7 @@ export default function ShipmentBookingForm({
     // ✅ OPEN RAZORPAY
     const options = {
       key: "rzp_test_S9MbPhPiYZr1P9",
+      // key: "rzp_live_SUAtPnMwmeZpX4",
       amount: order.amount,
       currency: "INR",
       order_id: order.id,
@@ -428,7 +505,7 @@ export default function ShipmentBookingForm({
           setShowInvoice(true);
           await downloadInvoice();
 
-          await sendMessage();   // WhatsApp message
+          await sendMessage(price.total);  // WhatsApp message
 
           // =========================
           // 4️⃣ SAVE GOOGLE SHEET
@@ -521,11 +598,11 @@ export default function ShipmentBookingForm({
 
           <div className="grid md:grid-cols-2 gap-4">
             <input
-                placeholder="Enter Name"
-                className={fieldClass}
-                value={values.pickupName}
-                onChange={(e) => handleChange("name", e.target.value)}
-              />
+              placeholder="Enter Name"
+              className={fieldClass}
+              value={values.pickupName}
+              onChange={(e) => handleChange("name", e.target.value)}
+            />
             <input
               placeholder="Whatsapp Number"
               className={fieldClass}
@@ -624,11 +701,11 @@ export default function ShipmentBookingForm({
               />
             </div>
 
-            </div>
+          </div>
 
-            <h4 className="font-semibold mb-4 mt-3">Drop  Location</h4>
-            <div className="grid md:grid-cols-2 gap-6">
-                <div className="space-y-1">
+          <h4 className="font-semibold mb-4 mt-3">Drop  Location</h4>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="space-y-1">
               <label className="text-sm font-medium text-gray-700">Name</label>
               <input
                 placeholder="Enter Name"
@@ -701,6 +778,7 @@ export default function ShipmentBookingForm({
             <input
               type="date"
               className={fieldClass}
+              min={new Date().toISOString().split("T")[0]}   // ✅ block past dates
               onChange={(e) => handleChange("pickupDate", e.target.value)}
             />
             {/* <input
@@ -725,30 +803,50 @@ export default function ShipmentBookingForm({
           <h4 className="font-semibold mb-4">Service</h4>
           <select
             className={fieldClass}
-            onChange={(e) => handleChange("serviceType", e.target.value)}
+            value={values.service}   // ✅ MUST
+            onChange={(e) => handleChange("service", e.target.value)}
           >
-             <option>Express</option>
-            <option>Standard</option>
-         
-            <option>Premium</option>
+            <option value="Express">Express</option>
+            <option value="Standard">Standard</option>
+            <option value="Premium">Premium</option>
           </select>
         </div>
+
+        {/* this one Express 699 for per kg 109,Standard 499 for per kg 79, premium 999 for per kg 249 undersstabd  */}
 
         {/* Luggage */}
         <div>
           <h4 className="font-semibold mb-4">Luggage Details</h4>
           <div className="grid md:grid-cols-4 gap-4">
-            
+
 
             <input
               type="number"
-              min="0"
-              placeholder="Total Weight (kg)"
+              min="5"
+              placeholder="Total Weight (min 5kg)"
               className={fieldClass}
               value={values.weight}
-              onChange={(e) => handleChange("weight", e.target.value)}
+              onChange={(e) => {
+                const value = e.target.value;
+
+                // allow empty (backspace)
+                if (!value) {
+                  handleChange("weight", "");
+                  return;
+                }
+
+                // allow only >= 5
+                if (Number(value) >= 5) {
+                  handleChange("weight", value);
+                }
+              }}
+              onKeyDown={(e) => {
+                if (e.key === "-" || e.key === "e") {
+                  e.preventDefault();
+                }
+              }}
             />
-             <input
+            <input
               type="number"
               min="0"
               placeholder="Height (cm)"
@@ -778,14 +876,14 @@ export default function ShipmentBookingForm({
             />
 
 
-           <input
+            {/* <input
               type="number"
               min="0"
               placeholder="No of Bags"
               className={fieldClass}
               value={values.bags}
               onChange={(e) => handleChange("bags", e.target.value)}
-            />
+            /> */}
 
 
             <select
@@ -798,8 +896,10 @@ export default function ShipmentBookingForm({
               <option>Large</option>
               <option>XL</option>
             </select>
+
             <select
               className={fieldClass}
+              value={values.luggageType}   // ✅ MUST ADD
               onChange={(e) => handleChange("luggageType", e.target.value)}
             >
               <option value="Duffel">Trolley</option>
@@ -820,6 +920,7 @@ export default function ShipmentBookingForm({
                 <input
                   type="checkbox"
                   checked={values.addons.includes(addon)}
+
                   onChange={(e) =>
                     handleAddonChange(addon, e.target.checked)
                   }
@@ -828,6 +929,11 @@ export default function ShipmentBookingForm({
               </label>
             ))}
           </div>
+          {addonError && (
+            <p className="text-red-500 text-sm mt-2">
+              {addonError}
+            </p>
+          )}
         </div>
 
         {/* Payment */}

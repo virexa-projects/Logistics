@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import bg from "@/asset/profiles/cta-banner.svg"; // <<< CHANGE TO YOUR BG IMAGE
@@ -18,6 +18,68 @@ import trackbg from "@/asset/track-your-package.png";
 import tracking from "@/asset/shippment/tracking-luggage.jpg";
 
 function Trackyourpackage() {
+
+  const [awb, setAwb] = useState("");
+  const [trackingData, setTrackingData] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+
+
+  const handleTrack = async () => {
+    if (!awb) {
+      alert("Enter tracking code");
+      return;
+    }
+
+    try {
+      setLoading(true);
+
+      // 1️⃣ LOGIN
+      const loginRes = await fetch(
+        "https://shipment.xpressbees.com/api/users/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: "javidsherif1@gmail.com",
+            password: "Frisbi@2026",
+          }),
+        }
+      );
+
+      const loginData = await loginRes.json();
+      const token = loginData.data;
+
+      if (!token) {
+        alert("Login failed");
+        return;
+      }
+
+      // 2️⃣ TRACK API
+      const trackRes = await fetch(
+        `https://shipment.xpressbees.com/api/shipments2/track/${awb}`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      const data = await trackRes.json();
+
+      console.log("TRACK RESULT", data);
+      setTrackingData(data);
+
+    } catch (err) {
+      console.error(err);
+      alert("Tracking failed");
+    } finally {
+      setLoading(false);
+    }
+  };
   return (
     <div>
       {/* HERO SECTION */}
@@ -40,7 +102,7 @@ function Trackyourpackage() {
           <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 max-w-3xl mx-auto">
             <h1 className="text-black  mb-4">Track your package</h1>
             <p className="text-black mb-8 text-sm md:text-base">
-             India's trusted luggage delivery service, built to make travel lighter, smarter, and stress-free.
+              India's trusted luggage delivery service, built to make travel lighter, smarter, and stress-free.
             </p>
 
             {/* CTA */}
@@ -112,7 +174,7 @@ function Trackyourpackage() {
             {/* FORM CARD */}
             <div className="mt-8 bg-white rounded-3xl drop-shadow-[0_4px_100px_rgba(0,0,0,0.08)] p-10">
               <h4 className="text-xl md:text-2xl font-semibold text-gray-900">
-               Track Your Orders Easily
+                Track Your Orders Easily
 
               </h4>
 
@@ -120,7 +182,9 @@ function Trackyourpackage() {
                 <input
                   type="text"
                   placeholder="Enter your tracking code"
-                  className="w-full rounded-lg px-4 py-3 bg-[#f5f5f5] outline-none focus:ring-2 focus:ring-[#013EFE] transition"
+                  value={awb}
+                  onChange={(e) => setAwb(e.target.value)}
+                  className="w-full rounded-lg px-4 py-3 bg-[#f5f5f5] outline-none"
                 />
                 <p className="text-second text-[15px] mt-2">
                   Eg: FrisbI_0987578ABC01
@@ -128,18 +192,61 @@ function Trackyourpackage() {
               </div>
 
               <div className="mt-5">
-                <Link
-                  href="#"
-                  className="w-full block bg-primary text-[16px] text-center text-white font-semibold py-3 px-12 rounded-full transition duration-300"
+                <button
+                  onClick={handleTrack}
+                  className="w-full block bg-primary text-white font-semibold py-3 rounded-full"
                 >
-                  Track Now
-                </Link>
+                  {loading ? "Tracking..." : "Track Now"}
+                </button>
               </div>
 
               <div className="mt-6">
-                <h4 className="text-gray-900 font-semibold text-base">
+
+                {console.log("trackingData", trackingData)}
+
+                {trackingData && (
+                  <div className="mt-6 bg-gray-100 p-4 rounded-lg">
+                    <p><b>Status:</b> {trackingData?.data?.status}</p>
+                    <p><b>AWB:</b> {trackingData?.data?.awb_number}</p>
+                    <p><b>Order Number:</b> {trackingData?.data?.order_number}</p>
+                  </div>
+                )}
+
+                {trackingData?.data?.history && (
+                  <div className="mt-6 bg-white p-5 rounded-xl shadow">
+                    <h4 className="font-semibold text-lg mb-4">Tracking History</h4>
+
+                    <div className="space-y-4">
+                      {trackingData.data.history.map((item, index) => (
+                        <div
+                          key={index}
+                          className="flex gap-4 items-start border-l-2 border-blue-500 pl-4"
+                        >
+                          {/* Dot */}
+                          <div className="w-3 h-3 bg-blue-500 rounded-full mt-1"></div>
+
+                          {/* Content */}
+                          <div>
+                            <p className="text-sm font-semibold text-gray-800">
+                              {item.message}
+                            </p>
+
+                            <p className="text-xs text-gray-500">
+                              {item.location}
+                            </p>
+
+                            <p className="text-xs text-gray-400">
+                              {item.event_time}
+                            </p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                {/* <h4 className="text-gray-900 font-semibold text-base">
                   Can't Find Your Order Details?
-                </h4>
+                </h4> */}
                 <p className="text-gray-500 text-sm mt-1 leading-relaxed">
                   Your AWB number was sent to you via Email and SMS at the time of order confirmation.
 
@@ -163,7 +270,7 @@ function Trackyourpackage() {
         <Testimonials />
       </section>
 
-   
+
 
       <section className="w-full px-4 py-12   md:py-20 md:pb-0 ">
         <div className="relative container mx-auto rounded-3xl overflow-hidden">
@@ -204,7 +311,7 @@ function Trackyourpackage() {
         </div>
       </section>
 
-         <MarqueeLogos />
+      <MarqueeLogos />
     </div>
   );
 }

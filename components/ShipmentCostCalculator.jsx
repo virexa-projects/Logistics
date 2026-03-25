@@ -53,7 +53,7 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
   const [length, setLength] = useState("");
   const [width, setWidth] = useState("");
   const [height, setHeight] = useState("");
-  const [bags, setBags] = useState("1");
+  const [luggageType, setluggageType] = useState("Suitcase");
   const [service, setService] = useState("Express");
   const [total, setTotal] = useState(null);
   const [errors, setErrors] = useState({});
@@ -74,24 +74,102 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
     if (!values.pickupCity) err.pickupCity = true;
     if (!values.dropCity) err.dropCity = true;
     if (!weight) err.weight = true;
-    if (!bags) err.bags = true;
+    if (!luggageType) err.luggageType = true;
     if (!service) err.service = true;
 
     setErrors(err);
     return Object.keys(err).length === 0;
   };
 
+
+  const sendMessage = async (totalPrice) => {
+  try {
+    await fetch(
+      "https://api.virexa.in/v1/message/send-message?token=1a051309720abd839dd2a59adff7240a485c2f2ac8aae63d654f456fa19662cd5254d594e0b476d110e78332044d3e35802efea6ce118bde4e53feb1bb86ff28",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          to: `91${values.pickupPhone}`, // 👈 customer number
+          type: "template",
+          template: {
+            language: {
+              policy: "deterministic",
+              code: "en",
+            },
+            name: "rate_calculator",
+            components: [
+              {
+                type: "body",
+                parameters: [
+                  {
+                    type: "text",
+                    text: values.name || "Customer",
+                  },
+                  {
+                    type: "text",
+                    text: values.pickupCity || "-",
+                  },
+                  {
+                    type: "text",
+                    text: values.dropCity || "-",
+                  },
+                  {
+                    type: "text",
+                    text: `${weight}kg (${luggageType})`,
+                  },
+                  {
+                    type: "text",
+                    text: `₹${totalPrice}`,
+                  },
+                ],
+              },
+            ],
+          },
+        }),
+      }
+    );
+
+    console.log("WhatsApp message sent ✅");
+  } catch (err) {
+    console.error("WhatsApp error", err);
+  }
+};
+
   /* ---------------- PRICE ---------------- */
-  const calculatePrice = () => {
+  /* ---------------- PRICE ---------------- */
+  const calculatePrice = async () => {
     if (!validate()) return;
 
-    const base = 999;
-    const weightCost = Number(weight) * 10;
-    const volumeCost =
-      (Number(length || 0) + Number(width || 0) + Number(height || 0)) * 0.5;
-    const bagsCost = Number(bags) * 20;
+    const serviceRates = {
+      Express: { base: 699, perKg: 109 },
+      Standard: { base: 499, perKg: 79 },
+      Premium: { base: 999, perKg: 249 },
+    };
 
-    setTotal(base + weightCost + volumeCost + bagsCost);
+    const selectedService = serviceRates[service];
+
+    if (!selectedService) return;
+
+    const weightNum = Number(weight);
+
+    const baseCost = selectedService.base;
+    const weightCost = weightNum * selectedService.perKg;
+
+    // Optional: volume cost (keep if needed)
+    const volumeCost =
+      (Number(length || 0) +
+        Number(width || 0) +
+        Number(height || 0)) * 0.5;
+
+    const totalPrice = baseCost + weightCost + volumeCost;
+
+    setTotal(totalPrice);
+
+      // ✅ CALL WHATSAPP API
+  await sendMessage(totalPrice);  
   };
 
   /* ---------------- BOOK NOW ---------------- */
@@ -104,7 +182,7 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
           length,
           width,
           height,
-          bags,
+          luggageType,
           service,
           total,
         }),
@@ -215,21 +293,40 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
         {/* ================= PACKAGE ================= */}
         <h4 className="font-semibold mb-5">Package Details</h4>
 
+
+
+
         {/* Bags + Service */}
         <div className="grid md:grid-cols-2 gap-4 mb-6">
-          <select
+          {/* <select
             value={bags}
             onChange={(e) => setBags(e.target.value)}
             className="w-full rounded-xl px-4 py-3 border bg-[#f7f8fa]"
           >
-            {/* <option value="">Select No of Bags</option> */}
+            
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
             <option value="4">4</option>
             <option value="5">5</option>
             <option value="6">6</option>
+          </select> */}
+
+          <select
+            value={luggageType}   // ✅ MUST ADD
+            className="w-full rounded-xl px-4 py-3 border bg-[#f7f8fa]"
+            onChange={(e) => setluggageType(e.target.value)}
+          >
+            <option value="Duffel">Trolley</option>
+            <option value="Suitcase">Suitcase</option>
+            <option value="Backpack">Backpack</option>
+            <option value="Box">Box</option>
           </select>
+
+
+
+
+
 
           <select
             value={service}
@@ -246,17 +343,32 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
         {/* Weight + Dimensions */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
           <FloatingInput
-            label="Weight (kg)"
+
+            label="Weight (min 5kg)"
             type="number"
-            min={0}
+            min={5}
+            step="0.01"
             value={weight}
             onChange={(e) => {
               const value = e.target.value;
-              if (value >= 0) {
+
+              // allow empty (for backspace)
+              if (!value) {
+                setWeight("");
+                return;
+              }
+
+              // allow only >= 5
+              if (Number(value) >= 5) {
                 setWeight(value);
               }
             }}
-            onKeyDown={(e) => e.key === "-" && e.preventDefault()}
+            onKeyDown={(e) => {
+              if (e.key === "-" || e.key === "e") {
+                e.preventDefault();
+              }
+            }}
+
             error={errors.weight}
           />
 
@@ -305,6 +417,7 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
             onKeyDown={(e) => e.key === "-" && e.preventDefault()}
           />
         </div>
+
 
         {/* ACTION */}
         <button
@@ -382,7 +495,7 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
                   <b>Weight:</b> {weight} kg
                 </p>
                 <p>
-                  <b>Bags:</b> {bags}
+                  <b>luggage:</b> {luggageType}
                 </p>
                 <p>
                   <b>Length:</b> {length} cm
