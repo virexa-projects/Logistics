@@ -109,7 +109,7 @@ function RateCalculator({ pickupFromUrl, dropFromUrl }) {
             </div>
 
             {/* RIGHT IMAGE – BIG */}
-            <div className="flex justify-center lg:justify-end md:block hidden">
+            <div className="flex justify-center lg:justify-end">
               <div className="relative w-full h-[360px] md:h-[480px] lg:h-[full]">
                 <Image
                   src={lugggaevariations}
@@ -120,7 +120,7 @@ function RateCalculator({ pickupFromUrl, dropFromUrl }) {
                 />
               </div>
             </div>
-            <div className="flex justify-center lg:justify-end md:hidden">
+            {/* <div className="flex justify-center lg:justify-end ">
               <div className="relative w-full h-[900px]">
                 <Image
                   src={lugggaevariationsmobile}
@@ -130,7 +130,7 @@ function RateCalculator({ pickupFromUrl, dropFromUrl }) {
                   className="object-contain h-full"
                 />
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>
