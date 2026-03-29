@@ -360,6 +360,11 @@ const sendMessage = async (totalPrice) => {
       toast.error("Name and mobile number required");
       return;
     }
+
+      if (!values.weight || Number(values.weight) < 5) {
+    toast.error("Minimum 5kg required");
+    return;
+  }
     await sendMessage(price.total);   // WhatsApp message
 
     // ✅ WAIT FOR RAZORPAY SDK
@@ -382,8 +387,8 @@ const sendMessage = async (totalPrice) => {
 
     // ✅ OPEN RAZORPAY
     const options = {
-      key: "rzp_test_S9MbPhPiYZr1P9",
-      // key: "rzp_live_SUAtPnMwmeZpX4",
+      // key: "rzp_test_S9MbPhPiYZr1P9",
+      key: "rzp_live_SUAtPnMwmeZpX4",
       amount: order.amount,
       currency: "INR",
       order_id: order.id,
@@ -829,32 +834,31 @@ const sendMessage = async (totalPrice) => {
           <div className="grid md:grid-cols-4 gap-4">
 
 
-            <input
-              type="number"
-              min="5"
-              placeholder="Total Weight (min 5kg)"
-              className={fieldClass}
-              value={values.weight}
-              onChange={(e) => {
-                const value = e.target.value;
+<input
+  type="number"
+  placeholder="Total Weight (min 5kg)"
+  className={fieldClass}
+  value={values.weight}
+  onChange={(e) => {
+    const value = e.target.value;
 
-                // allow empty (backspace)
-                if (!value) {
-                  handleChange("weight", "");
-                  return;
-                }
+    // allow empty
+    if (value === "") {
+      handleChange("weight", "");
+      return;
+    }
 
-                // allow only >= 5
-                if (Number(value) >= 5) {
-                  handleChange("weight", value);
-                }
-              }}
-              onKeyDown={(e) => {
-                if (e.key === "-" || e.key === "e") {
-                  e.preventDefault();
-                }
-              }}
-            />
+    // allow only positive numbers
+    if (Number(value) >= 0) {
+      handleChange("weight", value);
+    }
+  }}
+  onKeyDown={(e) => {
+    if (e.key === "-" || e.key === "e") {
+      e.preventDefault();
+    }
+  }}
+/>
             <input
               type="number"
               min="0"
