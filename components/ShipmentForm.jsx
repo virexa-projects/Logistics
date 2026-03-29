@@ -28,10 +28,10 @@ const BAG_SIZE_MULTIPLIER = {
 };
 
 const LUGGAGE_TYPE_MULTIPLIER = {
-  Suitcase: 1,
-  Backpack: 0.9,
-  Duffel: 0.95,
-  Box: 1.2,
+  Suitcase: 0,
+  Backpack: 0,
+  Duffel: 0,
+  Box: 0,
 };
 
 const ADDON_PRICES = {
@@ -109,8 +109,17 @@ const calculatePriceBreakup = (values) => {
     perKg: 0,
   };
 
-  // ✅ BASE + WEIGHT
-  let subtotal = service.base + weight * service.perKg;
+  const baseCost = service.base;
+  const weightCost = weight * service.perKg;
+
+  // 🔥 ADD THIS (MISSING BEFORE)
+  const volumeCost =
+    (Number(values.length || 0) +
+      Number(values.width || 0) +
+      Number(values.height || 0)) * 0.5;
+
+  let subtotal = baseCost + weightCost + volumeCost;
+  
 
   // ✅ addons (optional)
   const addonTotal = (values.addons || []).reduce(
@@ -121,8 +130,8 @@ const calculatePriceBreakup = (values) => {
   subtotal += addonTotal;
 
   // ✅ multipliers (optional)
-  subtotal *= BAG_SIZE_MULTIPLIER[values.bagSize || "Small"];
-  subtotal *= LUGGAGE_TYPE_MULTIPLIER[values.luggageType || "Suitcase"];
+  // subtotal *= BAG_SIZE_MULTIPLIER[values.bagSize || "Small"];
+  // subtotal *= LUGGAGE_TYPE_MULTIPLIER[values.luggageType || "Suitcase"];
 
   // ✅ discount
   let discount = 0;

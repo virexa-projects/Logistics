@@ -68,18 +68,25 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
   }, [pickupFromUrl, dropFromUrl]);
 
   /* ---------------- VALIDATION ---------------- */
-  const validate = () => {
-    const err = {};
+const validate = () => {
+  const err = {};
 
-    if (!values.pickupCity) err.pickupCity = true;
-    if (!values.dropCity) err.dropCity = true;
-    if (!weight) err.weight = true;
-    if (!luggageType) err.luggageType = true;
-    if (!service) err.service = true;
+  if (!values.pickupCity) err.pickupCity = "Pickup city required";
+  if (!values.dropCity) err.dropCity = "Drop city required";
 
-    setErrors(err);
-    return Object.keys(err).length === 0;
-  };
+  // 🔥 IMPORTANT FIX
+  if (!weight) {
+    err.weight = "Weight required";
+  } else if (Number(weight) < 5) {
+    err.weight = "Minimum 5kg required";
+  }
+
+  if (!luggageType) err.luggageType = "Select luggage type";
+  if (!service) err.service = "Select service";
+
+  setErrors(err);
+  return Object.keys(err).length === 0;
+};
 
 
   const sendMessage = async (totalPrice) => {
@@ -342,35 +349,31 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
 
         {/* Weight + Dimensions */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
-          <FloatingInput
+         <FloatingInput
+  label="Weight (min 5kg)"
+  type="number"
+  value={weight}
+  onChange={(e) => {
+    const value = e.target.value;
 
-            label="Weight (min 5kg)"
-            type="number"
-            min={5}
-            step="0.01"
-            value={weight}
-            onChange={(e) => {
-              const value = e.target.value;
+    // allow empty
+    if (value === "") {
+      setWeight("");
+      return;
+    }
 
-              // allow empty (for backspace)
-              if (!value) {
-                setWeight("");
-                return;
-              }
-
-              // allow only >= 5
-              if (Number(value) >= 5) {
-                setWeight(value);
-              }
-            }}
-            onKeyDown={(e) => {
-              if (e.key === "-" || e.key === "e") {
-                e.preventDefault();
-              }
-            }}
-
-            error={errors.weight}
-          />
+    // allow only numbers (no negative)
+    if (Number(value) >= 0) {
+      setWeight(value);
+    }
+  }}
+  onKeyDown={(e) => {
+    if (e.key === "-" || e.key === "e") {
+      e.preventDefault();
+    }
+  }}
+  error={errors.weight}
+/>
 
           <FloatingInput
             label="L (cm)"
