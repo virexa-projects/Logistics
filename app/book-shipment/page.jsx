@@ -4,6 +4,13 @@ export const dynamic = "force-dynamic";
 
 import BookShipment from "@/page/BookShipment";
 
+
+export const metadata = {
+  title: "Book Shipment Online | Fast & Easy Delivery | Frisbi",
+  description:
+    "Book shipment made simple with Frisbi. Schedule pickup, track deliveries, and ship books across India quickly, safely, and at affordable rates.",
+ 
+};
 export default async function Page({ searchParams }) {
   // ✅ unwrap promise
   const params = await searchParams;
