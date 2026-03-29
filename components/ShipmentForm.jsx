@@ -275,7 +275,7 @@ export default function ShipmentBookingForm({
   const handleAddonChange = (addon, checked) => {
     // 🚫 Block only these two
     if (addon === "Insurance" || addon === "Packing") {
-      setAddonError("Not your location");
+      setAddonError("Not at your location");
 
       // auto clear
       setTimeout(() => setAddonError(""), 2000);
