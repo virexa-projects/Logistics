@@ -13,7 +13,7 @@ import FAQ from "@/components/RateAccordion";
 import ratecalculator from "@/asset/rate-calculator.png";
 import CallToAction from "@/components/CallToAction";
 import Testimonials from "@/components/Testimonials";
-import lugggaevariations from "@/asset/rate-lugggae-variation.svg";
+import lugggaevariations from "@/asset/rate-lugggae-mobie.svg";
 import lugggaevariationsmobile from "@/asset/rate-lugggae-variation-mg.svg";
 
 function RateCalculator({ pickupFromUrl, dropFromUrl }) {
@@ -96,7 +96,7 @@ function RateCalculator({ pickupFromUrl, dropFromUrl }) {
       <section className="container mx-auto relative px-4 py-12 md:py-20 sm:px-6 lg:px-8">
         <div className="relative z-10">
           {/* 40 / 60 layout */}
-          <div className="grid grid-cols-1 lg:grid-cols-[30%_70%] gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-[30%_70%] gap-10 items-center">
             {/* LEFT CONTENT – SMALL */}
             <div className="flex flex-col justify-center max-w-md mx-auto md:mx-0">
               <h2 className="md:text-left text-center mb-4 text-2xl md:text-3xl font-semibold">
@@ -110,13 +110,13 @@ function RateCalculator({ pickupFromUrl, dropFromUrl }) {
 
             {/* RIGHT IMAGE – BIG */}
             <div className="flex justify-center lg:justify-end">
-              <div className="relative w-full h-[360px] md:h-[480px] lg:h-[full]">
+              <div className="relative w-full h-[160px] md:h-[480px] lg:h-[full]">
                 <Image
                   src={lugggaevariations}
                   alt="Frisbi luggage delivery illustration"
                   fill
                   priority
-                  className="object-contain md:object-cover"
+                  className="object-contain "
                 />
               </div>
             </div>
