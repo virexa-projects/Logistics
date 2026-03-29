@@ -3,7 +3,7 @@ import Image from "next/image";
 
 
 export const metadata = {
-  title: "Frisbi Logistics | Door-to-Door Luggage Delivery Service Across India",
+  title: "Frisbi Luggage Delivery Service | Door-to-Door Luggage Delivery Service Across India",
   description:
     "Frisbi offers door-to-door luggage delivery across India. Ship your baggage safely between cities with clear pricing, live tracking, and professional handling.",
   keywords: [
