@@ -26,6 +26,41 @@ const FloatingInput = ({ label, value, onChange, type = "text", error }) => (
   </div>
 );
 
+
+const INDIA_STATES = [
+  "Andhra Pradesh",
+  "Arunachal Pradesh",
+  "Assam",
+  "Bihar",
+  "Chhattisgarh",
+  "Goa",
+  "Gujarat",
+  "Haryana",
+  "Himachal Pradesh",
+  "Jharkhand",
+  "Karnataka",
+  "Kerala",
+  "Madhya Pradesh",
+  "Maharashtra",
+  "Manipur",
+  "Meghalaya",
+  "Mizoram",
+  "Nagaland",
+  "Odisha",
+  "Punjab",
+  "Rajasthan",
+  "Sikkim",
+  "Tamil Nadu",
+  "Telangana",
+  "Tripura",
+  "Uttar Pradesh",
+  "Uttarakhand",
+  "West Bengal",
+  "Delhi",
+  "Puducherry",
+  "Ladakh",
+];
+
 /* ================= MAIN ================= */
 export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
   const router = useRouter();
@@ -68,82 +103,82 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
   }, [pickupFromUrl, dropFromUrl]);
 
   /* ---------------- VALIDATION ---------------- */
-const validate = () => {
-  const err = {};
+  const validate = () => {
+    const err = {};
 
-  if (!values.pickupCity) err.pickupCity = "Pickup city required";
-  if (!values.dropCity) err.dropCity = "Drop city required";
+    if (!values.pickupCity) err.pickupCity = "Pickup city required";
+    if (!values.dropCity) err.dropCity = "Drop city required";
 
-  // 🔥 IMPORTANT FIX
-  if (!weight) {
-    err.weight = "Weight required";
-  } else if (Number(weight) < 5) {
-    err.weight = "Minimum 5kg required";
-  }
+    // 🔥 IMPORTANT FIX
+    if (!weight) {
+      err.weight = "Weight required";
+    } else if (Number(weight) < 5) {
+      err.weight = "Minimum 5kg required";
+    }
 
-  if (!luggageType) err.luggageType = "Select luggage type";
-  if (!service) err.service = "Select service";
+    if (!luggageType) err.luggageType = "Select luggage type";
+    if (!service) err.service = "Select service";
 
-  setErrors(err);
-  return Object.keys(err).length === 0;
-};
+    setErrors(err);
+    return Object.keys(err).length === 0;
+  };
 
 
   const sendMessage = async (totalPrice) => {
-  try {
-    await fetch(
-      "https://api.virexa.in/v1/message/send-message?token=1a051309720abd839dd2a59adff7240a485c2f2ac8aae63d654f456fa19662cd5254d594e0b476d110e78332044d3e35802efea6ce118bde4e53feb1bb86ff28",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          to: `91${values.pickupPhone}`, // 👈 customer number
-          type: "template",
-          template: {
-            language: {
-              policy: "deterministic",
-              code: "en",
-            },
-            name: "rate_calculator",
-            components: [
-              {
-                type: "body",
-                parameters: [
-                  {
-                    type: "text",
-                    text: values.name || "Customer",
-                  },
-                  {
-                    type: "text",
-                    text: values.pickupCity || "-",
-                  },
-                  {
-                    type: "text",
-                    text: values.dropCity || "-",
-                  },
-                  {
-                    type: "text",
-                    text: `${weight}kg (${luggageType})`,
-                  },
-                  {
-                    type: "text",
-                    text: `₹${totalPrice}`,
-                  },
-                ],
-              },
-            ],
+    try {
+      await fetch(
+        "https://api.virexa.in/v1/message/send-message?token=1a051309720abd839dd2a59adff7240a485c2f2ac8aae63d654f456fa19662cd5254d594e0b476d110e78332044d3e35802efea6ce118bde4e53feb1bb86ff28",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
           },
-        }),
-      }
-    );
+          body: JSON.stringify({
+            to: `91${values.pickupPhone}`, // 👈 customer number
+            type: "template",
+            template: {
+              language: {
+                policy: "deterministic",
+                code: "en",
+              },
+              name: "rate_calculator",
+              components: [
+                {
+                  type: "body",
+                  parameters: [
+                    {
+                      type: "text",
+                      text: values.name || "Customer",
+                    },
+                    {
+                      type: "text",
+                      text: values.pickupCity || "-",
+                    },
+                    {
+                      type: "text",
+                      text: values.dropCity || "-",
+                    },
+                    {
+                      type: "text",
+                      text: `${weight}kg (${luggageType})`,
+                    },
+                    {
+                      type: "text",
+                      text: `₹${totalPrice}`,
+                    },
+                  ],
+                },
+              ],
+            },
+          }),
+        }
+      );
 
-    console.log("WhatsApp message sent ✅");
-  } catch (err) {
-    console.error("WhatsApp error", err);
-  }
-};
+      console.log("WhatsApp message sent ✅");
+    } catch (err) {
+      console.error("WhatsApp error", err);
+    }
+  };
 
   /* ---------------- PRICE ---------------- */
   /* ---------------- PRICE ---------------- */
@@ -175,8 +210,8 @@ const validate = () => {
 
     setTotal(totalPrice);
 
-      // ✅ CALL WHATSAPP API
-  await sendMessage(totalPrice);  
+    // ✅ CALL WHATSAPP API
+    await sendMessage(totalPrice);
   };
 
   /* ---------------- BOOK NOW ---------------- */
@@ -236,13 +271,30 @@ const validate = () => {
               setValues((p) => ({ ...p, pickupCity: e.target.value }))
             }
           />
-          <FloatingInput
+          {/* <FloatingInput
             label="Pickup State"
             value={values.pickupState}
             onChange={(e) =>
               setValues((p) => ({ ...p, pickupState: e.target.value }))
             }
-          />
+          /> */}
+
+
+
+          <select
+            value={values.pickupState}
+            onChange={(e) =>
+              setValues((p) => ({ ...p, pickupState: e.target.value }))
+            }
+            className="w-full rounded-xl px-4 py-3 bg-[#f7f8fa] border"
+          >
+            <option value="">Select State</option>
+            {INDIA_STATES.map((state) => (
+              <option key={state} value={state}>
+                {state}
+              </option>
+            ))}
+          </select>
           <FloatingInput
             label="Pickup Pincode"
             value={values.pickupPincode}
@@ -281,13 +333,32 @@ const validate = () => {
               setValues((p) => ({ ...p, dropCity: e.target.value }))
             }
           />
-          <FloatingInput
+          {/* <FloatingInput
             label="State"
             value={values.dropState}
             onChange={(e) =>
               setValues((p) => ({ ...p, dropState: e.target.value }))
             }
-          />
+          /> */}
+
+
+          <select
+            value={values.dropState}
+            onChange={(e) =>
+              setValues((p) => ({ ...p, dropState: e.target.value }))
+            }
+            className="w-full rounded-xl px-4 py-3 bg-[#f7f8fa] border"
+          >
+            <option value="">Select State</option>
+            {INDIA_STATES.map((state) => (
+              <option key={state} value={state}>
+                {state}
+              </option>
+            ))}
+          </select>
+
+
+
           <FloatingInput
             label="Pincode"
             value={values.dropPincode}
@@ -349,31 +420,31 @@ const validate = () => {
 
         {/* Weight + Dimensions */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
-         <FloatingInput
-  label="Weight (min 5kg)"
-  type="number"
-  value={weight}
-  onChange={(e) => {
-    const value = e.target.value;
+          <FloatingInput
+            label="Weight (min 5kg)"
+            type="number"
+            value={weight}
+            onChange={(e) => {
+              const value = e.target.value;
 
-    // allow empty
-    if (value === "") {
-      setWeight("");
-      return;
-    }
+              // allow empty
+              if (value === "") {
+                setWeight("");
+                return;
+              }
 
-    // allow only numbers (no negative)
-    if (Number(value) >= 0) {
-      setWeight(value);
-    }
-  }}
-  onKeyDown={(e) => {
-    if (e.key === "-" || e.key === "e") {
-      e.preventDefault();
-    }
-  }}
-  error={errors.weight}
-/>
+              // allow only numbers (no negative)
+              if (Number(value) >= 0) {
+                setWeight(value);
+              }
+            }}
+            onKeyDown={(e) => {
+              if (e.key === "-" || e.key === "e") {
+                e.preventDefault();
+              }
+            }}
+            error={errors.weight}
+          />
 
           <FloatingInput
             label="L (cm)"

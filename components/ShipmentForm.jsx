@@ -10,6 +10,42 @@ import InvoiceContent from "./InvoiceContent";
 
 
 
+
+const INDIA_STATES = [
+  "Andhra Pradesh",
+  "Arunachal Pradesh",
+  "Assam",
+  "Bihar",
+  "Chhattisgarh",
+  "Goa",
+  "Gujarat",
+  "Haryana",
+  "Himachal Pradesh",
+  "Jharkhand",
+  "Karnataka",
+  "Kerala",
+  "Madhya Pradesh",
+  "Maharashtra",
+  "Manipur",
+  "Meghalaya",
+  "Mizoram",
+  "Nagaland",
+  "Odisha",
+  "Punjab",
+  "Rajasthan",
+  "Sikkim",
+  "Tamil Nadu",
+  "Telangana",
+  "Tripura",
+  "Uttar Pradesh",
+  "Uttarakhand",
+  "West Bengal",
+  "Delhi",
+  "Puducherry",
+  "Ladakh",
+];
+
+
 // const CHECKED_BAG_PRICE = 999;
 // const WEIGHT_PRICE_PER_KG = 99;
 
@@ -690,7 +726,7 @@ const sendMessage = async (totalPrice) => {
             </div>
 
             {/* Pickup State */}
-            <div className="space-y-1">
+            {/* <div className="space-y-1">
               <label className="text-sm font-medium text-gray-700">
                 Pickup State
               </label>
@@ -700,7 +736,28 @@ const sendMessage = async (totalPrice) => {
                 value={values.pickupState}
                 onChange={(e) => handleChange("pickupState", e.target.value)}
               />
-            </div>
+            </div> */}
+
+
+            <div className="space-y-1">
+  <label className="text-sm font-medium text-gray-700">
+    Pickup State
+  </label>
+
+  <select
+    className={fieldClass}
+    value={values.pickupState || ""}   // 🔥 IMPORTANT
+    onChange={(e) => handleChange("pickupState", e.target.value)}
+  >
+    <option value="">Select State</option>
+
+    {INDIA_STATES.map((state) => (
+      <option key={state} value={state}>
+        {state}
+      </option>
+    ))}
+  </select>
+</div>
 
             {/* Pickup Pincode */}
             <div className="space-y-1">
@@ -760,12 +817,27 @@ const sendMessage = async (totalPrice) => {
               <label className="text-sm font-medium text-gray-700">
                 Drop State
               </label>
-              <input
+              {/* <input
                 placeholder="Enter Drop State"
                 className={fieldClass}
                 value={values.dropState}
                 onChange={(e) => handleChange("dropState", e.target.value)}
-              />
+              /> */}
+
+
+              <select
+  className={fieldClass}
+  value={values.dropState || ""}
+  onChange={(e) => handleChange("dropState", e.target.value)}
+>
+  <option value="">Select State</option>
+
+  {INDIA_STATES.map((state) => (
+    <option key={state} value={state}>
+      {state}
+    </option>
+  ))}
+</select>
             </div>
 
             {/* Drop Pincode */}
