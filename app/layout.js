@@ -7,7 +7,7 @@ import FooterSection from "@/components/FooterSection";
 import { usePathname } from "next/navigation";
 import { Toaster } from "react-hot-toast";
 import FloatingActions from "@/components/FloatingActions";
-import Script from "next/script";   // ✅ THIS WAS MISSING
+import Script from "next/script"; // ✅ THIS WAS MISSING
 
 const inter = Inter({
   subsets: ["latin"],
@@ -27,10 +27,10 @@ export default function RootLayout({ children }) {
         <FooterSection />
 
         {/* ✅ Razorpay SDK */}
-    <Script
-  src="https://checkout.razorpay.com/v1/checkout.js"
-  strategy="afterInteractive"
-/>
+        <Script
+          src="https://checkout.razorpay.com/v1/checkout.js"
+          strategy="afterInteractive"
+        />
 
         {/* ✅ Toast */}
         <Toaster position="top-right" reverseOrder={false} />
