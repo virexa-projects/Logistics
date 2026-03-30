@@ -154,7 +154,7 @@ const calculatePriceBreakup = (values) => {
       Number(values.width || 0) +
       Number(values.height || 0)) * 0.5;
 
-  let subtotal = baseCost + weightCost + volumeCost;
+  let subtotal = baseCost + weightCost ;
   
 
   // ✅ addons (optional)

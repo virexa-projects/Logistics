@@ -206,7 +206,7 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
         Number(width || 0) +
         Number(height || 0)) * 0.5;
 
-    const totalPrice = baseCost + weightCost + volumeCost;
+    const totalPrice = baseCost + weightCost ;
 
     setTotal(totalPrice);
 
@@ -395,7 +395,7 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
             className="w-full rounded-xl px-4 py-3 border bg-[#f7f8fa]"
             onChange={(e) => setluggageType(e.target.value)}
           >
-            <option value="Duffel">Trolley</option>
+            <option value="Trolley">Trolley</option>
             <option value="Suitcase">Suitcase</option>
             <option value="Backpack">Backpack</option>
             <option value="Box">Box</option>
