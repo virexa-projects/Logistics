@@ -94,7 +94,7 @@ function RateCalculator({ pickupFromUrl, dropFromUrl }) {
       </div>
 
   
-      <section className="py-24 md:pt-0 md:pb-0">
+      <section className="py-12 md:pt-0 md:pb-0">
         <ShipmentCostCalculator
           pickupFromUrl={pickupFromUrl}
           dropFromUrl={dropFromUrl}
