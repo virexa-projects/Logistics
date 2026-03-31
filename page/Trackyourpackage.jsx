@@ -15,7 +15,7 @@ import FAQ from "@/components/AccordionCorporate";
 import aboutmobile from "@/asset/about/about-banner-img.svg";
 
 import trackbg from "@/asset/track-your-package.png";
-import tracking from "@/asset/shippment/tracking-luggage.jpg";
+import tracking from "@/asset/shippment/track-your-package.svg";
 
 function Trackyourpackage() {
 
@@ -154,13 +154,12 @@ function Trackyourpackage() {
       <section className="w-full py-12 md:pt-24 ">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 px-6 md:px-10">
           {/* IMAGE */}
-          <div className="w-full rounded-3xl overflow-hidden shadow-md">
+          <div className="w-full rounded-3xl overflow-hidden ">
             <Image
               src={tracking}
               alt="Shipment"
-              width={700}
-              height={600}
-              className="w-full h-[300px] md:h-[560px] object-cover"
+          
+              className="w-full h-[300px] md:h-[560px] object-contain"
             />
           </div>
 
