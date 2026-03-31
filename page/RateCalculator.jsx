@@ -79,7 +79,7 @@ function RateCalculator({ pickupFromUrl, dropFromUrl }) {
               </div>
 
               {/* RIGHT — IMAGE */}
-              <div className="relative w-full h-[260px] sm:h-[300px] md:h-[420px] flex justify-center">
+              <div className="relative w-full h-[260px] sm:h-[300px] md:h-[420px] flex justify-center hidden md:hidden">
                 <Image
                   src={aboutmobile}
                   alt="Hero"
@@ -93,7 +93,14 @@ function RateCalculator({ pickupFromUrl, dropFromUrl }) {
         </section>
       </div>
 
-      <section className="container mx-auto relative px-4 py-12 md:py-20 sm:px-6 lg:px-8">
+  
+      <section className="py-24 md:pt-0 md:pb-0">
+        <ShipmentCostCalculator
+          pickupFromUrl={pickupFromUrl}
+          dropFromUrl={dropFromUrl}
+        />
+      </section>
+          <section className="container mx-auto relative px-4 py-12 md:py-20 sm:px-6 lg:px-8">
         <div className="relative z-10">
           {/* 40 / 60 layout */}
           <div className="grid grid-cols-1 lg:grid-cols-[30%_70%] gap-10 items-center">
@@ -133,12 +140,6 @@ function RateCalculator({ pickupFromUrl, dropFromUrl }) {
             </div> */}
           </div>
         </div>
-      </section>
-      <section className="py-12 md:pt-0 md:pb-0">
-        <ShipmentCostCalculator
-          pickupFromUrl={pickupFromUrl}
-          dropFromUrl={dropFromUrl}
-        />
       </section>
 
       <section>

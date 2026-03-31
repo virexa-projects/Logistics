@@ -133,7 +133,7 @@ export default function HeroSlider() {
           ))}
         </div> */}
       </section>
-      <div className=" mb-7  block md:hidden" style={{ marginTop: -180, zIndex: 50,position:"relative" }}
+      <div className=" mb-7  block md:hidden" style={{ marginTop: -180, zIndex: 50, position:"relative" }}
 >
         <PorterPickupDrop />
       </div>
