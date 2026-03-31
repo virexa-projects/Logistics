@@ -234,7 +234,7 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
 
   /* ---------------- UI ---------------- */
   return (
-    <div id="" className="w-full flex justify-center px-4 py-24 bg-[#f6f7fb]">
+    <div id="" className="w-full flex justify-center px-4 py-14 bg-[#f6f7fb]">
       <div className="w-full max-w-3xl bg-white rounded-3xl p-8 shadow-lg">
         <h3 className="text-center text-2xl font-bold mb-6">
           Shipment Cost Calculator
