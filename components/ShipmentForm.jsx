@@ -226,7 +226,7 @@ export default function ShipmentBookingForm({
     width: "",
     height: "",
     bagSize: "",
-    service: "",
+    service: "Express",
     serviceType: "",
   });
 
@@ -243,15 +243,27 @@ export default function ShipmentBookingForm({
   //   }
   // }, [bookingData]);
 
-  useEffect(() => {
-    if (bookingData) {
-      setValues((prev) => ({
-        ...prev,
-        ...bookingData,
-        service: bookingData.service || bookingData.serviceType || "Express",
-      }));
-    }
-  }, [bookingData]);
+      useEffect(() => {
+  setValues((prev) => ({
+    ...prev,
+    ...bookingData,
+    service:
+      bookingData?.service ||
+      bookingData?.serviceType ||
+      prev.service ||
+      "Express",
+  }));
+}, [bookingData]);
+
+  // useEffect(() => {
+  //   if (bookingData) {
+  //     setValues((prev) => ({
+  //       ...prev,
+  //       ...bookingData,
+  //       service: bookingData.service || bookingData.serviceType || "Express",
+  //     }));
+  //   }
+  // }, [bookingData]);
 
 
   const price = useMemo(
@@ -417,6 +429,7 @@ const sendMessage = async (totalPrice) => {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ amount: price.total }),
+      // body: JSON.stringify({ amount: 1 }),
     });
 
     const order = await orderRes.json();

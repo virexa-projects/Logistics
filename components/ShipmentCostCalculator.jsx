@@ -181,39 +181,106 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
   };
 
   /* ---------------- PRICE ---------------- */
-  /* ---------------- PRICE ---------------- */
+  // const calculatePrice = async () => {
+  //   if (!validate()) return;
+
+  //   const serviceRates = {
+  //     Express: { base: 699, perKg: 109 },
+  //     Standard: { base: 499, perKg: 79 },
+  //     Premium: { base: 999, perKg: 249 },
+  //   };
+
+  //   const selectedService = serviceRates[service];
+
+  //   if (!selectedService) return;
+
+  //   const weightNum = Number(weight);
+
+  //   const baseCost = selectedService.base;
+  //   const weightCost = weightNum * selectedService.perKg;
+
+  //   // Optional: volume cost (keep if needed)
+  //   const volumeCost =
+  //     (Number(length || 0) +
+  //       Number(width || 0) +
+  //       Number(height || 0)) * 0.5;
+
+  //   const totalPrice = baseCost + weightCost ;
+
+  //   setTotal(totalPrice);
+
+  //   // ✅ CALL WHATSAPP API
+  //   await sendMessage(totalPrice);
+  // };
+
   const calculatePrice = async () => {
-    if (!validate()) return;
+  if (!validate()) return;
 
-    const serviceRates = {
-      Express: { base: 699, perKg: 109 },
-      Standard: { base: 499, perKg: 79 },
-      Premium: { base: 999, perKg: 249 },
-    };
-
-    const selectedService = serviceRates[service];
-
-    if (!selectedService) return;
-
-    const weightNum = Number(weight);
-
-    const baseCost = selectedService.base;
-    const weightCost = weightNum * selectedService.perKg;
-
-    // Optional: volume cost (keep if needed)
-    const volumeCost =
-      (Number(length || 0) +
-        Number(width || 0) +
-        Number(height || 0)) * 0.5;
-
-    const totalPrice = baseCost + weightCost ;
-
-    setTotal(totalPrice);
-
-    // ✅ CALL WHATSAPP API
-    await sendMessage(totalPrice);
+  const serviceRates = {
+    Express: { base: 699, perKg: 109 },
+    Standard: { base: 499, perKg: 79 },
+    Premium: { base: 999, perKg: 249 },
   };
 
+  const selectedService = serviceRates[service];
+  if (!selectedService) return;
+
+  const weightNum = Number(weight);
+
+  const baseCost = selectedService.base;
+  const weightCost = weightNum * selectedService.perKg;
+
+  const totalPrice = baseCost + weightCost;
+
+  setTotal(totalPrice);
+
+  try {
+    // =========================
+    // 1️⃣ WhatsApp
+    // =========================
+    await sendMessage(totalPrice);
+
+    // =========================
+    // 2️⃣ Google Sheet (Sheet3)
+    // =========================
+    const formData = new URLSearchParams();
+
+    formData.append("sheetName", "RateCalculater"); // 🔥 முக்கியம்
+
+    const payload = {
+      ...values,
+      weight,
+      length,
+      width,
+      height,
+      luggageType,
+      service,
+      totalPrice,
+      type: "CALCULATOR", // optional tag
+    };
+
+    Object.entries(payload).forEach(([key, value]) => {
+      formData.append(
+        key,
+        Array.isArray(value) ? value.join(", ") : value ?? ""
+      );
+    });
+
+    await fetch(
+      "https://script.google.com/macros/s/AKfycbze9DM1_lUgyOJ1-JQuIfjfU8rXHfA-yUs8xeSu0Sqh05fi-YzaxBEH7Tzy8l_hpSgmHw/exec",
+      {
+        method: "POST",
+        body: formData,
+        mode: "no-cors",
+      }
+    );
+
+    console.log("Sheet3 saved ✅");
+
+  } catch (err) {
+    console.error("Sheet save error", err);
+  }
+};
   /* ---------------- BOOK NOW ---------------- */
   const handleBookNow = () => {
     router.push(
