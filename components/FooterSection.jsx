@@ -28,21 +28,21 @@ export default function Footer() {
             <h4 className="font-semibold mb-2">Social Media</h4>
             <div className="flex items-center gap-4 justify-center md:justify-start">
               {/* YouTube */}
-              <Link href="#">
+              <Link href="https://youtube.com/@frisbi-luggage-delivery?si=sfdhhiZOjdpNhNTs">
                 <div className="p-3 bg-red-600 rounded-full hover:bg-red-700 transition">
                   <FaYoutube className="w-5 h-5 text-white" />
                 </div>
               </Link>
 
               {/* Instagram */}
-              <Link href="#">
+              <Link href="https://www.instagram.com/frisbi.in?igsh=ZTlrYWp3aGRjNnE5">
                 <div className="p-3 bg-gradient-to-tr from-pink-500 via-purple-500 to-yellow-500 rounded-full hover:opacity-90 transition">
                   <FaInstagram className="w-5 h-5 text-white" />
                 </div>
               </Link>
 
               {/* Facebook */}
-              <Link href="#">
+              <Link href="https://www.facebook.com/profile.php?id=61590439647922">
                 <div className="p-3 bg-blue-600 rounded-full hover:bg-blue-700 transition">
                   <FaFacebookF className="w-5 h-5 text-white" />
                 </div>
@@ -182,7 +182,7 @@ export default function Footer() {
             <span>|</span>
             <Link href="/shipping-policy" className="hover:text-blue-900">Shipping Policy</Link>
             <span>|</span>
-            <Link href="/sitemap" className="hover:text-primary-900">Sitemap</Link>
+            <Link href="/sitemap.xml" className="hover:text-primary-900">Sitemap</Link>
           </div>
         </div>
       </div>

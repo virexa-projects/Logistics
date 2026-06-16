@@ -151,7 +151,7 @@ export default function ExpressServices() {
                 className="flex gap-4 justify-center md:justify-start"
               >
                 <Link
-                  href="#contact"
+                  href="/book-shipment"
                   className="btn-primary hover:scale-105 transition-all"
                 >
                   Book Now

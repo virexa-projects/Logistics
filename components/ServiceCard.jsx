@@ -185,7 +185,7 @@ const ServicesSection = () => {
         {/* CTA */}
         <div className="flex justify-center">
           <Link
-            href="/rate-calculator"
+            href="/book-shipment"
             className="btn-primary hover:scale-105 transition-all"
           >
             Book Now 

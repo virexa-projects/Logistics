@@ -50,7 +50,7 @@ export default function Header() {
         {/* Desktop Navigation */}
         <nav className={`hidden md:flex space-x-8 text-[15px] font-semibold transition-all duration-300 ${textColor}`}>
           {/* Book Dropdown */}
-          <div className="relative" onMouseEnter={() => setHoverBook(true)} onMouseLeave={() => setHoverBook(false)}>
+          {/* <div className="relative" onMouseEnter={() => setHoverBook(true)} onMouseLeave={() => setHoverBook(false)}>
             <button className="flex items-center gap-1 transition hover:text-[#013efe]">
               Book <ChevronDown className="h-4 w-4" />
             </button>
@@ -72,7 +72,7 @@ export default function Header() {
                 ))}
               </motion.div>
             )}
-          </div>
+          </div> */}
 
           <Link href="/about" className="hover:text-[#013efe] transition">About Us</Link>
 
@@ -107,14 +107,190 @@ export default function Header() {
         </nav>
 
         {/* Desktop Button */}
-        <div className="hidden md:flex items-center">
-          <Link href="/track-your-package" className="btn-primary hover:scale-105 transition-all">Track Now</Link>
+        <div className="hidden md:flex items-center justify-center">
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="relative"
+          >
+            {/* Pulse Glow */}
+            <motion.div
+              animate={{
+                scale: [1, 1.2, 1],
+                opacity: [0.4, 0.7, 0.4],
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+              }}
+              className="absolute inset-0 rounded-full bg-blue-500 blur-2xl"
+            />
+
+            {/* Main Button */}
+            <Link
+              href="/track-your-package"
+              className="
+            relative
+            overflow-hidden
+            px-5
+            py-2
+            rounded-full
+            bg-gradient-to-r
+            from-blue-500
+            via-blue-600
+            to-blue-700
+            text-white
+            font-semibold
+            text-lg
+            shadow-[0_10px_35px_rgba(37,99,235,0.5)]
+            flex
+            items-center
+            gap-2
+            hover:scale-105
+            transition-all
+            duration-300
+          "
+            >
+              {/* Moving Light Effect */}
+              <motion.span
+                animate={{
+                  x: ["-150%", "250%"],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "linear",
+                  repeatDelay: 1,
+                }}
+                className="
+              absolute
+              top-0
+              left-0
+              w-20
+              h-full
+              bg-white/20
+              skew-x-12
+              blur-md
+            "
+              />
+
+              {/* Text */}
+              <span className="relative z-10 text-[14px]">Track Now</span>
+
+              {/* Arrow Animation */}
+              <motion.span
+                animate={{
+                  x: [0, 5, 0],
+                }}
+                transition={{
+                  duration: 1,
+                  repeat: Infinity,
+                }}
+                className="relative z-10"
+              >
+                →
+              </motion.span>
+            </Link>
+          </motion.div>
         </div>
 
         {/* Mobile Menu Button */}
 
         <div className="md:hidden flex gap-6">
-         <Link href="/track-your-package" onClick={handleLinkClick} className="bg-blue-600 pl-3 pr-3 pt-3 pb-3 text-center rounded-4xl text-white text-sm hover:scale-105 transition-all">Track Now</Link>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="w-full"
+          >
+            <div className="relative w-full">
+
+              {/* Glow Effect */}
+              <motion.div
+                animate={{
+                  scale: [1, 1.15, 1],
+                  opacity: [0.3, 0.6, 0.3],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                }}
+                className="absolute inset-0 bg-blue-500 blur-2xl rounded-full"
+              />
+
+              <Link
+                href="/track-your-package"
+                onClick={handleLinkClick}
+                className="
+        relative
+        overflow-hidden
+        flex
+        items-center
+        justify-center
+        gap-2
+        w-full
+        bg-gradient-to-r
+        from-blue-500
+        via-blue-600
+        to-blue-700
+        px-5
+        py-3
+        rounded-full
+        text-white
+        text-sm
+        md:text-base
+        font-semibold
+        shadow-[0_10px_30px_rgba(37,99,235,0.45)]
+        transition-all
+        duration-300
+        hover:scale-105
+      "
+              >
+                {/* Moving Shine */}
+                <motion.span
+                  animate={{
+                    x: ["-150%", "250%"],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "linear",
+                    repeatDelay: 1,
+                  }}
+                  className="
+          absolute
+          top-0
+          left-0
+          w-16
+          h-full
+          bg-white/20
+          skew-x-12
+          blur-md
+        "
+                />
+
+                {/* Text */}
+                <span className="relative z-10">
+                  Track Now
+                </span>
+
+                {/* Arrow */}
+                <motion.span
+                  animate={{
+                    x: [0, 4, 0],
+                  }}
+                  transition={{
+                    duration: 1,
+                    repeat: Infinity,
+                  }}
+                  className="relative z-10"
+                >
+                  →
+                </motion.span>
+              </Link>
+            </div>
+          </motion.div>
           <button onClick={() => setIsOpen(!isOpen)}>
             {isOpen ? (
               <X className="h-9 w-9 text-black transition" /> // Menu open -> show X icon

@@ -84,6 +84,8 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
     phone: "",
   });
 
+
+  console.log("values", values);
   const [weight, setWeight] = useState("");
   const [length, setLength] = useState("");
   const [width, setWidth] = useState("");
@@ -97,8 +99,8 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
   useEffect(() => {
     setValues((prev) => ({
       ...prev,
-      pickupCity: pickupFromUrl || "",
-      dropCity: dropFromUrl || "",
+      pickupPincode: pickupFromUrl || "",
+      dropPincode: dropFromUrl || "",
     }));
   }, [pickupFromUrl, dropFromUrl]);
 
@@ -106,8 +108,8 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
   const validate = () => {
     const err = {};
 
-    if (!values.pickupCity) err.pickupCity = "Pickup city required";
-    if (!values.dropCity) err.dropCity = "Drop city required";
+    if (!values.pickupPincode) err.pickupPincode = "Pickup city required";
+    if (!values.dropPincode) err.dropPincode = "Drop city required";
 
     // 🔥 IMPORTANT FIX
     if (!weight) {
@@ -214,73 +216,73 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
   // };
 
   const calculatePrice = async () => {
-  if (!validate()) return;
+    if (!validate()) return;
 
-  const serviceRates = {
-    Express: { base: 699, perKg: 109 },
-    Standard: { base: 499, perKg: 79 },
-    Premium: { base: 999, perKg: 249 },
-  };
-
-  const selectedService = serviceRates[service];
-  if (!selectedService) return;
-
-  const weightNum = Number(weight);
-
-  const baseCost = selectedService.base;
-  const weightCost = weightNum * selectedService.perKg;
-
-  const totalPrice = baseCost + weightCost;
-
-  setTotal(totalPrice);
-
-  try {
-    // =========================
-    // 1️⃣ WhatsApp
-    // =========================
-    await sendMessage(totalPrice);
-
-    // =========================
-    // 2️⃣ Google Sheet (Sheet3)
-    // =========================
-    const formData = new URLSearchParams();
-
-    formData.append("sheetName", "RateCalculater"); // 🔥 முக்கியம்
-
-    const payload = {
-      ...values,
-      weight,
-      length,
-      width,
-      height,
-      luggageType,
-      service,
-      totalPrice,
-      type: "CALCULATOR", // optional tag
+    const serviceRates = {
+      Express: { base: 699, perKg: 109 },
+      Standard: { base: 499, perKg: 79 },
+      Premium: { base: 999, perKg: 249 },
     };
 
-    Object.entries(payload).forEach(([key, value]) => {
-      formData.append(
-        key,
-        Array.isArray(value) ? value.join(", ") : value ?? ""
+    const selectedService = serviceRates[service];
+    if (!selectedService) return;
+
+    const weightNum = Number(weight);
+
+    const baseCost = selectedService.base;
+    const weightCost = weightNum * selectedService.perKg;
+
+    const totalPrice = baseCost + weightCost;
+
+    setTotal(totalPrice);
+
+    try {
+      // =========================
+      // 1️⃣ WhatsApp
+      // =========================
+      await sendMessage(totalPrice);
+
+      // =========================
+      // 2️⃣ Google Sheet (Sheet3)
+      // =========================
+      const formData = new URLSearchParams();
+
+      formData.append("sheetName", "RateCalculater"); // 🔥 முக்கியம்
+
+      const payload = {
+        ...values,
+        weight,
+        length,
+        width,
+        height,
+        luggageType,
+        service,
+        totalPrice,
+        type: "CALCULATOR", // optional tag
+      };
+
+      Object.entries(payload).forEach(([key, value]) => {
+        formData.append(
+          key,
+          Array.isArray(value) ? value.join(", ") : value ?? ""
+        );
+      });
+
+      await fetch(
+        "https://script.google.com/macros/s/AKfycbze9DM1_lUgyOJ1-JQuIfjfU8rXHfA-yUs8xeSu0Sqh05fi-YzaxBEH7Tzy8l_hpSgmHw/exec",
+        {
+          method: "POST",
+          body: formData,
+          mode: "no-cors",
+        }
       );
-    });
 
-    await fetch(
-      "https://script.google.com/macros/s/AKfycbze9DM1_lUgyOJ1-JQuIfjfU8rXHfA-yUs8xeSu0Sqh05fi-YzaxBEH7Tzy8l_hpSgmHw/exec",
-      {
-        method: "POST",
-        body: formData,
-        mode: "no-cors",
-      }
-    );
+      console.log("Sheet3 saved ✅");
 
-    console.log("Sheet3 saved ✅");
-
-  } catch (err) {
-    console.error("Sheet save error", err);
-  }
-};
+    } catch (err) {
+      console.error("Sheet save error", err);
+    }
+  };
   /* ---------------- BOOK NOW ---------------- */
   const handleBookNow = () => {
     router.push(
@@ -303,277 +305,345 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
   return (
     <div id="" className="w-full flex justify-center px-4 py-14 bg-[#f6f7fb]">
       <div className="w-full max-w-3xl bg-white rounded-3xl p-8 shadow-lg">
-        <h3 className="text-center text-2xl font-bold mb-6">
+        {/* <h3 className="text-center text-2xl font-bold mb-6">
           Shipment Cost Calculator
-        </h3>
+        </h3> */}
 
         {/* ================= FROM ================= */}
-        <h4 className="font-semibold mb-5">Pickup Details (From)</h4>
-        <div className="grid md:grid-cols-2 gap-4 mb-6">
-          <FloatingInput
-            label="Pickup Name"
-            value={values.pickupName}
-            onChange={(e) =>
-              setValues((p) => ({ ...p, pickupName: e.target.value }))
-            }
-          />
-          <FloatingInput
-            label="Pickup Phone"
-            value={values.pickupPhone}
-            onChange={(e) =>
-              setValues((p) => ({ ...p, pickupPhone: e.target.value }))
-            }
-          />
-          <FloatingInput
-            label="Pickup Address"
-            value={values.pickupAddress}
-            onChange={(e) =>
-              setValues((p) => ({ ...p, pickupAddress: e.target.value }))
-            }
-          />
-          <FloatingInput
-            label="Pickup City"
-            value={values.pickupCity}
-            onChange={(e) =>
-              setValues((p) => ({ ...p, pickupCity: e.target.value }))
-            }
-          />
-          {/* <FloatingInput
-            label="Pickup State"
-            value={values.pickupState}
-            onChange={(e) =>
-              setValues((p) => ({ ...p, pickupState: e.target.value }))
-            }
-          /> */}
+        {/* <div className="min-h-screen bg-[#f5f7fb] flex justify-center items-center py-12 px-4"> */}
+          <div className="w-full max-w-5xl bg-white rounded-[32px]  p-8 md:p-10">
+
+            {/* Header */}
+            <div className="text-center mb-10">
+              <h2 className="text-4xl font-bold text-[#000]">
+                Rate Calculator
+              </h2>
+              <p className="text-gray-500 mt-2">
+                Get an instant estimate for your shipment
+              </p>
+            </div>
+
+            {/* Top Fields */}
+            <div className="grid md:grid-cols-2 gap-6">
+
+              <div>
+                <label className="flex items-center gap-2 text-[#0F2D7A] font-semibold mb-2">
+                Pickup PIN code
+                </label>
+
+                <input
+                  type="text"
+                  value={values.pickupPincode}
+                  onChange={(e) =>
+                    setValues((p) => ({
+                      ...p,
+                      pickupPincode: e.target.value,
+                    }))
+                  }
+                  placeholder="Enter pickup PIN code"
+                  className="w-full h-[56px] rounded-xl border border-gray-200 px-4 focus:outline-none"
+                />
+              </div>
+
+              <div>
+                <label className="flex items-center gap-2 text-[#0F2D7A] font-semibold mb-2">
+                   Drop PIN code
+                </label>
+
+                <input
+                  type="text"
+                  value={values.dropPincode}
+                  onChange={(e) =>
+                    setValues((p) => ({
+                      ...p,
+                      dropPincode: e.target.value,
+                    }))
+                  }
+                  placeholder="Enter drop PIN code"
+                  className="w-full h-[56px] rounded-xl border border-gray-200 px-4 focus:outline-none"
+                />
+              </div>
+
+              <div>
+                <label className="flex items-center gap-2 text-[#0F2D7A] font-semibold mb-2">
+                  Name
+                </label>
+
+                <input
+                  type="text"
+                  placeholder="Enter full name"
+                  value={values.pickupName}
+                  onChange={(e) =>
+                    setValues((p) => ({ ...p, pickupName: e.target.value }))
+                  }
+                  className="w-full h-[56px] rounded-xl border border-gray-200 px-4"
+                />
+              </div>
+
+              <div>
+                <label className="flex items-center gap-2 text-[#0F2D7A] font-semibold mb-2">
+                  Contact Number
+                </label>
+
+                <input
+                  type="text"
+                  value={values.pickupPhone}
+                  onChange={(e) =>
+                    setValues((p) => ({ ...p, pickupPhone: e.target.value }))
+                  }
+                  placeholder="Enter mobile number"
+                  className="w-full h-[56px] rounded-xl border border-gray-200 px-4"
+                />
+              </div>
+
+            </div>
+
+            {/* Divider */}
+            <div className="border-t my-8"></div>
+
+            {/* Package Section */}
+            <div>
+              <div className="flex items-center gap-2 mb-6">
+                {/* <span className="text-xl">📦</span> */}
+                <h3 className="font-bold text-[#000]">
+                  Package Details
+                </h3>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-6 mb-6">
+
+                <div>
+                  <label className="text-sm text-gray-500 block mb-2">
+                    Package Type
+                  </label>
+
+                  <select
+                    value={luggageType}
+                    onChange={(e) => setluggageType(e.target.value)}
+                    className="w-full h-[56px] rounded-xl border border-gray-200 px-4"
+                  >
+                    <option>Suitcase</option>
+                    <option>Trolley</option>
+                    <option>Backpack</option>
+                    <option>Box</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="text-sm text-gray-500 block mb-2">
+                    Delivery Speed
+                  </label>
+
+                  <select
+                    value={service}
+                    onChange={(e) => setService(e.target.value)}
+                    className="w-full h-[56px] rounded-xl border border-gray-200 px-4"
+                  >
+                    <option>Express</option>
+                    <option>Standard</option>
+                    <option>Premium</option>
+                  </select>
+                </div>
+
+              </div>
+
+              {/* Dimensions */}
+              {/* Dimensions */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+
+                {/* Weight */}
+                <div>
+                  <input
+                    type="number"
+                    placeholder="Weight (kg)"
+                    value={weight}
+                    onChange={(e) => {
+                      const value = e.target.value;
+
+                      if (value === "") {
+                        setWeight("");
+                        return;
+                      }
+
+                      if (Number(value) >= 0) {
+                        setWeight(value);
+                      }
+                    }}
+                    onKeyDown={(e) => {
+                      if (e.key === "-" || e.key === "e") {
+                        e.preventDefault();
+                      }
+                    }}
+                    className={`h-[56px] w-full rounded-xl px-4 outline-none
+        ${errors.weight
+                        ? "border border-red-500"
+                        : "border border-gray-200"
+                      }`}
+                  />
+
+                  {errors.weight && (
+                    <p className="text-red-500 text-xs mt-1">
+                      {errors.weight}
+                    </p>
+                  )}
+                </div>
+
+                {/* Length */}
+                <div>
+                  <input
+                    type="number"
+                    placeholder="Length (cm)"
+                    value={length}
+                    onChange={(e) => {
+                      const value = e.target.value;
+
+                      if (value === "") {
+                        setLength("");
+                        return;
+                      }
+
+                      if (Number(value) >= 0) {
+                        setLength(value);
+                      }
+                    }}
+                    onKeyDown={(e) => {
+                      if (e.key === "-" || e.key === "e") {
+                        e.preventDefault();
+                      }
+                    }}
+                    className={`h-[56px] w-full rounded-xl px-4 outline-none
+        ${errors.length
+                        ? "border border-red-500"
+                        : "border border-gray-200"
+                      }`}
+                  />
+
+                  {errors.length && (
+                    <p className="text-red-500 text-xs mt-1">
+                      {errors.length}
+                    </p>
+                  )}
+                </div>
+
+                {/* Width */}
+                <div>
+                  <input
+                    type="number"
+                    placeholder="Width (cm)"
+                    value={width}
+                    onChange={(e) => {
+                      const value = e.target.value;
+
+                      if (value === "") {
+                        setWidth("");
+                        return;
+                      }
+
+                      if (Number(value) >= 0) {
+                        setWidth(value);
+                      }
+                    }}
+                    onKeyDown={(e) => {
+                      if (e.key === "-" || e.key === "e") {
+                        e.preventDefault();
+                      }
+                    }}
+                    className={`h-[56px] w-full rounded-xl px-4 outline-none
+        ${errors.width
+                        ? "border border-red-500"
+                        : "border border-gray-200"
+                      }`}
+                  />
+
+                  {errors.width && (
+                    <p className="text-red-500 text-xs mt-1">
+                      {errors.width}
+                    </p>
+                  )}
+                </div>
+
+                {/* Height */}
+                <div>
+                  <input
+                    type="number"
+                    placeholder="Height (cm)"
+                    value={height}
+                    onChange={(e) => {
+                      const value = e.target.value;
+
+                      if (value === "") {
+                        setHeight("");
+                        return;
+                      }
+
+                      if (Number(value) >= 0) {
+                        setHeight(value);
+                      }
+                    }}
+                    onKeyDown={(e) => {
+                      if (e.key === "-" || e.key === "e") {
+                        e.preventDefault();
+                      }
+                    }}
+                    className={`h-[56px] w-full rounded-xl px-4 outline-none
+        ${errors.height
+                        ? "border border-red-500"
+                        : "border border-gray-200"
+                      }`}
+                  />
+
+                  {errors.height && (
+                    <p className="text-red-500 text-xs mt-1">
+                      {errors.height}
+                    </p>
+                  )}
+                </div>
+
+              </div>
+            </div>
+
+            {/* Button */}
+            <button
+              onClick={calculatePrice}
+              className="
+      mt-8
+      w-full
+      h-[60px]
+      rounded-2xl
+      text-white
+      font-semibold
+      text-lg
+      bg-gradient-to-r
+      from-blue-600
+      to-blue-500
+      hover:opacity-90
+      transition
+      "
+            >
+              Calculate Price
+            </button>
+
+            {/* Footer */}
+            <div className="text-center text-sm text-gray-500 mt-5">
+              🔒 Your details are safe and secure with us
+            </div>
+
+          </div>
+        {/* </div> */}
 
 
 
-          <select
-            value={values.pickupState}
-            onChange={(e) =>
-              setValues((p) => ({ ...p, pickupState: e.target.value }))
-            }
-            className="w-full rounded-xl px-4 py-3 bg-[#f7f8fa] border"
-          >
-            <option value="">Select State</option>
-            {INDIA_STATES.map((state) => (
-              <option key={state} value={state}>
-                {state}
-              </option>
-            ))}
-          </select>
-          <FloatingInput
-            label="Pickup Pincode"
-            value={values.pickupPincode}
-            onChange={(e) =>
-              setValues((p) => ({ ...p, pickupPincode: e.target.value }))
-            }
-          />
-        </div>
-
-        {/* ================= TO ================= */}
-        <h4 className="font-semibold mb-5">Delivery Details (To)</h4>
-        <div className="grid md:grid-cols-2 gap-4 mb-6">
-          <FloatingInput
-            label="Customer Name"
-            value={values.name}
-            onChange={(e) => setValues((p) => ({ ...p, name: e.target.value }))}
-          />
-          <FloatingInput
-            label="Customer Phone"
-            value={values.phone}
-            onChange={(e) =>
-              setValues((p) => ({ ...p, phone: e.target.value }))
-            }
-          />
-          <FloatingInput
-            label="Customer Address"
-            value={values.address}
-            onChange={(e) =>
-              setValues((p) => ({ ...p, address: e.target.value }))
-            }
-          />
-          <FloatingInput
-            label="Drop City"
-            value={values.dropCity}
-            onChange={(e) =>
-              setValues((p) => ({ ...p, dropCity: e.target.value }))
-            }
-          />
-          {/* <FloatingInput
-            label="State"
-            value={values.dropState}
-            onChange={(e) =>
-              setValues((p) => ({ ...p, dropState: e.target.value }))
-            }
-          /> */}
-
-
-          <select
-            value={values.dropState}
-            onChange={(e) =>
-              setValues((p) => ({ ...p, dropState: e.target.value }))
-            }
-            className="w-full rounded-xl px-4 py-3 bg-[#f7f8fa] border"
-          >
-            <option value="">Select State</option>
-            {INDIA_STATES.map((state) => (
-              <option key={state} value={state}>
-                {state}
-              </option>
-            ))}
-          </select>
-
-
-
-          <FloatingInput
-            label="Pincode"
-            value={values.dropPincode}
-            onChange={(e) =>
-              setValues((p) => ({ ...p, dropPincode: e.target.value }))
-            }
-          />
-        </div>
-
-        {/* ================= PACKAGE ================= */}
-        <h4 className="font-semibold mb-5">Package Details</h4>
 
 
 
 
-        {/* Bags + Service */}
-        <div className="grid md:grid-cols-2 gap-4 mb-6">
-          {/* <select
-            value={bags}
-            onChange={(e) => setBags(e.target.value)}
-            className="w-full rounded-xl px-4 py-3 border bg-[#f7f8fa]"
-          >
-            
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-          </select> */}
-
-          <select
-            value={luggageType}   // ✅ MUST ADD
-            className="w-full rounded-xl px-4 py-3 border bg-[#f7f8fa]"
-            onChange={(e) => setluggageType(e.target.value)}
-          >
-            <option value="Trolley">Trolley</option>
-            <option value="Suitcase">Suitcase</option>
-            <option value="Backpack">Backpack</option>
-            <option value="Box">Box</option>
-          </select>
-
-
-
-
-
-
-          <select
-            value={service}
-            onChange={(e) => setService(e.target.value)}
-            className="w-full rounded-xl px-4 py-3 border bg-[#f7f8fa]"
-          >
-            {/* <option value="">Select the Service</option> */}
-            <option value="Express">Express</option>
-            <option value="Standard">Standard</option>
-            <option value="Premium">Premium</option>
-          </select>
-        </div>
-
-        {/* Weight + Dimensions */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
-          <FloatingInput
-            label="Weight (min 5kg)"
-            type="number"
-            value={weight}
-            onChange={(e) => {
-              const value = e.target.value;
-
-              // allow empty
-              if (value === "") {
-                setWeight("");
-                return;
-              }
-
-              // allow only numbers (no negative)
-              if (Number(value) >= 0) {
-                setWeight(value);
-              }
-            }}
-            onKeyDown={(e) => {
-              if (e.key === "-" || e.key === "e") {
-                e.preventDefault();
-              }
-            }}
-            error={errors.weight}
-          />
-
-          <FloatingInput
-            label="L (cm)"
-            type="number"
-            min={0}
-            value={length}
-            onChange={(e) => {
-              const value = e.target.value;
-              if (value >= 0) {
-                setLength(value);
-              }
-            }}
-            // onChange={(e) => setLength(e.target.value)}
-            onKeyDown={(e) => e.key === "-" && e.preventDefault()}
-          />
-
-          <FloatingInput
-            label="W (cm)"
-            type="number"
-            min={0}
-            value={width}
-            onChange={(e) => {
-              const value = e.target.value;
-              if (value >= 0) {
-                setWidth(value);
-              }
-            }}
-            // onChange={(e) => setWidth(e.target.value)}
-            onKeyDown={(e) => e.key === "-" && e.preventDefault()}
-          />
-
-          <FloatingInput
-            label="H (cm)"
-            type="number"
-            min={0}
-            value={height}
-            onChange={(e) => {
-              const value = e.target.value;
-              if (value >= 0) {
-                setHeight(value);
-              }
-            }}
-            // onChange={(e) => setHeight(e.target.value)}
-            onKeyDown={(e) => e.key === "-" && e.preventDefault()}
-          />
-        </div>
-
-
-        {/* ACTION */}
-        <button
-          onClick={calculatePrice}
-          className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl font-semibold transition"
-        >
-          Calculate Price
-        </button>
 
         {total !== null && (
           <div className="bg-[#E7ECFF] rounded-3xl p-6 mt-6 space-y-5">
             <h4 className="text-lg font-semibold">Shipment Summary</h4>
 
             {/* ================= FROM ================= */}
-            <div className="bg-white rounded-xl p-4 shadow-sm">
+            {/* <div className="bg-white rounded-xl p-4 shadow-sm">
               <h4 className="font-semibold mb-2 text-blue-700">
                 Pickup Details
               </h4>
@@ -597,10 +667,10 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
                   <b>Pincode:</b> {values.pickupPincode || "-"}
                 </p>
               </div>
-            </div>
+            </div> */}
 
             {/* ================= TO ================= */}
-            <div className="bg-white rounded-xl p-4 shadow-sm">
+            {/* <div className="bg-white rounded-xl p-4 shadow-sm">
               <h4 className="font-semibold mb-2 text-green-700">
                 Delivery Details
               </h4>
@@ -624,7 +694,7 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
                   <b>Pincode:</b> {values.dropPincode || "-"}
                 </p>
               </div>
-            </div>
+            </div> */}
 
             {/* ================= PACKAGE ================= */}
             <div className="bg-white rounded-xl p-4 shadow-sm">

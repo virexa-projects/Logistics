@@ -2,11 +2,11 @@ import Corporate from '@/page/corporate'
 import React from 'react'
 
 export const metadata = {
-  title: "Corporate Luggage Delivery Solutions India | Bulk Baggage Services for Business | Frisbi",
+  title: "Corporate Luggage Delivery Solutions in Bangalore | Frisbi",
   description:
-    "Frisbi offers corporate luggage delivery solutions for employee relocations, events, conferences, and business travel. Get dedicated account managers, bulk handling, flexible scheduling, and real-time tracking across India. ",
+    "Frisbi provides corporate luggage delivery solutions and parcel services in Bangalore for businesses, hotels, events, and employee travel logistics.",
   keywords: [
-    "corporate luggage delivery india, business baggage courier service, bulk luggage transport india, employee relocation luggage service, corporate event luggage handling, conference baggage delivery india, company luggage shipping service, business travel baggage courier, corporate luggage logistics india, bulk baggage delivery for events",
+    "Corporate Luggage Delivery Solutions, corporate parcel service, corporate luggage movers in Bangalore",
   ],
 };
 

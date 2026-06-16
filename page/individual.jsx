@@ -143,7 +143,7 @@ function Individual() {
 
             <div className="flex flex-wrap justify-center gap-4">
               <Link
-                href="/contact-us"
+                href="/book-shipment"
                 className="btn-white hover:scale-105 transition-all"
               >
                 Book Now

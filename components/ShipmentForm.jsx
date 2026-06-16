@@ -154,8 +154,8 @@ const calculatePriceBreakup = (values) => {
       Number(values.width || 0) +
       Number(values.height || 0)) * 0.5;
 
-  let subtotal = baseCost + weightCost ;
-  
+  let subtotal = baseCost + weightCost;
+
 
   // ✅ addons (optional)
   const addonTotal = (values.addons || []).reduce(
@@ -198,6 +198,8 @@ export default function ShipmentBookingForm({
   const invoiceRef = useRef(null);
   const [addonError, setAddonError] = useState("");
   const [showInvoice, setShowInvoice] = useState(false);
+
+  const [errors, setErrors] = useState({});
 
   const [values, setValues] = useState({
     customerType: "Individual",
@@ -243,17 +245,17 @@ export default function ShipmentBookingForm({
   //   }
   // }, [bookingData]);
 
-      useEffect(() => {
-  setValues((prev) => ({
-    ...prev,
-    ...bookingData,
-    service:
-      bookingData?.service ||
-      bookingData?.serviceType ||
-      prev.service ||
-      "Express",
-  }));
-}, [bookingData]);
+  useEffect(() => {
+    setValues((prev) => ({
+      ...prev,
+      ...bookingData,
+      service:
+        bookingData?.service ||
+        bookingData?.serviceType ||
+        prev.service ||
+        "Express",
+    }));
+  }, [bookingData]);
 
   // useEffect(() => {
   //   if (bookingData) {
@@ -330,73 +332,187 @@ export default function ShipmentBookingForm({
 
 
 
-const sendMessage = async (totalPrice) => {
-  try {
-    const phone = values.pickupPhone?.replace(/\D/g, ""); // only numbers
+  const validateForm = () => {
+    const newErrors = {};
 
-    if (!phone || phone.length !== 10) {
-      console.error("Invalid phone number");
-      return;
+    if (!values.name?.trim()) {
+      newErrors.name = "Drop Name is required";
+    }
+    if (!values.pickupName?.trim()) {
+      newErrors.pickupName = "Pickup Name is required";
+    }
+    if (!values.phone?.trim()) {
+      newErrors.phone = "phone is required";
     }
 
-    const payload = {
-      to: `91${phone}`,
-      type: "template",
-      template: {
-        language: {
-          policy: "deterministic",
-          code: "en",
-        },
-        name: "order_confirm",
-        components: [
-          {
-            type: "body",
-            parameters: [
-              { type: "text", text: values.name || "Customer" },
-              { type: "text", text: values.orderId || "N/A" },
-              { type: "text", text: values.pickupCity || "N/A" },
-              {
-                type: "text",
-                text: `${values.weight || 0}kg`,
-              },
-              {
-                type: "text",
-                text: `${values.luggageType || 0}`,
-              },
-              {
-                type: "text",
-                text: `₹${totalPrice || 0}`,
-              },
-              {
-                type: "text",
-                text: "https://www.frisbi.in/track-your-package",
-              },
-            ],
-          },
-        ],
-      },
-    };
+    // if (!values.phone?.trim()) {
+    //   newErrors.phone = "Phone number is required";
+    // } else if (!/^[6-9]\d{9}$/.test(values.phone)) {
+    //   newErrors.phone = "Enter a valid 10 digit mobile number";
+    // }
 
-    console.log("FINAL PAYLOAD 👉", payload); // 🔥 DEBUG
+    if (!values.email?.trim()) {
+      newErrors.email = "Email is required";
+    }
+    if (!values.companyName?.trim()) {
+      newErrors.companyName = "Company Name is required";
+    }
+    if (!values.gstNumber?.trim()) {
+      newErrors.gstNumber = "gst Numberis required";
+    }
 
-    const res = await fetch(
-      "https://api.virexa.in/v1/message/send-message?token=1a051309720abd839dd2a59adff7240a485c2f2ac8aae63d654f456fa19662cd5254d594e0b476d110e78332044d3e35802efea6ce118bde4e53feb1bb86ff28",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
+    if (!values.pickupCity?.trim()) {
+      newErrors.pickupCity = "Pickup City is required";
+    }
+
+
+    if (!values.pickupAddress?.trim()) {
+      newErrors.pickupAddress = "Pickup Address is required";
+    }
+    if (!values.pickupState?.trim()) {
+      newErrors.pickupState = "Pickup State is required";
+    }
+
+    if (!values.pickupPincode?.trim()) {
+      newErrors.pickupPincode = "Pickup pincode is required";
+    }
+  if (!values.dropAddress?.trim()) {
+      newErrors.dropAddress = "Drop Address is required";
+    }
+
+  if (!values.dropCity?.trim()) {
+      newErrors.dropCity = "Drop Address is required";
+    }
+
+  if (!values.dropState?.trim()) {
+      newErrors.dropState = "Drop State is required";
+    }
+
+  if (!values.dropPincode?.trim()) {
+      newErrors.dropPincode = "Drop Pincode is required";
+    }
+
+  if (!values.pickupDate?.trim()) {
+      newErrors.pickupDate = "Pickup Date is required";
+    }
+
+  if (!values.pickupTimeSlot?.trim()) {
+      newErrors.pickupTimeSlot = "Pickup Time Slot is required";
+    }
+
+  if (!values.service?.trim()) {
+      newErrors.service = "Service is required";
+    }
+
+  if (!values.weight?.trim()) {
+      newErrors.weight = "weight is required";
+    }
+
+  if (!values.height?.trim()) {
+      newErrors.height = "Height is required";
+    }
+
+  if (!values.length?.trim()) {
+      newErrors.length = "length is required";
+    }
+
+
+  if (!values.width?.trim()) {
+      newErrors.width = "width is required";
+    }
+
+  if (!values.bagSize?.trim()) {
+      newErrors.bagSize = "bagSize is required";
+    }
+
+
+  if (!values.luggageType?.trim()) {
+      newErrors.luggageType = "Luggage Type is required";
+    }
+
+
+
+
+
+
+    if (!values.weight || Number(values.weight) < 5) {
+      newErrors.weight = "Minimum weight should be 5kg";
+    }
+
+    setErrors(newErrors);
+
+    return Object.keys(newErrors).length === 0;
+  };
+
+
+
+  const sendMessage = async (totalPrice) => {
+    try {
+      const phone = values.pickupPhone?.replace(/\D/g, ""); // only numbers
+
+      if (!phone || phone.length !== 10) {
+        console.error("Invalid phone number");
+        return;
       }
-    );
 
-    const data = await res.json();
-    console.log("API RESPONSE 👉", data);
+      const payload = {
+        to: `91${phone}`,
+        type: "template",
+        template: {
+          language: {
+            policy: "deterministic",
+            code: "en",
+          },
+          name: "order_confirm",
+          components: [
+            {
+              type: "body",
+              parameters: [
+                { type: "text", text: values.name || "Customer" },
+                { type: "text", text: values.orderId || "N/A" },
+                { type: "text", text: values.pickupCity || "N/A" },
+                {
+                  type: "text",
+                  text: `${values.weight || 0}kg`,
+                },
+                {
+                  type: "text",
+                  text: `${values.luggageType || 0}`,
+                },
+                {
+                  type: "text",
+                  text: `₹${totalPrice || 0}`,
+                },
+                {
+                  type: "text",
+                  text: "https://www.frisbi.in/track-your-package",
+                },
+              ],
+            },
+          ],
+        },
+      };
 
-  } catch (err) {
-    console.error("WhatsApp error", err);
-  }
-};
+      console.log("FINAL PAYLOAD 👉", payload); // 🔥 DEBUG
+
+      const res = await fetch(
+        "https://api.virexa.in/v1/message/send-message?token=1a051309720abd839dd2a59adff7240a485c2f2ac8aae63d654f456fa19662cd5254d594e0b476d110e78332044d3e35802efea6ce118bde4e53feb1bb86ff28",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        }
+      );
+
+      const data = await res.json();
+      console.log("API RESPONSE 👉", data);
+
+    } catch (err) {
+      console.error("WhatsApp error", err);
+    }
+  };
 
 
 
@@ -404,15 +520,18 @@ const sendMessage = async (totalPrice) => {
 
 
   const startPayment = async () => {
-    if (!values.name || !values.phone) {
-      toast.error("Name and mobile number required");
+    // if (!values.name || !values.phone) {
+    //   toast.error("Name and mobile number required");
+    //   return;
+    // }
+    if (!validateForm()) {
       return;
     }
 
-      if (!values.weight || Number(values.weight) < 5) {
-    toast.error("Minimum 5kg required");
-    return;
-  }
+    if (!values.weight || Number(values.weight) < 5) {
+      toast.error("Minimum 5kg required");
+      return;
+    }
     await sendMessage(price.total);   // WhatsApp message
 
     // ✅ WAIT FOR RAZORPAY SDK
@@ -660,35 +779,73 @@ const sendMessage = async (totalPrice) => {
           </div>
 
           <div className="grid md:grid-cols-2 gap-4">
-            <input
-              placeholder="Enter Name"
-              className={fieldClass}
-              value={values.pickupName}
-              onChange={(e) => handleChange("name", e.target.value)}
-            />
-            <input
-              placeholder="Whatsapp Number"
-              className={fieldClass}
-              onChange={(e) => handleChange("phone", e.target.value)}
-            />
-            <input
-              placeholder="Email"
-              className={fieldClass}
-              onChange={(e) => handleChange("email", e.target.value)}
-            />
+            <div>
+              <input
+                placeholder="Enter Name"
+                className={fieldClass}
+                value={values.pickupName}
+                onChange={(e) => handleChange("name", e.target.value)}
+
+              />
+              {errors.pickupName && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.pickupName}
+                </p>
+              )}
+            </div>
+            <div>
+              <input
+                placeholder="Whatsapp Number"
+                className={fieldClass}
+                onChange={(e) => handleChange("phone", e.target.value)}
+              />
+              {errors.phone && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.phone}
+                </p>
+              )}
+            </div>
+            <div>
+              <input
+                placeholder="Email"
+                className={fieldClass}
+                onChange={(e) => handleChange("email", e.target.value)}
+              />
+              {errors.email && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.email}
+                </p>
+              )}
+            </div>
 
             {values.customerType === "Corporate" && (
               <>
-                <input
-                  placeholder="Company Name"
-                  className={fieldClass}
-                  onChange={(e) => handleChange("companyName", e.target.value)}
-                />
-                <input
-                  placeholder="GST Number"
-                  className={fieldClass}
-                  onChange={(e) => handleChange("gstNumber", e.target.value)}
-                />
+                <div>
+                  <input
+                    placeholder="Company Name"
+                    className={fieldClass}
+                    onChange={(e) => handleChange("companyName", e.target.value)}
+                  />
+                  {errors.companyName && (
+                    <p className="text-red-500 text-sm mt-1">
+                      {errors.companyName}
+                    </p>
+                  )}
+                </div>
+                <div>
+                  <input
+                    placeholder="GST Number"
+                    className={fieldClass}
+                    onChange={(e) => handleChange("gstNumber", e.target.value)}
+                  />
+                  {errors.gstNumber && (
+                    <p className="text-red-500 text-sm mt-1">
+                      {errors.gstNumber}
+                    </p>
+                  )}
+
+                </div>
+
               </>
             )}
           </div>
@@ -717,10 +874,16 @@ const sendMessage = async (totalPrice) => {
               </label>
               <input
                 placeholder="Pickup City"
-                readOnly
+                // readOnly
                 className={fieldClass}
                 value={values.pickupCity}
+                onChange={(e) => handleChange("pickupCity", e.target.value)}
               />
+              {errors.pickupCity && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.pickupCity}
+                </p>
+              )}
             </div>
 
 
@@ -736,6 +899,11 @@ const sendMessage = async (totalPrice) => {
                 value={values.pickupAddress}
                 onChange={(e) => handleChange("pickupAddress", e.target.value)}
               />
+              {errors.pickupAddress && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.pickupAddress}
+                </p>
+              )}
             </div>
 
             {/* Pickup State */}
@@ -753,24 +921,29 @@ const sendMessage = async (totalPrice) => {
 
 
             <div className="space-y-1">
-  <label className="text-sm font-medium text-gray-700">
-    Pickup State
-  </label>
+              <label className="text-sm font-medium text-gray-700">
+                Pickup State
+              </label>
 
-  <select
-    className={fieldClass}
-    value={values.pickupState || ""}   // 🔥 IMPORTANT
-    onChange={(e) => handleChange("pickupState", e.target.value)}
-  >
-    <option value="">Select State</option>
+              <select
+                className={fieldClass}
+                value={values.pickupState || ""}   // 🔥 IMPORTANT
+                onChange={(e) => handleChange("pickupState", e.target.value)}
+              >
+                <option value="">Select State</option>
 
-    {INDIA_STATES.map((state) => (
-      <option key={state} value={state}>
-        {state}
-      </option>
-    ))}
-  </select>
-</div>
+                {INDIA_STATES.map((state) => (
+                  <option key={state} value={state}>
+                    {state}
+                  </option>
+                ))}
+              </select>
+              {errors.pickupState && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.pickupState}
+                </p>
+              )}
+            </div>
 
             {/* Pickup Pincode */}
             <div className="space-y-1">
@@ -783,6 +956,11 @@ const sendMessage = async (totalPrice) => {
                 value={values.pickupPincode}
                 onChange={(e) => handleChange("pickupPincode", e.target.value)}
               />
+              {errors.pickupPincode && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.pickupPincode}
+                </p>
+              )}
             </div>
 
           </div>
@@ -797,6 +975,11 @@ const sendMessage = async (totalPrice) => {
                 value={values.name}
                 onChange={(e) => handleChange("name", e.target.value)}
               />
+              {errors.name && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.name}
+                </p>
+              )}
             </div>
 
             {/* Drop Address */}
@@ -810,6 +993,11 @@ const sendMessage = async (totalPrice) => {
                 value={values.address}
                 onChange={(e) => handleChange("dropAddress", e.target.value)}
               />
+              {errors.dropAddress && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.dropAddress}
+                </p>
+              )}
             </div>
 
             {/* Drop City */}
@@ -819,10 +1007,16 @@ const sendMessage = async (totalPrice) => {
               </label>
               <input
                 placeholder="Drop City"
-                readOnly
+                // readOnly
                 className={fieldClass}
                 value={values.dropCity}
+                onChange={(e) => handleChange("dropCity", e.target.value)}
               />
+              {errors.dropCity && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.dropCity}
+                </p>
+              )}
             </div>
 
             {/* Drop State */}
@@ -839,18 +1033,23 @@ const sendMessage = async (totalPrice) => {
 
 
               <select
-  className={fieldClass}
-  value={values.dropState || ""}
-  onChange={(e) => handleChange("dropState", e.target.value)}
->
-  <option value="">Select State</option>
+                className={fieldClass}
+                value={values.dropState || ""}
+                onChange={(e) => handleChange("dropState", e.target.value)}
+              >
+                <option value="">Select State</option>
 
-  {INDIA_STATES.map((state) => (
-    <option key={state} value={state}>
-      {state}
-    </option>
-  ))}
-</select>
+                {INDIA_STATES.map((state) => (
+                  <option key={state} value={state}>
+                    {state}
+                  </option>
+                ))}
+              </select>
+              {errors.dropState && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.dropState}
+                </p>
+              )}
             </div>
 
             {/* Drop Pincode */}
@@ -864,6 +1063,11 @@ const sendMessage = async (totalPrice) => {
                 value={values.dropPincode}
                 onChange={(e) => handleChange("dropPincode", e.target.value)}
               />
+              {errors.dropPincode && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.dropPincode}
+                </p>
+              )}
             </div>
 
           </div>
@@ -874,26 +1078,41 @@ const sendMessage = async (totalPrice) => {
         <div>
           <h4 className="font-semibold mb-4">Select Pickup Date & Time Slot</h4>
           <div className="grid md:grid-cols-3 gap-4">
-            <input
-              type="date"
-              className={fieldClass}
-              min={new Date().toISOString().split("T")[0]}   // ✅ block past dates
-              onChange={(e) => handleChange("pickupDate", e.target.value)}
-            />
+            <div>
+              <input
+                type="date"
+                className={fieldClass}
+                min={new Date().toISOString().split("T")[0]}   // ✅ block past dates
+                onChange={(e) => handleChange("pickupDate", e.target.value)}
+              />
+              {errors.pickupDate && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.pickupDate}
+                </p>
+              )}
+            </div>
             {/* <input
               type="date"
               className={fieldClass}
               onChange={(e) => handleChange("deliveryDate", e.target.value)}
             /> */}
-            <select
-              className={fieldClass}
-              onChange={(e) => handleChange("pickupTimeSlot", e.target.value)}
-            >
-              <option value="">Pickup Time Slot</option>
-              {PICKUP_SLOTS.map((slot) => (
-                <option key={slot}>{slot}</option>
-              ))}
-            </select>
+            <div>
+              <select
+                className={fieldClass}
+                onChange={(e) => handleChange("pickupTimeSlot", e.target.value)}
+              >
+                <option value="">Pickup Time Slot</option>
+                {PICKUP_SLOTS.map((slot) => (
+                  <option key={slot}>{slot}</option>
+                ))}
+              </select>
+              {errors.pickupTimeSlot && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.pickupTimeSlot}
+                </p>
+              )}
+
+            </div>
           </div>
         </div>
 
@@ -909,6 +1128,11 @@ const sendMessage = async (totalPrice) => {
             <option value="Standard">Standard</option>
             <option value="Premium">Premium</option>
           </select>
+          {errors.service && (
+            <p className="text-red-500 text-sm mt-1">
+              {errors.service}
+            </p>
+          )}
         </div>
 
         {/* this one Express 699 for per kg 109,Standard 499 for per kg 79, premium 999 for per kg 249 undersstabd  */}
@@ -919,59 +1143,90 @@ const sendMessage = async (totalPrice) => {
           <div className="grid md:grid-cols-4 gap-4">
 
 
-<input
-  type="number"
-  placeholder="Total Weight (min 5kg)"
-  className={fieldClass}
-  value={values.weight}
-  onChange={(e) => {
-    const value = e.target.value;
+            <div>
+              <input
+                type="number"
+                placeholder="Total Weight (min 5kg)"
+                className={fieldClass}
+                value={values.weight}
+                onChange={(e) => {
+                  const value = e.target.value;
 
-    // allow empty
-    if (value === "") {
-      handleChange("weight", "");
-      return;
-    }
+                  // allow empty
+                  if (value === "") {
+                    handleChange("weight", "");
+                    return;
+                  }
 
-    // allow only positive numbers
-    if (Number(value) >= 0) {
-      handleChange("weight", value);
-    }
-  }}
-  onKeyDown={(e) => {
-    if (e.key === "-" || e.key === "e") {
-      e.preventDefault();
-    }
-  }}
-/>
-            <input
-              type="number"
-              min="0"
-              placeholder="Height (cm)"
-              className={fieldClass}
-              value={values.height}
-              onChange={(e) => handleChange("height", e.target.value)}
-            />
+                  // allow only positive numbers
+                  if (Number(value) >= 0) {
+                    handleChange("weight", value);
+                  }
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === "-" || e.key === "e") {
+                    e.preventDefault();
+                  }
+                }}
+              />
+              {errors.weight && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.weight}
+                </p>
+              )}
+
+            </div>
+
+            <div>
+              <input
+                type="number"
+                min="0"
+                placeholder="Height (cm)"
+                className={fieldClass}
+                value={values.height}
+                onChange={(e) => handleChange("height", e.target.value)}
+              />
+              {errors.height && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.height}
+                </p>
+              )}
+            </div>
 
 
-            <input
-              type="number"
-              min="0"
-              placeholder="Length (cm)"
-              className={fieldClass}
-              value={values.length}
-              onChange={(e) => handleChange("length", e.target.value)}
-            />
+            <div>
+              <input
+                type="number"
+                min="0"
+                placeholder="Length (cm)"
+                className={fieldClass}
+                value={values.length}
+                onChange={(e) => handleChange("length", e.target.value)}
+              />
+
+              {errors.length && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.length}
+                </p>
+              )}
+            </div>
 
 
-            <input
-              type="number"
-              min="0"
-              placeholder="Width (cm)"
-              className={fieldClass}
-              value={values.width}
-              onChange={(e) => handleChange("width", e.target.value)}
-            />
+            <div>
+              <input
+                type="number"
+                min="0"
+                placeholder="Width (cm)"
+                className={fieldClass}
+                value={values.width}
+                onChange={(e) => handleChange("width", e.target.value)}
+              />
+              {errors.width && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.width}
+                </p>
+              )}
+            </div>
 
 
             {/* <input
@@ -984,16 +1239,25 @@ const sendMessage = async (totalPrice) => {
             /> */}
 
 
-            <select
-              className={fieldClass}
-              onChange={(e) => handleChange("bagSize", e.target.value)}
-            >
-              <option value="">Select Bag size</option>
-              <option>Small</option>
-              <option>Medium</option>
-              <option>Large</option>
-              <option>XL</option>
-            </select>
+            <div>
+              <select
+                className={fieldClass}
+                onChange={(e) => handleChange("bagSize", e.target.value)}
+              >
+                <option value="">Select Bag size</option>
+                <option>Small</option>
+                <option>Medium</option>
+                <option>Large</option>
+                <option>XL</option>
+              </select>
+
+              {errors.bagSize && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.bagSize}
+                </p>
+              )}
+
+            </div>
 
             <select
               className={fieldClass}
@@ -1005,6 +1269,12 @@ const sendMessage = async (totalPrice) => {
               <option value="Backpack">Backpack</option>
               <option value="Box">Box</option>
             </select>
+
+            {errors.luggageType && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.luggageType}
+              </p>
+            )}
 
           </div>
         </div>

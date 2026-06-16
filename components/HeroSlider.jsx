@@ -107,33 +107,9 @@ export default function HeroSlider() {
           </motion.div>
         </div>
 
-        {/* ARROWS */}
-        {/* <button
-          onClick={goPrev}
-          className="absolute block md:hidden left-4 md:left-8 bottom-6 md:top-1/2 md:-translate-y-1/2 z-30 bg-white/80 hover:bg-white p-3 rounded-full"
-        >
-          ←
-        </button>
-        <button
-          onClick={goNext}
-          className="absolute block md:hidden right-4 md:right-8 bottom-6 md:top-1/2 md:-translate-y-1/2 z-30 bg-white/80 hover:bg-white p-3 rounded-full"
-        >
-          →
-        </button> */}
 
-        {/* DOTS */}
-        {/* <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-30">
-          {slides.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setNextIndex(i)}
-              className={`w-3 h-3 rounded-full ${i === index ? "bg-white" : "bg-white/40"
-                }`}
-            />
-          ))}
-        </div> */}
       </section>
-      <div className=" mb-7  block md:hidden" style={{ marginTop: -180, zIndex: 50, position:"relative" }}
+      <div className=" mb-7  block md:hidden" style={{ marginTop: -180, zIndex: 10, position:"relative" }}
 >
         <PorterPickupDrop />
       </div>
