@@ -311,324 +311,323 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
 
         {/* ================= FROM ================= */}
         {/* <div className="min-h-screen bg-[#f5f7fb] flex justify-center items-center py-12 px-4"> */}
-          <div className="w-full max-w-5xl bg-white rounded-[32px]  p-8 md:p-10">
+        <div className="w-full max-w-5xl bg-white rounded-[32px]  p-8 md:p-10">
 
-            {/* Header */}
-            <div className="text-center mb-10">
-              <h2 className="text-4xl font-bold text-[#000]">
-                Rate Calculator
-              </h2>
-              <p className="text-gray-500 mt-2">
-                Get an instant estimate for your shipment
-              </p>
-            </div>
+          {/* Header */}
+          <div className="text-center mb-10">
+            <h2 className="text-4xl font-bold text-[#000]">
+              Rate Calculator
+            </h2>
+            <p className="text-gray-500 mt-2">
+              Get an instant estimate for your shipment
+            </p>
+          </div>
 
-            {/* Top Fields */}
-            <div className="grid md:grid-cols-2 gap-6">
+          {/* Top Fields */}
+          <div className="grid md:grid-cols-2 gap-6">
 
-              <div>
-                <label className="flex items-center gap-2 text-[#0F2D7A] font-semibold mb-2">
-                Pickup PIN code
-                </label>
-
-                <input
-                  type="text"
-                  value={values.pickupPincode}
-                  onChange={(e) =>
-                    setValues((p) => ({
-                      ...p,
-                      pickupPincode: e.target.value,
-                    }))
-                  }
-                  placeholder="Enter pickup PIN code"
-                  className="w-full h-[56px] rounded-xl border border-gray-200 px-4 focus:outline-none"
-                />
-              </div>
-
-              <div>
-                <label className="flex items-center gap-2 text-[#0F2D7A] font-semibold mb-2">
-                   Drop PIN code
-                </label>
-
-                <input
-                  type="text"
-                  value={values.dropPincode}
-                  onChange={(e) =>
-                    setValues((p) => ({
-                      ...p,
-                      dropPincode: e.target.value,
-                    }))
-                  }
-                  placeholder="Enter drop PIN code"
-                  className="w-full h-[56px] rounded-xl border border-gray-200 px-4 focus:outline-none"
-                />
-              </div>
-
-              <div>
-                <label className="flex items-center gap-2 text-[#0F2D7A] font-semibold mb-2">
-                  Name
-                </label>
-
-                <input
-                  type="text"
-                  placeholder="Enter full name"
-                  value={values.pickupName}
-                  onChange={(e) =>
-                    setValues((p) => ({ ...p, pickupName: e.target.value }))
-                  }
-                  className="w-full h-[56px] rounded-xl border border-gray-200 px-4"
-                />
-              </div>
-
-              <div>
-                <label className="flex items-center gap-2 text-[#0F2D7A] font-semibold mb-2">
-                  Contact Number
-                </label>
-
-                <input
-                  type="text"
-                  value={values.pickupPhone}
-                  onChange={(e) =>
-                    setValues((p) => ({ ...p, pickupPhone: e.target.value }))
-                  }
-                  placeholder="Enter mobile number"
-                  className="w-full h-[56px] rounded-xl border border-gray-200 px-4"
-                />
-              </div>
-
-            </div>
-
-            {/* Divider */}
-            <div className="border-t my-8"></div>
-
-            {/* Package Section */}
             <div>
-              <div className="flex items-center gap-2 mb-6">
-                {/* <span className="text-xl">📦</span> */}
-                <h3 className="font-bold text-[#000]">
-                  Package Details
-                </h3>
-              </div>
+              <label className="flex items-center gap-2 text-[#0F2D7A] font-semibold mb-2">
+                Pickup PIN code
+              </label>
 
-              <div className="grid md:grid-cols-2 gap-6 mb-6">
-
-                <div>
-                  <label className="text-sm text-gray-500 block mb-2">
-                    Package Type
-                  </label>
-
-                  <select
-                    value={luggageType}
-                    onChange={(e) => setluggageType(e.target.value)}
-                    className="w-full h-[56px] rounded-xl border border-gray-200 px-4"
-                  >
-                    <option>Suitcase</option>
-                    <option>Trolley</option>
-                    <option>Backpack</option>
-                    <option>Box</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label className="text-sm text-gray-500 block mb-2">
-                    Delivery Speed
-                  </label>
-
-                  <select
-                    value={service}
-                    onChange={(e) => setService(e.target.value)}
-                    className="w-full h-[56px] rounded-xl border border-gray-200 px-4"
-                  >
-                    <option>Express</option>
-                    <option>Standard</option>
-                    <option>Premium</option>
-                  </select>
-                </div>
-
-              </div>
-
-              {/* Dimensions */}
-              {/* Dimensions */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-
-                {/* Weight */}
-                <div>
-                  <input
-                    type="number"
-                    placeholder="Weight (kg)"
-                    value={weight}
-                    onChange={(e) => {
-                      const value = e.target.value;
-
-                      if (value === "") {
-                        setWeight("");
-                        return;
-                      }
-
-                      if (Number(value) >= 0) {
-                        setWeight(value);
-                      }
-                    }}
-                    onKeyDown={(e) => {
-                      if (e.key === "-" || e.key === "e") {
-                        e.preventDefault();
-                      }
-                    }}
-                    className={`h-[56px] w-full rounded-xl px-4 outline-none
-        ${errors.weight
-                        ? "border border-red-500"
-                        : "border border-gray-200"
-                      }`}
-                  />
-
-                  {errors.weight && (
-                    <p className="text-red-500 text-xs mt-1">
-                      {errors.weight}
-                    </p>
-                  )}
-                </div>
-
-                {/* Length */}
-                <div>
-                  <input
-                    type="number"
-                    placeholder="Length (cm)"
-                    value={length}
-                    onChange={(e) => {
-                      const value = e.target.value;
-
-                      if (value === "") {
-                        setLength("");
-                        return;
-                      }
-
-                      if (Number(value) >= 0) {
-                        setLength(value);
-                      }
-                    }}
-                    onKeyDown={(e) => {
-                      if (e.key === "-" || e.key === "e") {
-                        e.preventDefault();
-                      }
-                    }}
-                    className={`h-[56px] w-full rounded-xl px-4 outline-none
-        ${errors.length
-                        ? "border border-red-500"
-                        : "border border-gray-200"
-                      }`}
-                  />
-
-                  {errors.length && (
-                    <p className="text-red-500 text-xs mt-1">
-                      {errors.length}
-                    </p>
-                  )}
-                </div>
-
-                {/* Width */}
-                <div>
-                  <input
-                    type="number"
-                    placeholder="Width (cm)"
-                    value={width}
-                    onChange={(e) => {
-                      const value = e.target.value;
-
-                      if (value === "") {
-                        setWidth("");
-                        return;
-                      }
-
-                      if (Number(value) >= 0) {
-                        setWidth(value);
-                      }
-                    }}
-                    onKeyDown={(e) => {
-                      if (e.key === "-" || e.key === "e") {
-                        e.preventDefault();
-                      }
-                    }}
-                    className={`h-[56px] w-full rounded-xl px-4 outline-none
-        ${errors.width
-                        ? "border border-red-500"
-                        : "border border-gray-200"
-                      }`}
-                  />
-
-                  {errors.width && (
-                    <p className="text-red-500 text-xs mt-1">
-                      {errors.width}
-                    </p>
-                  )}
-                </div>
-
-                {/* Height */}
-                <div>
-                  <input
-                    type="number"
-                    placeholder="Height (cm)"
-                    value={height}
-                    onChange={(e) => {
-                      const value = e.target.value;
-
-                      if (value === "") {
-                        setHeight("");
-                        return;
-                      }
-
-                      if (Number(value) >= 0) {
-                        setHeight(value);
-                      }
-                    }}
-                    onKeyDown={(e) => {
-                      if (e.key === "-" || e.key === "e") {
-                        e.preventDefault();
-                      }
-                    }}
-                    className={`h-[56px] w-full rounded-xl px-4 outline-none
-        ${errors.height
-                        ? "border border-red-500"
-                        : "border border-gray-200"
-                      }`}
-                  />
-
-                  {errors.height && (
-                    <p className="text-red-500 text-xs mt-1">
-                      {errors.height}
-                    </p>
-                  )}
-                </div>
-
-              </div>
+              <input
+                type="text"
+                value={values.pickupPincode}
+                onChange={(e) =>
+                  setValues((p) => ({
+                    ...p,
+                    pickupPincode: e.target.value,
+                  }))
+                }
+                placeholder="Enter pickup PIN code"
+                className="w-full h-[56px] rounded-xl border border-gray-200 px-4 focus:outline-none"
+              />
             </div>
 
-            {/* Button */}
-            <button
-              onClick={calculatePrice}
-              className="
-      mt-8
-      w-full
-      h-[60px]
-      rounded-2xl
-      text-white
-      font-semibold
-      text-lg
-      bg-gradient-to-r
-      from-blue-600
-      to-blue-500
-      hover:opacity-90
-      transition
-      "
-            >
-              Calculate Price
-            </button>
+            <div>
+              <label className="flex items-center gap-2 text-[#0F2D7A] font-semibold mb-2">
+                Drop PIN code
+              </label>
 
-            {/* Footer */}
-            <div className="text-center text-sm text-gray-500 mt-5">
-              🔒 Your details are safe and secure with us
+              <input
+                type="text"
+                value={values.dropPincode}
+                onChange={(e) =>
+                  setValues((p) => ({
+                    ...p,
+                    dropPincode: e.target.value,
+                  }))
+                }
+                placeholder="Enter drop PIN code"
+                className="w-full h-[56px] rounded-xl border border-gray-200 px-4 focus:outline-none"
+              />
+            </div>
+
+            <div>
+              <label className="flex items-center gap-2 text-[#0F2D7A] font-semibold mb-2">
+                Name
+              </label>
+
+              <input
+                type="text"
+                placeholder="Enter full name"
+                value={values.pickupName}
+                onChange={(e) =>
+                  setValues((p) => ({ ...p, pickupName: e.target.value }))
+                }
+                className="w-full h-[56px] rounded-xl border border-gray-200 px-4"
+              />
+            </div>
+
+            <div>
+              <label className="flex items-center gap-2 text-[#0F2D7A] font-semibold mb-2">
+                Contact Number
+              </label>
+
+              <input
+                type="text"
+                value={values.pickupPhone}
+                onChange={(e) =>
+                  setValues((p) => ({ ...p, pickupPhone: e.target.value }))
+                }
+                placeholder="Enter mobile number"
+                className="w-full h-[56px] rounded-xl border border-gray-200 px-4"
+              />
             </div>
 
           </div>
+
+          {/* Divider */}
+          <div className="border-t my-8"></div>
+
+          {/* Package Section */}
+          <div>
+            <div className="flex items-center gap-2 mb-6">
+              {/* <span className="text-xl">📦</span> */}
+              <h3 className="font-bold text-[#000]">
+                Package Details
+              </h3>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-6 mb-6">
+
+              <div>
+                <label className="text-sm text-gray-500 block mb-2">
+                  Package Type
+                </label>
+
+                <select
+                  value={luggageType}
+                  onChange={(e) => setluggageType(e.target.value)}
+                  className="w-full h-[56px] rounded-xl border border-gray-200 px-4"
+                >
+                  <option>Suitcase</option>
+                  <option>Trolley</option>
+                  <option>Backpack</option>
+                  <option>Box</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="text-sm text-gray-500 block mb-2">
+                  Delivery Speed
+                </label>
+
+                <select
+                  value={service}
+                  onChange={(e) => setService(e.target.value)}
+                  className="w-full h-[56px] rounded-xl border border-gray-200 px-4"
+                >
+                  <option>Express</option>
+                  <option>Standard</option>
+                  <option>Premium</option>
+                </select>
+              </div>
+
+            </div>
+
+            {/* Dimensions */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {/* Weight */}
+              <div className="w-full">
+                <label className="block mb-2 text-sm text-gray-500">
+                  Weight (kg)
+                </label>
+
+                <input
+                  type="number"
+                  placeholder="Weight (kg)"
+                  value={weight}
+                  onChange={(e) => {
+                    const value = e.target.value;
+
+                    if (value === "") {
+                      setWeight("");
+                      return;
+                    }
+
+                    if (Number(value) >= 0) {
+                      setWeight(value);
+                    }
+                  }}
+                  onKeyDown={(e) => {
+                    if (e.key === "-" || e.key === "e") {
+                      e.preventDefault();
+                    }
+                  }}
+                  className={`w-full h-14 rounded-xl px-4 text-sm md:text-base outline-none transition-colors ${errors.weight
+                    ? "border border-red-500"
+                    : "border border-gray-200 focus:border-[#E31E24]"
+                    }`}
+                />
+
+                {errors.weight && (
+                  <p className="mt-1 text-xs text-red-500">
+                    {errors.weight}
+                  </p>
+                )}
+              </div>
+
+              {/* Length */}
+              <div className="w-full">
+                <label className="block mb-2 text-sm text-gray-500">
+                  Length (cm)
+                </label>
+
+                <input
+                  type="number"
+                  placeholder="Length (cm)"
+                  value={length}
+                  onChange={(e) => {
+                    const value = e.target.value;
+
+                    if (value === "") {
+                      setLength("");
+                      return;
+                    }
+
+                    if (Number(value) >= 0) {
+                      setLength(value);
+                    }
+                  }}
+                  onKeyDown={(e) => {
+                    if (e.key === "-" || e.key === "e") {
+                      e.preventDefault();
+                    }
+                  }}
+                  className={`w-full h-14 rounded-xl px-4 text-sm md:text-base outline-none transition-colors ${errors.length
+                    ? "border border-red-500"
+                    : "border border-gray-200 focus:border-[#E31E24]"
+                    }`}
+                />
+
+                {errors.length && (
+                  <p className="mt-1 text-xs text-red-500">
+                    {errors.length}
+                  </p>
+                )}
+              </div>
+
+              {/* Width */}
+              <div className="w-full">
+                <label className="block mb-2 text-sm text-gray-500">
+                  Width (cm)
+                </label>
+
+                <input
+                  type="number"
+                  placeholder="Width (cm)"
+                  value={width}
+                  onChange={(e) => {
+                    const value = e.target.value;
+
+                    if (value === "") {
+                      setWidth("");
+                      return;
+                    }
+
+                    if (Number(value) >= 0) {
+                      setWidth(value);
+                    }
+                  }}
+                  onKeyDown={(e) => {
+                    if (e.key === "-" || e.key === "e") {
+                      e.preventDefault();
+                    }
+                  }}
+                  className={`w-full h-14 rounded-xl px-4 text-sm md:text-base outline-none transition-colors ${errors.width
+                    ? "border border-red-500"
+                    : "border border-gray-200 focus:border-[#E31E24]"
+                    }`}
+                />
+
+                {errors.width && (
+                  <p className="mt-1 text-xs text-red-500">
+                    {errors.width}
+                  </p>
+                )}
+              </div>
+
+              {/* Height */}
+              <div className="w-full">
+                <label className="block mb-2 text-sm text-gray-500">
+                  Height (cm)
+                </label>
+
+                <input
+                  type="number"
+                  placeholder="Height (cm)"
+                  value={height}
+                  onChange={(e) => {
+                    const value = e.target.value;
+
+                    if (value === "") {
+                      setHeight("");
+                      return;
+                    }
+
+                    if (Number(value) >= 0) {
+                      setHeight(value);
+                    }
+                  }}
+                  onKeyDown={(e) => {
+                    if (e.key === "-" || e.key === "e") {
+                      e.preventDefault();
+                    }
+                  }}
+                  className={`w-full h-14 rounded-xl px-4 text-sm md:text-base outline-none transition-colors ${errors.height
+                    ? "border border-red-500"
+                    : "border border-gray-200 focus:border-[#E31E24]"
+                    }`}
+                />
+
+                {errors.height && (
+                  <p className="mt-1 text-xs text-red-500">
+                    {errors.height}
+                  </p>
+                )}
+              </div>
+            </div>
+          </div>
+
+
+          <div className="text-center mt-5">
+                      {/* Button */}
+          <button
+            onClick={calculatePrice}
+            className="mt-8 btn-primary hover:scale-105 transition-all"
+          >
+            Calculate Price
+          </button>
+          </div>
+
+          {/* Footer */}
+          <div className="text-center text-sm text-gray-500 mt-5">
+            🔒 Your details are safe and secure with us
+          </div>
+
+        </div>
         {/* </div> */}
 
 

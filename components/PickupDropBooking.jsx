@@ -63,39 +63,39 @@ export default function PorterPickupDrop() {
   // };
 
   /* ---------- CURRENT LOCATION ---------- */
-// const useCurrentLocation = (type) => {
-//   const selectedType = type; // 🔒 lock value
+  // const useCurrentLocation = (type) => {
+  //   const selectedType = type; // 🔒 lock value
 
-//   if (!navigator.geolocation) {
-//     alert("Geolocation not supported");
-//     return;
-//   }
+  //   if (!navigator.geolocation) {
+  //     alert("Geolocation not supported");
+  //     return;
+  //   }
 
-//   navigator.geolocation.getCurrentPosition(
-//     async (pos) => {
-//       const { latitude, longitude } = pos.coords;
+  //   navigator.geolocation.getCurrentPosition(
+  //     async (pos) => {
+  //       const { latitude, longitude } = pos.coords;
 
-//       const res = await fetch(
-//         `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${GOOGLE_MAPS_KEY}`
-//       );
-//       const data = await res.json();
-//       const address = data.results?.[0]?.formatted_address;
+  //       const res = await fetch(
+  //         `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${GOOGLE_MAPS_KEY}`
+  //       );
+  //       const data = await res.json();
+  //       const address = data.results?.[0]?.formatted_address;
 
-//       if (!address) return;
+  //       if (!address) return;
 
-//       if (selectedType === "pickup") {
-//         setPickup(address);
-//       }
+  //       if (selectedType === "pickup") {
+  //         setPickup(address);
+  //       }
 
-//       if (selectedType === "drop") {
-//         setDrop(address);
-//       }
+  //       if (selectedType === "drop") {
+  //         setDrop(address);
+  //       }
 
-//       setOpen(null); // close popup AFTER setting value
-//     },
-//     () => alert("Location permission denied")
-//   );
-// };
+  //       setOpen(null); // close popup AFTER setting value
+  //     },
+  //     () => alert("Location permission denied")
+  //   );
+  // };
 
 
   /* ---------- BOOK NOW NAVIGATION ---------- */
@@ -115,43 +115,43 @@ export default function PorterPickupDrop() {
   return (
     <>
       {/* ================= BOOKING CARD ================= */}
-<div className="bg-white shadow-2xl rounded-[30px] p-6 md:p-8 max-w-md mx-auto border border-gray-100">
-  <h4 className="text-2xl font-bold text-center text-gray-800 mb-8">
-    Your Booking is a Step Away!
-  </h4>
+      <div className="bg-white shadow-2xl rounded-[30px] p-6 md:p-8 max-w-md mx-auto border border-gray-100">
+        <h4 className="text-2xl font-bold text-center text-gray-800 mb-8">
+          Your Booking is a Step Away!
+        </h4>
 
-  {/* PICKUP */}
-  <div className="mb-6">
-    <label className="block text-sm font-semibold text-gray-700 mb-2">
-      Pickup PIN code
-    </label>
+        {/* PICKUP */}
+        <div className="mb-6">
+          <label className="block text-sm font-semibold text-gray-700 mb-2">
+            Pickup PIN code
+          </label>
 
-    <div className="flex items-center gap-3 bg-white border border-gray-200 rounded-2xl px-4 py-2 shadow-sm">
-      {/* ICON */}
-      <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="w-5 h-5 text-blue-600"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          strokeWidth={2}
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.243-4.243a8 8 0 1111.313 0z"
-          />
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-          />
-        </svg>
-      </div>
+          <div className="flex items-center gap-3 bg-white border border-gray-200 rounded-2xl px-4 py-2 shadow-sm">
+            {/* ICON */}
+            <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-5 h-5 text-blue-600"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.243-4.243a8 8 0 1111.313 0z"
+                />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                />
+              </svg>
+            </div>
 
-      {/* INPUT */}
-      {/* {isMobile ? (
+            {/* INPUT */}
+            {/* {isMobile ? (
         <input
           readOnly
           value={pickup}
@@ -160,54 +160,54 @@ export default function PorterPickupDrop() {
           className="w-full outline-none bg-transparent text-gray-700 placeholder-gray-400"
         />
       ) : ( */}
-        {/* <Autocomplete
+            {/* <Autocomplete
           // onLoad={(a) => (pickupAuto.current = a)}
           // onPlaceChanged={handlePickupChange}
         > */}
-          <input
-            value={pickup}
-            onChange={(e) => setPickup(e.target.value)}
-            placeholder="Enter pickup PIN code"
-            className="w-full outline-none bg-transparent text-gray-700 placeholder-gray-400"
-          />
-        {/* </Autocomplete> */}
-      {/* )} */}
-    </div>
-  </div>
+            <input
+              value={pickup}
+              onChange={(e) => setPickup(e.target.value)}
+              placeholder="Enter pickup PIN code"
+              className="w-full outline-none bg-transparent text-gray-700 placeholder-gray-400"
+            />
+            {/* </Autocomplete> */}
+            {/* )} */}
+          </div>
+        </div>
 
- 
-  {/* DROP */}
-  <div className="mb-6">
-    <label className="block text-sm font-semibold text-gray-700 mb-2">
-      Drop PIN code
-    </label>
 
-    <div className="flex items-center gap-3 bg-white border border-gray-200 rounded-2xl px-4 py-2 shadow-sm">
-      {/* ICON */}
-      <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="w-5 h-5 text-blue-600"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          strokeWidth={2}
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.243-4.243a8 8 0 1111.313 0z"
-          />
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-          />
-        </svg>
-      </div>
+        {/* DROP */}
+        <div className="mb-6">
+          <label className="block text-sm font-semibold text-gray-700 mb-2">
+            Drop PIN code
+          </label>
 
-      {/* INPUT */}
-      {/* {isMobile ? (
+          <div className="flex items-center gap-3 bg-white border border-gray-200 rounded-2xl px-4 py-2 shadow-sm">
+            {/* ICON */}
+            <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-5 h-5 text-blue-600"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.243-4.243a8 8 0 1111.313 0z"
+                />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                />
+              </svg>
+            </div>
+
+            {/* INPUT */}
+            {/* {isMobile ? (
         <input
           readOnly
           value={drop}
@@ -216,29 +216,32 @@ export default function PorterPickupDrop() {
           className="w-full outline-none bg-transparent text-gray-700 placeholder-gray-400"
         />
       ) : ( */}
-        {/* <Autocomplete
+            {/* <Autocomplete
           // onLoad={(a) => (dropAuto.current = a)}
           // onPlaceChanged={handleDropChange}
         > */}
-          <input
-            value={drop}
-            onChange={(e) => setDrop(e.target.value)}
-            placeholder="Enter drop PIN code"
-            className="w-full outline-none bg-transparent text-gray-700 placeholder-gray-400"
-          />
-        {/* </Autocomplete> */}
-      {/* )} */}
-    </div>
-  </div>
+            <input
+              value={drop}
+              onChange={(e) => setDrop(e.target.value)}
+              placeholder="Enter drop PIN code"
+              className="w-full outline-none bg-transparent text-gray-700 placeholder-gray-400"
+            />
+            {/* </Autocomplete> */}
+            {/* )} */}
+          </div>
+        </div>
 
-  {/* BUTTON */}
-  <button
-    onClick={handleBookNow}
-    className="w-full py-4 rounded-2xl text-white font-semibold text-lg bg-gradient-to-r from-blue-500 to-blue-700 hover:scale-[1.02] transition-all duration-300"
-  >
-    Check Price
-  </button>
-</div>
+
+        <div style={{textAlign:"center"}}>
+                  {/* BUTTON */}
+        <button
+          onClick={handleBookNow}
+          className="btn-primary "
+        >
+          Check Price
+        </button>
+        </div>
+      </div>
 
       {/* ================= MOBILE FULL SCREEN POPUP ================= */}
       <AnimatePresence>

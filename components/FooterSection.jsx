@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaInstagram, FaYoutube, FaFacebookF } from "react-icons/fa";
 import Logo from "@/asset/logo-black.svg";
+import MobileBookNow from "./MobileBookNow";
 
 export default function Footer() {
   return (
@@ -109,7 +110,7 @@ export default function Footer() {
                 • About Us
               </Link>
             </li>
-             <li>
+            <li>
               <Link href="/services" className="hover:text-blue-900">
                 • Services
               </Link>
@@ -186,6 +187,8 @@ export default function Footer() {
           </div>
         </div>
       </div>
+
+      <MobileBookNow />
     </footer>
   );
 }

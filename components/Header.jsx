@@ -271,7 +271,7 @@ export default function Header() {
                 />
 
                 {/* Text */}
-                <span className="relative z-10">
+                <span className="relative z-10 " style={{fontSize:"10px"}}>
                   Track Now
                 </span>
 
