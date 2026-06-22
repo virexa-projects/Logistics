@@ -105,23 +105,96 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
   }, [pickupFromUrl, dropFromUrl]);
 
   /* ---------------- VALIDATION ---------------- */
+  // const validate = () => {
+  //   const err = {};
+
+  //   if (!values.pickupPincode) err.pickupPincode = "Pickup city required";
+  //   if (!values.dropPincode) err.dropPincode = "Drop city required";
+
+  //   // 🔥 IMPORTANT FIX
+  //   if (!weight) {
+  //     err.weight = "Weight required";
+  //   } else if (Number(weight) < 5) {
+  //     err.weight = "Minimum 5kg required";
+  //   }
+
+  //   if (!luggageType) err.luggageType = "Select luggage type";
+  //   if (!service) err.service = "Select service";
+
+  //   setErrors(err);
+  //   return Object.keys(err).length === 0;
+  // };
+
+
   const validate = () => {
     const err = {};
 
-    if (!values.pickupPincode) err.pickupPincode = "Pickup city required";
-    if (!values.dropPincode) err.dropPincode = "Drop city required";
+    // Name
+    if (!values.pickupName.trim()) {
+      err.pickupName = "Name is required";
+    }
 
-    // 🔥 IMPORTANT FIX
+    // Phone
+    if (!values.pickupPhone.trim()) {
+      err.pickupPhone = "Phone number is required";
+    } else if (!/^[6-9]\d{9}$/.test(values.pickupPhone)) {
+      err.pickupPhone = "Enter a valid mobile number";
+    }
+
+    // Pickup PIN
+    if (!values.pickupPincode.trim()) {
+      err.pickupPincode = "Pickup PIN code is required";
+    } else if (!/^\d{6}$/.test(values.pickupPincode)) {
+      err.pickupPincode = "Enter a valid 6-digit PIN code";
+    }
+
+    // Drop PIN
+    if (!values.dropPincode.trim()) {
+      err.dropPincode = "Drop PIN code is required";
+    } else if (!/^\d{6}$/.test(values.dropPincode)) {
+      err.dropPincode = "Enter a valid 6-digit PIN code";
+    }
+
+    // Weight
     if (!weight) {
-      err.weight = "Weight required";
+      err.weight = "Weight is required";
     } else if (Number(weight) < 5) {
       err.weight = "Minimum 5kg required";
     }
 
-    if (!luggageType) err.luggageType = "Select luggage type";
-    if (!service) err.service = "Select service";
+    // Length
+    if (!length) {
+      err.length = "Length is required";
+    } else if (Number(length) <= 0) {
+      err.length = "Length must be greater than 0";
+    }
+
+    // Width
+    if (!width) {
+      err.width = "Width is required";
+    } else if (Number(width) <= 0) {
+      err.width = "Width must be greater than 0";
+    }
+
+    // Height
+    if (!height) {
+      err.height = "Height is required";
+    } else if (Number(height) <= 0) {
+      err.height = "Height must be greater than 0";
+    }
+
+    // Package Type
+    if (!luggageType) {
+      err.luggageType = "Select package type";
+    }
+
+    // Service
+    if (!service) {
+      err.service = "Select delivery speed";
+    }
 
     setErrors(err);
+
     return Object.keys(err).length === 0;
   };
 
@@ -247,7 +320,7 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
       // =========================
       const formData = new URLSearchParams();
 
-      formData.append("sheetName", "RateCalculater"); // 🔥 முக்கியம்
+      formData.append("sheetName", "RateCalculaterNew"); // 🔥 முக்கியம்
 
       const payload = {
         ...values,
@@ -343,6 +416,11 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
                 placeholder="Enter pickup PIN code"
                 className="w-full h-[56px] rounded-xl border border-gray-200 px-4 focus:outline-none"
               />
+              {errors.pickupPincode && (
+                <p className="text-red-500 text-xs mt-1">
+                  {errors.pickupPincode}
+                </p>
+              )}
             </div>
 
             <div>
@@ -362,6 +440,11 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
                 placeholder="Enter drop PIN code"
                 className="w-full h-[56px] rounded-xl border border-gray-200 px-4 focus:outline-none"
               />
+              {errors.dropPincode && (
+                <p className="text-red-500 text-xs mt-1">
+                  {errors.dropPincode}
+                </p>
+              )}
             </div>
 
             <div>
@@ -378,6 +461,11 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
                 }
                 className="w-full h-[56px] rounded-xl border border-gray-200 px-4"
               />
+              {errors.pickupName && (
+                <p className="text-red-500 text-xs mt-1">
+                  {errors.pickupName}
+                </p>
+              )}
             </div>
 
             <div>
@@ -394,6 +482,11 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
                 placeholder="Enter mobile number"
                 className="w-full h-[56px] rounded-xl border border-gray-200 px-4"
               />
+              {errors.pickupPhone && (
+                <p className="text-red-500 text-xs mt-1">
+                  {errors.pickupPhone}
+                </p>
+              )}
             </div>
 
           </div>
@@ -427,6 +520,11 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
                   <option>Backpack</option>
                   <option>Box</option>
                 </select>
+                {errors.luggageType && (
+                  <p className="text-red-500 text-xs mt-1">
+                    {errors.luggageType}
+                  </p>
+                )}
               </div>
 
               <div>
@@ -613,13 +711,13 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
 
 
           <div className="text-center mt-5">
-                      {/* Button */}
-          <button
-            onClick={calculatePrice}
-            className="mt-8 btn-primary hover:scale-105 transition-all"
-          >
-            Calculate Price
-          </button>
+            {/* Button */}
+            <button
+              onClick={calculatePrice}
+              className="mt-8 btn-primary hover:scale-105 transition-all"
+            >
+              Calculate Price
+            </button>
           </div>
 
           {/* Footer */}
