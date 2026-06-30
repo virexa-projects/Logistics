@@ -19,7 +19,7 @@ export default function RootLayout({ children }) {
   const is404 = pathname === "/not-found";
 
   return (
- <html lang="en">
+    <html lang="en">
       <body className={`${inter.variable} antialiased`}>
         {/* Google Tag Manager */}
         <Script id="gtm" strategy="afterInteractive">
@@ -33,6 +33,25 @@ export default function RootLayout({ children }) {
             f.parentNode.insertBefore(j,f);
             })(window,document,'script','dataLayer','GTM-5CZVSVKT');
           `}
+        </Script>
+
+
+        
+        {/* Google Tag Manager */}
+
+        <Script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=AW-18152390227"
+          strategy="afterInteractive"
+        />
+
+        <Script id="google-ads" strategy="afterInteractive">
+          {`
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-18152390227');
+  `}
         </Script>
 
         {/* Google Tag Manager (noscript) */}
