@@ -135,6 +135,11 @@ export default function Footer() {
                 • Contact Us
               </Link>
             </li>
+            <li>
+              <Link href="/blog" className="hover:text-blue-900">
+                • Blogs
+              </Link>
+            </li>
           </ul>
         </div>
 
