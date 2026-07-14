@@ -1,7 +1,8 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import blogone from "@/asset/blog/blog.jpg";
+import blogone from "@/asset/blog/blog-one.jpeg";
+import blog from "@/asset/blog/blog.jpeg";
 import blogbg from "@/asset/blog/blog-pg.jpg";
 
 import {
@@ -71,6 +72,16 @@ export default function MovingToBangalore() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
 
+
+              <div className="my-5 mx-auto">
+              <Image
+                src={blogone}
+                alt="Luggage Transport Bangalore"
+
+                className="rounded-2xl w-[90%] mx-auto"
+              />
+            </div>
+
             {/* Intro */}
             <p className="text-lg text-gray-700 leading-9">
               Moving to Bangalore is exciting. A new job, a new college, a fresh start in India's Silicon Valley, the city pulls in lakhs of people every year. But between booking a place to stay, planning your travel, and saying goodbye to your old city, one question quietly stresses everyone out: how do I get all my luggage there without losing my mind?
@@ -138,10 +149,10 @@ export default function MovingToBangalore() {
             {/* Image Section */}
             <div className="my-16 mx-auto">
               <Image
-                src={blogone}
+                src={blog}
                 alt="Luggage Transport Bangalore"
 
-                className="rounded-2xl w-[80%] mx-auto"
+                className="rounded-2xl w-[90%] mx-auto"
               />
             </div>
 
