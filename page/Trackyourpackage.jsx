@@ -154,7 +154,7 @@ function Trackyourpackage() {
       <section className="w-full py-12 md:pt-24 ">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 px-6 md:px-10">
           {/* IMAGE */}
-          <div className="w-full rounded-3xl overflow-hidden ">
+          <div className="hidden md:block w-full rounded-3xl overflow-hidden ">
             <Image
               src={tracking}
               alt="Shipment"

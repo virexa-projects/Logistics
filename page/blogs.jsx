@@ -6,6 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import aboutmobile from "@/asset/shippment/rate-caluculator.svg";
 import bangalore from "@/asset/blog/blog-one.png";
+import baggageOne from "@/asset/blog/excess-baggage/baggage-one.png";
 
 
 const blogs = [
@@ -19,16 +20,16 @@ const blogs = [
             "Moving to Bangalore is exciting. A new job, a new college, a fresh start in India's Silicon Valley, the city pulls in lakhs of people every year. But between booking a place to stay, planning your travel, and saying goodbye to your old city, one question quietly stresses everyone out: how do I get all my luggage there without losing my mind?",
         slug: "/blog/moving-to-bangalore-luggage-transport",
     },
-    //   {
-    //     image: "/blogs/delivery.jpg",
-    //     title: "Top Benefits of Door-to-Door Luggage Delivery Services",
-    //     day: "16",
-    //     month: "Jul",
-    //     year: "2026",
-    //     description:
-    //       "Discover how door-to-door luggage transportation can save time and reduce stress.",
-    //     slug: "/blog/door-to-door-delivery",
-    //   },
+      {
+        image: baggageOne,
+        title: "How to Avoid Excess Baggage Charges on Domestic Flights in India",
+        day: "26",
+        month: "Jul",
+        year: "2026",
+        description:
+          "You pack carefully, reach the airport early, and then the check-in scale stops you cold: your bag is 4 kilos over, and you owe more than you paid for half your ticket. Excess baggage charges have quietly become one of the most frustrating costs of flying within India, and most travellers only discover them at the counter when it is too late to do anything about it",
+        slug: "blog/how-to-avoid-excess-baggage-charges-india",
+      },
     //   {
     //     image: "/blogs/student.jpg",
     //     title: "Why Students Prefer Luggage Transport Services in India",

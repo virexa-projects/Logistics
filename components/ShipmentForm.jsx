@@ -219,7 +219,7 @@ export default function ShipmentBookingForm({
     pickupPincode: "",
     pickupPhone: "",
     pickupName: "",
-    address: "",
+    dropAddress: "",
     dropState: "",
     dropPincode: "",
     // bags: "",
@@ -354,12 +354,12 @@ export default function ShipmentBookingForm({
     if (!values.email?.trim()) {
       newErrors.email = "Email is required";
     }
-    if (!values.companyName?.trim()) {
-      newErrors.companyName = "Company Name is required";
-    }
-    if (!values.gstNumber?.trim()) {
-      newErrors.gstNumber = "gst Numberis required";
-    }
+    // if (!values.companyName?.trim()) {
+    //   newErrors.companyName = "Company Name is required";
+    // }
+    // if (!values.gstNumber?.trim()) {
+    //   newErrors.gstNumber = "gst Numberis required";
+    // }
 
     if (!values.pickupCity?.trim()) {
       newErrors.pickupCity = "Pickup City is required";
@@ -381,7 +381,7 @@ export default function ShipmentBookingForm({
     }
 
   if (!values.dropCity?.trim()) {
-      newErrors.dropCity = "Drop Address is required";
+      newErrors.dropCity = "Drop City is required";
     }
 
   if (!values.dropState?.trim()) {
@@ -644,7 +644,7 @@ export default function ShipmentBookingForm({
 
                 consignee: {
                   name: values.name,
-                  address: values.address || "Customer Address",
+                  address: values.dropAddress || "Customer Address",
                   city: values.dropCity,
                   state: values.dropState || "Tamil Nadu",
                   pincode: values.dropPincode || "---",
@@ -990,7 +990,7 @@ export default function ShipmentBookingForm({
               <input
                 placeholder="Enter Drop Address"
                 className={fieldClass}
-                value={values.address}
+                value={values.dropAddress}
                 onChange={(e) => handleChange("dropAddress", e.target.value)}
               />
               {errors.dropAddress && (
