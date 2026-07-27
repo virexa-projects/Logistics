@@ -53,7 +53,7 @@ function BaggageChargesIndia() {
                         />
                     </div>
 
-                    <div className="max-w-4xl mx-auto">
+                    <div className="max-w-5xl mx-auto">
                         <p className="text-lg text-gray-700 leading-9">You pack carefully, reach the airport early, and then the check-in scale stops you cold: your bag is 4 kilos over, and you owe more than you paid for half your ticket. Excess baggage charges have quietly become one of the most frustrating costs of flying within India, and most travellers only discover them at the counter when it is too late to do anything about it.</p>
                         <p className="text-lg text-gray-700 leading-9 mt-3">The good news is that these fees are almost entirely avoidable. With a little planning, and the right alternative for heavier loads, you never have to hand over another rupee in excess baggage charges again. Here is exactly how.</p>
                         <h5 className="text-2xl font-bold text-gray-900 mb-3 mt-4">
@@ -85,7 +85,7 @@ function BaggageChargesIndia() {
                     </div>
 
                     <section className="py-16 lg:py-20">
-                        <div className="mx-auto max-w-4xl px-4">
+                        <div className="mx-auto max-w-5xl ">
 
                             <h3 className="text-3xl font-bold text-gray-900">
                                 Smart Ways to Avoid Excess Baggage Charges
@@ -189,7 +189,7 @@ function BaggageChargesIndia() {
 
 
                     <section className=" bg-white">
-                        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="max-w-5xl mx-auto">
 
                             <div className="">
 
@@ -288,9 +288,9 @@ function BaggageChargesIndia() {
                     <section className="py-16 lg:py-10 ">
                         <div className="mx-auto max-w-5xl px-4">
 
-                            <h2 className="text-3xl text-center font-bold text-gray-900">
+                            <h3 className="text-3xl text-center font-bold text-gray-900">
                                 Comparing Airline Fees vs Luggage Delivery Costs
-                            </h2>
+                            </h3>
 
                             <p className="mt-6 text-lg leading-8 text-gray-600">
                                 The math is what convinces most people. Consider a traveller carrying 25 kg on a domestic route with a 15 kg free allowance. That is 10 kg of excess, and at roughly ₹600 to ₹700 per kilogram at the airport, the bill lands somewhere around ₹6,000 to ₹7,000, for a single one-way trip.
@@ -384,12 +384,12 @@ function BaggageChargesIndia() {
 
                             {/* Highlight */}
 
-                            <div className="mt-10 p-6">
+                            <div className="mt-10 ">
                                 <p className="leading-8 text-gray-700">
                                     <Link href="https://frisbi.in/" className='text-blue-600'>A dedicated luggage delivery service</Link> like Frisbi prices on the actual route and weight rather than punishing you per kilo over an arbitrary limit. For many domestic shipments, sending that same load works out significantly cheaper than the airline's excess baggage charges, and you are not limited to one bag or 15 kg.
                                 </p>
                             </div>
-                            <div className="p-6">
+                            <div className="mt-5">
                                 <p className="leading-8 text-gray-700">
                                     Just as importantly, the comparison is not only about price. With the airline, you still have to physically manage every kilogram yourself. With luggage delivery, the weight is handled for you from doorstep to doorstep.
                                 </p>
@@ -400,7 +400,7 @@ function BaggageChargesIndia() {
 
 
                     <section className=" bg-white">
-                        <div className="mx-auto max-w-4xl">
+                        <div className="mx-auto max-w-5xl">
 
                             <div className="container mx-auto px-4">
                                 <div className="my-5 mx-auto">
@@ -462,13 +462,13 @@ function BaggageChargesIndia() {
 
 
                     <section className="py-16 lg:py-10 ">
-                        <div className="mx-auto max-w-5xl px-4 text-center">
+                        <div className="mx-auto max-w-5xl text-center">
 
 
 
-                            <h2 className="mt-5 text-3xl md:text-5xl font-bold leading-tight">
+                            <h3 className="mt-5 text-3xl md:text-5xl font-bold leading-tight">
                                 Conclusion
-                            </h2>
+                            </h3>
 
                             <p className="mt-8 text-lg max-w-4xl mx-auto">
                                 Excess baggage charges are designed to catch you off guard, but they no longer have to. Weigh ahead, pre-book wisely, and match your fare to your packing. And when your load is genuinely heavy, skip the scale altogether.
@@ -488,16 +488,16 @@ function BaggageChargesIndia() {
 
 
                     <section className="">
-                        <div className="mx-auto max-w-4xl px-4">
+                        <div className="mx-auto max-w-5xl">
 
                             <div className="text-center">
                                 <span className="inline-flex rounded-full bg-blue-100 px-4 py-1 text-sm font-semibold text-blue-700">
                                     Frequently Asked Questions
                                 </span>
 
-                                <h2 className="mt-5 text-3xl md:text-4xl font-bold text-gray-900">
+                                <h3 className="mt-5 text-3xl md:text-4xl font-bold text-gray-900">
                                     FAQs
-                                </h2>
+                                </h3>
 
                                 <p className="mt-4 text-lg text-gray-600">
                                     Find answers to the most common questions about airline excess baggage
