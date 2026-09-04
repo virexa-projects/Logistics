@@ -8,7 +8,15 @@ export const metadata = {
     "luggage delivery service",
     "luggage movers in Bangalore",
   ],
-};
+  alternates: {
+    canonical: "https://frisbi.in",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+}
+
 
 const schema = {
   "@context": "https://schema.org",

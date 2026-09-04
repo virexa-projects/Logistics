@@ -8,10 +8,15 @@ export const metadata = {
     "Learn about Frisbi, India’s travel convenience and luggage delivery company helping travelers move bags easily across cities with secure doorstep delivery.",
   keywords: [
     "about Frisbi, luggage delivery company India, travel convenience company"
-
   ],
+  alternates: {
+    canonical: "https://frisbi.in/about",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
-
 
 
 function page() {

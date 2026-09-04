@@ -238,7 +238,8 @@ export default function Services() {
                   <div className="flex flex-col items-center text-center">
                     <div className="relative mb-4">
                       <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center">
-                        <Image src={step.icon} alt="" width={28} height={28} />
+                        <Image src={step.icon} alt="icon
+                        " width={28} height={28} />
                       </div>
                       {/* <div className="absolute -top-3 -right-1 w-7 h-7 bg-white text-black rounded-full shadow-xl flex items-center justify-center text-xs font-semibold">
                         {step.number}

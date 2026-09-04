@@ -24,6 +24,14 @@ export default function sitemap() {
       changeFrequency: "monthly",
       priority: 0.8,
     },
+
+    {
+      url: "https://www.frisbi.in/blog",
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+
     {
       url: "https://www.frisbi.in/contact-us",
       lastModified: new Date(),

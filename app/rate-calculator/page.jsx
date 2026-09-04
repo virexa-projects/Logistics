@@ -8,8 +8,14 @@ export const metadata = {
     "Know your luggage parcel price in 60 seconds with Frisbi’s luggage delivery cost calculator. Calculate now, book when ready, and travel lighter. ",
   keywords: [
     "luggage delivery cost calculator, baggage delivery pricing, luggage parcel price calculator"
-
   ],
+  alternates: {
+    canonical: "https://frisbi.in/rate-calculator",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 
