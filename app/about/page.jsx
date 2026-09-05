@@ -10,7 +10,11 @@ export const metadata = {
     "about Frisbi, luggage delivery company India, travel convenience company"
   ],
   alternates: {
+<<<<<<< HEAD
     canonical: "https://frisbi.in/about",
+=======
+    canonical: "https://www.frisbi.in/about",
+>>>>>>> 1a3afce (Add metadata, canonicals, and schema markup to main pages)
   },
   robots: {
     index: true,

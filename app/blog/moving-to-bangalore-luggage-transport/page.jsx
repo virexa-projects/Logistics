@@ -9,7 +9,11 @@ export const metadata = {
     "moving to bangalore luggage transport, baggage shipping bangalore, luggage delivery bangalore, relocation luggage service"
   ],
   alternates: {
+<<<<<<< HEAD
     canonical: "https://frisbi.in/blog/moving-to-bangalore-luggage-transport",
+=======
+    canonical: "https://www.frisbi.in/blog/moving-to-bangalore-luggage-transport",
+>>>>>>> 1a3afce (Add metadata, canonicals, and schema markup to main pages)
   },
   robots: {
     index: true,

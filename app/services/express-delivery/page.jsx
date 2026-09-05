@@ -9,7 +9,11 @@ export const metadata = {
     "express luggage delivery service, fast baggage delivery, urgent luggage delivery India"
   ],
   alternates: {
+<<<<<<< HEAD
     canonical: "https://frisbi.in/services/express-delivery",
+=======
+    canonical: "https://www.frisbi.in/services/express-delivery",
+>>>>>>> 1a3afce (Add metadata, canonicals, and schema markup to main pages)
   },
   robots: {
     index: true,

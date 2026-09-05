@@ -9,7 +9,11 @@ export const metadata = {
     "luggage delivery faqs india, baggage shipping questions, luggage courier frequently asked questions, baggage delivery service faq, luggage shipping questions india, how does luggage delivery work, baggage courier common questions, luggage transport faq india, frisbi service questions, baggage delivery information india.",
   ],
   alternates: {
+<<<<<<< HEAD
     canonical: "https://frisbi.in/faqs",
+=======
+    canonical: "https://www.frisbi.in/faq",
+>>>>>>> 1a3afce (Add metadata, canonicals, and schema markup to main pages)
   },
   robots: {
     index: true,

@@ -25,7 +25,11 @@ const servicesData = [
     imageSrc: Standard,
     imageAlt: "Standard luggage delivery",
     delay: 0,
+<<<<<<< HEAD
     link: "/standard-delivery",
+=======
+    link: "/services/standard-delivery",
+>>>>>>> 1a3afce (Add metadata, canonicals, and schema markup to main pages)
   },
   {
     title: "Express Delivery",
@@ -38,7 +42,11 @@ const servicesData = [
     imageSrc: Airport,
     imageAlt: "Express delivery service",
     delay: 0.15,
+<<<<<<< HEAD
     link: "/express-delivery",
+=======
+    link: "services/express-delivery",
+>>>>>>> 1a3afce (Add metadata, canonicals, and schema markup to main pages)
   },
   {
     title: "Premium Delivery",
@@ -51,7 +59,11 @@ const servicesData = [
     imageSrc: Smartbox,
     imageAlt: "Premium delivery service",
     delay: 0.3,
+<<<<<<< HEAD
     link: "/premium-delivery",
+=======
+    link: "/services/premium-delivery",
+>>>>>>> 1a3afce (Add metadata, canonicals, and schema markup to main pages)
   },
 ];
 
@@ -169,7 +181,11 @@ const ServicesSection = () => {
             title="Corporate"
             description="Business delivery that handles it all. From employee moves to event travel, we handle baggage so work keeps moving."
             image={Corporate}
+<<<<<<< HEAD
             link="/corporate"
+=======
+            link="/book/corporate"
+>>>>>>> 1a3afce (Add metadata, canonicals, and schema markup to main pages)
             fit="contain"
           />
 
@@ -177,7 +193,11 @@ const ServicesSection = () => {
             title="Individual"
             description="When life requires extra bags, longer stays, or city transfers, we step in to make sure your luggage reaches safely."
             image={Packing}
+<<<<<<< HEAD
             link="/individual"
+=======
+            link="/book/individual"
+>>>>>>> 1a3afce (Add metadata, canonicals, and schema markup to main pages)
             fit="contain"
           />
         </div>

@@ -6,6 +6,13 @@ export const metadata = {
   description:
     "Book individual luggage delivery services with Frisbi. Send bags safely across India with doorstep pickup, tracking, and stress-free travel convenience.",
   keywords: ["individual luggage delivery"],
+<<<<<<< HEAD
+=======
+
+  alternates: {
+    canonical: 'https://www.frisbi.in/book/individual',
+  },
+>>>>>>> 1a3afce (Add metadata, canonicals, and schema markup to main pages)
 };
 
 const schema = {

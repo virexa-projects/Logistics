@@ -9,7 +9,11 @@ export const metadata = {
     "premium luggage delivery service, white glove luggage delivery, secure baggage handling"
   ],
   alternates: {
+<<<<<<< HEAD
     canonical: "https://frisbi.in/services/premium-delivery",
+=======
+    canonical: "https://www.frisbi.in/services/premium-delivery",
+>>>>>>> 1a3afce (Add metadata, canonicals, and schema markup to main pages)
   },
   robots: {
     index: true,

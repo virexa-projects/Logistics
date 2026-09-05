@@ -10,7 +10,11 @@ export const metadata = {
     "luggage delivery cost calculator, baggage delivery pricing, luggage parcel price calculator"
   ],
   alternates: {
+<<<<<<< HEAD
     canonical: "https://frisbi.in/rate-calculator",
+=======
+    canonical: "https://www.frisbi.in/rate-calculator",
+>>>>>>> 1a3afce (Add metadata, canonicals, and schema markup to main pages)
   },
   robots: {
     index: true,

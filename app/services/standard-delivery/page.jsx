@@ -10,7 +10,11 @@ export const metadata = {
     "affordable luggage delivery service, baggage delivery India, luggage shipping India"
   ],
   alternates: {
+<<<<<<< HEAD
     canonical: "https://frisbi.in/services/standard-delivery",
+=======
+    canonical: "https://www.frisbi.in/services/standard-delivery",
+>>>>>>> 1a3afce (Add metadata, canonicals, and schema markup to main pages)
   },
   robots: {
     index: true,

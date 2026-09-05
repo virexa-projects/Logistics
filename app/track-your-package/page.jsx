@@ -9,7 +9,11 @@ export const metadata = {
     "track luggage delivery india, baggage tracking online, real-time luggage tracking, track my baggage shipment, luggage courier tracking india, baggage delivery status, track luggage online india, frisbi tracking number, luggage shipment tracking, live baggage tracking india"
   ],
   alternates: {
+<<<<<<< HEAD
     canonical: "https://frisbi.in/track-your-package",
+=======
+    canonical: "https://www.frisbi.in/track-your-package",
+>>>>>>> 1a3afce (Add metadata, canonicals, and schema markup to main pages)
   },
   robots: {
     index: true,

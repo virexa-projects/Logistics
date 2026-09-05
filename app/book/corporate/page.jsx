@@ -8,6 +8,12 @@ export const metadata = {
   keywords: [
     "Corporate Luggage Delivery Solutions, corporate parcel service, corporate luggage movers in Bangalore",
   ],
+<<<<<<< HEAD
+=======
+  alternates: {
+    canonical: 'https://www.frisbi.in/book/corporate',
+  },
+>>>>>>> 1a3afce (Add metadata, canonicals, and schema markup to main pages)
 };
 
 

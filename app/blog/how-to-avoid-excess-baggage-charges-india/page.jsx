@@ -9,7 +9,11 @@ export const metadata = {
     "avoid excess baggage charges india, airline baggage fees india, cheap luggage shipping india, avoid airline baggage fees"
   ],
   alternates: {
+<<<<<<< HEAD
     canonical: "https://frisbi.in/blog/how-to-avoid-excess-baggage-charges-india",
+=======
+    canonical: "https://www.frisbi.in/blog/how-to-avoid-excess-baggage-charges-india",
+>>>>>>> 1a3afce (Add metadata, canonicals, and schema markup to main pages)
   },
   robots: {
     index: true,

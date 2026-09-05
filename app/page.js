@@ -9,7 +9,11 @@ export const metadata = {
     "luggage movers in Bangalore",
   ],
   alternates: {
+<<<<<<< HEAD
     canonical: "https://frisbi.in",
+=======
+    canonical: "https://www.frisbi.in",
+>>>>>>> 1a3afce (Add metadata, canonicals, and schema markup to main pages)
   },
   robots: {
     index: true,
