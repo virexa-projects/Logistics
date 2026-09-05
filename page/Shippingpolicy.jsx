@@ -380,11 +380,11 @@ function Shippingpolicy() {
           <ul className="mt-4 list-decimal pl-5 space-y-4 font-medium text-[15px]">
             <li className="text-second">
               Email:{" "}
-              <span className="font-bold text-black"> support@frisbi.com</span>
+              <span className="font-bold text-black"> support@frisbi.in</span>
             </li>
            <li className="text-second">
               Contact Us:{" "}
-              <span className="font-bold text-black"> +91 885-065-2531</span>
+              <span className="font-bold text-black"> +91 7418152531</span>
             </li>
             <li className="text-second">
               Website:{" "}

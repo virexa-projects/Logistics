@@ -6,24 +6,24 @@ import { Plus, Minus } from "lucide-react";
 
 const faqData = [
  {
-      question: 'How fast is Premium Delivery?',
-      answer: 'Same-day or within 48 hours depending on route.'
+      question: 'What makes Premium Delivery different from Express?',
+      answer: 'Premium Delivery includes free professional packaging, faster delivery within 3 days, enhanced insurance coverage, dedicated customer success manager, and white-glove handling care. Express focuses on speed while Premium focuses on both speed and exceptional care.'
     },
     {
-      question: 'Is Premium Delivery insured?',
-      answer: 'Yes, high-value insurance is included.'
+      question: 'Is packaging really included for free?',
+      answer: 'Yes. Premium Delivery includes professional packaging with high-quality boxes, bubble wrap, corner protectors, printed shipping labels, and tamper-proof sealing at no extra charge. Our team brings materials to your pickup location.'
     },
     {
-      question: 'Do I get a dedicated support person?',
-      answer: 'Yes, a relationship manager is assigned.'
+      question: 'Can I use Premium for pilgrimage travel luggage?',
+      answer: 'Absolutely. Premium Delivery is ideal for pilgrimage trips where you are carrying offerings, puja items, or valuable religious articles. The enhanced security and careful handling ensure your sacred items reach safely.'
     },
     {
-      question: 'Can I send fragile or luxury items?',
-      answer: 'Yes, white-glove handling ensures maximum care.'
+      question: 'What is the maximum declared value I can insure?',
+      answer: 'Premium Delivery supports higher insurance limits based on your declared luggage value. Discuss your specific needs with our team during booking to get appropriate coverage for expensive contents.'
     },
     {
-      question: 'Is delivery verification required?',
-      answer: 'Yes, ID-verified delivery is mandatory.'
+      question: 'How quickly does Premium deliver compared to other services?',
+      answer: 'Premium delivers within 3 days from pickup, which is faster than Standard (5-7 days) and slightly quicker than Express (3-5 days). Premium also guarantees this timeline with dedicated priority handling.'
     }
 ];
 
@@ -54,7 +54,7 @@ export default function FAQ() {
                   className="flex justify-between items-center cursor-pointer"
                   onClick={() => toggle(i)}
                 >
-                  <h3 className="font-semibold text-lg">{faq.question}</h3>
+                  <h4 className="font-semibold text-lg">{faq.question}</h4>
                   <Minus className="w-6 h-6 text-gray-600" />
                 </div>
 
@@ -87,7 +87,7 @@ export default function FAQ() {
       </div>
 
       {/* View More / View Less */}
-      <div className="flex justify-center mt-10">
+      {/* <div className="flex justify-center mt-10">
         {!showAll ? (
           <button
             onClick={() => setShowAll(true)}
@@ -103,7 +103,7 @@ export default function FAQ() {
             View Less
           </button>
         )}
-      </div>
+      </div> */}
     </div>
   );
 }

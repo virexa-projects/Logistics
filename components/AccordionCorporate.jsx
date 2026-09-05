@@ -21,7 +21,8 @@ const faqData = [
       "Corporate pricing is customized based on shipment volume, distance, pickup and delivery locations, service speed, and any special requirements. Contact us with your details to receive a tailored quote that fits your budget and timeline.",
   },
   {
-    question: "Can Frisbi coordinate luggage pickup and delivery with flight schedules?",
+    question:
+      "Can Frisbi coordinate luggage pickup and delivery with flight schedules?",
     answer:
       "Yes. We schedule pickups and deliveries aligned with your flight times, event check-ins, hotel bookings, and conference schedules. Your account manager ensures timing works seamlessly with your travel plans.",
   },
@@ -45,7 +46,6 @@ const faqData = [
     answer:
       "Frisbi covers 25,000+ pincodes across India, including major metros, tier-2 cities, and smaller towns. We handle inter-city transfers, multi-location pickups, and event venue deliveries across our entire network.",
   },
-
 ];
 
 export default function FAQ() {
@@ -60,7 +60,9 @@ export default function FAQ() {
 
   return (
     <div className="w-full max-w-3xl mx-auto py-12 md:pt-16  md:pb-24 px-4">
-      <h2 className="text-center mb-10 md:mb-12 lg:mb-16">Frequently asked questions</h2>
+      <h2 className="text-center mb-10 md:mb-12 lg:mb-16">
+        Frequently asked questions
+      </h2>
 
       <div className="space-y-6">
         {visibleFaqs.map((faq, i) => (
@@ -97,9 +99,7 @@ export default function FAQ() {
                 className="flex justify-between items-center py-5 cursor-pointer border-b"
                 onClick={() => toggle(i)}
               >
-                <h4 className="">
-                  {faq.question}
-                </h4>
+                <h4 className="">{faq.question}</h4>
                 <ChevronDown className="w-6 h-6 text-black" />
               </div>
             )}

@@ -3,15 +3,20 @@ import React from 'react'
 
 
 export const metadata = {
-  title: "About Frisbi | Door-to-Door Luggage Delivery Service Across India",
+  title: "About Frisbi | India’s Smart Luggage Delivery Company",
   description:
-    "Frisbi delivers your luggage and baggage door-to-door across 25,000+ pincodes in India. Safe handling, live tracking, transparent pricing, and real support for students, professionals, and families. ",
+    "Learn about Frisbi, India’s travel convenience and luggage delivery company helping travelers move bags easily across cities with secure doorstep delivery.",
   keywords: [
-    "frisbi about us, luggage delivery service india, baggage courier company, door to door luggage transport, intercity baggage delivery, luggage shipping india, baggage transport service, send luggage across india, professional luggage courier, reliable baggage delivery india"
-
+    "about Frisbi, luggage delivery company India, travel convenience company"
   ],
+  alternates: {
+    canonical: "https://frisbi.in/about",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
-
 
 
 function page() {

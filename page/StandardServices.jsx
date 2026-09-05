@@ -122,7 +122,7 @@ export default function Services() {
             {/* LEFT — CONTENT */}
             <div className="relative z-10 mt-10 text-center md:text-left flex flex-col items-center md:items-start">
               <p className="text-primary mb-5">
-                ✨ Safe. Affordable. Reliable.
+              Safe. Affordable. Reliable.
               </p>
 
               <motion.h1 {...fadeUp} className="text-black mb-6">
@@ -131,6 +131,7 @@ export default function Services() {
 
               <motion.p {...fadeUp} className="text-black max-w-2xl mb-6">
                 Because moving luggage shouldn’t move your budget
+
               </motion.p>
 
               <motion.p {...fadeUp} className="text-black max-w-2xl mb-8">
@@ -142,7 +143,7 @@ export default function Services() {
                 className="flex  flex-row gap-4 justify-center md:justify-start"
               >
                 <Link
-                  href="#contact"
+                  href="/book-shipment"
                   className="btn-primary hover:scale-105 transition-all"
                 >
                   Book Now
@@ -237,7 +238,8 @@ export default function Services() {
                   <div className="flex flex-col items-center text-center">
                     <div className="relative mb-4">
                       <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center">
-                        <Image src={step.icon} alt="" width={28} height={28} />
+                        <Image src={step.icon} alt="icon
+                        " width={28} height={28} />
                       </div>
                       {/* <div className="absolute -top-3 -right-1 w-7 h-7 bg-white text-black rounded-full shadow-xl flex items-center justify-center text-xs font-semibold">
                         {step.number}
@@ -271,9 +273,10 @@ export default function Services() {
         <ServiceFAQSection />
       </section>
 
-       <MarqueeLogos />
+      
 
       <CallToAction />
+       <MarqueeLogos />
     </div>
   );
 }

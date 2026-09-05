@@ -8,6 +8,13 @@ export const metadata = {
   keywords: [
     "luggage delivery faqs india, baggage shipping questions, luggage courier frequently asked questions, baggage delivery service faq, luggage shipping questions india, how does luggage delivery work, baggage courier common questions, luggage transport faq india, frisbi service questions, baggage delivery information india.",
   ],
+  alternates: {
+    canonical: "https://frisbi.in/faqs",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 function page() {

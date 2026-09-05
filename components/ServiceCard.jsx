@@ -153,7 +153,7 @@ const ServicesSection = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Heading */}
         <h2 className="text-center  mb-10 md:mb-12 lg:mb-16">
-          Pick the service that works best for you
+         Five ways to move your luggage. One way to travel lighter.
         </h2>
 
         {/* Services Cards */}
@@ -188,7 +188,7 @@ const ServicesSection = () => {
             href="/book-shipment"
             className="btn-primary hover:scale-105 transition-all"
           >
-            Book Now
+            Book Now 
           </Link>
         </div>
       </div>

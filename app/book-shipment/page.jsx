@@ -1,22 +1,18 @@
 // app/book-shipment/page.jsx
 
-export const dynamic = "force-dynamic";
+import { Suspense } from "react";
+import BookShipmentClient from "./BookShipmentClient";
 
-import BookShipment from "@/page/BookShipment";
+export const metadata = {
+  title: "Book Shipment Online | Fast & Easy Delivery | Frisbi",
+  description:
+    "Book shipment made simple with Frisbi. Schedule pickup, track deliveries, and ship books across India quickly, safely, and at affordable rates.",
+};
 
-export default async function Page({ searchParams }) {
-  // 🔥 IMPORTANT: unwrap Promise
-  const params = await searchParams;
-
-  const pickup = params?.pickup ?? "";
-  const drop = params?.drop ?? "";
-
-  console.log("pickup, drop:", pickup, drop);
-
+export default function Page() {
   return (
-    <BookShipment
-      pickupFromUrl={pickup}
-      dropFromUrl={drop}
-    />
+    <Suspense fallback={null}>
+      <BookShipmentClient />
+    </Suspense>
   );
 }
