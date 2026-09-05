@@ -8,12 +8,6 @@ export const metadata = {
   keywords: [
     "Corporate Luggage Delivery Solutions, corporate parcel service, corporate luggage movers in Bangalore",
   ],
-<<<<<<< HEAD
-  alternates: {
-    canonical: 'https://www.frisbi.in/book/corporate',
-  },
-=======
->>>>>>> 05ec78157e5935a34f1bc71bd3b0bb83359ecbea
 };
 
 

@@ -9,7 +9,11 @@ export const metadata = {
     "luggage movers in Bangalore",
   ],
   alternates: {
+<<<<<<< HEAD
     canonical: "https://www.frisbi.in",
+=======
+    canonical: "https://frisbi.in",
+>>>>>>> 05ec78157e5935a34f1bc71bd3b0bb83359ecbea
   },
   robots: {
     index: true,

@@ -9,17 +9,14 @@ export const metadata = {
     "express luggage delivery service, fast baggage delivery, urgent luggage delivery India"
   ],
   alternates: {
-<<<<<<< HEAD
-    canonical: "https://www.frisbi.in/services/express-delivery",
-=======
     canonical: "https://frisbi.in/services/express-delivery",
->>>>>>> 05ec78157e5935a34f1bc71bd3b0bb83359ecbea
   },
   robots: {
     index: true,
     follow: true,
   },
 };
+
 
 
 

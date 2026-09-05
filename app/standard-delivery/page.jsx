@@ -10,11 +10,7 @@ export const metadata = {
     "affordable luggage delivery service, baggage delivery India, luggage shipping India"
   ],
   alternates: {
-<<<<<<< HEAD
-    canonical: "https://www.frisbi.in/services/standard-delivery",
-=======
     canonical: "https://frisbi.in/services/standard-delivery",
->>>>>>> 05ec78157e5935a34f1bc71bd3b0bb83359ecbea
   },
   robots: {
     index: true,

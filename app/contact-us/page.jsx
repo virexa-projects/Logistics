@@ -9,7 +9,11 @@ export const metadata = {
     "contact frisbi, luggage delivery customer service, baggage courier support india, frisbi contact number, luggage shipping inquiries, baggage delivery support, corporate luggage quotes, frisbi customer care, luggage courier contact india, frisbi helpline number"
   ],
   alternates: {
+<<<<<<< HEAD
     canonical: "https://www.frisbi.in/contact-us",
+=======
+    canonical: "https://frisbi.in/contact-us",
+>>>>>>> 05ec78157e5935a34f1bc71bd3b0bb83359ecbea
   },
   robots: {
     index: true,

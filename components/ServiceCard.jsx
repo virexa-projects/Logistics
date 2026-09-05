@@ -25,7 +25,11 @@ const servicesData = [
     imageSrc: Standard,
     imageAlt: "Standard luggage delivery",
     delay: 0,
+<<<<<<< HEAD
     link: "/services/standard-delivery",
+=======
+    link: "/standard-delivery",
+>>>>>>> 05ec78157e5935a34f1bc71bd3b0bb83359ecbea
   },
   {
     title: "Express Delivery",
@@ -38,7 +42,11 @@ const servicesData = [
     imageSrc: Airport,
     imageAlt: "Express delivery service",
     delay: 0.15,
+<<<<<<< HEAD
     link: "services/express-delivery",
+=======
+    link: "/express-delivery",
+>>>>>>> 05ec78157e5935a34f1bc71bd3b0bb83359ecbea
   },
   {
     title: "Premium Delivery",
@@ -51,7 +59,11 @@ const servicesData = [
     imageSrc: Smartbox,
     imageAlt: "Premium delivery service",
     delay: 0.3,
+<<<<<<< HEAD
     link: "/services/premium-delivery",
+=======
+    link: "/premium-delivery",
+>>>>>>> 05ec78157e5935a34f1bc71bd3b0bb83359ecbea
   },
 ];
 
@@ -169,7 +181,11 @@ const ServicesSection = () => {
             title="Corporate"
             description="Business delivery that handles it all. From employee moves to event travel, we handle baggage so work keeps moving."
             image={Corporate}
+<<<<<<< HEAD
             link="/book/corporate"
+=======
+            link="/corporate"
+>>>>>>> 05ec78157e5935a34f1bc71bd3b0bb83359ecbea
             fit="contain"
           />
 
@@ -177,7 +193,11 @@ const ServicesSection = () => {
             title="Individual"
             description="When life requires extra bags, longer stays, or city transfers, we step in to make sure your luggage reaches safely."
             image={Packing}
+<<<<<<< HEAD
             link="/book/individual"
+=======
+            link="/individual"
+>>>>>>> 05ec78157e5935a34f1bc71bd3b0bb83359ecbea
             fit="contain"
           />
         </div>

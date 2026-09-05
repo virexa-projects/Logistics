@@ -9,7 +9,11 @@ export const metadata = {
     "moving to bangalore luggage transport, baggage shipping bangalore, luggage delivery bangalore, relocation luggage service"
   ],
   alternates: {
+<<<<<<< HEAD
     canonical: "https://www.frisbi.in/blog/moving-to-bangalore-luggage-transport",
+=======
+    canonical: "https://frisbi.in/blog/moving-to-bangalore-luggage-transport",
+>>>>>>> 05ec78157e5935a34f1bc71bd3b0bb83359ecbea
   },
   robots: {
     index: true,

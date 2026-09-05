@@ -10,7 +10,11 @@ export const metadata = {
     "about Frisbi, luggage delivery company India, travel convenience company"
   ],
   alternates: {
+<<<<<<< HEAD
     canonical: "https://www.frisbi.in/about",
+=======
+    canonical: "https://frisbi.in/about",
+>>>>>>> 05ec78157e5935a34f1bc71bd3b0bb83359ecbea
   },
   robots: {
     index: true,

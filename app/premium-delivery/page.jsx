@@ -9,11 +9,7 @@ export const metadata = {
     "premium luggage delivery service, white glove luggage delivery, secure baggage handling"
   ],
   alternates: {
-<<<<<<< HEAD
-    canonical: "https://www.frisbi.in/services/premium-delivery",
-=======
     canonical: "https://frisbi.in/services/premium-delivery",
->>>>>>> 05ec78157e5935a34f1bc71bd3b0bb83359ecbea
   },
   robots: {
     index: true,
