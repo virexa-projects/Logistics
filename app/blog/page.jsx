@@ -20,6 +20,29 @@ export const metadata = {
 function page() {
   return (
     <div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@graph": [
+              {
+                "@type": "CollectionPage",
+                "@id": "https://frisbi.in/blog/#webpage",
+                "url": "https://frisbi.in/blog",
+                "name": "Luggage Delivery Blog & Travel Tips | Frisbi",
+                "description": "Read the latest tips, guides, and news about door-to-door luggage delivery, city-to-city travel, and baggage shipping across India.",
+                "isPartOf": {
+                  "@id": "https://frisbi.in/#website"
+                },
+                "about": {
+                  "@id": "https://frisbi.in/#organization"
+                }
+              }
+            ]
+          })
+        }}
+      />
         <Blogs />
       {/* <BookShipment /> */}
     </div>

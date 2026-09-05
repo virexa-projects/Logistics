@@ -20,6 +20,29 @@ export const metadata = {
 function page() {
   return (
     <div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@graph": [
+              {
+                "@type": "WebPage",
+                "@id": "https://frisbi.in/track-your-package/#webpage",
+                "url": "https://frisbi.in/track-your-package",
+                "name": "Track Your Luggage Delivery | Real-Time Baggage Tracking India | Frisbi",
+                "description": "Track your luggage shipment in real-time with Frisbi. Enter your tracking ID to see live updates, current location, and estimated delivery time for your baggage across India.",
+                "isPartOf": {
+                  "@id": "https://frisbi.in/#website"
+                },
+                "about": {
+                  "@id": "https://frisbi.in/#organization"
+                }
+              }
+            ]
+          })
+        }}
+      />
       <Trackyourpackage/>
     </div>
   )

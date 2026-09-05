@@ -27,6 +27,29 @@ export default async function Page({ searchParams }) {
 
   return (
     <div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@graph": [
+              {
+                "@type": "WebPage",
+                "@id": "https://frisbi.in/rate-calculator/#webpage",
+                "url": "https://frisbi.in/rate-calculator",
+                "name": "Luggage Delivery Cost Calculator in India | Frisbi",
+                "description": "Know your luggage parcel price in 60 seconds with Frisbi’s luggage delivery cost calculator. Calculate now, book when ready, and travel lighter.",
+                "isPartOf": {
+                  "@id": "https://frisbi.in/#website"
+                },
+                "about": {
+                  "@id": "https://frisbi.in/#organization"
+                }
+              }
+            ]
+          })
+        }}
+      />
       <RateCalculator
         pickupFromUrl={pickup}
         dropFromUrl={drop}
