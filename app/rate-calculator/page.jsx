@@ -19,20 +19,15 @@ export const metadata = {
 };
 
 
-export default async function Page({ searchParams }) {
-  const params = await searchParams; // ⭐ IMPORTANT
+import { Suspense } from "react";
+import RateCalculatorClient from "./RateCalculatorClient";
 
-  const pickup = params?.pickup ?? "";
-  const drop = params?.drop ?? "";
-
-  console.log("pickup, drop:", pickup, drop);
-
+export default function Page() {
   return (
     <div>
-      <RateCalculator
-        pickupFromUrl={pickup}
-        dropFromUrl={drop}
-      />
+      <Suspense fallback={null}>
+        <RateCalculatorClient />
+      </Suspense>
     </div>
   );
 }
