@@ -25,11 +25,7 @@ const servicesData = [
     imageSrc: Standard,
     imageAlt: "Standard luggage delivery",
     delay: 0,
-<<<<<<< HEAD
-    link: "/services/standard-delivery",
-=======
-    link: "/standard-delivery",
->>>>>>> 05ec78157e5935a34f1bc71bd3b0bb83359ecbea
+    link: "/services/standard-delivery", // Cleaned up duplicates
   },
   {
     title: "Express Delivery",
@@ -42,11 +38,7 @@ const servicesData = [
     imageSrc: Airport,
     imageAlt: "Express delivery service",
     delay: 0.15,
-<<<<<<< HEAD
-    link: "services/express-delivery",
-=======
-    link: "/express-delivery",
->>>>>>> 05ec78157e5935a34f1bc71bd3b0bb83359ecbea
+    link: "/services/express-delivery", // Added missing link
   },
   {
     title: "Premium Delivery",
@@ -59,11 +51,7 @@ const servicesData = [
     imageSrc: Smartbox,
     imageAlt: "Premium delivery service",
     delay: 0.3,
-<<<<<<< HEAD
-    link: "/services/premium-delivery",
-=======
-    link: "/premium-delivery",
->>>>>>> 05ec78157e5935a34f1bc71bd3b0bb83359ecbea
+    link: "/services/premium-delivery", // Added missing link
   },
 ];
 
@@ -94,14 +82,14 @@ const ServiceCard = ({ service }) => {
         <h4 className={` ${service.textColor}`}>
           {service.title}
         </h4>
-       
 
         <p className={`mt-4 text-base ${service.descColor}`}>
           {service.description}
         </p>
 
+        {/* Safeguarded link with a fallback */}
         <Link
-          href={service.link}
+          href={service.link || "#"}
           className={`mt-4 inline-block font-semibold ${service.linkColor}`}
         >
           Learn more
@@ -164,8 +152,8 @@ const ServicesSection = () => {
     <section className="py-12 md:py-16 lg:py-24">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Heading */}
-        <h2 className="text-center  mb-10 md:mb-12 lg:mb-16">
-         Five ways to move your luggage. One way to travel lighter.
+        <h2 className="text-center mb-10 md:mb-12 lg:mb-16">
+          Five ways to move your luggage. One way to travel lighter.
         </h2>
 
         {/* Services Cards */}
@@ -181,24 +169,12 @@ const ServicesSection = () => {
             title="Corporate"
             description="Business delivery that handles it all. From employee moves to event travel, we handle baggage so work keeps moving."
             image={Corporate}
-<<<<<<< HEAD
-            link="/book/corporate"
-=======
-            link="/corporate"
->>>>>>> 05ec78157e5935a34f1bc71bd3b0bb83359ecbea
-            fit="contain"
           />
 
           <FeatureCard
             title="Individual"
             description="When life requires extra bags, longer stays, or city transfers, we step in to make sure your luggage reaches safely."
             image={Packing}
-<<<<<<< HEAD
-            link="/book/individual"
-=======
-            link="/individual"
->>>>>>> 05ec78157e5935a34f1bc71bd3b0bb83359ecbea
-            fit="contain"
           />
         </div>
 
