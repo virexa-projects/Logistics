@@ -1,9 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function MobileBookNow() {
+  const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -15,6 +17,11 @@ export default function MobileBookNow() {
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Hide on book-shipment page
+  if (pathname === "/book-shipment" || pathname?.startsWith("/book-shipment")) {
+    return null;
+  }
 
   return (
     <div

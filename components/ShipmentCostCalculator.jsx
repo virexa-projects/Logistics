@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 
 /* ---------------- Floating Input ---------------- */
@@ -93,7 +93,10 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
   const [luggageType, setluggageType] = useState("Suitcase");
   const [service, setService] = useState("Express");
   const [total, setTotal] = useState(null);
+  const [rateCalculatedAt, setRateCalculatedAt] = useState("");
+  const [isBooking, setIsBooking] = useState(false);
   const [errors, setErrors] = useState({});
+  const summaryRef = useRef(null);
 
   /* ✅ AUTO FILL CITY */
   useEffect(() => {
@@ -201,7 +204,13 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
 
   const sendMessage = async (totalPrice) => {
     try {
-      await fetch(
+      const cleanPhone = values.pickupPhone ? String(values.pickupPhone).replace(/\D/g, "").slice(-10) : "";
+      if (!cleanPhone || cleanPhone.length !== 10) {
+        console.warn("Invalid pickup phone number for WhatsApp message:", values.pickupPhone);
+        return;
+      }
+
+      const res = await fetch(
         "https://api.virexa.in/v1/message/send-message?token=1a051309720abd839dd2a59adff7240a485c2f2ac8aae63d654f456fa19662cd5254d594e0b476d110e78332044d3e35802efea6ce118bde4e53feb1bb86ff28",
         {
           method: "POST",
@@ -209,7 +218,7 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            to: `91${values.pickupPhone}`, // 👈 customer number
+            to: `91${cleanPhone}`, // 👈 customer number
             type: "template",
             template: {
               language: {
@@ -249,7 +258,12 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
         }
       );
 
-      console.log("WhatsApp message sent ✅");
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        console.warn("WhatsApp API warning:", data?.error || res.statusText);
+      } else {
+        console.log("WhatsApp message sent ✅", data);
+      }
     } catch (err) {
       console.error("WhatsApp error", err);
     }
@@ -309,6 +323,24 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
 
     setTotal(totalPrice);
 
+    const now = new Date();
+    const usedAt = now.toLocaleString("en-IN", {
+      timeZone: "Asia/Kolkata",
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: true,
+    });
+    setRateCalculatedAt(usedAt);
+
+    // Smooth scroll to Shipment Summary
+    setTimeout(() => {
+      summaryRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 100);
+
     try {
       // =========================
       // 1️⃣ WhatsApp
@@ -332,6 +364,10 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
         service,
         totalPrice,
         type: "CALCULATOR", // optional tag
+        rateCalculatorAmount: totalPrice,
+        rateCalculatorUsedAt: usedAt,
+        "Rate Calculator Amount": totalPrice,
+        "Rate Calculator Used At": usedAt,
       };
 
       Object.entries(payload).forEach(([key, value]) => {
@@ -357,7 +393,66 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
     }
   };
   /* ---------------- BOOK NOW ---------------- */
-  const handleBookNow = () => {
+  const handleBookNow = async () => {
+    const timestamp =
+      rateCalculatedAt ||
+      new Date().toLocaleString("en-IN", {
+        timeZone: "Asia/Kolkata",
+        day: "2-digit",
+        month: "short",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: true,
+      });
+
+    setIsBooking(true);
+
+    // ✅ Add data to sheet on Book Now button click
+    try {
+      const formData = new URLSearchParams();
+      formData.append("sheetName", "RateCalculaterNew");
+
+      const payload = {
+        ...values,
+        weight,
+        length,
+        width,
+        height,
+        luggageType,
+        service,
+        totalPrice: total,
+        type: "BOOK_NOW",
+        status: "Book Now Clicked",
+        rateCalculatorAmount: total,
+        rateCalculatorUsedAt: timestamp,
+        "Rate Calculator Amount": total,
+        "Rate Calculator Used At": timestamp,
+      };
+
+      Object.entries(payload).forEach(([key, value]) => {
+        formData.append(
+          key,
+          Array.isArray(value) ? value.join(", ") : value ?? ""
+        );
+      });
+
+      await fetch(
+        "https://script.google.com/macros/s/AKfycbze9DM1_lUgyOJ1-JQuIfjfU8rXHfA-yUs8xeSu0Sqh05fi-YzaxBEH7Tzy8l_hpSgmHw/exec",
+        {
+          method: "POST",
+          body: formData,
+          mode: "no-cors",
+        }
+      );
+      console.log("Book Now data saved to sheet ✅");
+    } catch (err) {
+      console.error("Sheet save error on Book Now", err);
+    } finally {
+      setIsBooking(false);
+    }
+
     router.push(
       `/book-shipment?data=${encodeURIComponent(
         JSON.stringify({
@@ -369,6 +464,10 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
           luggageType,
           service,
           total,
+          rateCalculatorAmount: total,
+          rateCalculatorUsedAt: timestamp,
+          "Rate Calculator Amount": total,
+          "Rate Calculator Used At": timestamp,
         }),
       )}`,
     );
@@ -736,7 +835,10 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
 
 
         {total !== null && (
-          <div className="bg-[#E7ECFF] rounded-3xl p-6 mt-6 space-y-5">
+          <div
+            ref={summaryRef}
+            className="bg-[#E7ECFF] rounded-3xl p-6 mt-6 space-y-5 scroll-mt-24"
+          >
             <h4 className="text-lg font-semibold">Shipment Summary</h4>
 
             {/* ================= FROM ================= */}
@@ -833,9 +935,17 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
             {/* ================= BUTTON ================= */}
             <button
               onClick={handleBookNow}
-              className="w-full bg-black text-white py-3 rounded-full font-semibold hover:bg-gray-900 transition"
+              disabled={isBooking}
+              className="w-full bg-black text-white py-3 rounded-full font-semibold hover:bg-gray-900 transition flex items-center justify-center gap-2 disabled:opacity-75 cursor-pointer"
             >
-              🚀 Book Now
+              {isBooking ? (
+                <>
+                  <span className="inline-block animate-spin h-4 w-4 border-2 border-white border-t-transparent rounded-full"></span>
+                  Processing Booking...
+                </>
+              ) : (
+                "🚀 Book Now"
+              )}
             </button>
           </div>
         )}

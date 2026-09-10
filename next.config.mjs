@@ -4,9 +4,7 @@ const nextConfig = {
   // images: {
   //   unoptimized: true,
   // },
-  experimental: {
-    serverExternalPackages: ["razorpay"],
-  },
+  serverExternalPackages: ["razorpay"],
 };
   
   export default nextConfig;

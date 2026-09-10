@@ -101,7 +101,28 @@ const submitToGoogleSheet = async (values, totalPrice, router) => {
         // 🔑 Sheet routing
         formData.append("sheetName", "Sheet1");
 
-        const payload = { ...values, totalPrice };
+        const payload = {
+            ...values,
+            totalPrice,
+            "Rate Calculator Amount":
+                values["Rate Calculator Amount"] ||
+                values.rateCalculatorAmount ||
+                values.total ||
+                "-",
+            "Rate Calculator Used At":
+                values["Rate Calculator Used At"] ||
+                values.rateCalculatorUsedAt ||
+                "-",
+            rateCalculatorAmount:
+                values.rateCalculatorAmount ||
+                values["Rate Calculator Amount"] ||
+                values.total ||
+                "-",
+            rateCalculatorUsedAt:
+                values.rateCalculatorUsedAt ||
+                values["Rate Calculator Used At"] ||
+                "-",
+        };
 
         Object.entries(payload).forEach(([key, value]) => {
             formData.append(
