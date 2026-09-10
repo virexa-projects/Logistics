@@ -5,7 +5,7 @@
  */
 
 // ⚙️ Choose mode: "test" or "live"
-const RAZORPAY_ENV = process.env.NEXT_PUBLIC_RAZORPAY_ENV || "test";
+const RAZORPAY_ENV = process.env.NEXT_PUBLIC_RAZORPAY_ENV || "live";
 
 const RAZORPAY_KEYS = {
   test: {
