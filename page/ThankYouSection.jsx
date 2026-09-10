@@ -28,11 +28,11 @@ export default function ThankYouSection() {
         />
 
         <h2 className=" mt-4">
-          <span className="text-blue-600">Thank you</span> for booking with us!
+          <span className="text-blue-600">Thank you</span> for Contacting us
         </h2>
 
         <p className="text-second mt-4 ">
-          We have successfully received your booking.
+          We will be in Touch with you soon.
         </p>
         <div className="mt-7">
           <Link

@@ -93,11 +93,7 @@ function InvoiceContent({ values, price }) {
         <tbody>
           <tr>
             <td style={td}>Service Type</td>
-            <td style={td}>{values.serviceType}</td>
-          </tr>
-          <tr>
-            <td style={td}>No. of Bags</td>
-            <td style={td}>{values.checkedBags}</td>
+            <td style={td}>{values.service}</td>
           </tr>
           <tr>
             <td style={td}>Total Weight</td>
@@ -172,7 +168,7 @@ function InvoiceContent({ values, price }) {
         }}
       >
         <p>Thank you for choosing Frisbi Logistics 🚚</p>
-        <p>support@frisbi.com | +91 98765 43210</p>
+        <p>info@frisbi.in | +91 74181 52531</p>
       </div>
     </>
   );

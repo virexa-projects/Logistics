@@ -79,7 +79,7 @@ export function HowItWorks() {
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            HHow Standard Luggage Delivery Works
+            How Standard Luggage Delivery Works
           </h2>
           <p className="text-second">Your luggage, seven easy moves</p>
         </motion.div>

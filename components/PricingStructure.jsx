@@ -39,7 +39,7 @@ function PricingStructure() {
   ];
 
   const addOns = [
-    { name: "Special handling", icon: PackageCheck },
+    { name: "Special care packages", icon: PackageCheck },
     { name: "Fragile item protection", icon: ShieldCheck },
     { name: "Extended insurance coverage", icon: BadgeCheck },
     { name: "Return Pickup Service", icon: Repeat },
@@ -95,8 +95,7 @@ function PricingStructure() {
           {/* LEFT BLUE CARD */}
           <div className="bg-[#1448FF] text-white p-10 rounded-3xl flex items-center">
             <span className="text-2xl font-semibold leading-[1.6]">
-              Standard Delivery Keeps <br />
-              More Money in Your Pocket
+             Standard Delivery Keeps More <br/> Money in Your Pocket
             </span>
           </div>
 

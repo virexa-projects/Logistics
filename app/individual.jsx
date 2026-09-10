@@ -71,9 +71,9 @@ function Individual() {
                 transition={{ duration: 0.6, delay: 0.4 }}
                 className="flex flex-wrap gap-4"
               >
-                <button className="btn-primary hover:scale-105 transition-all">
+                <a href="rate-calculator" className="btn-primary hover:scale-105 transition-all">
                   Book Your Delivery Now
-                </button>
+                </a>
               </motion.div>
             </div>
 
@@ -112,9 +112,9 @@ function Individual() {
         <ContactSection />
       </section>
 
-        <MarqueeLogos />
+       
 
-      <section className="px-4 py-12   md:py-20 md:pt-0 ">
+      <section className="px-4 py-12   md:py-20 md:pb-0 ">
         <div className="relative container mx-auto rounded-3xl overflow-hidden">
           {/* Background Image */}
           <Image
@@ -143,7 +143,7 @@ function Individual() {
 
             <div className="flex flex-wrap justify-center gap-4">
               <Link
-                href="/contact-us"
+                href="/book-shipment"
                 className="btn-white hover:scale-105 transition-all"
               >
                 Book Now
@@ -153,6 +153,7 @@ function Individual() {
           </motion.div>
         </div>
       </section>
+       <MarqueeLogos />
     </div>
   );
 }

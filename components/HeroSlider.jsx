@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 
-import bannerone from "@/asset/banner-1-1.jpg";
+import bannerone from "@/asset/banner-1-1.webp";
 import bannertwo from "@/asset/luggage-bag.jpg";
 import bannerthree from "@/asset/luggage-person.jpg";
 import PorterPickupDrop from "./PickupDropBooking";
@@ -63,24 +63,24 @@ export default function HeroSlider() {
 
 
         {/* SLIDES (both old and new) */}
-        {slides.map((slide, i) => (
+        {/* {slides.map((slide, i) => (
           <motion.div
             key={i}
             initial={{ opacity: i === index ? 1 : 0 }}
             animate={{ opacity: i === nextIndex ? 1 : i === index ? 1 : 0 }}
             transition={{ duration: 0.8, ease: "easeInOut" }}
             className="absolute inset-0"
-          >
+          > */}
             <Image
-              src={slide.img}
-              alt={slide.title}
+              src={bannerone}
+              alt={bannerone}
               fill
               priority
               className="object-cover"
             />
             <div className="absolute inset-0 bg-black/30" />
-          </motion.div>
-        ))}
+          {/* </motion.div>
+        ))} */}
 
         {/* CONTENT */}
         <div className="relative z-20 h-full container mx-auto px-4  md:px-8 flex items-center">
@@ -99,41 +99,18 @@ export default function HeroSlider() {
               {slides[index].desc}
             </p>
             <Link
-              href="#"
+              href="/rate-calculator"
               className="inline-block btn-primary hover:scale-105 transition"
             >
-              Book Shipment
+              Get  Quote
             </Link>
           </motion.div>
         </div>
 
-        {/* ARROWS */}
-        <button
-          onClick={goPrev}
-          className="absolute block md:hidden left-4 md:left-8 bottom-6 md:top-1/2 md:-translate-y-1/2 z-30 bg-white/80 hover:bg-white p-3 rounded-full"
-        >
-          ←
-        </button>
-        <button
-          onClick={goNext}
-          className="absolute block md:hidden right-4 md:right-8 bottom-6 md:top-1/2 md:-translate-y-1/2 z-30 bg-white/80 hover:bg-white p-3 rounded-full"
-        >
-          →
-        </button>
 
-        {/* DOTS */}
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-30">
-          {slides.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setNextIndex(i)}
-              className={`w-3 h-3 rounded-full ${i === index ? "bg-white" : "bg-white/40"
-                }`}
-            />
-          ))}
-        </div>
       </section>
-      <div className="mt-10 z-40 mb-7 shadow-2xl block md:hidden">
+      <div className=" mb-7  block md:hidden" style={{ marginTop: -180, zIndex: 24, position:"relative" }}
+>
         <PorterPickupDrop />
       </div>
     </div>

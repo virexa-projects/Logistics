@@ -21,7 +21,7 @@ import FAQSection from "@/components/AccordionServices";
 import ContactSection from "@/components/ContactSection";
 import CallToAction from "@/components/CallToAction";
 import Testimonials from "@/components/Testimonials";
-
+import Comparison from "@/components/ComparisonServices";
 export default function Services() {
   return (
     <div className="w-full">
@@ -44,11 +44,11 @@ export default function Services() {
 
           <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 max-w-3xl mx-auto">
             <h1 className="text-black text-3xl mb-4 md:text-4xl font-semibold ">
-              Services
+              Luggage Delivery Services
             </h1>
             <p className="text-black mb-4 text-sm md:text-base">
-              India’s trusted luggage delivery service, built to make travel
-              lighter, smarter, and stress-free.
+             Thoughtfully built to make travel easier, calmer, and more predictable across India.
+
             </p>
 
             {/* CTA */}
@@ -56,7 +56,8 @@ export default function Services() {
               href="/contact-us"
               className="btn-primary hover:scale-105 transition-all"
             >
-              Contact Us
+              Speak with our team
+
             </Link>
           </div>
         </motion.section>
@@ -68,11 +69,11 @@ export default function Services() {
               {/* LEFT — CONTENT */}
               <div className="relative z-10 mt-10 text-center md:text-left flex flex-col items-center md:items-start">
                 <h1 className="text-black text-3xl mb-4 md:text-4xl font-semibold ">
-                  Services
+                  Luggage Delivery Services
+
                 </h1>
                 <p className="text-black mb-4 text-sm md:text-base">
-                  India’s trusted luggage delivery service, built to make travel
-                  lighter, smarter, and stress-free.
+                  Thoughtfully built to make travel easier, calmer, and more predictable across India.
                 </p>
 
                 {/* CTA */}
@@ -80,7 +81,8 @@ export default function Services() {
                   href="/contact-us"
                   className="btn-primary hover:scale-105 transition-all"
                 >
-                  Contact Us
+                  Speak with our team
+
                 </Link>
               </div>
 
@@ -99,6 +101,10 @@ export default function Services() {
         </section>
       </div>
 
+
+<section className=" ">
+        <Comparison />
+      </section>
       <section className="bg-[#F1F2F6] ">
         <ServicesSection />
       </section>
@@ -114,8 +120,9 @@ export default function Services() {
         <FAQSection />
       </section>
 
-      <MarqueeLogos />
-      <section className="w-full px-4 py-12   md:py-20 md:pt-0 ">
+     
+
+      <section className="w-full px-4 py-12   md:py-20 md:pb-0 ">
         <div className="relative container mx-auto rounded-3xl overflow-hidden">
           {/* Background Image */}
           <Image
@@ -136,10 +143,11 @@ export default function Services() {
             transition={{ duration: 0.5 }}
             className="relative z-10 text-center py-16 md:py-20 px-6"
           >
-            <h2 className=" text-white mb-4">From Your Door to Their Door.</h2>
+            <h2 className=" text-white mb-4">Your bags can travel smarter than you think.</h2>
 
             <p className="text-white mb-8 text-sm md:text-base">
-              Fast, safe, and affordable – trusted by thousands across India.
+             Pick a service. Book online. Travel lighter.
+
             </p>
 
             <div className="flex flex-wrap justify-center gap-4">
@@ -153,6 +161,7 @@ export default function Services() {
           </motion.div>
         </div>
       </section>
+       <MarqueeLogos />
     </div>
   );
 }

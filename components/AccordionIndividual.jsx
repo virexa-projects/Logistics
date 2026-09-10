@@ -50,12 +50,11 @@ const faqData = [
     answer:
       "Yes. Book two separate shipments. One for the outbound journey and one for the return. Or book both together and let your account manager coordinate the timing.",
   },
-   {
+  {
     question: "Is there a weight limit per bag?",
     answer:
       "Individual bags can weigh between 5 kg to 30 kg. If your bag is heavier, contact support and we'll figure out the best way to handle it.",
   },
-
 ];
 
 export default function FAQ() {
@@ -70,7 +69,9 @@ export default function FAQ() {
 
   return (
     <div className="w-full max-w-3xl mx-auto py-12 md:pt-16  md:pb-24 px-4">
-      <h2 className="text-center mb-10 md:mb-12 lg:mb-16">Frequently asked questions</h2>
+      <h2 className="text-center mb-10 md:mb-12 lg:mb-16">
+        Frequently asked questions
+      </h2>
 
       <div className="space-y-6">
         {visibleFaqs.map((faq, i) => (
@@ -107,9 +108,7 @@ export default function FAQ() {
                 className="flex justify-between items-center py-5 cursor-pointer border-b"
                 onClick={() => toggle(i)}
               >
-                <h4 className="">
-                  {faq.question}
-                </h4>
+                <h4 className="">{faq.question}</h4>
                 <ChevronDown className="w-6 h-6 text-black" />
               </div>
             )}
