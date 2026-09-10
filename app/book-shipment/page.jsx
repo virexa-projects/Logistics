@@ -25,7 +25,7 @@ export default async function Page({ searchParams }) {
     console.error("Data parse error:", err);
   }
 
-  console.log("Received booking data:", formData);
+  // console.log("Received booking data:", formData);
 
   return <BookShipment bookingData={formData} />;
 }

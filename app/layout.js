@@ -7,7 +7,8 @@ import FooterSection from "@/components/FooterSection";
 import { usePathname } from "next/navigation";
 import { Toaster } from "react-hot-toast";
 import FloatingActions from "@/components/FloatingActions";
-import Script from "next/script"; // ✅ THIS WAS MISSING
+import Script from "next/script";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -21,51 +22,14 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${inter.variable} antialiased`}>
-        {/* Google Tag Manager */}
-        <Script id="gtm" strategy="afterInteractive">
-          {`
-            (function(w,d,s,l,i){w[l]=w[l]||[];
-            w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
-            var f=d.getElementsByTagName(s)[0],
-            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
-            j.async=true;
-            j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
-            f.parentNode.insertBefore(j,f);
-            })(window,document,'script','dataLayer','GTM-5CZVSVKT');
-          `}
-        </Script>
-
-
-        
-        {/* Google Tag Manager */}
-
-        <Script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=AW-18152390227"
-          strategy="afterInteractive"
-        />
-
+        {/* Google Ads Tag Link */}
         <Script id="google-ads" strategy="afterInteractive">
           {`
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'AW-18152390227');
-  `}
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('config', 'AW-18152390227');
+          `}
         </Script>
-
-        {/* Google Tag Manager (noscript) */}
-        <noscript>
-          <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-5CZVSVKT"
-            height="0"
-            width="0"
-            style={{
-              display: "none",
-              visibility: "hidden",
-            }}
-          />
-        </noscript>
 
         {!is404 && <HeaderWrapper />}
 
@@ -83,6 +47,9 @@ export default function RootLayout({ children }) {
 
         {/* Toast */}
         <Toaster position="top-right" reverseOrder={false} />
+
+        {/* Updated New Google Analytics 4 ID */}
+        <GoogleAnalytics gaId="G-CVY124PE8B" />
       </body>
     </html>
   );

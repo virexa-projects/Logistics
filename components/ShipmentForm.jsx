@@ -1,11 +1,13 @@
-
+"use client";
 
 import { useState, useMemo, useEffect, useRef } from "react";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
+import { CheckCircle2, Download, Loader2, Copy, Check, ExternalLink } from "lucide-react";
 import InvoiceContent from "./InvoiceContent";
+import { API_CONFIG } from "@/utils/apiConfig";
 /* ---------------- Pricing Config ---------------- */
 
 
@@ -92,41 +94,111 @@ const PICKUP_SLOTS = [
 
 /* ---------------- Google Sheet Submit ---------------- */
 
-const submitToGoogleSheet = async (values, totalPrice, router) => {
+const submitToGoogleSheet = async (values, totalPrice, router, skipRedirect = false) => {
   const toastId = toast.loading("Submitting...");
-  console.log("values>>>>>", values)
+  console.log("values>>>>>", values);
   try {
-    const formData = new URLSearchParams();
+    const payload = {
+      type: values.type || "ONLINE_PAYMENT",
+      status: values.status || "online payment confirmed",
+      service: values.service || "Express",
+      serviceType: values.serviceType || values.service || "",
+      luggageType: values.luggageType || "Suitcase",
+      length: values.length || "",
+      height: values.height || "",
+      weight: values.weight || "",
+      width: values.width || "",
+      bagSize: values.bagSize || "",
+      totalPrice: totalPrice || values.totalPrice || values.total || 0,
+      total: totalPrice || values.total || values.totalPrice || 0,
+      rateCalculatorAmount:
+        values.rateCalculatorAmount ||
+        values["Rate Calculator Amount"] ||
+        values.total ||
+        totalPrice ||
+        "-",
+      rateCalculatorUsedAt:
+        values.rateCalculatorUsedAt ||
+        values["Rate Calculator Used At"] ||
+        "-",
+      "Rate Calculator Amount":
+        values["Rate Calculator Amount"] ||
+        values.rateCalculatorAmount ||
+        values.total ||
+        totalPrice ||
+        "-",
+      "Rate Calculator Used At":
+        values["Rate Calculator Used At"] ||
+        values.rateCalculatorUsedAt ||
+        "-",
+      pickupName: values.pickupName || "",
+      pickupPhone: values.pickupPhone || "",
+      pickupPincode: values.pickupPincode || "",
+      pickupCity: values.pickupCity || "",
+      pickupState: values.pickupState || "",
+      pickupAddress: values.pickupAddress || "",
+      name: values.name || "",
+      phone: values.phone || "",
+      dropPincode: values.dropPincode || "",
+      dropCity: values.dropCity || "",
+      dropState: values.dropState || "",
+      dropAddress: values.dropAddress || values.address || "",
+      address: values.address || values.dropAddress || values.pickupAddress || "",
+      customerType: values.customerType || "Individual",
+      addons: values.addons || [],
+      includeGST: values.includeGST || false,
+      email: values.email || "",
+      paymentStatus: values.paymentStatus || "PAID",
+      paymentId: values.paymentId || "",
+      orderId: values.orderId || "",
+      awb: values.awb || "",
+      courier: values.courier || "",
+      shipmentId: values.shipmentId || "",
+      shipmentStatus: values.shipmentStatus || "",
+      labelUrl: values.labelUrl || "",
+    };
 
-    // 🔑 Sheet routing
-    formData.append("sheetName", "Sheet1");
-
-    const payload = { ...values, totalPrice };
-
+    // 1️⃣ Send to RateCalculator sheet (updates the user's calculator funnel table)
+    const rateCalcFormData = new URLSearchParams();
+    rateCalcFormData.append("sheetName", "RateCalculator");
     Object.entries(payload).forEach(([key, value]) => {
-      formData.append(
+      rateCalcFormData.append(
         key,
         Array.isArray(value) ? value.join(", ") : value ?? ""
       );
     });
 
-    console.log("formData", formData);
+    await fetch(API_CONFIG.GOOGLE_SHEET_URL, {
+      method: "POST",
+      body: rateCalcFormData,
+      mode: "no-cors",
+    });
 
-    // ✅ IMPORTANT FIX
-    await fetch(
-      "https://script.google.com/macros/s/AKfycbze9DM1_lUgyOJ1-JQuIfjfU8rXHfA-yUs8xeSu0Sqh05fi-YzaxBEH7Tzy8l_hpSgmHw/exec",
-      {
+    // 2️⃣ Also log to Bookings sheet (for standalone order records)
+    try {
+      const bookingsFormData = new URLSearchParams();
+      bookingsFormData.append("sheetName", "Bookings");
+      Object.entries(payload).forEach(([key, value]) => {
+        bookingsFormData.append(
+          key,
+          Array.isArray(value) ? value.join(", ") : value ?? ""
+        );
+      });
+      await fetch(API_CONFIG.GOOGLE_SHEET_URL, {
         method: "POST",
-        body: formData,     // ❌ no headers
-        mode: "no-cors",    // 🔥 KEY LINE
-      }
-    );
+        body: bookingsFormData,
+        mode: "no-cors",
+      });
+    } catch (bErr) {
+      console.warn("Secondary bookings sheet log warning:", bErr);
+    }
 
     // ✅ If fetch didn’t crash → success
     toast.dismiss(toastId);
     toast.success("Booking confirmed 🎉");
-    router.push("/thank-you");
-
+    if (!skipRedirect && router) {
+      router.push("/thank-you");
+    }
   } catch (err) {
     toast.dismiss(toastId);
     console.error(err);
@@ -198,6 +270,10 @@ export default function ShipmentBookingForm({
   const invoiceRef = useRef(null);
   const [addonError, setAddonError] = useState("");
   const [showInvoice, setShowInvoice] = useState(false);
+  const [isProcessingPayment, setIsProcessingPayment] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [successDetails, setSuccessDetails] = useState(null);
+  const [copiedAwb, setCopiedAwb] = useState(false);
 
   const [errors, setErrors] = useState({});
 
@@ -496,7 +572,7 @@ export default function ShipmentBookingForm({
       console.log("FINAL PAYLOAD 👉", payload); // 🔥 DEBUG
 
       const res = await fetch(
-        "https://api.virexa.in/v1/message/send-message?token=1a051309720abd839dd2a59adff7240a485c2f2ac8aae63d654f456fa19662cd5254d594e0b476d110e78332044d3e35802efea6ce118bde4e53feb1bb86ff28",
+        API_CONFIG.VIREXA_MESSAGE_API_URL,
         {
           method: "POST",
           headers: {
@@ -520,10 +596,6 @@ export default function ShipmentBookingForm({
 
 
   const startPayment = async () => {
-    // if (!values.name || !values.phone) {
-    //   toast.error("Name and mobile number required");
-    //   return;
-    // }
     if (!validateForm()) {
       return;
     }
@@ -532,206 +604,238 @@ export default function ShipmentBookingForm({
       toast.error("Minimum 5kg required");
       return;
     }
-    await sendMessage(price.total);   // WhatsApp message
 
-    // ✅ WAIT FOR RAZORPAY SDK
-    await new Promise((resolve) => {
-      const check = () => {
-        if (window.Razorpay) resolve(true);
-        else setTimeout(check, 100);
-      };
-      check();
-    });
+    try {
+      // ✅ WAIT FOR RAZORPAY SDK
+      await new Promise((resolve) => {
+        const check = () => {
+          if (window.Razorpay) resolve(true);
+          else setTimeout(check, 100);
+        };
+        check();
+      });
 
-    // ✅ CREATE ORDER
-    const orderRes = await fetch("/api/razorpay/order", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ amount: price.total }),
-      // body: JSON.stringify({ amount: 1 }),
-    });
+      // ✅ CREATE ORDER
+      const orderRes = await fetch("/api/razorpay/order", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ amount: price.total }),
+      });
 
-    const order = await orderRes.json();
+      const order = await orderRes.json();
 
-    // ✅ OPEN RAZORPAY
-    const options = {
-      // key: "rzp_test_S9MbPhPiYZr1P9",
-      key: "rzp_live_SUAtPnMwmeZpX4",
-      amount: order.amount,
-      currency: "INR",
-      order_id: order.id,
+      if (!order || !order.id) {
+        throw new Error(order?.error || "Failed to create payment order");
+      }
 
-      name: "Shipment Booking",
-      description: "Shipment Charges",
+      // ✅ OPEN RAZORPAY
+      const options = {
+        key: API_CONFIG.RAZORPAY_KEY_ID,
+        amount: order.amount,
+        currency: "INR",
+        order_id: order.id,
 
-      // handler: async function (response) {
-      //   try {
-      //     toast.loading("Processing payment...");
+        name: "Shipment Booking",
+        description: "Shipment Charges",
 
-      //     // 1️⃣ OPTIONAL – show invoice
-      //     setShowInvoice(true);
-
-      //     // 2️⃣ OPTIONAL – download invoice
-      //     await downloadInvoice();
-
-      //     // 3️⃣ STORE IN GOOGLE SHEET
-      //     await submitToGoogleSheet(
-      //       {
-      //         ...values,
-      //         paymentId: response.razorpay_payment_id,
-      //         orderId: response.razorpay_order_id,
-      //         paymentStatus: "PAID",
-      //         totalAmount: price.total,
-      //       },
-      //       price.total,
-      //       router // 👈 router inside function
-      //     );
-
-      //     // submitToGoogleSheet already does router.push("/thank-you")
-      //     toast.dismiss();
-      //     toast.success("Payment successful 🎉");
-
-      //   } catch (err) {
-      //     toast.dismiss();
-      //     console.error(err);
-      //     toast.error("Payment done, but saving failed");
-      //     router.push("/thank-you"); // still allow user
-      //   }
-      // },
-
-
-      handler: async function (response) {
-        try {
-          toast.loading("Processing order...");
-
-          // =========================
-          // 1️⃣ LOGIN XPRESSBEES
-          // =========================
-          const loginRes = await fetch(
-            "https://shipment.xpressbees.com/api/users/login",
-            {
+        handler: async function (response) {
+          setIsProcessingPayment(true);
+          const toastId = toast.loading("Verifying payment & confirming booking...");
+          try {
+            // ==========================================
+            // 1️⃣ VERIFY PAYMENT SIGNATURE (SERVER-SIDE)
+            // ==========================================
+            const verifyRes = await fetch("/api/razorpay/verify", {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({
-                email: "javidsherif1@gmail.com",
-                password: "Frisbi@2026",
+                razorpay_order_id: response.razorpay_order_id,
+                razorpay_payment_id: response.razorpay_payment_id,
+                razorpay_signature: response.razorpay_signature,
               }),
+            });
+
+            const verifyData = await verifyRes.json();
+            if (!verifyData.success) {
+              throw new Error(verifyData.message || "Payment signature verification failed");
             }
-          );
 
-          const loginData = await loginRes.json();
-          const token = loginData.data;
+            // Default identifiers (used if courier API fails or pincode is not serviceable)
+            let awb = "FB" + Date.now().toString().slice(-8);
+            let courier = "Frisbi Express";
+            let shipmentId = "";
+            let shipmentStatus = "Payment Confirmed";
+            let labelUrl = "";
 
-          if (!token) throw new Error("Xpress login failed");
+            // ==========================================
+            // 2️⃣ ATTEMPT XPRESSBEES DISPATCH (NON-BLOCKING)
+            // ==========================================
+            try {
+              const loginRes = await fetch(
+                "https://shipment.xpressbees.com/api/users/login",
+                {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({
+                    email: "javidsherif1@gmail.com",
+                    password: "Frisbi@2026",
+                  }),
+                }
+              );
 
-          // =========================
-          // 2️⃣ CREATE SHIPMENT
-          // =========================
-          const shipRes = await fetch(
-            "https://shipment.xpressbees.com/api/shipments2",
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`,
-              },
-              body: JSON.stringify({
-                order_number: "ORD" + Date.now(),
-                payment_type: "prepaid",
-                order_amount: price.total,
-                collectable_amount: 0,
-                package_weight: Number(values.weight || 1),
+              const loginData = await loginRes.json();
+              const token = loginData?.data;
 
-                consignee: {
-                  name: values.name,
-                  address: values.dropAddress || "Customer Address",
-                  city: values.dropCity,
-                  state: values.dropState || "Tamil Nadu",
-                  pincode: values.dropPincode || "---",
-                  phone: values.phone,
-                },
-
-                pickup: {
-                  warehouse_name: "WH1",
-                  name: values.pickupName,
-                  address: values.pickupAddress || "Office Address",
-                  city: values.pickupCity,
-                  state: values.pickupState || "Tamil Nadu",
-                  pincode: values.pickupPincode || "---",
-                  phone: values.pickupPhone,
-                },
-
-
-                order_items: [
+              if (token) {
+                const shipRes = await fetch(
+                  "https://shipment.xpressbees.com/api/shipments2",
                   {
-                    name: "Shipment",
-                    qty: "1",
-                    price: price.total,
-                    sku: "SHIP01",
-                  },
-                ],
-              }),
+                    method: "POST",
+                    headers: {
+                      "Content-Type": "application/json",
+                      Authorization: `Bearer ${token}`,
+                    },
+                    body: JSON.stringify({
+                      order_number: "ORD" + Date.now(),
+                      payment_type: "prepaid",
+                      order_amount: price.total,
+                      collectable_amount: 0,
+                      package_weight: Number(values.weight || 1),
+
+                      consignee: {
+                        name: values.name,
+                        address: values.dropAddress || "Customer Address",
+                        city: values.dropCity,
+                        state: values.dropState || "Tamil Nadu",
+                        pincode: values.dropPincode || "---",
+                        phone: values.phone,
+                      },
+
+                      pickup: {
+                        warehouse_name: "WH1",
+                        name: values.pickupName,
+                        address: values.pickupAddress || "Office Address",
+                        city: values.pickupCity,
+                        state: values.pickupState || "Tamil Nadu",
+                        pincode: values.pickupPincode || "---",
+                        phone: values.pickupPhone,
+                      },
+
+                      order_items: [
+                        {
+                          name: "Shipment",
+                          qty: "1",
+                          price: price.total,
+                          sku: "SHIP01",
+                        },
+                      ],
+                    }),
+                  }
+                );
+
+                const shipData = await shipRes.json();
+                if (shipData.status && shipData.data) {
+                  awb = shipData.data.awb_number || awb;
+                  courier = shipData.data.courier_name || "Xpressbees";
+                  shipmentId = shipData.data.shipment_id || "";
+                  shipmentStatus = shipData.data.status || "Created";
+                  labelUrl = shipData.data.label || "";
+                } else {
+                  console.warn("Courier note:", shipData.message || "Pincode unserviceable");
+                  courier = "Manual Dispatch Required";
+                  shipmentStatus = shipData.message || "Pincode not serviceable";
+                }
+              }
+            } catch (courierErr) {
+              console.warn("Courier API warning:", courierErr.message);
+              courier = "Manual Dispatch Required";
+              shipmentStatus = courierErr.message || "Courier dispatch pending";
             }
-          );
 
-          const shipData = await shipRes.json();
+            // ==========================================
+            // 3️⃣ INVOICE & NOTIFICATIONS
+            // ==========================================
+            setShowInvoice(true);
+            try {
+              await downloadInvoice();
+            } catch (invErr) {
+              console.warn("Invoice download error", invErr);
+            }
 
-          if (!shipData.status)
-            throw new Error(shipData.message || "Shipment failed");
+            try {
+              await sendMessage(price.total); // WhatsApp notification
+            } catch (msgErr) {
+              console.warn("WhatsApp notification error", msgErr);
+            }
 
-          const awb = shipData.data.awb_number;
+            // ==========================================
+            // 4️⃣ SAVE VERIFIED PAYMENT TO GOOGLE SHEET
+            // ==========================================
+            await submitToGoogleSheet(
+              {
+                ...values,
+                type: "ONLINE_PAYMENT",
+                status: "online payment confirmed",
+                paymentId: response.razorpay_payment_id,
+                orderId: response.razorpay_order_id,
+                awb,
+                courier,
+                shipmentId,
+                shipmentStatus,
+                labelUrl,
+                paymentStatus: "PAID",
+              },
+              price.total,
+              router,
+              true // skip direct redirect to show celebration modal
+            );
 
-          // =========================
-          // 3️⃣ SHOW INVOICE
-          // =========================
-          setShowInvoice(true);
-          await downloadInvoice();
+            toast.dismiss(toastId);
+            toast.success("Payment verified & booking confirmed! 🎉");
 
-          await sendMessage(price.total);  // WhatsApp message
-
-          // =========================
-          // 4️⃣ SAVE GOOGLE SHEET
-          // =========================
-          await submitToGoogleSheet(
-            {
-              ...values,
-
-              paymentId: response.razorpay_payment_id,
+            // Open Confirmation Celebration Modal
+            setSuccessDetails({
+              awb,
+              courier,
               orderId: response.razorpay_order_id,
+              paymentId: response.razorpay_payment_id,
+              amount: price.total,
+              fromCity: values.pickupCity,
+              toCity: values.dropCity,
+              labelUrl,
+            });
+            setShowSuccessModal(true);
 
-              awb: shipData.data.awb_number,
-              courier: shipData.data.courier_name,
-              shipmentId: shipData.data.shipment_id,
-              shipmentStatus: shipData.data.status,
-              labelUrl: shipData.data.label,
+          } catch (err) {
+            toast.dismiss(toastId);
+            console.error(err);
+            toast.error(err.message || "Payment verification failed");
+          } finally {
+            setIsProcessingPayment(false);
+          }
+        },
 
-              paymentStatus: "PAID",
-            },
-            price.total,
-            router
-          );
+        modal: {
+          ondismiss: function () {
+            setIsProcessingPayment(false);
+          },
+        },
 
+        prefill: {
+          name: values.name,
+          email: values.email,
+          contact: values.phone,
+        },
 
-          toast.dismiss();
-          toast.success("Order + Shipment success 🚚");
+        theme: { color: "#2563EB" },
+      };
 
-        } catch (err) {
-          toast.dismiss();
-          console.error(err);
-          toast.error(err.message || "Process failed");
-        }
-      },
-
-      prefill: {
-        name: values.name,
-        email: values.email,
-        contact: values.phone,
-      },
-
-      theme: { color: "#2563EB" },
-    };
-
-    new window.Razorpay(options).open();
+      new window.Razorpay(options).open();
+    } catch (err) {
+      console.error("Payment initiation error:", err);
+      toast.error(err.message || "Could not initiate payment");
+      setIsProcessingPayment(false);
+    }
   };
 
 
@@ -1317,10 +1421,18 @@ export default function ShipmentBookingForm({
 
         <button
           type="button"
-          className="btn-primary w-full md:w-auto"
+          className="btn-primary w-full md:w-auto inline-flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
           onClick={startPayment}
+          disabled={isProcessingPayment}
         >
-          Pay ₹{price.total} & Confirm Booking
+          {isProcessingPayment ? (
+            <>
+              <Loader2 className="w-5 h-5 animate-spin" />
+              Wait a moment...
+            </>
+          ) : (
+            `Pay ₹${price.total} & Confirm Booking`
+          )}
         </button>
 
       </form>
@@ -1388,7 +1500,134 @@ export default function ShipmentBookingForm({
         <InvoiceContent values={values} price={price} />
       </div>
 
+      {/* ================= SUCCESS CONFIRMATION MODAL ================= */}
+      {showSuccessModal && successDetails && (
+        <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-white rounded-2xl shadow-2xl max-w-lg w-full p-6 md:p-8 text-center relative animate-in fade-in zoom-in-95 duration-200">
+            {/* Close button */}
+            <button
+              type="button"
+              onClick={() => {
+                setShowSuccessModal(false);
+                router.push("/thank-you");
+              }}
+              className="absolute top-4 right-4 text-gray-400 hover:text-gray-700 text-xl w-8 h-8 rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors"
+            >
+              ✕
+            </button>
 
+            {/* Success Icon */}
+            <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+              <CheckCircle2 className="w-10 h-10" />
+            </div>
+
+            <h3 className="text-2xl font-bold text-gray-900 mb-1">
+              Booking & Payment Confirmed!
+            </h3>
+            <p className="text-sm text-gray-500 mb-6">
+              Your shipment has been successfully registered with {successDetails.courier} and pickup scheduled.
+            </p>
+
+            {/* Shipment Summary Details Card */}
+            <div className="bg-gray-50 border border-gray-200 rounded-xl p-4 text-left space-y-3 mb-6 text-sm">
+              <div className="flex items-center justify-between pb-2 border-b border-gray-200">
+                <span className="text-gray-500">AWB Tracking No.</span>
+                <div className="flex items-center gap-2">
+                  <span className="font-mono font-bold text-blue-600">
+                    {successDetails.awb || "Generated"}
+                  </span>
+                  {successDetails.awb && (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        if (typeof navigator !== "undefined" && navigator.clipboard) {
+                          navigator.clipboard.writeText(successDetails.awb);
+                        }
+                        setCopiedAwb(true);
+                        toast.success("AWB copied to clipboard!");
+                        setTimeout(() => setCopiedAwb(false), 2000);
+                      }}
+                      className="p-1 rounded hover:bg-gray-200 transition-colors text-gray-600 cursor-pointer"
+                      title="Copy AWB"
+                    >
+                      {copiedAwb ? (
+                        <Check className="w-4 h-4 text-green-600" />
+                      ) : (
+                        <Copy className="w-4 h-4" />
+                      )}
+                    </button>
+                  )}
+                </div>
+              </div>
+
+              <div className="flex items-center justify-between">
+                <span className="text-gray-500">Courier Partner</span>
+                <span className="font-semibold text-gray-800">
+                  {successDetails.courier || "Xpressbees"}
+                </span>
+              </div>
+
+              <div className="flex items-center justify-between">
+                <span className="text-gray-500">Route</span>
+                <span className="font-medium text-gray-800">
+                  {successDetails.fromCity} ➔ {successDetails.toCity}
+                </span>
+              </div>
+
+              <div className="flex items-center justify-between">
+                <span className="text-gray-500">Amount Paid</span>
+                <span className="font-bold text-green-600">
+                  ₹{successDetails.amount}
+                </span>
+              </div>
+
+              {successDetails.paymentId && (
+                <div className="flex items-center justify-between pt-2 border-t border-gray-200 text-xs text-gray-400">
+                  <span>Payment ID</span>
+                  <span className="font-mono">{successDetails.paymentId}</span>
+                </div>
+              )}
+            </div>
+
+            {/* Action Buttons */}
+            <div className="space-y-2.5">
+              <div className="flex flex-col sm:flex-row gap-2">
+                <button
+                  type="button"
+                  onClick={downloadInvoice}
+                  className="flex-1 inline-flex items-center justify-center gap-2 border border-gray-300 hover:bg-gray-50 text-gray-700 py-2.5 px-4 rounded-lg font-medium transition-colors text-sm cursor-pointer"
+                >
+                  <Download className="w-4 h-4 text-blue-600" />
+                  Download Invoice
+                </button>
+
+                {successDetails.labelUrl && (
+                  <a
+                    href={successDetails.labelUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 inline-flex items-center justify-center gap-2 border border-gray-300 hover:bg-gray-50 text-gray-700 py-2.5 px-4 rounded-lg font-medium transition-colors text-sm"
+                  >
+                    <ExternalLink className="w-4 h-4 text-purple-600" />
+                    Shipping Label
+                  </a>
+                )}
+              </div>
+
+              <button
+                type="button"
+                onClick={() => {
+                  setShowSuccessModal(false);
+                  router.push("/thank-you");
+                }}
+                className="w-full bg-[#013EFE] hover:bg-blue-700 text-white py-3 px-6 rounded-lg font-semibold transition-colors shadow-md text-sm cursor-pointer"
+              >
+                Go to Order Summary
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
     </section>
   );

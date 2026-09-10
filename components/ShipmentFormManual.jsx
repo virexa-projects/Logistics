@@ -5,7 +5,9 @@ import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
+import { Loader2 } from "lucide-react";
 import InvoiceContent from "./InvoiceContent";
+import { API_CONFIG } from "@/utils/apiConfig";
 /* ---------------- Pricing Config ---------------- */
 
 
@@ -94,33 +96,101 @@ const PICKUP_SLOTS = [
 
 const submitToGoogleSheet = async (values, totalPrice, router) => {
     const toastId = toast.loading("Submitting...");
-    console.log("values>>>>>", values)
     try {
-        const formData = new URLSearchParams();
+        const payload = {
+            type: values.type || "ONLINE_PAYMENT",
+            status: values.status || "online payment confirmed",
+            service: values.service || "Express",
+            serviceType: values.serviceType || values.service || "",
+            luggageType: values.luggageType || "Suitcase",
+            length: values.length || "",
+            height: values.height || "",
+            weight: values.weight || "",
+            width: values.width || "",
+            bagSize: values.bagSize || "",
+            totalPrice: totalPrice || values.totalPrice || values.total || 0,
+            total: totalPrice || values.total || values.totalPrice || 0,
+            rateCalculatorAmount:
+                values.rateCalculatorAmount ||
+                values["Rate Calculator Amount"] ||
+                values.total ||
+                totalPrice ||
+                "-",
+            rateCalculatorUsedAt:
+                values.rateCalculatorUsedAt ||
+                values["Rate Calculator Used At"] ||
+                "-",
+            "Rate Calculator Amount":
+                values["Rate Calculator Amount"] ||
+                values.rateCalculatorAmount ||
+                values.total ||
+                totalPrice ||
+                "-",
+            "Rate Calculator Used At":
+                values["Rate Calculator Used At"] ||
+                values.rateCalculatorUsedAt ||
+                "-",
+            pickupName: values.pickupName || "",
+            pickupPhone: values.pickupPhone || "",
+            pickupPincode: values.pickupPincode || "",
+            pickupCity: values.pickupCity || "",
+            pickupState: values.pickupState || "",
+            pickupAddress: values.pickupAddress || "",
+            name: values.name || "",
+            phone: values.phone || "",
+            dropPincode: values.dropPincode || "",
+            dropCity: values.dropCity || "",
+            dropState: values.dropState || "",
+            dropAddress: values.dropAddress || values.address || "",
+            address: values.address || values.dropAddress || values.pickupAddress || "",
+            customerType: values.customerType || "Individual",
+            addons: values.addons || [],
+            includeGST: values.includeGST || false,
+            email: values.email || "",
+            paymentStatus: values.paymentStatus || "PENDING",
+            paymentId: values.paymentId || "MANUAL",
+            orderId: values.orderId || "",
+            awb: values.awb || "",
+            courier: values.courier || "",
+            shipmentId: values.shipmentId || "",
+            shipmentStatus: values.shipmentStatus || "",
+            labelUrl: values.labelUrl || "",
+        };
 
-        // 🔑 Sheet routing
-        formData.append("sheetName", "Sheet1");
-
-        const payload = { ...values, totalPrice };
-
+        // 1️⃣ Send to RateCalculator sheet
+        const rateCalcFormData = new URLSearchParams();
+        rateCalcFormData.append("sheetName", "RateCalculator");
         Object.entries(payload).forEach(([key, value]) => {
-            formData.append(
+            rateCalcFormData.append(
                 key,
                 Array.isArray(value) ? value.join(", ") : value ?? ""
             );
         });
 
-        console.log("formData", formData);
+        await fetch(API_CONFIG.GOOGLE_SHEET_URL, {
+            method: "POST",
+            body: rateCalcFormData,
+            mode: "no-cors",
+        });
 
-        // ✅ IMPORTANT FIX
-        await fetch(
-            "https://script.google.com/macros/s/AKfycbze9DM1_lUgyOJ1-JQuIfjfU8rXHfA-yUs8xeSu0Sqh05fi-YzaxBEH7Tzy8l_hpSgmHw/exec",
-            {
+        // 2️⃣ Also log to Bookings sheet
+        try {
+            const bookingsFormData = new URLSearchParams();
+            bookingsFormData.append("sheetName", "Bookings");
+            Object.entries(payload).forEach(([key, value]) => {
+                bookingsFormData.append(
+                    key,
+                    Array.isArray(value) ? value.join(", ") : value ?? ""
+                );
+            });
+            await fetch(API_CONFIG.GOOGLE_SHEET_URL, {
                 method: "POST",
-                body: formData,     // ❌ no headers
-                mode: "no-cors",    // 🔥 KEY LINE
-            }
-        );
+                body: bookingsFormData,
+                mode: "no-cors",
+            });
+        } catch (bErr) {
+            console.warn("Bookings sheet secondary log warning", bErr);
+        }
 
         // ✅ If fetch didn’t crash → success
         toast.dismiss(toastId);
@@ -198,6 +268,7 @@ export default function ShipmentFormManual({
     const invoiceRef = useRef(null);
     const [addonError, setAddonError] = useState("");
     const [showInvoice, setShowInvoice] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const [values, setValues] = useState({
         customerType: "Individual",
@@ -231,7 +302,7 @@ export default function ShipmentFormManual({
     });
 
 
-    console.log("values", values)
+    // console.log("values", values)
 
     /* ✅ AUTO FILL PICKUP & DROP */
     // useEffect(() => {
@@ -377,21 +448,18 @@ export default function ShipmentFormManual({
                 },
             };
 
-            console.log("FINAL PAYLOAD 👉", payload); // 🔥 DEBUG
+            // console.log("FINAL PAYLOAD 👉", payload); // 🔥 DEBUG
 
-            const res = await fetch(
-                "https://api.virexa.in/v1/message/send-message?token=1a051309720abd839dd2a59adff7240a485c2f2ac8aae63d654f456fa19662cd5254d594e0b476d110e78332044d3e35802efea6ce118bde4e53feb1bb86ff28",
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(payload),
-                }
-            );
+            const res = await fetch(API_CONFIG.VIREXA_MESSAGE_API_URL, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(payload),
+            });
 
             const data = await res.json();
-            console.log("API RESPONSE 👉", data);
+            // console.log("API RESPONSE 👉", data);
 
         } catch (err) {
             console.error("WhatsApp error", err);
@@ -411,6 +479,7 @@ export default function ShipmentFormManual({
             return;
         }
 
+        setIsSubmitting(true);
         try {
             toast.loading("Processing...");
 
@@ -528,6 +597,8 @@ export default function ShipmentFormManual({
             toast.dismiss();
             console.error(err);
             toast.error(err.message || "Failed");
+        } finally {
+            setIsSubmitting(false);
         }
     };
 
@@ -567,8 +638,7 @@ export default function ShipmentFormManual({
 
     //     // ✅ OPEN RAZORPAY
     //     const options = {
-    //       // key: "rzp_test_S9MbPhPiYZr1P9",
-    //       key: "rzp_live_SUAtPnMwmeZpX4",
+    //       key: API_CONFIG.RAZORPAY_KEY_ID,
     //       amount: order.amount,
     //       currency: "INR",
     //       order_id: order.id,
@@ -1207,10 +1277,18 @@ export default function ShipmentFormManual({
 
                 <button
                     type="button"
-                    className="btn-primary w-full md:w-auto"
+                    disabled={isSubmitting}
+                    className="btn-primary w-full md:w-auto inline-flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
                     onClick={handleManualSubmit}
                 >
-                    Submit Booking {price.total}
+                    {isSubmitting ? (
+                        <>
+                            <Loader2 className="w-5 h-5 animate-spin" />
+                            Wait a moment...
+                        </>
+                    ) : (
+                        `Submit Booking ₹${price.total}`
+                    )}
                 </button>
 
             </form>

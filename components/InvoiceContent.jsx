@@ -1,4 +1,18 @@
+"use client";
+
+import { useState, useEffect } from "react";
+
 function InvoiceContent({ values, price }) {
+  const [mounted, setMounted] = useState(false);
+  const [invoiceDate, setInvoiceDate] = useState("");
+  const [invoiceId, setInvoiceId] = useState("");
+
+  useEffect(() => {
+    setMounted(true);
+    setInvoiceDate(new Date().toLocaleDateString("en-IN"));
+    setInvoiceId(`INV-${Date.now()}`);
+  }, []);
+
   return (
     <>
       {/* ================= HEADER ================= */}
@@ -29,8 +43,8 @@ function InvoiceContent({ values, price }) {
 
         <div style={{ textAlign: "right", fontSize: 14 }}>
           <h2 style={{ fontSize: 18, fontWeight: 600 }}>INVOICE</h2>
-          <p>Date: {new Date().toLocaleDateString()}</p>
-          <p>Invoice No: INV-{Date.now()}</p>
+          <p suppressHydrationWarning>Date: {mounted ? invoiceDate : ""}</p>
+          <p suppressHydrationWarning>Invoice No: {mounted ? invoiceId : ""}</p>
         </div>
       </div>
 

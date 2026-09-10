@@ -41,44 +41,19 @@ export default function Header() {
 
   return (
     <header className={`sticky top-0 z-50 transition-all duration-300 ${headerBg}`}>
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 flex justify-between items-center">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-5 flex justify-between items-center gap-4">
         {/* Logo */}
-        <Link href="/" className="font-bold">
-          <Image src={logoSrc} alt="Logo" width={140} height={40} className="object-contain" />
+        <Link href="/" className="font-bold shrink-0 flex items-center">
+          <Image src={logoSrc} alt="Logo" width={140} height={40} className="object-contain w-auto h-8 sm:h-9" priority />
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className={`hidden md:flex space-x-8 text-[15px] font-semibold transition-all duration-300 ${textColor}`}>
-          {/* Book Dropdown */}
-          {/* <div className="relative" onMouseEnter={() => setHoverBook(true)} onMouseLeave={() => setHoverBook(false)}>
-            <button className="flex items-center gap-1 transition hover:text-[#013efe]">
-              Book <ChevronDown className="h-4 w-4" />
-            </button>
-            {hoverBook && (
-              <motion.div
-                initial={{ opacity: 0, y: -5 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.2 }}
-                className="absolute left-0 mt-0 w-52 bg-white shadow-lg rounded-lg py-3 z-50"
-              >
-                {booklist.map((item, index) => (
-                  <Link
-                    key={index}
-                    href={`/book/${item.toLowerCase().replace(/ /g, "-")}`}
-                    className="block px-4 py-2 text-black hover:bg-blue-50 hover:text-[#013efe] transition"
-                  >
-                    {item}
-                  </Link>
-                ))}
-              </motion.div>
-            )}
-          </div> */}
-
-          <Link href="/about" className="hover:text-[#013efe] transition">About Us</Link>
+        <nav className={`hidden lg:flex items-center space-x-5 xl:space-x-8 text-[14px] xl:text-[15px] font-semibold whitespace-nowrap transition-all duration-300 ${textColor}`}>
+          <Link href="/about" className="whitespace-nowrap hover:text-[#013efe] transition">About Us</Link>
 
           {/* Services Dropdown */}
           <div className="relative" onMouseEnter={() => setHoverService(true)} onMouseLeave={() => setHoverService(false)}>
-            <button className="flex items-center gap-1 transition hover:text-[#013efe]">
+            <button className="flex items-center gap-1 whitespace-nowrap transition hover:text-[#013efe]">
               Services <ChevronDown className="h-4 w-4" />
             </button>
             {hoverService && (
@@ -92,7 +67,7 @@ export default function Header() {
                   <Link
                     key={index}
                     href={`/services/${item.toLowerCase().replace(/ /g, "-")}`}
-                    className="block px-4 py-2 text-black hover:bg-blue-50 hover:text-[#013efe] transition"
+                    className="block px-4 py-2 text-black hover:bg-blue-50 hover:text-[#013efe] transition whitespace-nowrap"
                   >
                     {item}
                   </Link>
@@ -101,13 +76,13 @@ export default function Header() {
             )}
           </div>
 
-          <Link href="/rate-calculator" className="hover:text-[#013efe]">Rate Calculator</Link>
-          <Link href="/faq" className="hover:text-[#013efe]">FAQs</Link>
-          <Link href="/contact-us" className="hover:text-[#013efe]">Contact Us</Link>
+          <Link href="/rate-calculator" className="whitespace-nowrap hover:text-[#013efe] transition">Rate Calculator</Link>
+          <Link href="/faq" className="whitespace-nowrap hover:text-[#013efe] transition">FAQs</Link>
+          <Link href="/contact-us" className="whitespace-nowrap hover:text-[#013efe] transition">Contact Us</Link>
         </nav>
 
         {/* Desktop Button */}
-        <div className="hidden md:flex items-center justify-center">
+        <div className="hidden lg:flex items-center justify-center shrink-0">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -150,6 +125,7 @@ export default function Header() {
             hover:scale-105
             transition-all
             duration-300
+            whitespace-nowrap
           "
             >
               {/* Moving Light Effect */}
@@ -195,107 +171,107 @@ export default function Header() {
           </motion.div>
         </div>
 
-        {/* Mobile Menu Button */}
-
-        <div className="md:hidden flex gap-6">
+        {/* Mobile Menu Button & Track button */}
+        <div className="lg:hidden flex items-center gap-3 sm:gap-4 shrink-0">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="w-full"
+            transition={{ duration: 0.5 }}
+            className="relative shrink-0"
           >
-            <div className="relative w-full">
+            {/* Glow Effect */}
+            <motion.div
+              animate={{
+                scale: [1, 1.15, 1],
+                opacity: [0.3, 0.6, 0.3],
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+              }}
+              className="absolute inset-0 bg-blue-500 blur-xl rounded-full"
+            />
 
-              {/* Glow Effect */}
-              <motion.div
+            <Link
+              href="/track-your-package"
+              onClick={handleLinkClick}
+              className="
+                relative
+                overflow-hidden
+                flex
+                items-center
+                justify-center
+                gap-1.5
+                bg-gradient-to-r
+                from-blue-500
+                via-blue-600
+                to-blue-700
+                px-3.5
+                sm:px-4
+                py-2
+                rounded-full
+                text-white
+                text-xs
+                sm:text-sm
+                font-semibold
+                whitespace-nowrap
+                shadow-[0_8px_20px_rgba(37,99,235,0.35)]
+                transition-all
+                duration-300
+                hover:scale-105
+              "
+            >
+              {/* Moving Shine */}
+              <motion.span
                 animate={{
-                  scale: [1, 1.15, 1],
-                  opacity: [0.3, 0.6, 0.3],
+                  x: ["-150%", "250%"],
                 }}
                 transition={{
                   duration: 2,
                   repeat: Infinity,
+                  ease: "linear",
+                  repeatDelay: 1,
                 }}
-                className="absolute inset-0 bg-blue-500 blur-2xl rounded-full"
+                className="
+                  absolute
+                  top-0
+                  left-0
+                  w-16
+                  h-full
+                  bg-white/20
+                  skew-x-12
+                  blur-md
+                "
               />
 
-              <Link
-                href="/track-your-package"
-                onClick={handleLinkClick}
-                className="
-        relative
-        overflow-hidden
-        flex
-        items-center
-        justify-center
-        gap-2
-        w-full
-        bg-gradient-to-r
-        from-blue-500
-        via-blue-600
-        to-blue-700
-        px-5
-        py-3
-        rounded-full
-        text-white
-        text-sm
-        md:text-base
-        font-semibold
-        shadow-[0_10px_30px_rgba(37,99,235,0.45)]
-        transition-all
-        duration-300
-        hover:scale-105
-      "
+              {/* Text */}
+              <span className="relative z-10">Track Now</span>
+
+              {/* Arrow */}
+              <motion.span
+                animate={{
+                  x: [0, 3, 0],
+                }}
+                transition={{
+                  duration: 1,
+                  repeat: Infinity,
+                }}
+                className="relative z-10"
               >
-                {/* Moving Shine */}
-                <motion.span
-                  animate={{
-                    x: ["-150%", "250%"],
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: "linear",
-                    repeatDelay: 1,
-                  }}
-                  className="
-          absolute
-          top-0
-          left-0
-          w-16
-          h-full
-          bg-white/20
-          skew-x-12
-          blur-md
-        "
-                />
-
-                {/* Text */}
-                <span className="relative z-10 " style={{fontSize:"10px"}}>
-                  Track Now
-                </span>
-
-                {/* Arrow */}
-                <motion.span
-                  animate={{
-                    x: [0, 4, 0],
-                  }}
-                  transition={{
-                    duration: 1,
-                    repeat: Infinity,
-                  }}
-                  className="relative z-10"
-                >
-                  →
-                </motion.span>
-              </Link>
-            </div>
+                →
+              </motion.span>
+            </Link>
           </motion.div>
-          <button onClick={() => setIsOpen(!isOpen)}>
+
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            aria-label="Toggle Menu"
+            className="p-1 rounded-md hover:bg-black/5 transition"
+          >
             {isOpen ? (
-              <X className="h-9 w-9 text-black transition" /> // Menu open -> show X icon
+              <X className="h-8 w-8 text-black transition" />
             ) : (
-              <Menu className={`h-9 w-9 transition ${textColor}`} /> // Menu closed -> show Hamburger
+              <Menu className={`h-8 w-8 transition ${textColor}`} />
             )}
           </button>
         </div>
@@ -305,40 +281,43 @@ export default function Header() {
       {/* Mobile Dropdown */}
       {isOpen && (
         <motion.div
-          initial={{ height: 0 }}
-          animate={{ height: "auto" }}
-          transition={{ duration: 0.3 }}
-          className="md:hidden bg-white overflow-hidden shadow-lg h-full"
+          initial={{ height: 0, opacity: 0 }}
+          animate={{ height: "auto", opacity: 1 }}
+          transition={{ duration: 0.25 }}
+          className="lg:hidden bg-white overflow-hidden shadow-lg border-t border-gray-100"
         >
-          <div className="flex flex-col px-6 py-4 space-y-4">
-            <Link href="/" onClick={handleLinkClick} className="hover:text-[#013efe]">Home</Link>
-            <Link href="/about" onClick={handleLinkClick} className="hover:text-[#013efe]">About Us</Link>
+          <div className="flex flex-col px-6 py-4 space-y-3 font-medium text-base text-gray-800">
+            <Link href="/" onClick={handleLinkClick} className="hover:text-[#013efe] py-1 transition">Home</Link>
+            <Link href="/about" onClick={handleLinkClick} className="hover:text-[#013efe] py-1 transition">About Us</Link>
 
             {/* Mobile Services */}
-            <button onClick={() => setServiceOpen(!serviceOpen)} className="flex justify-between items-center text-gray-800 font-medium">
-              Services
-              <ChevronDown className={`h-4 w-4 transition-transform ${serviceOpen ? "rotate-180" : ""}`} />
-            </button>
-            {serviceOpen && (
-              <div className="pl-4 flex flex-col space-y-2">
-                {servicesList.map((item, i) => (
-                  <Link
-                    key={i}
-                    href={`/services/${item.toLowerCase().replace(/ /g, "-")}`}
-                    onClick={handleLinkClick}
-                    className="text-gray-700 hover:text-[#013efe] transition"
-                  >
-                    {item}
-                  </Link>
-                ))}
-              </div>
-            )}
+            <div>
+              <button
+                onClick={() => setServiceOpen(!serviceOpen)}
+                className="w-full flex justify-between items-center py-1 text-gray-800 hover:text-[#013efe] transition"
+              >
+                <span>Services</span>
+                <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${serviceOpen ? "rotate-180" : ""}`} />
+              </button>
+              {serviceOpen && (
+                <div className="pl-4 pt-2 flex flex-col space-y-2 border-l-2 border-blue-100 ml-1">
+                  {servicesList.map((item, i) => (
+                    <Link
+                      key={i}
+                      href={`/services/${item.toLowerCase().replace(/ /g, "-")}`}
+                      onClick={handleLinkClick}
+                      className="text-gray-600 hover:text-[#013efe] py-0.5 text-sm transition"
+                    >
+                      {item}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
 
-            <Link href="/rate-calculator" onClick={handleLinkClick} className="hover:text-[#013efe]">Rate Calculator</Link>
-            <Link href="/faq" onClick={handleLinkClick} className="hover:text-[#013efe]">FAQs</Link>
-            <Link href="/contact-us" onClick={handleLinkClick} className="hover:text-[#013efe]">Contact Us</Link>
-
-            <Link href="/track-your-package" onClick={handleLinkClick} className="btn-primary hidden md:block hover:scale-105 transition-all">Track Now</Link>
+            <Link href="/rate-calculator" onClick={handleLinkClick} className="hover:text-[#013efe] py-1 transition">Rate Calculator</Link>
+            <Link href="/faq" onClick={handleLinkClick} className="hover:text-[#013efe] py-1 transition">FAQs</Link>
+            <Link href="/contact-us" onClick={handleLinkClick} className="hover:text-[#013efe] py-1 transition">Contact Us</Link>
           </div>
         </motion.div>
       )}
