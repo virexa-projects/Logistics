@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import { Loader2 } from "lucide-react";
+import { API_CONFIG } from "@/utils/apiConfig";
 
 export default function DeliveryMessagePage() {
   const [phone, setPhone] = useState("");
@@ -52,21 +54,18 @@ export default function DeliveryMessagePage() {
         },
       };
 
-      console.log("PAYLOAD 👉", payload);
+      // console.log("PAYLOAD 👉", payload);
 
-      const res = await fetch(
-        "https://api.virexa.in/v1/message/send-message?token=1a051309720abd839dd2a59adff7240a485c2f2ac8aae63d654f456fa19662cd5254d594e0b476d110e78332044d3e35802efea6ce118bde4e53feb1bb86ff28",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(payload),
-        }
-      );
+      const res = await fetch(API_CONFIG.VIREXA_MESSAGE_API_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
 
       const data = await res.json();
-      console.log("API RESPONSE 👉", data);
+      // console.log("API RESPONSE 👉", data);
 
       if (!res.ok) {
         alert("Failed to send message");
@@ -127,9 +126,17 @@ export default function DeliveryMessagePage() {
 
           <button
             onClick={sendDeliveryMessage}
-            className="w-full bg-blue-600 text-white py-3 rounded"
+            disabled={loading}
+            className="w-full bg-blue-600 text-white py-3 rounded flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
           >
-            {loading ? "Sending..." : "Send Message"}
+            {loading ? (
+              <>
+                <Loader2 className="w-5 h-5 animate-spin" />
+                Wait a moment...
+              </>
+            ) : (
+              "Send Message"
+            )}
           </button>
         </div>
       </div>

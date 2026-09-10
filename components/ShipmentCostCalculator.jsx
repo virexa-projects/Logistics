@@ -1,7 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
+import { Loader2 } from "lucide-react";
+import { API_CONFIG } from "@/utils/apiConfig";
 
 /* ---------------- Floating Input ---------------- */
 const FloatingInput = ({ label, value, onChange, type = "text", error }) => (
@@ -85,7 +87,7 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
   });
 
 
-  console.log("values", values);
+  // console.log("values", values);
   const [weight, setWeight] = useState("");
   const [length, setLength] = useState("");
   const [width, setWidth] = useState("");
@@ -93,7 +95,11 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
   const [luggageType, setluggageType] = useState("Suitcase");
   const [service, setService] = useState("Express");
   const [total, setTotal] = useState(null);
+  const [rateCalculatedAt, setRateCalculatedAt] = useState("");
+  const [isBooking, setIsBooking] = useState(false);
+  const [isCalculating, setIsCalculating] = useState(false);
   const [errors, setErrors] = useState({});
+  const summaryRef = useRef(null);
 
   /* ✅ AUTO FILL CITY */
   useEffect(() => {
@@ -103,6 +109,13 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
       dropPincode: dropFromUrl || "",
     }));
   }, [pickupFromUrl, dropFromUrl]);
+
+  /* ✅ SMOOTH SCROLL TO SHIPMENT SUMMARY */
+  useEffect(() => {
+    if (total !== null && summaryRef.current) {
+      summaryRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, [total]);
 
   /* ---------------- VALIDATION ---------------- */
   // const validate = () => {
@@ -130,54 +143,54 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
     const err = {};
 
     // Name
-    if (!values.pickupName.trim()) {
+    if (!values.pickupName?.trim()) {
       err.pickupName = "Name is required";
     }
 
-    // Phone
-    if (!values.pickupPhone.trim()) {
+    // Phone (10-digit Indian mobile number)
+    if (!values.pickupPhone?.trim()) {
       err.pickupPhone = "Phone number is required";
-    } else if (!/^[6-9]\d{9}$/.test(values.pickupPhone)) {
-      err.pickupPhone = "Enter a valid mobile number";
+    } else if (!/^[6-9]\d{9}$/.test(values.pickupPhone.trim())) {
+      err.pickupPhone = "Enter a valid 10-digit mobile number";
     }
 
-    // Pickup PIN
-    if (!values.pickupPincode.trim()) {
+    // Pickup PIN (strictly 6 digits number)
+    if (!values.pickupPincode?.trim()) {
       err.pickupPincode = "Pickup PIN code is required";
-    } else if (!/^\d{6}$/.test(values.pickupPincode)) {
+    } else if (!/^\d{6}$/.test(values.pickupPincode.trim())) {
       err.pickupPincode = "Enter a valid 6-digit PIN code";
     }
 
-    // Drop PIN
-    if (!values.dropPincode.trim()) {
+    // Drop PIN (strictly 6 digits number)
+    if (!values.dropPincode?.trim()) {
       err.dropPincode = "Drop PIN code is required";
-    } else if (!/^\d{6}$/.test(values.dropPincode)) {
+    } else if (!/^\d{6}$/.test(values.dropPincode.trim())) {
       err.dropPincode = "Enter a valid 6-digit PIN code";
     }
 
     // Weight
-    if (!weight) {
+    if (!weight || String(weight).trim() === "") {
       err.weight = "Weight is required";
     } else if (Number(weight) < 5) {
       err.weight = "Minimum 5kg required";
     }
 
     // Length
-    if (!length) {
+    if (!length || String(length).trim() === "") {
       err.length = "Length is required";
     } else if (Number(length) <= 0) {
       err.length = "Length must be greater than 0";
     }
 
     // Width
-    if (!width) {
+    if (!width || String(width).trim() === "") {
       err.width = "Width is required";
     } else if (Number(width) <= 0) {
       err.width = "Width must be greater than 0";
     }
 
     // Height
-    if (!height) {
+    if (!height || String(height).trim() === "") {
       err.height = "Height is required";
     } else if (Number(height) <= 0) {
       err.height = "Height must be greater than 0";
@@ -201,14 +214,12 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
 
   const sendMessage = async (totalPrice) => {
     try {
-      await fetch(
-        "https://api.virexa.in/v1/message/send-message?token=1a051309720abd839dd2a59adff7240a485c2f2ac8aae63d654f456fa19662cd5254d594e0b476d110e78332044d3e35802efea6ce118bde4e53feb1bb86ff28",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
+      await fetch(API_CONFIG.VIREXA_MESSAGE_API_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
             to: `91${values.pickupPhone}`, // 👈 customer number
             type: "template",
             template: {
@@ -249,7 +260,7 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
         }
       );
 
-      console.log("WhatsApp message sent ✅");
+      // console.log("WhatsApp message sent ✅");
     } catch (err) {
       console.error("WhatsApp error", err);
     }
@@ -291,6 +302,8 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
   const calculatePrice = async () => {
     if (!validate()) return;
 
+    setIsCalculating(true);
+
     const serviceRates = {
       Express: { base: 699, perKg: 109 },
       Standard: { base: 499, perKg: 79 },
@@ -298,7 +311,10 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
     };
 
     const selectedService = serviceRates[service];
-    if (!selectedService) return;
+    if (!selectedService) {
+      setIsCalculating(false);
+      return;
+    }
 
     const weightNum = Number(weight);
 
@@ -309,6 +325,24 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
 
     setTotal(totalPrice);
 
+    const now = new Date();
+    const usedAt = now.toLocaleString("en-IN", {
+      timeZone: "Asia/Kolkata",
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: true,
+    });
+    setRateCalculatedAt(usedAt);
+
+    // Smooth scroll to Shipment Summary
+    setTimeout(() => {
+      summaryRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 100);
+
     try {
       // =========================
       // 1️⃣ WhatsApp
@@ -316,22 +350,40 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
       await sendMessage(totalPrice);
 
       // =========================
-      // 2️⃣ Google Sheet (Sheet3)
+      // 2️⃣ Google Sheet (RateCalculator)
       // =========================
       const formData = new URLSearchParams();
 
-      formData.append("sheetName", "RateCalculaterNew"); // 🔥 முக்கியம்
+      formData.append("sheetName", "RateCalculator"); // Meaningful Sheet Name
 
+      // ✅ Ordered payload: dimensions (length, height, weight, width) grouped together
       const payload = {
-        ...values,
-        weight,
-        length,
-        width,
-        height,
-        luggageType,
+        type: "CALCULATOR",
+        status: "",
         service,
+        luggageType,
+        length: length || "",
+        height: height || "",
+        weight: weight || "",
+        width: width || "",
         totalPrice,
-        type: "CALCULATOR", // optional tag
+        rateCalculatorAmount: totalPrice,
+        rateCalculatorUsedAt: usedAt,
+        "Rate Calculator Amount": totalPrice,
+        "Rate Calculator Used At": usedAt,
+        pickupName: values.pickupName || "",
+        pickupPhone: values.pickupPhone || "",
+        pickupPincode: values.pickupPincode || "",
+        pickupCity: values.pickupCity || "",
+        pickupState: values.pickupState || "",
+        pickupAddress: values.pickupAddress || "",
+        name: values.name || "",
+        phone: values.phone || "",
+        dropPincode: values.dropPincode || "",
+        dropCity: values.dropCity || "",
+        dropState: values.dropState || "",
+        dropAddress: values.dropAddress || values.address || "",
+        address: values.address || values.dropAddress || "",
       };
 
       Object.entries(payload).forEach(([key, value]) => {
@@ -341,23 +393,89 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
         );
       });
 
-      await fetch(
-        "https://script.google.com/macros/s/AKfycbze9DM1_lUgyOJ1-JQuIfjfU8rXHfA-yUs8xeSu0Sqh05fi-YzaxBEH7Tzy8l_hpSgmHw/exec",
-        {
-          method: "POST",
-          body: formData,
-          mode: "no-cors",
-        }
-      );
+      await fetch(API_CONFIG.GOOGLE_SHEET_URL, {
+        method: "POST",
+        body: formData,
+        mode: "no-cors",
+      });
 
-      console.log("Sheet3 saved ✅");
+      // console.log("RateCalculator saved ✅");
 
     } catch (err) {
       console.error("Sheet save error", err);
+    } finally {
+      setIsCalculating(false);
     }
   };
   /* ---------------- BOOK NOW ---------------- */
-  const handleBookNow = () => {
+  const handleBookNow = async () => {
+    const timestamp =
+      rateCalculatedAt ||
+      new Date().toLocaleString("en-IN", {
+        timeZone: "Asia/Kolkata",
+        day: "2-digit",
+        month: "short",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: true,
+      });
+
+    setIsBooking(true);
+
+    try {
+      const formData = new URLSearchParams();
+      formData.append("sheetName", "RateCalculator");
+
+      // ✅ Ordered payload: dimensions (length, height, weight, width) grouped together
+      const payload = {
+        type: "BOOK_NOW",
+        status: "Book Now Clicked",
+        service,
+        luggageType,
+        length: length || "",
+        height: height || "",
+        weight: weight || "",
+        width: width || "",
+        totalPrice: total,
+        rateCalculatorAmount: total,
+        rateCalculatorUsedAt: timestamp,
+        "Rate Calculator Amount": total,
+        "Rate Calculator Used At": timestamp,
+        pickupName: values.pickupName || "",
+        pickupPhone: values.pickupPhone || "",
+        pickupPincode: values.pickupPincode || "",
+        pickupCity: values.pickupCity || "",
+        pickupState: values.pickupState || "",
+        pickupAddress: values.pickupAddress || "",
+        name: values.name || "",
+        phone: values.phone || "",
+        dropPincode: values.dropPincode || "",
+        dropCity: values.dropCity || "",
+        dropState: values.dropState || "",
+        dropAddress: values.dropAddress || values.address || "",
+        address: values.address || values.dropAddress || "",
+      };
+
+      Object.entries(payload).forEach(([key, value]) => {
+        formData.append(
+          key,
+          Array.isArray(value) ? value.join(", ") : value ?? ""
+        );
+      });
+
+      await fetch(API_CONFIG.GOOGLE_SHEET_URL, {
+        method: "POST",
+        body: formData,
+        mode: "no-cors",
+      });
+    } catch (err) {
+      console.error("Sheet save error on Book Now", err);
+    } finally {
+      setIsBooking(false);
+    }
+
     router.push(
       `/book-shipment?data=${encodeURIComponent(
         JSON.stringify({
@@ -369,6 +487,10 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
           luggageType,
           service,
           total,
+          rateCalculatorAmount: total,
+          rateCalculatorUsedAt: timestamp,
+          "Rate Calculator Amount": total,
+          "Rate Calculator Used At": timestamp,
         }),
       )}`,
     );
@@ -401,20 +523,26 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
 
             <div>
               <label className="flex items-center gap-2 text-[#0F2D7A] font-semibold mb-2">
-                Pickup PIN code
+                Pickup PIN code <span className="text-red-500">*</span>
               </label>
 
               <input
                 type="text"
+                maxLength={6}
                 value={values.pickupPincode}
-                onChange={(e) =>
-                  setValues((p) => ({
-                    ...p,
-                    pickupPincode: e.target.value,
-                  }))
-                }
-                placeholder="Enter pickup PIN code"
-                className="w-full h-[56px] rounded-xl border border-gray-200 px-4 focus:outline-none"
+                onChange={(e) => {
+                  const val = e.target.value.replace(/\D/g, ""); // only digits
+                  setValues((p) => ({ ...p, pickupPincode: val }));
+                  if (errors.pickupPincode) {
+                    setErrors((prev) => ({ ...prev, pickupPincode: "" }));
+                  }
+                }}
+                placeholder="Enter 6-digit pickup PIN code"
+                className={`w-full h-[56px] rounded-xl px-4 outline-none transition-colors border ${
+                  errors.pickupPincode
+                    ? "border-red-500 focus:border-red-500"
+                    : "border-gray-200 focus:border-[#013EFE]"
+                }`}
               />
               {errors.pickupPincode && (
                 <p className="text-red-500 text-xs mt-1">
@@ -425,20 +553,26 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
 
             <div>
               <label className="flex items-center gap-2 text-[#0F2D7A] font-semibold mb-2">
-                Drop PIN code
+                Drop PIN code <span className="text-red-500">*</span>
               </label>
 
               <input
                 type="text"
+                maxLength={6}
                 value={values.dropPincode}
-                onChange={(e) =>
-                  setValues((p) => ({
-                    ...p,
-                    dropPincode: e.target.value,
-                  }))
-                }
-                placeholder="Enter drop PIN code"
-                className="w-full h-[56px] rounded-xl border border-gray-200 px-4 focus:outline-none"
+                onChange={(e) => {
+                  const val = e.target.value.replace(/\D/g, ""); // only digits
+                  setValues((p) => ({ ...p, dropPincode: val }));
+                  if (errors.dropPincode) {
+                    setErrors((prev) => ({ ...prev, dropPincode: "" }));
+                  }
+                }}
+                placeholder="Enter 6-digit drop PIN code"
+                className={`w-full h-[56px] rounded-xl px-4 outline-none transition-colors border ${
+                  errors.dropPincode
+                    ? "border-red-500 focus:border-red-500"
+                    : "border-gray-200 focus:border-[#013EFE]"
+                }`}
               />
               {errors.dropPincode && (
                 <p className="text-red-500 text-xs mt-1">
@@ -449,17 +583,25 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
 
             <div>
               <label className="flex items-center gap-2 text-[#0F2D7A] font-semibold mb-2">
-                Name
+                Name <span className="text-red-500">*</span>
               </label>
 
               <input
                 type="text"
                 placeholder="Enter full name"
                 value={values.pickupName}
-                onChange={(e) =>
-                  setValues((p) => ({ ...p, pickupName: e.target.value }))
-                }
-                className="w-full h-[56px] rounded-xl border border-gray-200 px-4"
+                onChange={(e) => {
+                  const val = e.target.value;
+                  setValues((p) => ({ ...p, pickupName: val }));
+                  if (errors.pickupName && val.trim()) {
+                    setErrors((prev) => ({ ...prev, pickupName: "" }));
+                  }
+                }}
+                className={`w-full h-[56px] rounded-xl px-4 outline-none transition-colors border ${
+                  errors.pickupName
+                    ? "border-red-500 focus:border-red-500"
+                    : "border-gray-200 focus:border-[#013EFE]"
+                }`}
               />
               {errors.pickupName && (
                 <p className="text-red-500 text-xs mt-1">
@@ -470,17 +612,26 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
 
             <div>
               <label className="flex items-center gap-2 text-[#0F2D7A] font-semibold mb-2">
-                Contact Number
+                Contact Number <span className="text-red-500">*</span>
               </label>
 
               <input
-                type="text"
+                type="tel"
+                maxLength={10}
                 value={values.pickupPhone}
-                onChange={(e) =>
-                  setValues((p) => ({ ...p, pickupPhone: e.target.value }))
-                }
-                placeholder="Enter mobile number"
-                className="w-full h-[56px] rounded-xl border border-gray-200 px-4"
+                onChange={(e) => {
+                  const val = e.target.value.replace(/\D/g, ""); // only digits
+                  setValues((p) => ({ ...p, pickupPhone: val }));
+                  if (errors.pickupPhone) {
+                    setErrors((prev) => ({ ...prev, pickupPhone: "" }));
+                  }
+                }}
+                placeholder="Enter 10-digit mobile number"
+                className={`w-full h-[56px] rounded-xl px-4 outline-none transition-colors border ${
+                  errors.pickupPhone
+                    ? "border-red-500 focus:border-red-500"
+                    : "border-gray-200 focus:border-[#013EFE]"
+                }`}
               />
               {errors.pickupPhone && (
                 <p className="text-red-500 text-xs mt-1">
@@ -507,13 +658,22 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
 
               <div>
                 <label className="text-sm text-gray-500 block mb-2">
-                  Package Type
+                  Package Type <span className="text-red-500">*</span>
                 </label>
 
                 <select
                   value={luggageType}
-                  onChange={(e) => setluggageType(e.target.value)}
-                  className="w-full h-[56px] rounded-xl border border-gray-200 px-4"
+                  onChange={(e) => {
+                    setluggageType(e.target.value);
+                    if (errors.luggageType) {
+                      setErrors((prev) => ({ ...prev, luggageType: "" }));
+                    }
+                  }}
+                  className={`w-full h-[56px] rounded-xl px-4 outline-none transition-colors border ${
+                    errors.luggageType
+                      ? "border-red-500 focus:border-red-500"
+                      : "border-gray-200 focus:border-[#013EFE]"
+                  }`}
                 >
                   <option>Suitcase</option>
                   <option>Trolley</option>
@@ -529,13 +689,18 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
 
               <div>
                 <label className="text-sm text-gray-500 block mb-2">
-                  Delivery Speed
+                  Delivery Speed <span className="text-red-500">*</span>
                 </label>
 
                 <select
                   value={service}
-                  onChange={(e) => setService(e.target.value)}
-                  className="w-full h-[56px] rounded-xl border border-gray-200 px-4"
+                  onChange={(e) => {
+                    setService(e.target.value);
+                    if (errors.service) {
+                      setErrors((prev) => ({ ...prev, service: "" }));
+                    }
+                  }}
+                  className="w-full h-[56px] rounded-xl border border-gray-200 px-4 outline-none focus:border-[#013EFE] transition-colors"
                 >
                   <option>Express</option>
                   <option>Standard</option>
@@ -550,12 +715,12 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
               {/* Weight */}
               <div className="w-full">
                 <label className="block mb-2 text-sm text-gray-500">
-                  Weight (kg)
+                  Weight (kg) <span className="text-red-500">*</span>
                 </label>
 
                 <input
                   type="number"
-                  placeholder="Weight (kg)"
+                  placeholder="Weight (min 5kg)"
                   value={weight}
                   onChange={(e) => {
                     const value = e.target.value;
@@ -567,6 +732,9 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
 
                     if (Number(value) >= 0) {
                       setWeight(value);
+                      if (errors.weight && Number(value) >= 5) {
+                        setErrors((prev) => ({ ...prev, weight: "" }));
+                      }
                     }
                   }}
                   onKeyDown={(e) => {
@@ -574,10 +742,11 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
                       e.preventDefault();
                     }
                   }}
-                  className={`w-full h-14 rounded-xl px-4 text-sm md:text-base outline-none transition-colors ${errors.weight
-                    ? "border border-red-500"
-                    : "border border-gray-200 focus:border-[#E31E24]"
-                    }`}
+                  className={`w-full h-14 rounded-xl px-4 text-sm md:text-base outline-none transition-colors border ${
+                    errors.weight
+                      ? "border-red-500 focus:border-red-500"
+                      : "border-gray-200 focus:border-[#013EFE]"
+                  }`}
                 />
 
                 {errors.weight && (
@@ -590,7 +759,7 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
               {/* Length */}
               <div className="w-full">
                 <label className="block mb-2 text-sm text-gray-500">
-                  Length (cm)
+                  Length (cm) <span className="text-red-500">*</span>
                 </label>
 
                 <input
@@ -607,6 +776,9 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
 
                     if (Number(value) >= 0) {
                       setLength(value);
+                      if (errors.length && Number(value) > 0) {
+                        setErrors((prev) => ({ ...prev, length: "" }));
+                      }
                     }
                   }}
                   onKeyDown={(e) => {
@@ -614,10 +786,11 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
                       e.preventDefault();
                     }
                   }}
-                  className={`w-full h-14 rounded-xl px-4 text-sm md:text-base outline-none transition-colors ${errors.length
-                    ? "border border-red-500"
-                    : "border border-gray-200 focus:border-[#E31E24]"
-                    }`}
+                  className={`w-full h-14 rounded-xl px-4 text-sm md:text-base outline-none transition-colors border ${
+                    errors.length
+                      ? "border-red-500 focus:border-red-500"
+                      : "border-gray-200 focus:border-[#013EFE]"
+                  }`}
                 />
 
                 {errors.length && (
@@ -630,7 +803,7 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
               {/* Width */}
               <div className="w-full">
                 <label className="block mb-2 text-sm text-gray-500">
-                  Width (cm)
+                  Width (cm) <span className="text-red-500">*</span>
                 </label>
 
                 <input
@@ -647,6 +820,9 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
 
                     if (Number(value) >= 0) {
                       setWidth(value);
+                      if (errors.width && Number(value) > 0) {
+                        setErrors((prev) => ({ ...prev, width: "" }));
+                      }
                     }
                   }}
                   onKeyDown={(e) => {
@@ -654,10 +830,11 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
                       e.preventDefault();
                     }
                   }}
-                  className={`w-full h-14 rounded-xl px-4 text-sm md:text-base outline-none transition-colors ${errors.width
-                    ? "border border-red-500"
-                    : "border border-gray-200 focus:border-[#E31E24]"
-                    }`}
+                  className={`w-full h-14 rounded-xl px-4 text-sm md:text-base outline-none transition-colors border ${
+                    errors.width
+                      ? "border-red-500 focus:border-red-500"
+                      : "border-gray-200 focus:border-[#013EFE]"
+                  }`}
                 />
 
                 {errors.width && (
@@ -670,7 +847,7 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
               {/* Height */}
               <div className="w-full">
                 <label className="block mb-2 text-sm text-gray-500">
-                  Height (cm)
+                  Height (cm) <span className="text-red-500">*</span>
                 </label>
 
                 <input
@@ -687,6 +864,9 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
 
                     if (Number(value) >= 0) {
                       setHeight(value);
+                      if (errors.height && Number(value) > 0) {
+                        setErrors((prev) => ({ ...prev, height: "" }));
+                      }
                     }
                   }}
                   onKeyDown={(e) => {
@@ -694,10 +874,11 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
                       e.preventDefault();
                     }
                   }}
-                  className={`w-full h-14 rounded-xl px-4 text-sm md:text-base outline-none transition-colors ${errors.height
-                    ? "border border-red-500"
-                    : "border border-gray-200 focus:border-[#E31E24]"
-                    }`}
+                  className={`w-full h-14 rounded-xl px-4 text-sm md:text-base outline-none transition-colors border ${
+                    errors.height
+                      ? "border-red-500 focus:border-red-500"
+                      : "border-gray-200 focus:border-[#013EFE]"
+                  }`}
                 />
 
                 {errors.height && (
@@ -714,9 +895,17 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
             {/* Button */}
             <button
               onClick={calculatePrice}
-              className="mt-8 btn-primary hover:scale-105 transition-all"
+              disabled={isCalculating}
+              className="mt-8 btn-primary hover:scale-105 transition-all inline-flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
             >
-              Calculate Price
+              {isCalculating ? (
+                <>
+                  <Loader2 className="w-5 h-5 animate-spin" />
+                  Wait a moment...
+                </>
+              ) : (
+                "Calculate Price"
+              )}
             </button>
           </div>
 
@@ -736,7 +925,7 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
 
 
         {total !== null && (
-          <div className="bg-[#E7ECFF] rounded-3xl p-6 mt-6 space-y-5">
+          <div ref={summaryRef} className="bg-[#E7ECFF] rounded-3xl p-6 mt-6 space-y-5 scroll-mt-24">
             <h4 className="text-lg font-semibold">Shipment Summary</h4>
 
             {/* ================= FROM ================= */}
@@ -833,9 +1022,17 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
             {/* ================= BUTTON ================= */}
             <button
               onClick={handleBookNow}
-              className="w-full bg-black text-white py-3 rounded-full font-semibold hover:bg-gray-900 transition"
+              disabled={isBooking}
+              className="w-full bg-black text-white py-3 rounded-full font-semibold hover:bg-gray-900 transition flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
             >
-              🚀 Book Now
+              {isBooking ? (
+                <>
+                  <Loader2 className="w-5 h-5 animate-spin" />
+                  Wait a moment...
+                </>
+              ) : (
+                "🚀 Book Now"
+              )}
             </button>
           </div>
         )}
