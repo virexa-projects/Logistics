@@ -2,9 +2,10 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { MapPin, Mail, Phone } from "lucide-react";
+import { MapPin, Mail, Phone, Loader2 } from "lucide-react";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import { API_CONFIG } from "@/utils/apiConfig";
 
 /* ---------------- INPUT COMPONENTS (PLACEHOLDER ONLY) ---------------- */
 
@@ -115,6 +116,8 @@ function Info({ icon: Icon, title, value }) {
 export default function ContactSection() {
   const router = useRouter();
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const [form, setForm] = useState({
     userType: "Individual",
     name: "",
@@ -138,89 +141,89 @@ export default function ContactSection() {
   };
 
   /* ---------- HANDLE SUBMIT ---------- */
-const handleSubmit = async (e) => {
-  e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  const toastId = toast.loading("Submitting...");
+    setIsSubmitting(true);
+    const toastId = toast.loading("Submitting...");
 
-  try {
-    const now = new Date().toLocaleString("en-IN", {
-      timeZone: "Asia/Kolkata",
-      day: "2-digit",
-      month: "short",
-      year: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
-      second: "2-digit",
-      hour12: true,
-    });
+    try {
+      const now = new Date().toLocaleString("en-IN", {
+        timeZone: "Asia/Kolkata",
+        day: "2-digit",
+        month: "short",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: true,
+      });
 
-    const formData = new URLSearchParams();
-    formData.append("sheetName", "Sheet2");
+      const formData = new URLSearchParams();
+      formData.append("sheetName", "ContactUs");
 
-    const payload = {
-      sheetName: "Sheet2",
-      userType: form.userType || "Individual",
-      name: form.name || "",
-      email: form.email || "",
-      phone: form.phone || "",
-      service: form.service || "",
-      companyName: form.companyName || "-",
-      gstNumber: form.gstNumber || "-",
-      message: form.message || "",
-      date: now,
-      timestamp: now,
+      const payload = {
+        sheetName: "ContactUs",
+        userType: form.userType || "Individual",
+        name: form.name || "",
+        email: form.email || "",
+        phone: form.phone || "",
+        service: form.service || "",
+        companyName: form.companyName || "-",
+        gstNumber: form.gstNumber || "-",
+        message: form.message || "",
+        date: now,
+        timestamp: now,
 
-      // Header column mappings (Title Case & Spaced)
-      "User Type": form.userType || "Individual",
-      "Name": form.name || "",
-      "Email": form.email || "",
-      "Phone": form.phone || "",
-      "Phone Number": form.phone || "",
-      "Service": form.service || "",
-      "Company Name": form.companyName || "-",
-      "GST Number": form.gstNumber || "-",
-      "Message": form.message || "",
-      "Date": now,
-      "Timestamp": now,
-    };
+        // Header column mappings (Title Case & Spaced)
+        "User Type": form.userType || "Individual",
+        "Name": form.name || "",
+        "Email": form.email || "",
+        "Phone": form.phone || "",
+        "Phone Number": form.phone || "",
+        "Service": form.service || "",
+        "Company Name": form.companyName || "-",
+        "GST Number": form.gstNumber || "-",
+        "Message": form.message || "",
+        "Date": now,
+        "Timestamp": now,
+      };
 
-    Object.entries(payload).forEach(([key, value]) => {
-      formData.append(key, value ?? "");
-    });
+      Object.entries(payload).forEach(([key, value]) => {
+        formData.append(key, value ?? "");
+      });
 
-    await fetch(
-      "https://script.google.com/macros/s/AKfycbze9DM1_lUgyOJ1-JQuIfjfU8rXHfA-yUs8xeSu0Sqh05fi-YzaxBEH7Tzy8l_hpSgmHw/exec",
-      {
+      await fetch(API_CONFIG.GOOGLE_SHEET_URL, {
         method: "POST",
         body: formData, // ✅ no headers
         mode: "no-cors", // 🔥 KEY FIX
-      }
-    );
+      });
 
-    // ✅ If fetch didn’t crash → SUCCESS
-    toast.dismiss(toastId);
-    toast.success("Form submitted successfully!");
+      // ✅ If fetch didn’t crash → SUCCESS
+      toast.dismiss(toastId);
+      toast.success("Form submitted successfully!");
 
-    setForm({
-      userType: "Individual",
-      name: "",
-      email: "",
-      service: "",
-      phone: "",
-      companyName: "",
-      gstNumber: "",
-      message: "",
-    });
+      setForm({
+        userType: "Individual",
+        name: "",
+        email: "",
+        service: "",
+        phone: "",
+        companyName: "",
+        gstNumber: "",
+        message: "",
+      });
 
-    router.push("/thank-you");
+      router.push("/thank-you");
 
-  } catch (err) {
-    toast.dismiss(toastId);
-    console.error(err);
-    toast.error("Submission failed");
-  }
-};
+    } catch (err) {
+      toast.dismiss(toastId);
+      console.error(err);
+      toast.error("Submission failed");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
 
 
@@ -330,8 +333,19 @@ const handleSubmit = async (e) => {
                 onChange={handleChange}
               />
 
-              <button type="submit" className="w-full btn-primary">
-                Get a Free Quote
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full btn-primary inline-flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
+              >
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="w-5 h-5 animate-spin" />
+                    Wait a moment...
+                  </>
+                ) : (
+                  "Get a Free Quote"
+                )}
               </button>
             </form>
           </motion.div>
