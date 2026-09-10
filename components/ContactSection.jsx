@@ -144,10 +144,48 @@ const handleSubmit = async (e) => {
   const toastId = toast.loading("Submitting...");
 
   try {
+    const now = new Date().toLocaleString("en-IN", {
+      timeZone: "Asia/Kolkata",
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: true,
+    });
+
     const formData = new URLSearchParams();
     formData.append("sheetName", "Sheet2");
 
-    Object.entries(form).forEach(([key, value]) => {
+    const payload = {
+      sheetName: "Sheet2",
+      userType: form.userType || "Individual",
+      name: form.name || "",
+      email: form.email || "",
+      phone: form.phone || "",
+      service: form.service || "",
+      companyName: form.companyName || "-",
+      gstNumber: form.gstNumber || "-",
+      message: form.message || "",
+      date: now,
+      timestamp: now,
+
+      // Header column mappings (Title Case & Spaced)
+      "User Type": form.userType || "Individual",
+      "Name": form.name || "",
+      "Email": form.email || "",
+      "Phone": form.phone || "",
+      "Phone Number": form.phone || "",
+      "Service": form.service || "",
+      "Company Name": form.companyName || "-",
+      "GST Number": form.gstNumber || "-",
+      "Message": form.message || "",
+      "Date": now,
+      "Timestamp": now,
+    };
+
+    Object.entries(payload).forEach(([key, value]) => {
       formData.append(key, value ?? "");
     });
 

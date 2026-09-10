@@ -140,38 +140,80 @@ export default function ContactSection() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    try {
-      const formData = new URLSearchParams(form).toString();
+    const toastId = toast.loading("Submitting...");
 
-      const res = await fetch(
+    try {
+      const now = new Date().toLocaleString("en-IN", {
+        timeZone: "Asia/Kolkata",
+        day: "2-digit",
+        month: "short",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: true,
+      });
+
+      const formData = new URLSearchParams();
+      formData.append("sheetName", "Sheet2");
+
+      const payload = {
+        sheetName: "Sheet2",
+        userType: form.userType || "Individual",
+        name: form.name || "",
+        email: form.email || "",
+        phone: form.phone || "",
+        service: form.service || "",
+        companyName: form.companyName || "-",
+        gstNumber: form.gstNumber || "-",
+        message: form.message || "",
+        date: now,
+        timestamp: now,
+
+        // Header column mappings (Title Case & Spaced)
+        "User Type": form.userType || "Individual",
+        "Name": form.name || "",
+        "Email": form.email || "",
+        "Phone": form.phone || "",
+        "Phone Number": form.phone || "",
+        "Service": form.service || "",
+        "Company Name": form.companyName || "-",
+        "GST Number": form.gstNumber || "-",
+        "Message": form.message || "",
+        "Date": now,
+        "Timestamp": now,
+      };
+
+      Object.entries(payload).forEach(([key, value]) => {
+        formData.append(key, value ?? "");
+      });
+
+      await fetch(
         "https://script.google.com/macros/s/AKfycbze9DM1_lUgyOJ1-JQuIfjfU8rXHfA-yUs8xeSu0Sqh05fi-YzaxBEH7Tzy8l_hpSgmHw/exec",
         {
           method: "POST",
-          headers: { "Content-Type": "application/x-www-form-urlencoded" },
           body: formData,
+          mode: "no-cors",
         }
       );
 
-      const data = await res.json();
-
-      if (data.result === "success") {
-        toast.success("Form submitted successfully!");
-        setForm({
-          userType: "Individual",
-          name: "",
-          email: "",
-          service: "",
-          phone: "",
-          companyName: "",
-          gstNumber: "",
-          message: "",
-        });
-        router.push("/thank-you");
-      } else {
-        toast.error("Error submitting form");
-      }
-    } catch {
-      toast.error("Something went wrong");
+      toast.dismiss(toastId);
+      toast.success("Form submitted successfully!");
+      setForm({
+        userType: "Individual",
+        name: "",
+        email: "",
+        service: "",
+        phone: "",
+        companyName: "",
+        gstNumber: "",
+        message: "",
+      });
+      router.push("/thank-you");
+    } catch (err) {
+      toast.dismiss(toastId);
+      console.error("Submission error:", err);
+      toast.error("Error submitting form");
     }
   };
 

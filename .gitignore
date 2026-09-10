@@ -124,3 +124,5 @@ pnpm-debug.log*
 *.tmp
 *.swp
 *.lock
+*.zip
+Logistics.zip
