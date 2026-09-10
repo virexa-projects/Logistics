@@ -22,7 +22,7 @@ function RateCalculator({ pickupFromUrl, dropFromUrl }) {
       <div className="-mt-24 -mt-16 ">
         <motion.section
           initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}                  
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
           className="relative w-full h-[460px] md:h-[460px] overflow-hidden  md:block hidden"
@@ -35,6 +35,10 @@ function RateCalculator({ pickupFromUrl, dropFromUrl }) {
             priority
             className="md:object-contain object-cover bg-center"
           />
+
+
+
+          
 
           {/* Gradient Overlay */}
           {/* <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/40 to-blue-700/90"></div> */}

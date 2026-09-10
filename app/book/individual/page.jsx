@@ -6,6 +6,13 @@ export const metadata = {
   description:
     "Book individual luggage delivery services with Frisbi. Send bags safely across India with doorstep pickup, tracking, and stress-free travel convenience.",
   keywords: ["individual luggage delivery"],
+  alternates: {
+    canonical: 'https://frisbi.in/book/individual',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 const schema = {

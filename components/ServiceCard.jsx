@@ -25,7 +25,7 @@ const servicesData = [
     imageSrc: Standard,
     imageAlt: "Standard luggage delivery",
     delay: 0,
-    link: "/standard-delivery",
+    link: "/services/standard-delivery", // Cleaned up duplicates
   },
   {
     title: "Express Delivery",
@@ -38,7 +38,7 @@ const servicesData = [
     imageSrc: Airport,
     imageAlt: "Express delivery service",
     delay: 0.15,
-    link: "/express-delivery",
+    link: "/services/express-delivery", // Added missing link
   },
   {
     title: "Premium Delivery",
@@ -51,7 +51,7 @@ const servicesData = [
     imageSrc: Smartbox,
     imageAlt: "Premium delivery service",
     delay: 0.3,
-    link: "/premium-delivery",
+    link: "/services/premium-delivery", // Added missing link
   },
 ];
 
@@ -82,14 +82,14 @@ const ServiceCard = ({ service }) => {
         <h4 className={` ${service.textColor}`}>
           {service.title}
         </h4>
-       
 
         <p className={`mt-4 text-base ${service.descColor}`}>
           {service.description}
         </p>
 
+        {/* Safeguarded link with a fallback */}
         <Link
-          href={service.link}
+          href={service.link || "#"}
           className={`mt-4 inline-block font-semibold ${service.linkColor}`}
         >
           Learn more
@@ -152,8 +152,8 @@ const ServicesSection = () => {
     <section className="py-12 md:py-16 lg:py-24">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Heading */}
-        <h2 className="text-center  mb-10 md:mb-12 lg:mb-16">
-         Five ways to move your luggage. One way to travel lighter.
+        <h2 className="text-center mb-10 md:mb-12 lg:mb-16">
+          Five ways to move your luggage. One way to travel lighter.
         </h2>
 
         {/* Services Cards */}
@@ -169,16 +169,12 @@ const ServicesSection = () => {
             title="Corporate"
             description="Business delivery that handles it all. From employee moves to event travel, we handle baggage so work keeps moving."
             image={Corporate}
-            link="/corporate"
-            fit="contain"
           />
 
           <FeatureCard
             title="Individual"
             description="When life requires extra bags, longer stays, or city transfers, we step in to make sure your luggage reaches safely."
             image={Packing}
-            link="/individual"
-            fit="contain"
           />
         </div>
 

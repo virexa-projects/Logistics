@@ -17,7 +17,6 @@ export const metadata = {
   },
 }
 
-
 const schema = {
   "@context": "https://schema.org",
   "@graph": [
