@@ -173,7 +173,7 @@ const faqData = {
     },
     {
       q: "How do I contact customer support?",
-      a: "Call or WhatsApp +91 987-879-8298, email info@frisbi.in, or use the contact form on our website. Support is available 9 AM to 9 PM, 7 days a week.",
+      a: "Call or WhatsApp +91 7418152531, email info@frisbi.in, or use the contact form on our website. Support is available 9 AM to 9 PM, 7 days a week.",
     },
     {
       q: "Do I get a dedicated contact person?",
@@ -372,10 +372,10 @@ function Faq() {
       </section>
 
       <Testimonials />
-      <MarqueeLogos />
+   
 
       {/* ---------------- CTA ---------------- */}
-      <section className="w-full px-4 py-12 md:py-20">
+      <section className="w-full px-4 py-12 md:py-20 md:pb-0">
         <div className="relative container mx-auto rounded-3xl overflow-hidden">
           <Image src={bg} alt="CTA" fill className="object-cover" />
 
@@ -391,6 +391,8 @@ function Faq() {
           </div>
         </div>
       </section>
+
+         <MarqueeLogos />
     </div>
   );
 }

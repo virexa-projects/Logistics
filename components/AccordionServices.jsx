@@ -6,44 +6,49 @@ import { ChevronDown, ChevronUp } from "lucide-react";
 
 const faqData = [
   {
-    question: "How safe is my luggage during delivery?",
+    question: "Which service should I choose for a pilgrimage trip?",
     answer:
-      "Every pickup is scanned, sealed, and tracked in real time. Your luggage is accounted for from pickup to delivery, with digital confirmation at each step and careful handling throughout.",
+      "If you're planning weeks ahead and want to save money, choose Standard Delivery. If your trip is coming up soon, Express Delivery gets your bags there faster. For elderly travelers or valuable religious items, Premium offers extra care and faster delivery.",
   },
   {
-    question: "Can I choose when my luggage is picked up and delivered?",
+    question: "Can I upgrade my service after booking?",
     answer:
-      "Yes. Express and Premium Delivery services allow you to select a pickup date, time slot, and location that works for you. Delivery timelines are shared clearly at the time of booking.",
+      "Yes, but only before pickup happens. Contact support immediately after booking to upgrade from Standard to Express or Premium. Once bags are in transit, the service level cannot be changed.",
   },
   {
-    question: "What happens if my plans change after booking?",
+    question: "What's the real difference between Express and Premium?",
     answer:
-      "Our support team can help you reschedule pickups or update delivery details before transit begins. No chatbots. You can speak directly to a dedicated point of contact who can assist with your booking.",
+      "Express focuses on speed (3-5 days) with priority handling. Premium adds free professional packaging, dedicated customer success manager, and guaranteed 3-day delivery. Premium costs more but includes services that are paid add-ons in Express.",
   },
   {
-    question: "How much luggage can I send at once?",
+    question: "Do all services cover the same cities?",
     answer:
-      "You can send one or multiple bags in a single shipment. Pricing is shared upfront so you know the cost before booking.",
+      "Yes. Standard, Express, Premium, Corporate, and Individual all cover the same 25,000+ pincodes across India. Service level affects speed and handling care, not where we deliver.",
   },
   {
-    question: "Which cities and locations does Frisbi cover?",
+    question: "Can I mix services in one booking?",
     answer:
-      "Frisbi delivers luggage across 25,000+ pincodes in India, including major cities and smaller towns. You can check coverage while getting your quote.",
+      "No. Each booking uses one service level. If you're sending multiple bags and want different service levels, create separate bookings for each service type.",
   },
   {
-    question: "Is packing included or do I need to pack myself?",
+    question: "Is insurance included in all services?",
     answer:
-      "We offer professional packing free with Premium Delivery. For other services, you can add packing as a paid add-on or pack the luggage yourself.",
+      "Basic coverage is included across all services. For higher-value luggage, you can purchase additional insurance during booking regardless of which service you choose.",
   },
   {
-    question: "Can someone else hand over or receive the luggage on my behalf?",
+    question: "Which service is best for last-minute travel?",
     answer:
-      "Yes. As long as someone is available at pickup and delivery, the luggage can be handed over or received by them.",
+      "Premium Delivery offers same-day pickup slots and 3-day delivery, making it the fastest option for urgent travel. Express also works if you have 3-5 days before you need the bags.",
   },
   {
-    question: "How do you calculate the delivery price?",
+    question: "Can Corporate service be used for small businesses?",
     answer:
-      "The price depends on your pickup city, destination city, number of bags, and service speed. You get a clear quote before booking so you know exactly what you pay.",
+      "Absolutely. Corporate isn't just for large companies. Even if you're moving 5 employees or organizing a small team offsite, Corporate service provides dedicated coordination that makes logistics easier.",
+  },
+  {
+    question: "What happens if I choose the wrong service?",
+    answer:
+      "Call support before pickup. We can switch your service level or cancel and rebook if needed. After pickup, changes become difficult as the logistics process has already started.",
   },
 
 ];

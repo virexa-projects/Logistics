@@ -6,7 +6,7 @@ import bg from "@/asset/profiles/cta-banner.svg"; // <<< CHANGE TO YOUR BG IMAGE
 
 export default function CallToAction() {
   return (
-    <section className="w-full px-4 md:px-10 my-24">
+    <section className="w-full px-4 md:px-10 my-24 md:mb-0">
       <div className="relative container mx-auto rounded-3xl overflow-hidden">
 
         {/* Background Image */}
@@ -40,13 +40,13 @@ export default function CallToAction() {
           </p>
 
           <div className="flex flex-wrap justify-center gap-4">
-            <button className="btn-white hover:scale-105 transition-all">
+            <a href="/rate-calculator" className="btn-white hover:scale-105 transition-all">
               Book  Now
-            </button>
+            </a>
 
-            <button className="btn-white-outline hover:scale-105 transition-all">
+            <a href="/contact-us" className="btn-white-outline hover:scale-105 transition-all">
               Contact Support
-            </button>
+            </a>
           </div>
         </motion.div>
       </div>

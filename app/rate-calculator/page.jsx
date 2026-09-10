@@ -1,24 +1,59 @@
 import RateCalculator from '@/page/RateCalculator'
 import React from 'react'
 
-
 export const metadata = {
-  title: "Luggage Delivery Cost Calculator India | Calculate Baggage Shipping Rates | Frisbi",
+  title: "Luggage Delivery Cost Calculator in India | Frisbi",
   description:
-    "Calculate exact luggage delivery costs based on distance, weight, and bag size. Frisbi's rate calculator gives instant transparent quotes for baggage shipping across India. Enter dimensions and get your price in 60 seconds. ",
+    "Know your luggage parcel price in 60 seconds with Frisbi’s luggage delivery cost calculator. Calculate now, book when ready, and travel lighter. ",
   keywords: [
-    "luggage delivery cost calculator, baggage shipping rate calculator india, calculate luggage transport cost, dimensional weight calculator luggage, luggage courier price estimator, distance based luggage rates, baggage delivery cost by weight, transparent luggage shipping rates, calculate baggage courier cost india, luggage delivery pricing calculator"
-
+    "luggage delivery cost calculator, baggage delivery pricing, luggage parcel price calculator"
   ],
+  alternates: {
+    canonical: "https://frisbi.in/rate-calculator",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
+export default async function Page({ searchParams }) {
+  const params = await searchParams; // ⭐ IMPORTANT
 
-function page() {
+  const pickup = params?.pickup ?? "";
+  const drop = params?.drop ?? "";
+
+  console.log("pickup, drop:", pickup, drop);
+
   return (
     <div>
-      <RateCalculator />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@graph": [
+              {
+                "@type": "WebPage",
+                "@id": "https://frisbi.in/rate-calculator/#webpage",
+                "url": "https://frisbi.in/rate-calculator",
+                "name": "Luggage Delivery Cost Calculator in India | Frisbi",
+                "description": "Know your luggage parcel price in 60 seconds with Frisbi’s luggage delivery cost calculator. Calculate now, book when ready, and travel lighter.",
+                "isPartOf": {
+                  "@id": "https://frisbi.in/#website"
+                },
+                "about": {
+                  "@id": "https://frisbi.in/#organization"
+                }
+              }
+            ]
+          })
+        }}
+      />
+      <RateCalculator
+        pickupFromUrl={pickup}
+        dropFromUrl={drop}
+      />
     </div>
-  )
+  );
 }
-
-export default page

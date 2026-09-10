@@ -106,9 +106,9 @@ function Aboutus() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Content */}
             <div className="flex flex-col justify-center">
-              <h3 className="  text-center md:text-start  mb-4">
+              <h5 className="  text-center md:text-start  mb-4">
                 The Idea Behind Frisbi
-              </h3>
+              </h5>
               <h2 className="md:text-left text-center mb-4">
                 Built to make luggage the easiest part of your journey
               </h2>
@@ -130,7 +130,7 @@ function Aboutus() {
               {/* CTA */}
               <div className="flex justify-center md:justify-start">
                 <Link
-                  href="/about"
+                  href="/contact-us"
                   className="btn-primary transition-transform hover:scale-105"
                 >
                   Get in touch
@@ -244,9 +244,10 @@ function Aboutus() {
         <ContactSection />
       </section>
 
-      <MarqueeLogos />
+      
 
       <CallToAction />
+      <MarqueeLogos />
     </div>
   );
 }

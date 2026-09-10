@@ -119,7 +119,7 @@ function Home() {
                   href="/about"
                   className="btn-primary transition-transform hover:scale-105"
                 >
-                  Get in touch
+                  Know More
                 </Link>
               </div>
             </div>
@@ -164,9 +164,9 @@ function Home() {
       <section className=" bg-[#F1F2F6] mx-auto overflow-x-hidden ">
         <ContactSection />
       </section>
-      <MarqueeLogos />
+     
 
-      <section className="w-full px-4 py-12   md:py-20 md:pt-0 ">
+      <section className="w-full px-4 py-12   md:py-20 md:pb-0 ">
         <div className="relative container mx-auto rounded-3xl overflow-hidden">
           {/* Background Image */}
           <Image
@@ -208,6 +208,8 @@ function Home() {
           </motion.div>
         </div>
       </section>
+
+       <MarqueeLogos />
     </div>
   );
 }

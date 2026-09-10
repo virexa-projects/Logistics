@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaInstagram, FaYoutube, FaFacebookF } from "react-icons/fa";
 import Logo from "@/asset/logo-black.svg";
+import MobileBookNow from "./MobileBookNow";
 
 export default function Footer() {
   return (
@@ -28,21 +29,21 @@ export default function Footer() {
             <h4 className="font-semibold mb-2">Social Media</h4>
             <div className="flex items-center gap-4 justify-center md:justify-start">
               {/* YouTube */}
-              <Link href="#">
+              <Link href="https://youtube.com/@frisbi-luggage-delivery?si=sfdhhiZOjdpNhNTs">
                 <div className="p-3 bg-red-600 rounded-full hover:bg-red-700 transition">
                   <FaYoutube className="w-5 h-5 text-white" />
                 </div>
               </Link>
 
               {/* Instagram */}
-              <Link href="#">
+              <Link href="https://www.instagram.com/frisbi.in?igsh=ZTlrYWp3aGRjNnE5">
                 <div className="p-3 bg-gradient-to-tr from-pink-500 via-purple-500 to-yellow-500 rounded-full hover:opacity-90 transition">
                   <FaInstagram className="w-5 h-5 text-white" />
                 </div>
               </Link>
 
               {/* Facebook */}
-              <Link href="#">
+              <Link href="https://www.facebook.com/profile.php?id=61590439647922">
                 <div className="p-3 bg-blue-600 rounded-full hover:bg-blue-700 transition">
                   <FaFacebookF className="w-5 h-5 text-white" />
                 </div>
@@ -109,7 +110,7 @@ export default function Footer() {
                 • About Us
               </Link>
             </li>
-             <li>
+            <li>
               <Link href="/services" className="hover:text-blue-900">
                 • Services
               </Link>
@@ -125,13 +126,18 @@ export default function Footer() {
               </Link>
             </li>
             <li>
-              <Link href="/faqs" className="hover:text-blue-900">
+              <Link href="/faq" className="hover:text-blue-900">
                 • Faqs
               </Link>
             </li>
             <li>
               <Link href="/contact-us" className="hover:text-blue-900">
                 • Contact Us
+              </Link>
+            </li>
+            <li>
+              <Link href="/blog" className="hover:text-blue-900">
+                • Blogs
               </Link>
             </li>
           </ul>
@@ -143,7 +149,7 @@ export default function Footer() {
           <ul className="space-y-4 text-sm font-semibold">
             <li>
               <Link href="tel:9878798298" className="hover:text-blue-900">
-                • +91 987-879-8298
+                • +91 7418152531
               </Link>
             </li>
             <li>
@@ -182,10 +188,12 @@ export default function Footer() {
             <span>|</span>
             <Link href="/shipping-policy" className="hover:text-blue-900">Shipping Policy</Link>
             <span>|</span>
-            <Link href="/sitemap" className="hover:text-primary-900">Sitemap</Link>
+            <Link href="/sitemap.xml" className="hover:text-primary-900">Sitemap</Link>
           </div>
         </div>
       </div>
+
+      <MobileBookNow />
     </footer>
   );
 }

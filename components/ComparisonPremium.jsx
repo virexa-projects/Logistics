@@ -1,3 +1,5 @@
+
+
 import { Check, X } from "lucide-react";
 
 export default function ServiceComparison() {
@@ -40,22 +42,32 @@ export default function ServiceComparison() {
     },
     {
       feature: "Scheduled Slots",
-       standard: false,
+      standard: false,
       express: "Add",
       premium: true,
     },
     {
       feature: "Ideal For",
-       standard: "Affordable trips",
+      standard: "Affordable trips",
       express: "Urgent travel",
       premium: "Valuable luggage",
     },
   ];
 
+  const renderValue = (value) => {
+    if (value === true) {
+      return <Check className="mx-auto text-green-600" size={20} />;
+    }
+    if (value === false) {
+      return <X className="mx-auto text-red-600" size={20} />;
+    }
+    return value; // string or other values
+  };
+
   return (
-    <section className="py-24 sm:py-24 ">
+    <section className="py-24 sm:py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-bold  mb-8 text-center">
+        <h2 className="text-3xl font-bold mb-8 text-center">
           Standard vs Express vs Premium Delivery
         </h2>
 
@@ -66,12 +78,8 @@ export default function ServiceComparison() {
                 <thead className="bg-primary">
                   <tr>
                     <th className="px-6 py-4 text-left text-white">Feature</th>
-                    <th className="px-6 py-4 text-center text-white">
-                      Standard
-                    </th>
-                    <th className="px-6 py-4 text-center text-white">
-                      Express
-                    </th>
+                    <th className="px-6 py-4 text-center text-white">Standard</th>
+                    <th className="px-6 py-4 text-center text-white">Express</th>
                     <th className="px-6 py-4 text-center text-white bg-yellow-400/20">
                       Premium
                     </th>
@@ -88,16 +96,16 @@ export default function ServiceComparison() {
                         {row.feature}
                       </td>
 
-                      <td className="px-6 py-4 text-center text-black font-medium">
-                        {row.standard}
+                      <td className="px-6 py-4 text-center font-medium">
+                        {renderValue(row.standard)}
                       </td>
 
-                      <td className="px-6 py-4 text-center text-black font-medium">
-                        {row.express}
+                      <td className="px-6 py-4 text-center font-medium">
+                        {renderValue(row.express)}
                       </td>
 
                       <td className="px-6 py-4 text-center font-semibold text-primary bg-blue-50">
-                        {row.premium}
+                        {renderValue(row.premium)}
                       </td>
                     </tr>
                   ))}
