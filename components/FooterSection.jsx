@@ -148,7 +148,7 @@ export default function Footer() {
           <h4 className="font-semibold mb-5">Support</h4>
           <ul className="space-y-4 text-sm font-semibold">
             <li>
-              <Link href="tel:9878798298" className="hover:text-blue-900">
+              <Link href="tel:7418152531" className="hover:text-blue-900">
                 • +91 7418152531
               </Link>
             </li>
@@ -164,7 +164,7 @@ export default function Footer() {
 
           <div className="flex items-center gap-2 mt-5">
             <Link
-              href="https://wa.me/919878798298"
+              href="https://wa.me/917418152531"
               target="_blank"
               className="btn-primary hover:scale-105 transition-all"
             >
