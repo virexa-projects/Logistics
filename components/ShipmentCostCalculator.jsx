@@ -356,34 +356,22 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
 
       formData.append("sheetName", "RateCalculator"); // Meaningful Sheet Name
 
-      // ✅ Ordered payload: dimensions (length, height, weight, width) grouped together
+      // ✅ Strictly the 14 columns requested: no extra columns
       const payload = {
-        type: "CALCULATOR",
-        status: "",
-        service,
-        luggageType,
-        length: length || "",
-        height: height || "",
-        weight: weight || "",
-        width: width || "",
-        totalPrice,
-        rateCalculatorAmount: totalPrice,
-        rateCalculatorUsedAt: usedAt,
-        "Rate Calculator Amount": totalPrice,
+        "Pickup PIN code": values.pickupPincode || "",
+        "Drop PIN code": values.dropPincode || "",
+        "Name": values.pickupName || values.name || "",
+        "Contact Number": values.pickupPhone || values.phone || "",
+        "Package Type *": luggageType || "",
+        "Delivery Speed *": service || "",
+        "Weight (kg) *": weight || "",
+        "Length (cm) *": length || "",
+        "Width (cm) *": width || "",
+        "Height (cm) *": height || "",
         "Rate Calculator Used At": usedAt,
-        pickupName: values.pickupName || "",
-        pickupPhone: values.pickupPhone || "",
-        pickupPincode: values.pickupPincode || "",
-        pickupCity: values.pickupCity || "",
-        pickupState: values.pickupState || "",
-        pickupAddress: values.pickupAddress || "",
-        name: values.name || "",
-        phone: values.phone || "",
-        dropPincode: values.dropPincode || "",
-        dropCity: values.dropCity || "",
-        dropState: values.dropState || "",
-        dropAddress: values.dropAddress || values.address || "",
-        address: values.address || values.dropAddress || "",
+        "totalPrice": totalPrice,
+        "Rate Calculator Amount": totalPrice,
+        "status": "",
       };
 
       Object.entries(payload).forEach(([key, value]) => {
@@ -425,45 +413,15 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
     setIsBooking(true);
 
     try {
+      // ✅ DO NOT append duplicate row! Only update existing row's status to "Book Now Clicked"
       const formData = new URLSearchParams();
       formData.append("sheetName", "RateCalculator");
-
-      // ✅ Ordered payload: dimensions (length, height, weight, width) grouped together
-      const payload = {
-        type: "BOOK_NOW",
-        status: "Book Now Clicked",
-        service,
-        luggageType,
-        length: length || "",
-        height: height || "",
-        weight: weight || "",
-        width: width || "",
-        totalPrice: total,
-        rateCalculatorAmount: total,
-        rateCalculatorUsedAt: timestamp,
-        "Rate Calculator Amount": total,
-        "Rate Calculator Used At": timestamp,
-        pickupName: values.pickupName || "",
-        pickupPhone: values.pickupPhone || "",
-        pickupPincode: values.pickupPincode || "",
-        pickupCity: values.pickupCity || "",
-        pickupState: values.pickupState || "",
-        pickupAddress: values.pickupAddress || "",
-        name: values.name || "",
-        phone: values.phone || "",
-        dropPincode: values.dropPincode || "",
-        dropCity: values.dropCity || "",
-        dropState: values.dropState || "",
-        dropAddress: values.dropAddress || values.address || "",
-        address: values.address || values.dropAddress || "",
-      };
-
-      Object.entries(payload).forEach(([key, value]) => {
-        formData.append(
-          key,
-          Array.isArray(value) ? value.join(", ") : value ?? ""
-        );
-      });
+      formData.append("action", "updateStatus");
+      formData.append("status", "Book Now Clicked");
+      formData.append("Rate Calculator Used At", timestamp);
+      formData.append("rateCalculatorUsedAt", timestamp);
+      formData.append("Contact Number", values.pickupPhone || values.phone || "");
+      formData.append("phone", values.pickupPhone || values.phone || "");
 
       await fetch(API_CONFIG.GOOGLE_SHEET_URL, {
         method: "POST",
@@ -471,7 +429,7 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
         mode: "no-cors",
       });
     } catch (err) {
-      console.error("Sheet save error on Book Now", err);
+      console.error("Sheet status update error on Book Now", err);
     } finally {
       setIsBooking(false);
     }

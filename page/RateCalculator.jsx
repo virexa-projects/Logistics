@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import aboutmobile from "@/asset/shippment/rate-caluculator.svg";
@@ -17,6 +17,20 @@ import lugggaevariations from "@/asset/rate-lugggae-mobie.svg";
 import lugggaevariationsmobile from "@/asset/rate-lugggae-variation-mg.svg";
 
 function RateCalculator({ pickupFromUrl, dropFromUrl }) {
+  const calculatorSectionRef = useRef(null);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (calculatorSectionRef.current) {
+        calculatorSectionRef.current.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
+    }, 200);
+
+    return () => clearTimeout(timer);
+  }, []);
   return (
     <div>
       <div className="-mt-24 -mt-16 ">
@@ -51,12 +65,17 @@ function RateCalculator({ pickupFromUrl, dropFromUrl }) {
             </p>
 
             {/* CTA */}
-            <Link
-              href="/contact-us"
-              className="btn-primary hover:scale-105 transition-all"
+            <button
+              onClick={() =>
+                calculatorSectionRef.current?.scrollIntoView({
+                  behavior: "smooth",
+                  block: "start",
+                })
+              }
+              className="btn-primary hover:scale-105 transition-all cursor-pointer"
             >
               Calculate Your Cost
-            </Link>
+            </button>
           </div>
         </motion.section>
 
@@ -74,12 +93,17 @@ function RateCalculator({ pickupFromUrl, dropFromUrl }) {
                 </p>
 
                 {/* CTA */}
-                <Link
-                  href="/contact-us"
-                  className="btn-primary hover:scale-105 transition-all"
+                <button
+                  onClick={() =>
+                    calculatorSectionRef.current?.scrollIntoView({
+                      behavior: "smooth",
+                      block: "start",
+                    })
+                  }
+                  className="btn-primary hover:scale-105 transition-all cursor-pointer"
                 >
                   Calculate Your Cost
-                </Link>
+                </button>
               </div>
 
               {/* RIGHT — IMAGE */}
@@ -98,7 +122,11 @@ function RateCalculator({ pickupFromUrl, dropFromUrl }) {
       </div>
 
   
-      <section className="py-12 md:pt-0 md:pb-0">
+      <section
+        ref={calculatorSectionRef}
+        id="rate-calculator-section"
+        className="py-12 md:pt-0 md:pb-0 scroll-mt-24"
+      >
         <ShipmentCostCalculator
           pickupFromUrl={pickupFromUrl}
           dropFromUrl={dropFromUrl}

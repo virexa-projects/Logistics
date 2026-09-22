@@ -42,48 +42,56 @@ export default function FAQ() {
       <h2 className="text-center mb-10">Frequently asked questions</h2>
 
       <div className="space-y-6">
-        {visibleFaqs.map((faq, i) => (
-          <div key={i}>
-            {openIndex === i ? (
-              <motion.div
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="bg-white p-6 rounded-2xl shadow-2xl"
+        {visibleFaqs.map((faq, i) => {
+          const isOpen = openIndex === i;
+          return (
+            <div
+              key={i}
+              className={`transition-all duration-300 rounded-2xl ${
+                isOpen
+                  ? "bg-white p-6 shadow-2xl"
+                  : "py-5 px-2 border-b border-gray-200"
+              }`}
+            >
+              <div
+                className="flex justify-between items-center cursor-pointer select-none gap-4"
+                onClick={() => toggle(i)}
               >
-                <div
-                  className="flex justify-between items-center cursor-pointer"
-                  onClick={() => toggle(i)}
+                <h4
+                  className={`text-lg transition-colors duration-200 ${
+                    isOpen ? "font-semibold text-gray-900" : "font-medium text-gray-900"
+                  }`}
                 >
-                  <h4 className="font-semibold text-lg">{faq.question}</h4>
-                  <Minus className="w-6 h-6 text-gray-600" />
+                  {faq.question}
+                </h4>
+                <div className="shrink-0 text-gray-600">
+                  {isOpen ? (
+                    <Minus className="w-6 h-6 transition-transform duration-200" />
+                  ) : (
+                    <Plus className="w-6 h-6 transition-transform duration-200" />
+                  )}
                 </div>
+              </div>
 
-                <AnimatePresence>
-                  <motion.p
+              <AnimatePresence initial={false}>
+                {isOpen && (
+                  <motion.div
                     key="content"
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: "auto", opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.35 }}
-                    className="mt-4 text-second leading-relaxed overflow-hidden"
+                    transition={{ duration: 0.3, ease: [0.04, 0.62, 0.23, 0.98] }}
+                    className="overflow-hidden"
                   >
-                    {faq.answer}
-                  </motion.p>
-                </AnimatePresence>
-              </motion.div>
-            ) : (
-              <div
-                className="flex justify-between items-center py-5 cursor-pointer border-b"
-                onClick={() => toggle(i)}
-              >
-                <h4 className="font-medium text-lg text-gray-900">
-                  {faq.question}
-                </h4>
-                <Plus className="w-6 h-6 text-gray-600" />
-              </div>
-            )}
-          </div>
-        ))}
+                    <p className="mt-4 text-second leading-relaxed">
+                      {faq.answer}
+                    </p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          );
+        })}
       </div>
 
       {/* View More / View Less */}
