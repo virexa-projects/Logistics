@@ -437,6 +437,15 @@ export default function ShipmentBookingForm({
 
     if (!values.email?.trim()) {
       newErrors.email = "Email is required";
+    } else {
+      const emailVal = values.email.trim().toLowerCase();
+      const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      const username = emailVal.split("@")[0];
+      if (/^\d+$/.test(emailVal) || !emailRegex.test(emailVal)) {
+        newErrors.email = "Enter a valid email address";
+      } else if (!/[a-zA-Z]/.test(username) || /^\d+$/.test(username)) {
+        newErrors.email = "Email cannot consist of only numbers";
+      }
     }
     // if (!values.companyName?.trim()) {
     //   newErrors.companyName = "Company Name is required";

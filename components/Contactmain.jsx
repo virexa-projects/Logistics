@@ -7,59 +7,68 @@ import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { API_CONFIG } from "@/utils/apiConfig";
 
-/* ---------------- INPUT COMPONENTS (PLACEHOLDER ONLY) ---------------- */
+/* ---------------- INPUT COMPONENTS ---------------- */
 
-function Input({ type = "text", name, value, onChange, placeholder, maxLength, inputMode }) {
+function Input({ type = "text", name, value, onChange, placeholder, maxLength, inputMode, error }) {
   return (
-    <input
-      type={type}
-      name={name}
-      value={value}
-      onChange={onChange}
-      placeholder={placeholder}
-      maxLength={maxLength}
-      inputMode={inputMode}
-      required
-      className="w-full bg-[#f5f5f5] text-black px-4 py-3 rounded-xl outline-none
-      focus:ring-1 focus:ring-[#013efe] transition text-sm placeholder:text-sm placeholder:text-gray-600"
-    />
+    <div className="w-full">
+      <input
+        type={type}
+        name={name}
+        value={value}
+        onChange={onChange}
+        placeholder={placeholder}
+        maxLength={maxLength}
+        inputMode={inputMode}
+        className={`w-full bg-[#f5f5f5] text-black px-4 py-3 rounded-xl outline-none transition text-sm placeholder:text-sm placeholder:text-gray-600 border ${
+          error ? "border-red-500 ring-1 ring-red-400" : "border-transparent focus:ring-1 focus:ring-[#013efe]"
+        }`}
+      />
+      {error && <p className="text-red-500 text-xs mt-1.5 font-medium ml-1">{error}</p>}
+    </div>
   );
 }
 
-function Select({ name, value, onChange, options = [], placeholder }) {
+function Select({ name, value, onChange, options = [], placeholder, error }) {
   return (
-    <select
-      name={name}
-      value={value}
-      onChange={onChange}
-      required
-      className="w-full bg-[#f5f5f5] text-black px-4 py-3 rounded-xl outline-none
-      focus:ring-1 focus:ring-[#013efe] transition text-sm placeholder:text-xs placeholder:text-gray-600"
-    >
-      <option value="" disabled>
-        {placeholder}
-      </option>
-      {options.map((opt, i) => (
-        <option key={i} value={opt}>
-          {opt}
+    <div className="w-full">
+      <select
+        name={name}
+        value={value}
+        onChange={onChange}
+        className={`w-full bg-[#f5f5f5] text-black px-4 py-3 rounded-xl outline-none transition text-sm placeholder:text-xs placeholder:text-gray-600 border ${
+          error ? "border-red-500 ring-1 ring-red-400" : "border-transparent focus:ring-1 focus:ring-[#013efe]"
+        }`}
+      >
+        <option value="" disabled>
+          {placeholder}
         </option>
-      ))}
-    </select>
+        {options.map((opt, i) => (
+          <option key={i} value={opt}>
+            {opt}
+          </option>
+        ))}
+      </select>
+      {error && <p className="text-red-500 text-xs mt-1.5 font-medium ml-1">{error}</p>}
+    </div>
   );
 }
 
-function Textarea({ name, value, onChange, placeholder }) {
+function Textarea({ name, value, onChange, placeholder, error }) {
   return (
-    <textarea
-      name={name}
-      value={value}
-      onChange={onChange}
-      placeholder={placeholder}
-      rows={5}
-      required
-      className="w-full bg-[#f5f5f5] text-black px-4 py-3 rounded-xl outline-none
-      focus:ring-1 focus:ring-[#013efe] transition text-sm placeholder:text-sm placeholder:text-gray-600"
-    />
+    <div className="w-full">
+      <textarea
+        name={name}
+        value={value}
+        onChange={onChange}
+        placeholder={placeholder}
+        rows={5}
+        className={`w-full bg-[#f5f5f5] text-black px-4 py-3 rounded-xl outline-none transition text-sm placeholder:text-sm placeholder:text-gray-600 border ${
+          error ? "border-red-500 ring-1 ring-red-400" : "border-transparent focus:ring-1 focus:ring-[#013efe]"
+        }`}
+      />
+      {error && <p className="text-red-500 text-xs mt-1.5 font-medium ml-1">{error}</p>}
+    </div>
   );
 }
 
@@ -120,6 +129,7 @@ export default function ContactSection() {
   const router = useRouter();
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errors, setErrors] = useState({});
 
   const [form, setForm] = useState({
     userType: "Individual",
@@ -140,6 +150,12 @@ export default function ContactSection() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    if (errors[name]) {
+      setErrors((prev) => ({ ...prev, [name]: "" }));
+    }
+    if (name === "userType") {
+      setErrors((prev) => ({ ...prev, companyName: "", gstNumber: "" }));
+    }
     if (name === "phone") {
       setForm((prev) => ({ ...prev, phone: value.replace(/\D/g, "").slice(0, 10) }));
     } else if (name === "email") {
@@ -149,29 +165,66 @@ export default function ContactSection() {
     }
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  /* ---------- VALIDATION ---------- */
+  const validate = () => {
+    const err = {};
 
-    // Email validation (lowercase only)
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    // Name validation
+    if (!form.name?.trim()) {
+      err.name = "Name is required";
+    }
+
+    // Email validation (no numbers-only emails, valid domain, no pure numbers)
     const cleanEmail = form.email?.trim().toLowerCase();
     if (!cleanEmail) {
-      toast.error("Please enter your email");
-      return;
+      err.email = "Email is required";
+    } else if (/^\d+$/.test(cleanEmail)) {
+      err.email = "Email cannot be numbers only";
+    } else if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(cleanEmail)) {
+      err.email = "Enter a valid email address";
+    } else {
+      const username = cleanEmail.split("@")[0];
+      if (!/[a-zA-Z]/.test(username) || /^\d+$/.test(username)) {
+        err.email = "Email username cannot consist of only numbers";
+      }
     }
-    if (!emailRegex.test(cleanEmail)) {
-      toast.error("Please enter a valid email address");
-      return;
+
+    // Corporate validation
+    if (form.userType === "Corporate") {
+      if (!form.companyName?.trim()) {
+        err.companyName = "Company name is required";
+      }
+      if (!form.gstNumber?.trim()) {
+        err.gstNumber = "GST number is required";
+      }
+    }
+
+    // Service validation
+    if (!form.service?.trim()) {
+      err.service = "Select a service";
     }
 
     // Phone validation (10 digits starting with 6-9)
     const phoneDigits = form.phone?.replace(/\D/g, "") || "";
     if (!phoneDigits) {
-      toast.error("Please enter your phone number");
-      return;
+      err.phone = "Phone number is required";
+    } else if (phoneDigits.length !== 10 || !/^[6-9]\d{9}$/.test(phoneDigits)) {
+      err.phone = "Enter a valid 10-digit mobile number";
     }
-    if (phoneDigits.length !== 10 || !/^[6-9]\d{9}$/.test(phoneDigits)) {
-      toast.error("Please enter a valid 10-digit mobile number");
+
+    // Message validation
+    if (!form.message?.trim()) {
+      err.message = "Message is required";
+    }
+
+    setErrors(err);
+    return Object.keys(err).length === 0;
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!validate()) {
       return;
     }
 
@@ -295,11 +348,24 @@ export default function ContactSection() {
               <RadioGroup value={form.userType} onChange={handleChange} />
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} noValidate className="space-y-6">
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <Input placeholder="Name" name="name" value={form.name} onChange={handleChange} />
-                <Input type="email" placeholder="Email" name="email" value={form.email} onChange={handleChange} />
+                <Input
+                  placeholder="Name"
+                  name="name"
+                  value={form.name}
+                  onChange={handleChange}
+                  error={errors.name}
+                />
+                <Input
+                  type="email"
+                  placeholder="Email"
+                  name="email"
+                  value={form.email}
+                  onChange={handleChange}
+                  error={errors.email}
+                />
               </div>
 
               {/* CORPORATE ONLY */}
@@ -310,12 +376,14 @@ export default function ContactSection() {
                     name="companyName"
                     value={form.companyName}
                     onChange={handleChange}
+                    error={errors.companyName}
                   />
                   <Input
                     placeholder="GST Number"
                     name="gstNumber"
                     value={form.gstNumber}
                     onChange={handleChange}
+                    error={errors.gstNumber}
                   />
                 </div>
               )}
@@ -327,6 +395,7 @@ export default function ContactSection() {
                   onChange={handleChange}
                   options={services}
                   placeholder="Select Service"
+                  error={errors.service}
                 />
                 <Input
                   type="tel"
@@ -336,6 +405,7 @@ export default function ContactSection() {
                   name="phone"
                   value={form.phone}
                   onChange={handleChange}
+                  error={errors.phone}
                 />
               </div>
 
@@ -344,6 +414,7 @@ export default function ContactSection() {
                 name="message"
                 value={form.message}
                 onChange={handleChange}
+                error={errors.message}
               />
 
               <button

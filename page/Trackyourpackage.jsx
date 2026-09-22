@@ -24,17 +24,53 @@ function Trackyourpackage() {
   const [trackingData, setTrackingData] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      if (trackSectionRef.current) {
-        trackSectionRef.current.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
-      }
-    }, 200);
+  const scrollToTracking = () => {
+    const el = trackSectionRef.current || document.getElementById("track-section");
+    if (el) {
+      const headerOffset = 90;
+      const elementPosition = el.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      window.scrollTo({
+        top: Math.max(0, offsetPosition),
+        behavior: "smooth",
+      });
+    }
+  };
 
-    return () => clearTimeout(timer);
+  useEffect(() => {
+    // 1. Initial scroll when landing on page
+    const timer = setTimeout(scrollToTracking, 200);
+
+    // 2. Global listener: when staying on this page and clicking any link to track-your-package
+    const handleDocumentClick = (e) => {
+      const anchor = e.target?.closest ? e.target.closest("a") : null;
+      if (!anchor) return;
+
+      const href = anchor.getAttribute("href");
+      if (!href) return;
+
+      const cleanHref = href.split("?")[0].split("#")[0];
+      if (
+        cleanHref === "/track-your-package" ||
+        cleanHref.endsWith("/track-your-package") ||
+        href === "#track-section" ||
+        href.startsWith("#track-section")
+      ) {
+        e.preventDefault();
+        scrollToTracking();
+      }
+    };
+
+    document.addEventListener("click", handleDocumentClick);
+    window.addEventListener("hashchange", scrollToTracking);
+    window.addEventListener("scroll-to-track", scrollToTracking);
+
+    return () => {
+      clearTimeout(timer);
+      document.removeEventListener("click", handleDocumentClick);
+      window.removeEventListener("hashchange", scrollToTracking);
+      window.removeEventListener("scroll-to-track", scrollToTracking);
+    };
   }, []);
 
 

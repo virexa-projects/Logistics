@@ -19,6 +19,8 @@ export default function PorterPickupDrop() {
 
   const [pickup, setPickup] = useState("");
   const [drop, setDrop] = useState("");
+  const [pickupError, setPickupError] = useState("");
+  const [dropError, setDropError] = useState("");
   const [open, setOpen] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -36,82 +38,119 @@ export default function PorterPickupDrop() {
 
   // if (!isLoaded) return null;
 
-  /* ---------- DESKTOP HANDLERS ---------- */
-  // const handlePickupChange = () => {
-  //   const place = pickupAuto.current?.getPlace();
-  //   if (place?.formatted_address) {
-  //     setPickup(place.formatted_address);
-  //   }
-  // };
+  /* ---------- INPUT HANDLERS & VALIDATION ---------- */
+  const handlePickupKeyDown = (e) => {
+    if (
+      e.key === "Backspace" ||
+      e.key === "Delete" ||
+      e.key === "Tab" ||
+      e.key === "Escape" ||
+      e.key === "Enter" ||
+      e.key === "ArrowLeft" ||
+      e.key === "ArrowRight" ||
+      e.key === "ArrowUp" ||
+      e.key === "ArrowDown" ||
+      e.ctrlKey ||
+      e.metaKey
+    ) {
+      return;
+    }
 
-  // const handleDropChange = () => {
-  //   const place = dropAuto.current?.getPlace();
-  //   if (place?.formatted_address) {
-  //     setDrop(place.formatted_address);
-  //   }
-  // };
+    if (!/^\d$/.test(e.key)) {
+      e.preventDefault();
+      setPickupError("Text is not allowed. Only 6 digits allowed.");
+    }
+  };
 
-  // /* ---------- MOBILE POPUP SELECT ---------- */
-  // const handlePopupSelect = () => {
-  //   const place = popupAuto.current?.getPlace();
-  //   if (!place?.formatted_address) return;
+  const handlePickupChange = (e) => {
+    const rawVal = e.target.value;
+    if (/\D/.test(rawVal)) {
+      setPickupError("Text is not allowed. Only 6 digits allowed.");
+    } else {
+      setPickupError("");
+    }
+    const cleanVal = rawVal.replace(/\D/g, "").slice(0, 6);
+    setPickup(cleanVal);
+    if (cleanVal.length === 6) {
+      setPickupError("");
+    }
+  };
 
-  //   if (open === "pickup") setPickup(place.formatted_address);
-  //   if (open === "drop") setDrop(place.formatted_address);
+  const handlePickupBlur = () => {
+    if (pickup && pickup.length < 6) {
+      setPickupError("Pickup PIN code must be exactly 6 digits");
+    }
+  };
 
-  //   setOpen(null);
-  // };
+  const handleDropKeyDown = (e) => {
+    if (
+      e.key === "Backspace" ||
+      e.key === "Delete" ||
+      e.key === "Tab" ||
+      e.key === "Escape" ||
+      e.key === "Enter" ||
+      e.key === "ArrowLeft" ||
+      e.key === "ArrowRight" ||
+      e.key === "ArrowUp" ||
+      e.key === "ArrowDown" ||
+      e.ctrlKey ||
+      e.metaKey
+    ) {
+      return;
+    }
 
-  /* ---------- CURRENT LOCATION ---------- */
-  // const useCurrentLocation = (type) => {
-  //   const selectedType = type; // 🔒 lock value
+    if (!/^\d$/.test(e.key)) {
+      e.preventDefault();
+      setDropError("Text is not allowed. Only 6 digits allowed.");
+    }
+  };
 
-  //   if (!navigator.geolocation) {
-  //     alert("Geolocation not supported");
-  //     return;
-  //   }
+  const handleDropChange = (e) => {
+    const rawVal = e.target.value;
+    if (/\D/.test(rawVal)) {
+      setDropError("Text is not allowed. Only 6 digits allowed.");
+    } else {
+      setDropError("");
+    }
+    const cleanVal = rawVal.replace(/\D/g, "").slice(0, 6);
+    setDrop(cleanVal);
+    if (cleanVal.length === 6) {
+      setDropError("");
+    }
+  };
 
-  //   navigator.geolocation.getCurrentPosition(
-  //     async (pos) => {
-  //       const { latitude, longitude } = pos.coords;
-
-  //       const res = await fetch(
-  //         `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${GOOGLE_MAPS_KEY}`
-  //       );
-  //       const data = await res.json();
-  //       const address = data.results?.[0]?.formatted_address;
-
-  //       if (!address) return;
-
-  //       if (selectedType === "pickup") {
-  //         setPickup(address);
-  //       }
-
-  //       if (selectedType === "drop") {
-  //         setDrop(address);
-  //       }
-
-  //       setOpen(null); // close popup AFTER setting value
-  //     },
-  //     () => alert("Location permission denied")
-  //   );
-  // };
-
+  const handleDropBlur = () => {
+    if (drop && drop.length < 6) {
+      setDropError("Drop PIN code must be exactly 6 digits");
+    }
+  };
 
   /* ---------- BOOK NOW NAVIGATION ---------- */
   const handleBookNow = () => {
-    if (!pickup || !drop) {
-      toast.error("Please enter the pickup and drop PIN codes");
-      return;
+    let hasError = false;
+
+    if (!pickup.trim()) {
+      setPickupError("Pickup PIN code is required");
+      hasError = true;
+    } else if (!/^\d{6}$/.test(pickup.trim())) {
+      setPickupError("Pickup PIN code must be exactly 6 digits");
+      hasError = true;
+    } else {
+      setPickupError("");
     }
 
-    if (!/^\d{6}$/.test(pickup.trim())) {
-      toast.error("Pickup PIN code must be exactly 6 digits");
-      return;
+    if (!drop.trim()) {
+      setDropError("Drop PIN code is required");
+      hasError = true;
+    } else if (!/^\d{6}$/.test(drop.trim())) {
+      setDropError("Drop PIN code must be exactly 6 digits");
+      hasError = true;
+    } else {
+      setDropError("");
     }
 
-    if (!/^\d{6}$/.test(drop.trim())) {
-      toast.error("Drop PIN code must be exactly 6 digits");
+    if (hasError) {
+      toast.error("Please enter valid 6-digit PIN codes");
       return;
     }
 
@@ -136,12 +175,20 @@ export default function PorterPickupDrop() {
             Pickup PIN code
           </label>
 
-          <div className="flex items-center gap-3 bg-white border border-gray-200 rounded-2xl px-4 py-2 shadow-sm">
+          <div
+            className={`flex items-center gap-3 bg-white border ${
+              pickupError ? "border-red-500 ring-1 ring-red-400" : "border-gray-200"
+            } rounded-2xl px-4 py-2 shadow-sm transition-all`}
+          >
             {/* ICON */}
-            <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center">
+            <div
+              className={`w-10 h-10 rounded-full ${
+                pickupError ? "bg-red-50" : "bg-blue-50"
+              } flex items-center justify-center transition-colors`}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="w-5 h-5 text-blue-600"
+                className={`w-5 h-5 ${pickupError ? "text-red-500" : "text-blue-600"} transition-colors`}
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -164,13 +211,21 @@ export default function PorterPickupDrop() {
             <input
               type="text"
               inputMode="numeric"
+              pattern="[0-9]*"
               maxLength={6}
               value={pickup}
-              onChange={(e) => setPickup(e.target.value.replace(/\D/g, "").slice(0, 6))}
+              onChange={handlePickupChange}
+              onKeyDown={handlePickupKeyDown}
+              onBlur={handlePickupBlur}
               placeholder="Enter pickup PIN code"
               className="w-full outline-none bg-transparent text-gray-700 placeholder-gray-400"
             />
           </div>
+          {pickupError && (
+            <p className="text-red-500 text-xs mt-1.5 font-medium ml-1">
+              {pickupError}
+            </p>
+          )}
         </div>
 
 
@@ -180,12 +235,20 @@ export default function PorterPickupDrop() {
             Drop PIN code
           </label>
 
-          <div className="flex items-center gap-3 bg-white border border-gray-200 rounded-2xl px-4 py-2 shadow-sm">
+          <div
+            className={`flex items-center gap-3 bg-white border ${
+              dropError ? "border-red-500 ring-1 ring-red-400" : "border-gray-200"
+            } rounded-2xl px-4 py-2 shadow-sm transition-all`}
+          >
             {/* ICON */}
-            <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center">
+            <div
+              className={`w-10 h-10 rounded-full ${
+                dropError ? "bg-red-50" : "bg-blue-50"
+              } flex items-center justify-center transition-colors`}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="w-5 h-5 text-blue-600"
+                className={`w-5 h-5 ${dropError ? "text-red-500" : "text-blue-600"} transition-colors`}
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -208,13 +271,21 @@ export default function PorterPickupDrop() {
             <input
               type="text"
               inputMode="numeric"
+              pattern="[0-9]*"
               maxLength={6}
               value={drop}
-              onChange={(e) => setDrop(e.target.value.replace(/\D/g, "").slice(0, 6))}
+              onChange={handleDropChange}
+              onKeyDown={handleDropKeyDown}
+              onBlur={handleDropBlur}
               placeholder="Enter drop PIN code"
               className="w-full outline-none bg-transparent text-gray-700 placeholder-gray-400"
             />
           </div>
+          {dropError && (
+            <p className="text-red-500 text-xs mt-1.5 font-medium ml-1">
+              {dropError}
+            </p>
+          )}
         </div>
 
 

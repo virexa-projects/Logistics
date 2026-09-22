@@ -39,6 +39,42 @@ export default function Header() {
 
   const handleLinkClick = () => setIsOpen(false);
 
+  const handleTrackClick = (e) => {
+    if (pathname === "/track-your-package") {
+      e.preventDefault();
+      const el = document.getElementById("track-section");
+      if (el) {
+        const headerOffset = 90;
+        const elementPosition = el.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+        window.scrollTo({
+          top: Math.max(0, offsetPosition),
+          behavior: "smooth",
+        });
+      }
+      window.dispatchEvent(new Event("scroll-to-track"));
+    }
+    setIsOpen(false);
+  };
+
+  const handleRateCalcClick = (e) => {
+    if (pathname === "/rate-calculator") {
+      e.preventDefault();
+      const el = document.getElementById("rate-calculator-section");
+      if (el) {
+        const headerOffset = 90;
+        const elementPosition = el.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+        window.scrollTo({
+          top: Math.max(0, offsetPosition),
+          behavior: "smooth",
+        });
+      }
+      window.dispatchEvent(new Event("scroll-to-rate-calc"));
+    }
+    setIsOpen(false);
+  };
+
   return (
     <header className={`sticky top-0 z-50 transition-all duration-300 ${headerBg}`}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-5 flex justify-between items-center gap-4">
@@ -76,7 +112,7 @@ export default function Header() {
             )}
           </div>
 
-          <Link href="/rate-calculator" className="whitespace-nowrap hover:text-[#013efe] transition">Rate Calculator</Link>
+          <Link href="/rate-calculator" onClick={handleRateCalcClick} className="whitespace-nowrap hover:text-[#013efe] transition">Rate Calculator</Link>
           <Link href="/faq" className="whitespace-nowrap hover:text-[#013efe] transition">FAQs</Link>
           <Link href="/contact-us" className="whitespace-nowrap hover:text-[#013efe] transition">Contact Us</Link>
         </nav>
@@ -105,6 +141,7 @@ export default function Header() {
             {/* Main Button */}
             <Link
               href="/track-your-package"
+              onClick={handleTrackClick}
               className="
             relative
             overflow-hidden
@@ -194,7 +231,7 @@ export default function Header() {
 
             <Link
               href="/track-your-package"
-              onClick={handleLinkClick}
+              onClick={handleTrackClick}
               className="
                 relative
                 overflow-hidden
@@ -315,7 +352,7 @@ export default function Header() {
               )}
             </div>
 
-            <Link href="/rate-calculator" onClick={handleLinkClick} className="hover:text-[#013efe] py-1 transition">Rate Calculator</Link>
+            <Link href="/rate-calculator" onClick={handleRateCalcClick} className="hover:text-[#013efe] py-1 transition">Rate Calculator</Link>
             <Link href="/faq" onClick={handleLinkClick} className="hover:text-[#013efe] py-1 transition">FAQs</Link>
             <Link href="/contact-us" onClick={handleLinkClick} className="hover:text-[#013efe] py-1 transition">Contact Us</Link>
           </div>

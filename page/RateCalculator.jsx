@@ -19,17 +19,53 @@ import lugggaevariationsmobile from "@/asset/rate-lugggae-variation-mg.svg";
 function RateCalculator({ pickupFromUrl, dropFromUrl }) {
   const calculatorSectionRef = useRef(null);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      if (calculatorSectionRef.current) {
-        calculatorSectionRef.current.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
-      }
-    }, 200);
+  const scrollToCalculator = () => {
+    const el = calculatorSectionRef.current || document.getElementById("rate-calculator-section");
+    if (el) {
+      const headerOffset = 90;
+      const elementPosition = el.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      window.scrollTo({
+        top: Math.max(0, offsetPosition),
+        behavior: "smooth",
+      });
+    }
+  };
 
-    return () => clearTimeout(timer);
+  useEffect(() => {
+    // 1. Initial scroll when landing on page
+    const timer = setTimeout(scrollToCalculator, 200);
+
+    // 2. Global listener: when staying on this page and clicking any link to rate-calculator
+    const handleDocumentClick = (e) => {
+      const anchor = e.target?.closest ? e.target.closest("a") : null;
+      if (!anchor) return;
+
+      const href = anchor.getAttribute("href");
+      if (!href) return;
+
+      const cleanHref = href.split("?")[0].split("#")[0];
+      if (
+        cleanHref === "/rate-calculator" ||
+        cleanHref.endsWith("/rate-calculator") ||
+        href === "#rate-calculator-section" ||
+        href.startsWith("#rate-calculator-section")
+      ) {
+        e.preventDefault();
+        scrollToCalculator();
+      }
+    };
+
+    document.addEventListener("click", handleDocumentClick);
+    window.addEventListener("hashchange", scrollToCalculator);
+    window.addEventListener("scroll-to-rate-calc", scrollToCalculator);
+
+    return () => {
+      clearTimeout(timer);
+      document.removeEventListener("click", handleDocumentClick);
+      window.removeEventListener("hashchange", scrollToCalculator);
+      window.removeEventListener("scroll-to-rate-calc", scrollToCalculator);
+    };
   }, []);
   return (
     <div>
