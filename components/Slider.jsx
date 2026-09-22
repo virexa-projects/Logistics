@@ -106,7 +106,7 @@ export default function Slider() {
                 <div className="absolute bottom-0 left-0 right-0 h-[60%]">
                   <Image
                     src={item.img}
-                    alt=""
+                    alt="Frisbi luggage delivery feature"
                     fill
                     className="object-contain"
                   />
