@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import bg from "@/asset/profiles/cta-banner.svg"; // <<< CHANGE TO YOUR BG IMAGE
@@ -19,10 +19,23 @@ import trackbg from "@/asset/track-your-package.png";
 import tracking from "@/asset/shippment/track-your-package.svg";
 
 function Trackyourpackage() {
-
+  const trackSectionRef = useRef(null);
   const [awb, setAwb] = useState("");
   const [trackingData, setTrackingData] = useState(null);
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (trackSectionRef.current) {
+        trackSectionRef.current.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
+    }, 200);
+
+    return () => clearTimeout(timer);
+  }, []);
 
 
 
@@ -152,7 +165,11 @@ function Trackyourpackage() {
       </div>
 
       {/* TRACKING SECTION */}
-      <section className="w-full py-12 md:pt-24 ">
+      <section
+        ref={trackSectionRef}
+        id="track-section"
+        className="w-full py-12 md:pt-24 scroll-mt-24"
+      >
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 px-6 md:px-10">
           {/* IMAGE */}
           <div className="hidden md:block w-full rounded-3xl overflow-hidden ">

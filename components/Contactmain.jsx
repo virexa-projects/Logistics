@@ -9,7 +9,7 @@ import { API_CONFIG } from "@/utils/apiConfig";
 
 /* ---------------- INPUT COMPONENTS (PLACEHOLDER ONLY) ---------------- */
 
-function Input({ type = "text", name, value, onChange, placeholder }) {
+function Input({ type = "text", name, value, onChange, placeholder, maxLength, inputMode }) {
   return (
     <input
       type={type}
@@ -17,6 +17,8 @@ function Input({ type = "text", name, value, onChange, placeholder }) {
       value={value}
       onChange={onChange}
       placeholder={placeholder}
+      maxLength={maxLength}
+      inputMode={inputMode}
       required
       className="w-full bg-[#f5f5f5] text-black px-4 py-3 rounded-xl outline-none
       focus:ring-1 focus:ring-[#013efe] transition text-sm placeholder:text-sm placeholder:text-gray-600"
@@ -137,11 +139,41 @@ export default function ContactSection() {
   ];
 
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    if (name === "phone") {
+      setForm((prev) => ({ ...prev, phone: value.replace(/\D/g, "").slice(0, 10) }));
+    } else if (name === "email") {
+      setForm((prev) => ({ ...prev, email: value.toLowerCase() }));
+    } else {
+      setForm((prev) => ({ ...prev, [name]: value }));
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Email validation (lowercase only)
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const cleanEmail = form.email?.trim().toLowerCase();
+    if (!cleanEmail) {
+      toast.error("Please enter your email");
+      return;
+    }
+    if (!emailRegex.test(cleanEmail)) {
+      toast.error("Please enter a valid email address");
+      return;
+    }
+
+    // Phone validation (10 digits starting with 6-9)
+    const phoneDigits = form.phone?.replace(/\D/g, "") || "";
+    if (!phoneDigits) {
+      toast.error("Please enter your phone number");
+      return;
+    }
+    if (phoneDigits.length !== 10 || !/^[6-9]\d{9}$/.test(phoneDigits)) {
+      toast.error("Please enter a valid 10-digit mobile number");
+      return;
+    }
 
     setIsSubmitting(true);
     const toastId = toast.loading("Submitting...");
@@ -267,7 +299,7 @@ export default function ContactSection() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <Input placeholder="Name" name="name" value={form.name} onChange={handleChange} />
-                <Input placeholder="Email" name="email" value={form.email} onChange={handleChange} />
+                <Input type="email" placeholder="Email" name="email" value={form.email} onChange={handleChange} />
               </div>
 
               {/* CORPORATE ONLY */}
@@ -297,6 +329,9 @@ export default function ContactSection() {
                   placeholder="Select Service"
                 />
                 <Input
+                  type="tel"
+                  inputMode="numeric"
+                  maxLength={10}
                   placeholder="Phone Number"
                   name="phone"
                   value={form.phone}

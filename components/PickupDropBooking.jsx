@@ -105,10 +105,20 @@ export default function PorterPickupDrop() {
       return;
     }
 
+    if (!/^\d{6}$/.test(pickup.trim())) {
+      toast.error("Pickup PIN code must be exactly 6 digits");
+      return;
+    }
+
+    if (!/^\d{6}$/.test(drop.trim())) {
+      toast.error("Drop PIN code must be exactly 6 digits");
+      return;
+    }
+
     router.push(
       `/rate-calculator?pickup=${encodeURIComponent(
-        pickup
-      )}&drop=${encodeURIComponent(drop)}`
+        pickup.trim()
+      )}&drop=${encodeURIComponent(drop.trim())}`
     );
   };
 
@@ -151,27 +161,15 @@ export default function PorterPickupDrop() {
             </div>
 
             {/* INPUT */}
-            {/* {isMobile ? (
-        <input
-          readOnly
-          value={pickup}
-          placeholder="Enter pickup PIN code"
-          onClick={() => setOpen("pickup")}
-          className="w-full outline-none bg-transparent text-gray-700 placeholder-gray-400"
-        />
-      ) : ( */}
-            {/* <Autocomplete
-          // onLoad={(a) => (pickupAuto.current = a)}
-          // onPlaceChanged={handlePickupChange}
-        > */}
             <input
+              type="text"
+              inputMode="numeric"
+              maxLength={6}
               value={pickup}
-              onChange={(e) => setPickup(e.target.value)}
+              onChange={(e) => setPickup(e.target.value.replace(/\D/g, "").slice(0, 6))}
               placeholder="Enter pickup PIN code"
               className="w-full outline-none bg-transparent text-gray-700 placeholder-gray-400"
             />
-            {/* </Autocomplete> */}
-            {/* )} */}
           </div>
         </div>
 
@@ -207,27 +205,15 @@ export default function PorterPickupDrop() {
             </div>
 
             {/* INPUT */}
-            {/* {isMobile ? (
-        <input
-          readOnly
-          value={drop}
-          placeholder="Enter drop PIN code"
-          onClick={() => setOpen("drop")}
-          className="w-full outline-none bg-transparent text-gray-700 placeholder-gray-400"
-        />
-      ) : ( */}
-            {/* <Autocomplete
-          // onLoad={(a) => (dropAuto.current = a)}
-          // onPlaceChanged={handleDropChange}
-        > */}
             <input
+              type="text"
+              inputMode="numeric"
+              maxLength={6}
               value={drop}
-              onChange={(e) => setDrop(e.target.value)}
+              onChange={(e) => setDrop(e.target.value.replace(/\D/g, "").slice(0, 6))}
               placeholder="Enter drop PIN code"
               className="w-full outline-none bg-transparent text-gray-700 placeholder-gray-400"
             />
-            {/* </Autocomplete> */}
-            {/* )} */}
           </div>
         </div>
 

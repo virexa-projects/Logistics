@@ -157,21 +157,28 @@ const submitToGoogleSheet = async (values, totalPrice, router) => {
             labelUrl: values.labelUrl || "",
         };
 
-        // 1️⃣ Send to RateCalculator sheet
-        const rateCalcFormData = new URLSearchParams();
-        rateCalcFormData.append("sheetName", "RateCalculator");
-        Object.entries(payload).forEach(([key, value]) => {
-            rateCalcFormData.append(
-                key,
-                Array.isArray(value) ? value.join(", ") : value ?? ""
-            );
-        });
+        // 1️⃣ Update RateCalculator status if this booking originated from the rate calculator
+        const calcTimestamp = values.rateCalculatorUsedAt || values["Rate Calculator Used At"];
+        if (calcTimestamp && calcTimestamp !== "-") {
+            try {
+                const rateCalcFormData = new URLSearchParams();
+                rateCalcFormData.append("sheetName", "RateCalculator");
+                rateCalcFormData.append("action", "updateStatus");
+                rateCalcFormData.append("status", "Paid");
+                rateCalcFormData.append("Rate Calculator Used At", calcTimestamp);
+                rateCalcFormData.append("rateCalculatorUsedAt", calcTimestamp);
+                rateCalcFormData.append("Contact Number", values.pickupPhone || values.phone || "");
+                rateCalcFormData.append("phone", values.pickupPhone || values.phone || "");
 
-        await fetch(API_CONFIG.GOOGLE_SHEET_URL, {
-            method: "POST",
-            body: rateCalcFormData,
-            mode: "no-cors",
-        });
+                await fetch(API_CONFIG.GOOGLE_SHEET_URL, {
+                    method: "POST",
+                    body: rateCalcFormData,
+                    mode: "no-cors",
+                });
+            } catch (rErr) {
+                console.warn("RateCalculator status update warning:", rErr);
+            }
+        }
 
         // 2️⃣ Also log to Bookings sheet
         try {
@@ -343,7 +350,8 @@ export default function ShipmentFormManual({
     );
 
     const handleChange = (field, value) => {
-        setValues((prev) => ({ ...prev, [field]: value }));
+        const val = field === "email" ? value.toLowerCase() : value;
+        setValues((prev) => ({ ...prev, [field]: val }));
     };
 
     // const handleAddonChange = (addon, checked) => {
