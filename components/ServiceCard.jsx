@@ -169,12 +169,14 @@ const ServicesSection = () => {
             title="Corporate"
             description="Business delivery that handles it all. From employee moves to event travel, we handle baggage so work keeps moving."
             image={Corporate}
+            link="/book/corporate"
           />
 
           <FeatureCard
             title="Individual"
             description="When life requires extra bags, longer stays, or city transfers, we step in to make sure your luggage reaches safely."
             image={Packing}
+            link="/book/individual"
           />
         </div>
 
