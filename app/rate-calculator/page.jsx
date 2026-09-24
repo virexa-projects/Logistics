@@ -2,9 +2,9 @@ import RateCalculator from '@/page/RateCalculator'
 import React from 'react'
 
 export const metadata = {
-  title: "Luggage Delivery Cost Calculator in India | Frisbi",
+  title: "Instant Luggage Shipping Cost Calculator| Frisbi",
   description:
-    "Know your luggage parcel price in 60 seconds with Frisbi’s luggage delivery cost calculator. Calculate now, book when ready, and travel lighter. ",
+    "Looking for luggage shipping prices in Bangalore? Use Frisbi's instant calculator for transparent door-to-door baggage delivery rates. Check your price now!.",
   keywords: [
     "luggage delivery cost calculator, baggage delivery pricing, luggage parcel price calculator"
   ],

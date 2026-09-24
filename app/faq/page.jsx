@@ -2,9 +2,9 @@ import Faq from "@/page/Faq";
 import React from "react";
 
 export const metadata = {
-  title: "Luggage Delivery FAQs | Baggage Shipping Questions Answered | Frisbi",
+  title: "Luggage Delivery FAQ in Bangalore | Shipping Questions Answered | Frisbi",
   description:
-    "Find answers to common questions about Frisbi's luggage delivery service. Learn about pricing, booking, tracking, delivery times, insurance, and baggage handling across India. ",
+    "Have questions about door-to-door luggage delivery in Bangalore? Get clear answers on booking, pricing, safety, and pickup slots from Frisbi experts.",
   keywords: [
     "luggage delivery faqs india, baggage shipping questions, luggage courier frequently asked questions, baggage delivery service faq, luggage shipping questions india, how does luggage delivery work, baggage courier common questions, luggage transport faq india, frisbi service questions, baggage delivery information india.",
   ],

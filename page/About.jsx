@@ -43,7 +43,7 @@ function Aboutus() {
         {/* CONTENT */}
         <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 max-w-3xl mx-auto">
           <h1 className="text-black text-3xl md:text-4xl font-semibold mb-4">
-            Hi Frisbi Fam, Pack Everything. We'll Bring It There.
+            Bangalore’s Trusted Door-to-Door Luggage Delivery & Pickup Service
           </h1>
 
           <p className="text-black mb-8 text-sm md:text-base">
@@ -68,9 +68,12 @@ function Aboutus() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             {/* LEFT — CONTENT */}
             <div className="relative z-10 mt-10 text-center md:text-left flex flex-col items-center md:items-start">
-              <h1 className="text-black text-3xl md:text-4xl font-semibold mb-4">
-                Hi Frisbi Fam, Pack Everything. We'll Bring It There.
-              </h1>
+              <h2
+                className="text-black font-semibold mb-4"
+                style={{ fontSize: "32px", lineHeight: "1.40" }}
+              >
+                Bangalore’s Trusted Door-to-Door Luggage Delivery & Pickup Service
+              </h2>
 
               <p className="text-black mb-4 text-sm md:text-base">
                 India’s trusted luggage delivery service, built to make travel
@@ -218,7 +221,7 @@ function Aboutus() {
               <div>
                 <h4 className="text-lg font-semibold">Clarity</h4>
                 <p className="text-second text-sm mt-1 max-w-md">
-                  The price you see upfront is what you pay. Get realistic timelines and real-time updates as things move forward. 
+                  The price you see upfront is what you pay. Get realistic timelines and real-time updates as things move forward.
 
                 </p>
               </div>
@@ -226,7 +229,7 @@ function Aboutus() {
               <div>
                 <h4 className="text-lg font-semibold">Commitment</h4>
                 <p className="text-second text-sm mt-1 max-w-md">
-                 On time, every time. Scheduled pickups stay on track, delivery dates are met, and your bags arrive as promised.
+                  On time, every time. Scheduled pickups stay on track, delivery dates are met, and your bags arrive as promised.
 
                 </p>
               </div>
@@ -244,7 +247,7 @@ function Aboutus() {
         <ContactSection />
       </section>
 
-      
+
 
       <CallToAction />
       <MarqueeLogos />

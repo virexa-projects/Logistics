@@ -44,10 +44,10 @@ export default function Services() {
 
           <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 max-w-3xl mx-auto">
             <h1 className="text-black text-3xl mb-4 md:text-4xl font-semibold ">
-              Luggage Delivery Services
+              Reliable Luggage Shipping & Baggage Delivery Services in Bangalore
             </h1>
             <p className="text-black mb-4 text-sm md:text-base">
-             Thoughtfully built to make travel easier, calmer, and more predictable across India.
+              Thoughtfully built to make travel easier, calmer, and more predictable across India.
 
             </p>
 
@@ -68,10 +68,12 @@ export default function Services() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
               {/* LEFT — CONTENT */}
               <div className="relative z-10 mt-10 text-center md:text-left flex flex-col items-center md:items-start">
-                <h1 className="text-black text-3xl mb-4 md:text-4xl font-semibold ">
-                  Luggage Delivery Services
-
-                </h1>
+                <h2
+                  className="text-black font-semibold mb-4"
+                  style={{ fontSize: "32px", lineHeight: "1.40" }}
+                >
+                  Reliable Luggage Shipping & Baggage Delivery Services in Bangalore
+                </h2>
                 <p className="text-black mb-4 text-sm md:text-base">
                   Thoughtfully built to make travel easier, calmer, and more predictable across India.
                 </p>
@@ -102,7 +104,7 @@ export default function Services() {
       </div>
 
 
-<section className=" ">
+      <section className=" ">
         <Comparison />
       </section>
       <section className="bg-[#F1F2F6] ">
@@ -120,7 +122,7 @@ export default function Services() {
         <FAQSection />
       </section>
 
-     
+
 
       <section className="w-full px-4 py-12   md:py-20 md:pb-0 ">
         <div className="relative container mx-auto rounded-3xl overflow-hidden">
@@ -146,7 +148,7 @@ export default function Services() {
             <h2 className=" text-white mb-4">Your bags can travel smarter than you think.</h2>
 
             <p className="text-white mb-8 text-sm md:text-base">
-             Pick a service. Book online. Travel lighter.
+              Pick a service. Book online. Travel lighter.
 
             </p>
 
@@ -161,7 +163,7 @@ export default function Services() {
           </motion.div>
         </div>
       </section>
-       <MarqueeLogos />
+      <MarqueeLogos />
     </div>
   );
 }

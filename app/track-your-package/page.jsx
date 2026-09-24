@@ -2,9 +2,9 @@ import Trackyourpackage from '@/page/Trackyourpackage'
 import React from 'react'
 
 export const metadata = {
-  title: "Track Your Luggage Delivery | Real-Time Baggage Tracking India | Frisbi",
+  title: "Track Baggage Shipping Bangalore | Real-Time Luggage Status | Frisbi",
   description:
-    "Track your luggage shipment in real-time with Frisbi. Enter your tracking ID to see live updates, current location, and estimated delivery time for your baggage across India. ",
+    "Track your baggage shipment live in Bangalore. Enter your tracking ID for instant status updates on your scheduled luggage and parcel delivery with Frisbi.",
   keywords: [
     "track luggage delivery india, baggage tracking online, real-time luggage tracking, track my baggage shipment, luggage courier tracking india, baggage delivery status, track luggage online india, frisbi tracking number, luggage shipment tracking, live baggage tracking india"
   ],
@@ -43,7 +43,7 @@ function page() {
           })
         }}
       />
-      <Trackyourpackage/>
+      <Trackyourpackage />
     </div>
   )
 }

@@ -2,9 +2,9 @@ import Aboutus from '@/page/About';
 import React from 'react';
 
 export const metadata = {
-  title: "About Frisbi | India’s Smart Luggage Delivery Company",
+  title: "About Us | Trusted Luggage Delivery Company in Bangalore | Frisbi",
   description:
-    "Learn about Frisbi, India’s travel convenience and luggage delivery company helping travelers move bags easily across cities with secure doorstep delivery.",
+    "Discover Frisbi, Bangalore’s trusted door-to-door luggage delivery service. Learn how we make baggage shipping safe, affordable, and stress-free.",
   keywords: [
     "about Frisbi",
     "luggage delivery company India",

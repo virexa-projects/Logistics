@@ -39,7 +39,7 @@ function Individual() {
                 transition={{ duration: 0.6, delay: 0.1 }}
                 className="text-black font-extrabold text-4xl md:text-6xl max-w-xl mb-6"
               >
-                Travel Light. We Deliver Your Luggage.
+                Personal Baggage Transport & Individual Luggage Shipping Across Bangalore
               </motion.h1>
 
               <motion.p
@@ -92,15 +92,15 @@ function Individual() {
         </div>
       </section>
 
-     
+
 
       {/* SECTIONS */}
       <PerfectFor />
       <WhyChoose />
-       <Safety />
+      <Safety />
       <HowItWorks />
-    
-       <section className="  mx-auto relative px-4 py-12 md:py-16  sm:px-6 lg:px-8">
+
+      <section className="  mx-auto relative px-4 py-12 md:py-16  sm:px-6 lg:px-8">
         <Testimonials />
       </section>
       <section className=" overflow-x-hidden ">
@@ -112,7 +112,7 @@ function Individual() {
         <ContactSection />
       </section>
 
-       
+
 
       <section className="px-4 py-12   md:py-20 md:pb-0 ">
         <div className="relative container mx-auto rounded-3xl overflow-hidden">
@@ -138,7 +138,7 @@ function Individual() {
             <h2 className=" text-white mb-4">Your next trip doesn't need to feel heavy.</h2>
 
             <p className="text-white mb-8 text-sm md:text-base">
-             Thousands already ship their bags with us. Your turn.
+              Thousands already ship their bags with us. Your turn.
             </p>
 
             <div className="flex flex-wrap justify-center gap-4">
@@ -153,7 +153,7 @@ function Individual() {
           </motion.div>
         </div>
       </section>
-       <MarqueeLogos />
+      <MarqueeLogos />
     </div>
   );
 }

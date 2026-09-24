@@ -130,7 +130,7 @@ export default function ExpressServices() {
                 transition={{ duration: 0.6, delay: 0.1 }}
                 className="text-black text-4xl md:text-6xl font-black mb-6 text-center md:text-start"
               >
-                Express Delivery
+                Fast Same-Day Express Luggage Delivery & Priority Shipping in Bangalore
               </motion.h1>
 
               <motion.p
@@ -277,10 +277,10 @@ export default function ExpressServices() {
       <section className="">
         <ServiceFAQSection />
       </section>
-     
+
       <CallToAction />
 
-       <MarqueeLogos />
+      <MarqueeLogos />
     </div>
   );
 }

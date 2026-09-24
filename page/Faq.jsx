@@ -151,7 +151,7 @@ const faqData = {
       q: "What if my luggage arrives damaged?",
       a: "Report damage immediately to the delivery team and contact support within 24 hours. We investigate all damage claims and process resolution based on our insurance coverage.",
     },
-   
+
   ],
 
   "Tracking & Support": [
@@ -195,7 +195,7 @@ const faqData = {
       q: "Do you offer support in languages other than English?",
       a: "Yes. Our support team can assist in Hindi and several regional languages. Mention your preferred language when you call or message.",
     },
-    
+
   ],
 
   "Billing & Documentation": [
@@ -247,7 +247,7 @@ function Faq() {
   const [openIndex, setOpenIndex] = useState(-1);
 
   return (
-  <div className="-mt-24 -mt-16">
+    <div className="-mt-24 -mt-16">
       {/* ---------------- DESKTOP HERO ---------------- */}
       <motion.section
         initial={{ opacity: 0, y: -20 }}
@@ -265,7 +265,7 @@ function Faq() {
         />
 
         <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 max-w-3xl mx-auto">
-          <h1 className="text-black mb-4">Frequently Asked Questions</h1>
+          <h1 className="text-black mb-4">FAQ About Luggage Delivery & Baggage Shipping in Bangalore </h1>
           <p className="text-black mb-4 text-sm md:text-base">
             India’s trusted luggage delivery service built for stress-free travel.
           </p>
@@ -279,7 +279,12 @@ function Faq() {
       {/* ---------------- MOBILE HERO ---------------- */}
       <section className="md:hidden px-4 py-20">
         <div className="text-center">
-          <h1 className="text-black mb-4">Frequently Asked Questions</h1>
+          <h2
+            className="text-black font-semibold mb-4"
+            style={{ fontSize: "32px", lineHeight: "1.40" }}
+          >
+            FAQ About Luggage Delivery & Baggage Shipping in Bangalore
+          </h2>
           <p className="text-black mb-4 text-sm">
             India’s trusted luggage delivery service built for stress-free travel.
           </p>
@@ -307,16 +312,14 @@ function Faq() {
                     setActiveMenu(item);
                     setOpenIndex(-1);
                   }}
-                  className={`flex items-center justify-between p-3 cursor-pointer rounded-lg mb-2 ${
-                    activeMenu === item
-                      ? "bg-blue-50 border border-blue-500"
-                      : "hover:bg-gray-100"
-                  }`}
+                  className={`flex items-center justify-between p-3 cursor-pointer rounded-lg mb-2 ${activeMenu === item
+                    ? "bg-blue-50 border border-blue-500"
+                    : "hover:bg-gray-100"
+                    }`}
                 >
                   <span
-                    className={`text-sm font-semibold ${
-                      activeMenu === item ? "text-primary" : "text-black"
-                    }`}
+                    className={`text-sm font-semibold ${activeMenu === item ? "text-primary" : "text-black"
+                      }`}
                   >
                     {item}
                   </span>
@@ -346,9 +349,8 @@ function Faq() {
                       {faq.q}
                     </span>
                     <ChevronDown
-                      className={`w-5 h-5 transition-transform ${
-                        openIndex === index ? "rotate-180" : ""
-                      }`}
+                      className={`w-5 h-5 transition-transform ${openIndex === index ? "rotate-180" : ""
+                        }`}
                     />
                   </button>
 
@@ -372,7 +374,7 @@ function Faq() {
       </section>
 
       <Testimonials />
-   
+
 
       {/* ---------------- CTA ---------------- */}
       <section className="w-full px-4 py-12 md:py-20 md:pb-0">
@@ -392,7 +394,7 @@ function Faq() {
         </div>
       </section>
 
-         <MarqueeLogos />
+      <MarqueeLogos />
     </div>
   );
 }
