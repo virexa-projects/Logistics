@@ -53,12 +53,12 @@ export default function PremiumServices() {
     "Dedicated support when it matters",
     "Built for journeys where nothing can go wrong",
   ];
-   const ensures = [
+  const ensures = [
     "Delivered within 3 days",
     "Free premium packaging included",
     "Priority pickup and delivery slots",
     "Dedicated support throughout the journey",
-   
+
   ];
 
   const fadeUp = {
@@ -123,7 +123,7 @@ export default function PremiumServices() {
                 transition={{ duration: 0.6, delay: 0.1 }}
                 className="text-black text-4xl md:text-5xl font-bold mb-6 text-center md:text-start"
               >
-                Premium Delivery
+                Exclusive Premium Luggage Delivery & White-Glove Baggage Transport in Bangalore
               </motion.h1>
 
               <motion.p
@@ -178,50 +178,50 @@ export default function PremiumServices() {
 
       {/* ================= OVERVIEW ================= */}
       <section className="py-12 md:py-16 px-4">
-            <div className="container mx-auto grid md:grid-cols-3 items-center gap-10">
-              <Image
-                src={one}
-                alt="Overview"
-                className="rounded-3xl h-[400px] object-cover"
-              />
-    
-              <div className="md:col-span-2">
-                <h2 className="text-4xl font-bold mb-4 text-center md:text-start">
-                  Frisbi Premium Overview
-                </h2>
-                <p className="text-second mb-8 text-center md:text-start">
-                  Premium Delivery is our highest tier of luggage delivery service built for travelers who want absolute care, guaranteed timelines, and dedicated attention from start to finish.
+        <div className="container mx-auto grid md:grid-cols-3 items-center gap-10">
+          <Image
+            src={one}
+            alt="Overview"
+            className="rounded-3xl h-[400px] object-cover"
+          />
 
-                </p>
-    
-                <div className="grid lg:grid-cols-2 gap-6">
-                  <div className="bg-blue-50 p-6 rounded-3xl ">
-                    <h4 className="font-semibold mb-4">Ideal for:</h4>
-                    <ul className="space-y-3 font-semibold">
-                      {idealFor.map((item, i) => (
-                        <li key={i} className="flex gap-3">
-                          <Check className="text-primary w-5 h-5" />
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-    
-                  <div className="bg-green-50 p-6 rounded-3xl ">
-                    <h4 className="font-semibold mb-4">This service ensures:</h4>
-                    <ul className="space-y-3 font-semibold">
-                      {ensures.map((item, i) => (
-                        <li key={i} className="flex gap-3">
-                          <Check className="text-green-600 w-5 h-5" />
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
+          <div className="md:col-span-2">
+            <h2 className="text-4xl font-bold mb-4 text-center md:text-start">
+              Frisbi Premium Overview
+            </h2>
+            <p className="text-second mb-8 text-center md:text-start">
+              Premium Delivery is our highest tier of luggage delivery service built for travelers who want absolute care, guaranteed timelines, and dedicated attention from start to finish.
+
+            </p>
+
+            <div className="grid lg:grid-cols-2 gap-6">
+              <div className="bg-blue-50 p-6 rounded-3xl ">
+                <h4 className="font-semibold mb-4">Ideal for:</h4>
+                <ul className="space-y-3 font-semibold">
+                  {idealFor.map((item, i) => (
+                    <li key={i} className="flex gap-3">
+                      <Check className="text-primary w-5 h-5" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="bg-green-50 p-6 rounded-3xl ">
+                <h4 className="font-semibold mb-4">This service ensures:</h4>
+                <ul className="space-y-3 font-semibold">
+                  {ensures.map((item, i) => (
+                    <li key={i} className="flex gap-3">
+                      <Check className="text-green-600 w-5 h-5" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
-          </section>
+          </div>
+        </div>
+      </section>
 
       {/* ================= PRICING ================= */}
       <section id="pricing" className="bg-[#F1F2F6]">
@@ -278,7 +278,7 @@ export default function PremiumServices() {
 
       <ServiceFAQSection />
 
-   
+
       <section className="w-full px-4 py-12   md:py-20 md:pb-0 ">
         <div className="relative container mx-auto rounded-3xl overflow-hidden">
           {/* Background Image */}
@@ -319,8 +319,8 @@ export default function PremiumServices() {
         </div>
       </section>
       <section className="">
-   <MarqueeLogos />
-</section>
+        <MarqueeLogos />
+      </section>
     </div>
   );
 }

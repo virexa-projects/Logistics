@@ -72,7 +72,7 @@ function RateCalculator({ pickupFromUrl, dropFromUrl }) {
       <div className="-mt-24 -mt-16 ">
         <motion.section
           initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}                  
+          whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
           className="relative w-full h-[460px] md:h-[460px] overflow-hidden  md:block hidden"
@@ -88,14 +88,14 @@ function RateCalculator({ pickupFromUrl, dropFromUrl }) {
 
 
 
-          
+
 
           {/* Gradient Overlay */}
           {/* <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/40 to-blue-700/90"></div> */}
 
           {/* CONTENT */}
           <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 max-w-3xl mx-auto">
-            <h1 className="text-black mb-4">Know your price in 60 seconds.</h1>
+            <h1 className="text-black mb-4">Instant Luggage Shipping Cost & Rate Calculator in Bangalore</h1>
             <p className="text-black mb-4 text-sm md:text-base">
               Calculate now. Book when ready. Travel lighter tomorrow.
             </p>
@@ -121,9 +121,12 @@ function RateCalculator({ pickupFromUrl, dropFromUrl }) {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
               {/* LEFT — CONTENT */}
               <div className="relative z-10 mt-10 text-center md:text-left flex flex-col items-center md:items-start">
-                <h1 className="text-black mb-4">
-                  Know your price in 60 seconds.
-                </h1>
+                <h2
+                  className="text-black font-semibold mb-4"
+                  style={{ fontSize: "32px", lineHeight: "1.40" }}
+                >
+                  Instant Luggage Shipping Cost & Rate Calculator in Bangalore
+                </h2>
                 <p className="text-black mb-4 text-sm md:text-base">
                   Calculate now. Book when ready. Travel lighter tomorrow.
                 </p>
@@ -157,7 +160,7 @@ function RateCalculator({ pickupFromUrl, dropFromUrl }) {
         </section>
       </div>
 
-  
+
       <section
         ref={calculatorSectionRef}
         id="rate-calculator-section"
@@ -168,7 +171,7 @@ function RateCalculator({ pickupFromUrl, dropFromUrl }) {
           dropFromUrl={dropFromUrl}
         />
       </section>
-          <section className="container mx-auto relative px-4 py-12 md:py-20 sm:px-6 lg:px-8">
+      <section className="container mx-auto relative px-4 py-12 md:py-20 sm:px-6 lg:px-8">
         <div className="relative z-10">
           {/* 40 / 60 layout */}
           <div className="grid grid-cols-1 lg:grid-cols-[30%_70%] gap-10 items-center">

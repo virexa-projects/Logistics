@@ -42,7 +42,7 @@ const blogs = [
 
     },
 
-      {
+    {
 
         image: baggageOne,
 
@@ -56,11 +56,11 @@ const blogs = [
 
         description:
 
-          "You pack carefully, reach the airport early, and then the check-in scale stops you cold: your bag is 4 kilos over, and you owe more than you paid for half your ticket. Excess baggage charges have quietly become one of the most frustrating costs of flying within India, and most travellers only discover them at the counter when it is too late to do anything about it",
+            "You pack carefully, reach the airport early, and then the check-in scale stops you cold: your bag is 4 kilos over, and you owe more than you paid for half your ticket. Excess baggage charges have quietly become one of the most frustrating costs of flying within India, and most travellers only discover them at the counter when it is too late to do anything about it",
 
         slug: "blog/how-to-avoid-excess-baggage-charges-india",
 
-      },
+    },
 
     //   {
 
@@ -156,7 +156,7 @@ function Blogs() {
 
                     <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 max-w-3xl mx-auto">
 
-                        <h1 className="text-black mb-4">Blog</h1>
+                        <h1 className="text-black mb-4">Luggage Shipping Insights, Packing Guides & Travel Tips in Bangalore</h1>
 
                         <p className="text-black/80 text-base md:text-lg">
 

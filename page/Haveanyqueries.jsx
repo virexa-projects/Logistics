@@ -39,7 +39,7 @@ function Haveanyqueries() {
           {/* CONTENT */}
           <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 max-w-3xl mx-auto">
             <h1 className="text-black mb-4">
-              We'd 💙 to help you travel <span className="text-primary">lighter</span>
+              Baggage Shipping & Luggage Pickup Support in Bangalore
             </h1>
             <p className="text-black  text-sm md:text-base">
               Tell us what you’ve packed, overpacked, and where it all needs to go. We’ll handle the planning
@@ -53,9 +53,12 @@ function Haveanyqueries() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
               {/* LEFT — CONTENT */}
               <div className="relative z-10 mt-10 text-center md:text-left flex flex-col items-center md:items-start">
-                <h1 className="text-black mb-4">
-                  We'd 💙 to hear from you Get in touch
-                </h1>
+                <h2
+                  className="text-black font-semibold mb-4"
+                  style={{ fontSize: "32px", lineHeight: "1.40" }}
+                >
+                  Baggage Shipping & Luggage Pickup Support in Bangalore
+                </h2>
                 <p className="text-black mb-4 text-sm md:text-base">
                   Please send us an email using the form provided. Phone calls
                   are also effective.

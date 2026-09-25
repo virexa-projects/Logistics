@@ -39,7 +39,7 @@ function Corporate() {
                 transition={{ delay: 0.1 }}
                 className="text-black font-black mb-6 max-w-xl"
               >
-                Corporate Luggage Delivery Solutions
+                Bulk Luggage Shipping & B2B Corporate Baggage Logistics in Bangalore
               </motion.h1>
 
               <motion.p
@@ -47,7 +47,7 @@ function Corporate() {
                 transition={{ delay: 0.2 }}
                 className="text-black text-lg max-w-xl mb-4"
               >
-               When hundreds of bags need to move, guessing isn’t an option.
+                When hundreds of bags need to move, guessing isn’t an option.
               </motion.p>
 
               <motion.p
@@ -59,7 +59,7 @@ function Corporate() {
 
               </motion.p>
 
-              
+
 
               <motion.div {...fadeUp} transition={{ delay: 0.5 }}>
                 <a href="/rate-calculator" className="btn-primary hover:scale-105 transition-all pt-5">
@@ -85,7 +85,7 @@ function Corporate() {
         </div>
       </section>
 
-      
+
 
       <TrustedBy />
 
@@ -109,7 +109,7 @@ function Corporate() {
         <ContactSection />
       </section>
 
-    
+
 
       <section className="w-full px-4 py-12   md:py-20 md:pb-0 ">
         <div className="relative container mx-auto rounded-3xl overflow-hidden">
@@ -149,7 +149,7 @@ function Corporate() {
           </motion.div>
         </div>
       </section>
-        <MarqueeLogos />
+      <MarqueeLogos />
     </div>
   );
 }

@@ -12,7 +12,7 @@ import PorterPickupDrop from "./PickupDropBooking";
 
 const slides = [
   {
-    title: "Door-to-Door Luggage Delivery for Stress-Free Travel",
+    title: "Bangalore’s #1 Door-to-Door Luggage Delivery & Pickup Service",
     desc: "Skip the heavy bags and travel hands-free. Frisbi picks up your luggage from your doorstep and delivers it safely to your destination.",
     img: bannerone,
   },
@@ -71,15 +71,15 @@ export default function HeroSlider() {
             transition={{ duration: 0.8, ease: "easeInOut" }}
             className="absolute inset-0"
           > */}
-            <Image
-              src={bannerone}
-              alt={bannerone}
-              fill
-              priority
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-black/30" />
-          {/* </motion.div>
+        <Image
+          src={bannerone}
+          alt={bannerone}
+          fill
+          priority
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-black/30" />
+        {/* </motion.div>
         ))} */}
 
         {/* CONTENT */}
@@ -109,8 +109,8 @@ export default function HeroSlider() {
 
 
       </section>
-      <div className=" mb-7  block md:hidden" style={{ marginTop: -180, zIndex: 24, position:"relative" }}
->
+      <div className=" mb-7  block md:hidden" style={{ marginTop: -180, zIndex: 24, position: "relative" }}
+      >
         <PorterPickupDrop />
       </div>
     </div>

@@ -1,9 +1,9 @@
 import Home from "@/page/Home";
 
 export const metadata = {
-  title: "Luggage Delivery Service in Bangalore | Trusted Luggage Movers – Frisbi",
+  title: "Bangalore's Best Door-to-Door Luggage Delivery & Pickup Service | Frisbi",
   description:
-    "Frisbi offers secure luggage delivery services and trusted luggage movers in Bangalore. Send bags across India with door-to-door pickup and tracking.",
+    "Skip heavy bags! Frisbi offers secure door-to-door luggage pickup and delivery across Bangalore. Book reliable baggage shipping & travel hands-free today.",
   keywords: [
     "luggage delivery service",
     "luggage movers in Bangalore",

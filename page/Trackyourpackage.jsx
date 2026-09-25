@@ -150,7 +150,7 @@ function Trackyourpackage() {
           />
 
           <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 max-w-3xl mx-auto">
-            <h1 className="text-black  mb-4">Track your package</h1>
+            <h1 className="text-black  mb-4">Live Baggage Shipping Tracking & Luggage Delivery Status in Bangalore </h1>
             <p className="text-black mb-8 text-sm md:text-base">
               India's trusted luggage delivery service, built to make travel lighter, smarter, and stress-free.
             </p>
@@ -171,7 +171,12 @@ function Trackyourpackage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
               {/* LEFT — CONTENT */}
               <div className="relative z-10 mt-10 text-center md:text-left flex flex-col items-center md:items-start">
-                <h1 className="text-black  mb-4">Track your package</h1>
+                <h2
+                  className="text-black font-semibold mb-4"
+                  style={{ fontSize: "32px", lineHeight: "1.40" }}
+                >
+                  Live Baggage Shipping Tracking & Luggage Delivery Status in Bangalore
+                </h2>
                 <p className="text-black mb-4 text-sm md:text-base">
                   India's trusted luggage delivery service, built to make travel lighter, smarter, and stress-free.
                 </p>
@@ -212,7 +217,7 @@ function Trackyourpackage() {
             <Image
               src={tracking}
               alt="Shipment"
-          
+
               className="w-full h-[300px] md:h-[560px] object-contain"
             />
           </div>

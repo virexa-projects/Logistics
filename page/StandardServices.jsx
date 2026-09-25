@@ -105,7 +105,7 @@ export default function Services() {
     "Cost-efficient delivery",
     "Careful handling at every step",
     "Trained delivery partners",
-    "Complete tracking transparency","24x7 support throughout",
+    "Complete tracking transparency", "24x7 support throughout",
   ];
 
   const fadeUp = {
@@ -122,11 +122,11 @@ export default function Services() {
             {/* LEFT — CONTENT */}
             <div className="relative z-10 mt-10 text-center md:text-left flex flex-col items-center md:items-start">
               <p className="text-primary mb-5">
-              Safe. Affordable. Reliable.
+                Safe. Affordable. Reliable.
               </p>
 
               <motion.h1 {...fadeUp} className="text-black mb-6">
-                Standard Delivery
+                Reliable Standard Baggage Shipping & Scheduled Luggage Delivery in Bangalore
               </motion.h1>
 
               <motion.p {...fadeUp} className="text-black max-w-2xl mb-6">
@@ -172,7 +172,7 @@ export default function Services() {
         </div>
       </section>
 
-      
+
       {/* OVERVIEW */}
       <section className="py-12 md:py-24 md:pb-20  px-4">
         <div className="container mx-auto grid md:grid-cols-2 gap-10 order-2 items-center">
@@ -193,7 +193,7 @@ export default function Services() {
             <div className="grid lg:grid-cols-2 gap-6 ">
               <div className="bg-blue-50 p-6 rounded-3xl ">
                 <h4 className="font-semibold mb-4">Who gets the most value:
-</h4>
+                </h4>
                 <ul className="space-y-3 font-semibold">
                   {idealFor.map((item, i) => (
                     <li key={i} className="flex gap-3">
@@ -273,10 +273,10 @@ export default function Services() {
         <ServiceFAQSection />
       </section>
 
-      
+
 
       <CallToAction />
-       <MarqueeLogos />
+      <MarqueeLogos />
     </div>
   );
 }

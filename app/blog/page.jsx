@@ -2,9 +2,9 @@ import Blogs from '@/page/blogs'
 import React from 'react'
 
 export const metadata = {
-  title: "Luggage Transport & Travel Tips Blog | Frisbi",
+  title: "Luggage Shipping & Travel Blog Bangalore | Packing Tips | Frisbi",
   description:
-    "Explore expert insights, tips, and guides on luggage transportation, hassle-free relocations, avoiding excess baggage fees, and moving to Bangalore.",
+    "Read expert guides on luggage shipping, baggage handling, and travel tips in Bangalore. Stay updated with logistics insights from the Frisbi team.",
   keywords: [
     "luggage delivery blog, luggage transport tips Bangalore, excess baggage solutions India"
   ],
@@ -43,7 +43,7 @@ function page() {
           })
         }}
       />
-        <Blogs />
+      <Blogs />
       {/* <BookShipment /> */}
     </div>
   )
