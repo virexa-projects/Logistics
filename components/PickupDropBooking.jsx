@@ -165,9 +165,9 @@ export default function PorterPickupDrop() {
     <>
       {/* ================= BOOKING CARD ================= */}
       <div className="bg-white shadow-2xl rounded-[30px] p-6 md:p-8 max-w-md mx-auto border border-gray-100">
-        <h4 className="text-2xl font-bold text-center text-gray-800 mb-8">
+        <div className="text-xl font-bold text-center text-gray-800 mb-8 leading-tight">
           Your Booking is a Step Away!
-        </h4>
+        </div>
 
         {/* PICKUP */}
         <div className="mb-6">
@@ -176,15 +176,13 @@ export default function PorterPickupDrop() {
           </label>
 
           <div
-            className={`flex items-center gap-3 bg-white border ${
-              pickupError ? "border-red-500 ring-1 ring-red-400" : "border-gray-200"
-            } rounded-2xl px-4 py-2 shadow-sm transition-all`}
+            className={`flex items-center gap-3 bg-white border ${pickupError ? "border-red-500 ring-1 ring-red-400" : "border-gray-200"
+              } rounded-2xl px-4 py-2 shadow-sm transition-all`}
           >
             {/* ICON */}
             <div
-              className={`w-10 h-10 rounded-full ${
-                pickupError ? "bg-red-50" : "bg-blue-50"
-              } flex items-center justify-center transition-colors`}
+              className={`w-10 h-10 rounded-full ${pickupError ? "bg-red-50" : "bg-blue-50"
+                } flex items-center justify-center transition-colors`}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -236,15 +234,13 @@ export default function PorterPickupDrop() {
           </label>
 
           <div
-            className={`flex items-center gap-3 bg-white border ${
-              dropError ? "border-red-500 ring-1 ring-red-400" : "border-gray-200"
-            } rounded-2xl px-4 py-2 shadow-sm transition-all`}
+            className={`flex items-center gap-3 bg-white border ${dropError ? "border-red-500 ring-1 ring-red-400" : "border-gray-200"
+              } rounded-2xl px-4 py-2 shadow-sm transition-all`}
           >
             {/* ICON */}
             <div
-              className={`w-10 h-10 rounded-full ${
-                dropError ? "bg-red-50" : "bg-blue-50"
-              } flex items-center justify-center transition-colors`}
+              className={`w-10 h-10 rounded-full ${dropError ? "bg-red-50" : "bg-blue-50"
+                } flex items-center justify-center transition-colors`}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -289,14 +285,14 @@ export default function PorterPickupDrop() {
         </div>
 
 
-        <div style={{textAlign:"center"}}>
-                  {/* BUTTON */}
-        <button
-          onClick={handleBookNow}
-          className="btn-primary "
-        >
-          Check Price
-        </button>
+        <div style={{ textAlign: "center" }}>
+          {/* BUTTON */}
+          <button
+            onClick={handleBookNow}
+            className="btn-primary "
+          >
+            Check Price
+          </button>
         </div>
       </div>
 
