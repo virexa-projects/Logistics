@@ -2,9 +2,9 @@ import Individual from "@/app/individual";
 
 export const metadata = {
   title:
-    "Individual Luggage Delivery India | Personal Baggage Courier Service | Frisbi",
+    "Send Personal Bags Across Bangalore | Individual Luggage Transport | Frisbi",
   description:
-    "Book individual luggage delivery services with Frisbi. Send bags safely across India with doorstep pickup, tracking, and stress-free travel convenience.",
+    "Moving bags between locations in Bangalore? Book Frisbi for fast, secure individual baggage transport and personal luggage shipping across the city.",
   keywords: ["individual luggage delivery"],
   alternates: {
     canonical: 'https://frisbi.in/book/individual',

@@ -2,9 +2,9 @@ import Corporate from '@/page/corporate';
 import React from 'react';
 
 export const metadata = {
-  title: "Corporate Luggage Delivery Solutions in Bangalore | Frisbi",
+  title: "Bulk Luggage Shipping for Businesses Bangalore | B2B Logistics | Frisbi",
   description:
-    "Frisbi provides corporate luggage delivery solutions and parcel services in Bangalore for businesses, hotels, events, and employee travel logistics.",
+    "Need commercial baggage transport or bulk luggage shipping for your business in Bangalore? Partner with Frisbi for reliable B2B corporate logistics.",
   keywords: [
     "Corporate Luggage Delivery Solutions",
     "corporate parcel service",
