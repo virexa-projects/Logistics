@@ -622,6 +622,15 @@ export default function ShipmentBookingForm({
       return;
     }
 
+    // ⛔ RAZORPAY TEMPORARILY DISABLED — Bank issue. Re-enable by restoring the commented block below.
+    toast.success(
+      "Your booking is confirmed! Our support team will contact you soon. 🎉",
+      { duration: 6000 }
+    );
+
+    /* ============================================================
+    // 🔁 RAZORPAY FLOW — RESTORE THIS BLOCK WHEN BANK IS FIXED
+    // ============================================================
     try {
       // ✅ WAIT FOR RAZORPAY SDK
       await new Promise((resolve) => {
@@ -853,6 +862,7 @@ export default function ShipmentBookingForm({
       toast.error(err.message || "Could not initiate payment");
       setIsProcessingPayment(false);
     }
+    // ============================================================ */
   };
 
 
