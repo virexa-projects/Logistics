@@ -31,7 +31,18 @@ export default function sitemap() {
       changeFrequency: "monthly",
       priority: 0.8,
     },
-
+    {
+      url: "https://frisbi.in/blog/moving-to-bangalore-luggage-transport",
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: "https://frisbi.in/blog/`how-to-avoid-excess-baggage-charges-india",
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
     {
       url: "https://frisbi.in/contact-us",
       lastModified: new Date(),
