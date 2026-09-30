@@ -38,7 +38,7 @@ export default function sitemap() {
       priority: 0.7,
     },
     {
-      url: "https://frisbi.in/blog/`how-to-avoid-excess-baggage-charges-india",
+      url: "https://frisbi.in/blog/how-to-avoid-excess-baggage-charges-india",
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.7,
