@@ -17,6 +17,7 @@ import aboutmobile from "@/asset/about/about-banner-img.svg";
 
 import trackbg from "@/asset/track-your-package.png";
 import tracking from "@/asset/shippment/track-your-package.svg";
+import { API_CONFIG } from "@/utils/apiConfig";
 
 function Trackyourpackage() {
   const trackSectionRef = useRef(null);
@@ -76,56 +77,92 @@ function Trackyourpackage() {
 
 
   const handleTrack = async () => {
-    if (!awb) {
+    const cleanAwb = awb.trim();
+    if (!cleanAwb) {
       alert("Enter tracking code");
       return;
     }
 
     try {
       setLoading(true);
+      setTrackingData(null);
 
-      // 1️⃣ LOGIN
-      const loginRes = await fetch(
-        "https://shipment.xpressbees.com/api/users/login",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email: "javidsherif1@gmail.com",
-            password: "Frisbi@2026",
-          }),
+      let found = false;
+
+      // 1️⃣ ATTEMPT 1: XPRESSBEES
+      try {
+        const loginRes = await fetch(
+          API_CONFIG.XPRESSBEES_LOGIN_URL || "https://shipment.xpressbees.com/api/users/login",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              email: API_CONFIG.XPRESSBEES_EMAIL || "javidsherif1@gmail.com",
+              password: API_CONFIG.XPRESSBEES_PASSWORD || "Frisbi@2026",
+            }),
+          }
+        );
+
+        const loginData = await loginRes.json();
+        const token = loginData?.data;
+
+        if (token) {
+          const xpressTrackUrl = API_CONFIG.XPRESSBEES_TRACK_URL || "https://shipment.xpressbees.com/api/shipments2/track/";
+          const trackRes = await fetch(
+            `${xpressTrackUrl}${cleanAwb}`,
+            {
+              method: "GET",
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
+
+          const xpressData = await trackRes.json();
+
+          // Check if Xpressbees returned valid shipment data
+          if (
+            xpressData &&
+            (xpressData.status === true || xpressData.status === 200) &&
+            xpressData.data &&
+            (xpressData.data.status || xpressData.data.awb_number)
+          ) {
+            setTrackingData({
+              ...xpressData,
+              courier: "Xpressbees",
+            });
+            found = true;
+          }
         }
-      );
-
-      const loginData = await loginRes.json();
-      const token = loginData.data;
-
-      if (!token) {
-        alert("Login failed");
-        return;
+      } catch (xbErr) {
+        console.warn("Xpressbees tracking attempt error:", xbErr);
       }
 
-      // 2️⃣ TRACK API
-      const trackRes = await fetch(
-        `https://shipment.xpressbees.com/api/shipments2/track/${awb}`,
-        {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+      // 2️⃣ ATTEMPT 2 (IF-ELSE): DELHIVERY
+      if (!found) {
+        try {
+          const delhiveryRes = await fetch(
+            `/api/delhivery/track?waybill=${encodeURIComponent(cleanAwb)}`
+          );
+          const delhiveryData = await delhiveryRes.json();
+
+          if (delhiveryData && delhiveryData.status === true && delhiveryData.data) {
+            setTrackingData(delhiveryData);
+            found = true;
+          }
+        } catch (delErr) {
+          console.warn("Delhivery tracking attempt error:", delErr);
         }
-      );
+      }
 
-      const data = await trackRes.json();
-
-      // console.log("TRACK RESULT", data);
-      setTrackingData(data);
-
+      if (!found) {
+        alert("No shipment details found for this tracking code in Xpressbees or Delhivery.");
+      }
     } catch (err) {
-      console.error(err);
-      alert("Tracking failed");
+      console.error("Tracking failed:", err);
+      alert("Tracking failed. Please check your tracking code and try again.");
     } finally {
       setLoading(false);
     }
@@ -242,6 +279,9 @@ function Trackyourpackage() {
                   placeholder="Enter your tracking code"
                   value={awb}
                   onChange={(e) => setAwb(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") handleTrack();
+                  }}
                   className="w-full rounded-lg px-4 py-3 bg-[#f5f5f5] outline-none"
                 />
                 <p className="text-second text-[15px] mt-2">

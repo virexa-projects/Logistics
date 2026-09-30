@@ -30,4 +30,25 @@ export const API_CONFIG = {
   RAZORPAY_ENV,
   RAZORPAY_KEY_ID: RAZORPAY_KEYS[RAZORPAY_ENV]?.key_id || RAZORPAY_KEYS.test.key_id,
   RAZORPAY_KEY_SECRET: RAZORPAY_KEYS[RAZORPAY_ENV]?.key_secret || RAZORPAY_KEYS.test.key_secret,
+
+  // Xpressbees Tracking Config
+  XPRESSBEES_LOGIN_URL:
+    process.env.NEXT_PUBLIC_XPRESSBEES_LOGIN_URL ||
+    "https://shipment.xpressbees.com/api/users/login",
+  XPRESSBEES_TRACK_URL:
+    process.env.NEXT_PUBLIC_XPRESSBEES_TRACK_URL ||
+    "https://shipment.xpressbees.com/api/shipments2/track/",
+  XPRESSBEES_EMAIL:
+    process.env.NEXT_PUBLIC_XPRESSBEES_EMAIL || "javidsherif1@gmail.com",
+  XPRESSBEES_PASSWORD:
+    process.env.NEXT_PUBLIC_XPRESSBEES_PASSWORD || "Frisbi@2026",
+
+  // Delhivery Tracking Config
+  DELHIVERY_TRACK_URL:
+    process.env.NEXT_PUBLIC_DELHIVERY_TRACK_URL ||
+    "https://track.delhivery.com/api/v1/packages/json/?waybill=",
+  DELHIVERY_AUTH_KEY:
+    process.env.NEXT_PUBLIC_DELHIVERY_AUTH_KEY ||
+    process.env.DELHIVERY_AUTH_KEY ||
+    "e3630a846c1564f34e8e42435ab7607dd766cf90", // Delhivery Token / Authorization key
 };
