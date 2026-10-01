@@ -3,6 +3,54 @@ export const runtime = "nodejs";
 import { API_CONFIG } from "@/utils/apiConfig";
 
 /**
+ * Formats raw timestamps (e.g. "2026-09-29T23:23:01.271") to "YYYY-MM-DD HH:mm" (24-hour Indian Time)
+ */
+function formatIndianDateTime(dateStr) {
+  if (!dateStr || typeof dateStr !== "string") return dateStr || "";
+  const cleanStr = dateStr.trim();
+  if (!cleanStr) return "";
+
+  // If already in YYYY-MM-DD HH:mm format, return directly
+  if (/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}$/.test(cleanStr)) {
+    return cleanStr;
+  }
+
+  // Ensure Indian timezone offset if no offset specified
+  let isoStr = cleanStr.replace(" ", "T");
+  if (!isoStr.endsWith("Z") && !/[+-]\d{2}:?\d{2}$/.test(isoStr)) {
+    isoStr += "+05:30";
+  }
+
+  const d = new Date(isoStr);
+  if (isNaN(d.getTime())) {
+    const m = cleanStr.match(/^(\d{4}-\d{2}-\d{2})[T ](\d{2}:\d{2})/);
+    return m ? `${m[1]} ${m[2]}` : cleanStr;
+  }
+
+  const formatter = new Intl.DateTimeFormat("en-CA", {
+    timeZone: "Asia/Kolkata",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  });
+
+  const parts = formatter.formatToParts(d);
+  const getPart = (type) => parts.find((p) => p.type === type)?.value || "";
+
+  const year = getPart("year");
+  const month = getPart("month");
+  const day = getPart("day");
+  let hour = getPart("hour");
+  if (hour === "24") hour = "00";
+  const minute = getPart("minute");
+
+  return `${year}-${month}-${day} ${hour}:${minute}`;
+}
+
+/**
  * Normalizes Delhivery response to match the Xpressbees tracking structure
  */
 function normalizeDelhiveryResponse(raw, waybill) {
@@ -50,11 +98,12 @@ function normalizeDelhiveryResponse(raw, waybill) {
         detail.ScanLocation ||
         detail.Location ||
         "",
-      event_time:
+      event_time: formatIndianDateTime(
         detail.ScanDateTime ||
         detail.StatusDateTime ||
         detail.DateTime ||
-        "",
+        ""
+      ),
     };
   });
 
