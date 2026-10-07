@@ -68,9 +68,9 @@ export function Features() {
                   </div>
 
                   {/* Content */}
-                  <h5 className="mb-2 text-black">
+                  <h3 className="mb-2 text-black !text-[20px]">
                     {feature.title}
-                  </h5>
+                  </h3  >
                   <p className="text-second flex-grow">
                     {feature.description}
                   </p>

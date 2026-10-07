@@ -115,7 +115,7 @@ export function HowItWorks() {
                   </div>
 
                   {/* Text */}
-                  <h4 className="text-lg font-bold mb-2">{step.title}</h4>
+                  <h3 className="!text-[20px] font-bold mb-2">{step.title}</h3>
                   <p className="text-gray-600">{step.description}</p>
                 </motion.div>
               );

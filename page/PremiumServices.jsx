@@ -196,7 +196,7 @@ export default function PremiumServices() {
 
             <div className="grid lg:grid-cols-2 gap-6">
               <div className="bg-blue-50 p-6 rounded-3xl ">
-                <h4 className="font-semibold mb-4">Ideal for:</h4>
+                <h3 className="font-semibold mb-4 !text-[20px">Ideal for:</h3>
                 <ul className="space-y-3 font-semibold">
                   {idealFor.map((item, i) => (
                     <li key={i} className="flex gap-3">
@@ -208,7 +208,7 @@ export default function PremiumServices() {
               </div>
 
               <div className="bg-green-50 p-6 rounded-3xl ">
-                <h4 className="font-semibold mb-4">This service ensures:</h4>
+                <h3 className="font-semibold mb-4 !text-[20px">This service ensures:</h3>
                 <ul className="space-y-3 font-semibold">
                   {ensures.map((item, i) => (
                     <li key={i} className="flex gap-3">
@@ -251,7 +251,7 @@ export default function PremiumServices() {
                         {step.number}
                       </div> */}
                     </div>
-                    <h4 className="mb-2">{step.title}</h4>
+                    <h3 className="mb-2 !text-[20px]">{step.title}</h3>
                     <p className="text-second">{step.description}</p>
                   </div>
 

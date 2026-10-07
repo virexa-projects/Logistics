@@ -267,48 +267,48 @@ function Shippingpolicy() {
           <p className="text-second mt-4">
             Frisbi ensures professional handling throughout the delivery chain.
           </p>
-          <div class="overflow-x-auto mt-4">
-            <table class="min-w-full border border-[#f5f5f5] rounded-lg">
-              <thead class="bg-gray-100">
+          <div className="overflow-x-auto mt-4">
+            <table className="min-w-full border border-[#f5f5f5] rounded-lg">
+              <thead className="bg-gray-100">
                 <tr>
-                  <th class="px-4 py-2 text-left font-semibold border border-[#f5f5f5]">
+                  <th className="px-4 py-2 text-left font-semibold border border-[#f5f5f5]">
                     Packaging Status
                   </th>
-                  <th class="px-4 py-2 text-left font-semibold border border-[#f5f5f5]">
+                  <th className="px-4 py-2 text-left font-semibold border border-[#f5f5f5]">
                     Compensation Eligibility
                   </th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td class="px-4 py-2 border border-[#f5f5f5]">
+                  <td className="px-4 py-2 border border-[#f5f5f5]">
                     Customer packed securely
                   </td>
-                  <td class="px-4 py-2 border border-[#f5f5f5]">
+                  <td className="px-4 py-2 border border-[#f5f5f5]">
                     Covered up to maximum insurance (if opted)
                   </td>
                 </tr>
-                <tr class="bg-gray-50">
-                  <td class="px-4 py-2 border border-[#f5f5f5]">
+                <tr className="bg-gray-50">
+                  <td className="px-4 py-2 border border-[#f5f5f5]">
                     Customer packed inadequately
                   </td>
-                  <td class="px-4 py-2 border border-[#f5f5f5]">
+                  <td className="px-4 py-2 border border-[#f5f5f5]">
                     Limited or no coverage
                   </td>
                 </tr>
                 <tr>
-                  <td class="px-4 py-2 border border-[#f5f5f5]">
+                  <td className="px-4 py-2 border border-[#f5f5f5]">
                     Fragile items declared
                   </td>
-                  <td class="px-4 py-2 border border-[#f5f5f5]">
+                  <td className="px-4 py-2 border border-[#f5f5f5]">
                     Eligible for conditional compensation
                   </td>
                 </tr>
-                <tr class="bg-gray-50">
-                  <td class="px-4 py-2 border border-[#f5f5f5]">
+                <tr className="bg-gray-50">
+                  <td className="px-4 py-2 border border-[#f5f5f5]">
                     Fragile items not declared
                   </td>
-                  <td class="px-4 py-2 border border-[#f5f5f5]">
+                  <td className="px-4 py-2 border border-[#f5f5f5]">
                     No compensation
                   </td>
                 </tr>

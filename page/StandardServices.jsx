@@ -192,8 +192,8 @@ export default function Services() {
 
             <div className="grid lg:grid-cols-2 gap-6 ">
               <div className="bg-blue-50 p-6 rounded-3xl ">
-                <h4 className="font-semibold mb-4">Who gets the most value:
-                </h4>
+                <h3 className="font-semibold mb-4 !text-[20px]">Who gets the most value:
+                </h3>
                 <ul className="space-y-3 font-semibold">
                   {idealFor.map((item, i) => (
                     <li key={i} className="flex gap-3">
@@ -205,7 +205,7 @@ export default function Services() {
               </div>
 
               <div className="bg-green-50 p-6 rounded-3xl ">
-                <h4 className="font-semibold mb-4">What you can count on:</h4>
+                <h3 className="font-semibold mb-4 !text-[20px]">What you can count on:</h3>
                 <ul className="space-y-3 font-semibold">
                   {ensures.map((item, i) => (
                     <li key={i} className="flex gap-3">
@@ -245,7 +245,7 @@ export default function Services() {
                         {step.number}
                       </div> */}
                     </div>
-                    <h4 className="mb-2">{step.title}</h4>
+                    <h3 className="mb-2 !text-[20px]">{step.title}</h3>
                     <p className="text-second">{step.description}</p>
                   </div>
 

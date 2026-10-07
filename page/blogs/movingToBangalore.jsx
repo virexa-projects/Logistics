@@ -103,18 +103,18 @@ export default function MovingToBangalore() {
 
 
               <div className="border-l-4 border-[#013efe] bg-blue-50 p-6 rounded-r-xl mb-6">
-                <h5 className="text-2xl font-bold text-gray-900 mb-3">
+                <h3 className="!text-[20px] font-bold text-gray-900 mb-3">
                   Traffic and Distance
-                </h5>
+                </h3>
 
                 <p className="text-lg leading-8 text-gray-700">
                   Bangalore is sprawling. Areas like Whitefield, Electronic City, and Sarjapur are far from the airport and railway stations, which means extra time and cost just to reach your final address with your bags.
                 </p>
               </div>
               <div className="border-l-4 border-[#013efe] bg-blue-50 p-6 rounded-r-xl mb-6">
-                <h5 className="text-2xl font-bold text-gray-900 mb-3">
+                <h3 className="!text-[20px] font-bold text-gray-900 mb-3">
                   Finding accommodation first
-                </h5>
+                </h3>
 
                 <p className="text-lg leading-8 text-gray-700">
                   Many people move before their house or PG is fully ready, leaving them juggling luggage with no fixed place to store it.
@@ -122,9 +122,9 @@ export default function MovingToBangalore() {
                 </p>
               </div>
               <div className="border-l-4 border-[#013efe] bg-blue-50 p-6 rounded-r-xl mb-6">
-                <h5 className="text-2xl font-bold text-gray-900 mb-3">
+                <h3 className="!text-[20px] font-bold text-gray-900 mb-3">
                   Cost adds up fast.
-                </h5>
+                </h3>
 
                 <p className="text-lg leading-8 text-gray-700">
                   Deposits, brokerage, transport, and travel, relocation expenses pile on quickly, so you want to avoid overpaying for moving your belongings.
@@ -132,9 +132,9 @@ export default function MovingToBangalore() {
                 </p>
               </div>
               <div className="border-l-4 border-[#013efe] bg-blue-50 p-6 rounded-r-xl mb-6">
-                <h5 className="text-2xl font-bold text-gray-900 mb-3">
+                <h3 className="!text-[20px] font-bold text-gray-900 mb-3">
                   Doing it all alone.
-                </h5>
+                </h3>
 
                 <p className="text-lg leading-8 text-gray-700">
                   Most people relocating for a job or education don't have help on the ground, so every bag becomes their personal responsibility from doorstep to doorstep.
@@ -177,9 +177,9 @@ export default function MovingToBangalore() {
 
 
             <div className="bg-white rounded-xl p-6 shadow-md border mt-2">
-              <h5 className="text-2xl font-bold text-center text-gray-900">
+              <h3 className="!text-[20px] font-bold text-center text-gray-900">
                 Lost luggage on Indian trains: reported vs recovered
-              </h5>
+              </h3>
 
               <p className="text-center text-gray-500 mt-2 mb-8">
                 Complaints rose ~36% in a year, while barely 1 in 10 items ever made it
@@ -239,9 +239,9 @@ export default function MovingToBangalore() {
 
             {/* Comparison */}
             <div className="mt-16">
-              <h4 className="text-4xl font-bold mb-3">
+              <h3 className="!text-[20px] font-semibold mb-3">
                 Different Ways to Move Your Luggage:
-              </h4>
+              </h3>
 
               <p className="text-lg leading-8 text-gray-700">When it comes to transporting your luggage to Bangalore, you have a few options. Here's how they compare:</p>
 
@@ -310,9 +310,9 @@ export default function MovingToBangalore() {
                         <span className="text-[#013efe] text-xl">✓</span>
                       </div>
 
-                      <h4 className="text-xl font-semibold text-gray-900">
+                      <h3 className="!text-[20px] font-semibold text-gray-900">
                         {item.title}
-                      </h4>
+                      </h3>
                     </div>
 
                     <p className="text-gray-600 leading-7">
@@ -329,9 +329,9 @@ export default function MovingToBangalore() {
 
             {/* Tips */}
             <section className="my-6">
-              <h4 className="text-4xl font-bold text-gray-900 mb-4">
+              <h3 className="!text-[27px] font-bold text-gray-900 mb-4">
                 Tips for a Hassle-Free Relocation:
-              </h4>
+              </h3>
 
               <p className="text-lg text-gray-600 mb-10 leading-8">
                 A little planning goes a long way. Keep these tips in mind to make your move smooth:
@@ -339,27 +339,27 @@ export default function MovingToBangalore() {
 
               <div className="space-y-8 border-l-2 border-gray-200 pl-8">
                 <div>
-                  <h5 className="text-2xl font-semibold text-gray-900 mb-2">
+                  <h3 className="!text-[20px] font-semibold text-gray-900 mb-2">
                     Book your luggage transport early.
-                  </h5>
+                  </h3>
                   <p className="text-gray-700 leading-8">
                     Schedule your pickup a few days before you travel so there's no last-minute scramble.
                   </p>
                 </div>
 
                 <div>
-                  <h5 className="text-2xl font-semibold text-gray-900 mb-2">
+                  <h3 className="!text-[20px] font-semibold text-gray-900 mb-2">
                     Declutter before you pack.
-                  </h5>
+                  </h3>
                   <p className="text-gray-700 leading-8">
                     Don't pay to move things you'll never use. Sort, donate, or sell what you don't need.
                   </p>
                 </div>
 
                 <div>
-                  <h5 className="text-2xl font-semibold text-gray-900 mb-2">
+                  <h3 className="!text-[20px] font-semibold text-gray-900 mb-2">
                     Label and list your bags.
-                  </h5>
+                  </h3>
                   <p className="text-gray-700 leading-8">
                     Keep a simple inventory and label each bag so nothing goes missing in transit.
 
@@ -367,9 +367,9 @@ export default function MovingToBangalore() {
                 </div>
 
                 <div>
-                  <h5 className="text-2xl font-semibold text-gray-900 mb-2">
+                  <h3 className="!text-[20px] font-semibold text-gray-900 mb-2">
                     Keep essentials with you.
-                  </h5>
+                  </h3>
                   <p className="text-gray-700 leading-8">
                     Pack a small carry-on with documents, chargers, medicines, and a change of clothes for your travel day.
 
@@ -377,9 +377,9 @@ export default function MovingToBangalore() {
                 </div>
 
                 <div>
-                  <h5 className="text-2xl font-semibold text-gray-900 mb-2">
+                  <h3 className="!text-[20px] font-semibold text-gray-900 mb-2">
                     Confirm your delivery address.
-                  </h5>
+                  </h3>
                   <p className="text-gray-700 leading-8">
                     Make sure someone can receive your bags in Bangalore, or coordinate timing with your delivery service.
 
@@ -390,7 +390,7 @@ export default function MovingToBangalore() {
 
 
             <section className="my-20">
-              <h3 className="text-4xl font-bold text-gray-900 mb-6">
+              <h3 className="!text-[27px] font-bold text-gray-900 mb-6">
                 Conclusion:
               </h3>
 
@@ -465,7 +465,7 @@ export default function MovingToBangalore() {
                     key={index}
                     className="border rounded-xl p-6 bg-gray-50"
                   >
-                    <h4 className="font-semibold text-xl">{faq.q}</h4>
+                    <h3 className="!text-[20px] font-semibold">{faq.q}</h3>
                     <p className="mt-3 text-gray-600">{faq.a}</p>
                   </div>
                 ))}

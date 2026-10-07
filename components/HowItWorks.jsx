@@ -57,7 +57,7 @@ export function HowItWorks() {
                     {step.number}
                   </div> */}
                 </div>
-                <h5 className="mb-2">{step.title}</h5>
+                <h3 className="mb-2 !text-[20px]">{step.title}</h3>
                 <p className="text-second">{step.description}</p>
               </div>
 

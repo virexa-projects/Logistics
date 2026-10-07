@@ -56,9 +56,9 @@ function BaggageChargesIndia() {
                     <div className="max-w-5xl mx-auto">
                         <p className="text-lg text-gray-700 leading-9">You pack carefully, reach the airport early, and then the check-in scale stops you cold: your bag is 4 kilos over, and you owe more than you paid for half your ticket. Excess baggage charges have quietly become one of the most frustrating costs of flying within India, and most travellers only discover them at the counter when it is too late to do anything about it.</p>
                         <p className="text-lg text-gray-700 leading-9 mt-3">The good news is that these fees are almost entirely avoidable. With a little planning, and the right alternative for heavier loads, you never have to hand over another rupee in excess baggage charges again. Here is exactly how.</p>
-                        <h5 className="text-2xl font-bold text-gray-900 mb-3 mt-4">
+                        <h3 className="!text-[23px] font-bold text-gray-900 mb-3 mt-4">
                             Why Airline Excess Baggage Fees Are Increasing
-                        </h5>
+                        </h3>
 
                         <p className="text-lg text-gray-700 leading-9">
                             Indian airlines have steadily moved toward an "unbundled" pricing model, where your fare buys you a seat and very little else. Baggage, seat selection, and meals are now treated as separate add-ons. Under this approach, your free check-in allowance has shrunk while the cost of exceeding it has climbed.
@@ -69,16 +69,16 @@ function BaggageChargesIndia() {
                             The numbers tell the story. Excess baggage fees across Indian carriers rose by roughly 18% between 2024 and 2026, and today most domestic airlines charge somewhere between ₹600 and ₹700 per kilogram at the airport counter. On a basic economy fare, your free check-in allowance is usually just 15 kg in a single piece, plus 7 kg of cabin baggage. Step beyond that, and the meter starts running fast. </p>
 
                         <p className="text-lg text-gray-700 leading-9 mt-4">For airlines, baggage fees are pure ancillary revenue, a high-margin income stream that grows with every passenger who packs an extra pair of shoes. For travellers, it means the era of generous 20 kg and 25 kg free allowances on cheap tickets is largely over. Understanding this shift is the first step to keeping your money in your own pocket.</p>
-                        <h5 className="text-2xl font-bold text-gray-900 mb-3 mt-4">
+                        <h3 className="!text-[23px] font-bold text-gray-900 mb-3 mt-4">
                             Common Reasons Travelers Pay Extra
-                        </h5>
+                        </h3>
                         <p className="text-lg text-gray-700 leading-9 mt-4">Most excess baggage charges are not the result of reckless overpacking. They come from small, predictable mistakes that catch even seasoned flyers off guard.</p>
                         <p className="text-lg text-gray-700 leading-9 mt-4">The biggest culprit is the single-piece rule. On low-cost domestic fares from IndiGo, SpiceJet, and Akasa, your 15 kg allowance must fit into one bag. Split it into two suitcases of 7.5 kg each and the second bag is billed as an "extra piece," often ₹1,800 to ₹3,400, even though your total weight was within limit.</p>
                         <p className="text-lg text-gray-700 leading-9 mt-4">The second is fare confusion. Travellers assume every ticket includes 20 kg, but allowances now vary by fare class. A Saver fare and a Flexi fare on the same flight can carry very different baggage rights.</p>
                         <p className="text-lg text-gray-700 leading-9 mt-4">Other frequent traps include forgetting that cabin baggage is capped at 7 kg and gets weighed at busy metro airports, underestimating the weight of gifts and shopping picked up during the trip, and leaving baggage decisions until check-in, when airport rates are at their highest. Each of these turns a manageable trip into an unexpected bill.</p>
-                        <h5 className="text-2xl font-bold text-gray-900 mb-3 mt-4">
+                        <h3 className="!text-[23px] font-bold text-gray-900 mb-3 mt-4">
                             Smart Ways to Avoid Excess Baggage Charges
-                        </h5>
+                        </h3>
                         <p className="text-lg text-gray-700 leading-9 mt-4">If you do plan to fly with all your luggage, a handful of disciplined habits will keep your costs down.</p>
 
 
@@ -101,9 +101,9 @@ function BaggageChargesIndia() {
 
                             <div className="mt-10 rounded-2xl ">
 
-                                <h4 className="text-xl font-semibold text-gray-900">
+                                <h3 className="!text-[20px] font-semibold text-gray-900">
                                     Weigh Everything at Home
-                                </h4>
+                                </h3>
 
                                 <p className="mt-3 leading-8 text-gray-600">
                                     A basic digital scale costs less than a single excess baggage penalty. Stand on a bathroom scale holding your bag, subtract your weight, and you will know exactly where you stand before you leave the house.
@@ -115,9 +115,9 @@ function BaggageChargesIndia() {
 
                             <div className="mt-8">
 
-                                <h4 className="text-xl font-semibold text-gray-900">
+                                <h3 className="!text-[20px] font-semibold text-gray-900">
                                     Pre-book Extra Weight Online
-                                </h4>
+                                </h3>
 
                                 <p className="mt-3 leading-8 text-gray-600">
                                     This is the single most effective tactic. Buying additional allowance through the airline's "Manage Booking" section, rather than at the airport, typically saves 30% to 50%. Across a sample of bookings in 2026, the average airport excess charge was around ₹3,260 versus roughly ₹1,847 online for the same weight.
@@ -129,9 +129,9 @@ function BaggageChargesIndia() {
 
                             <div className="mt-8">
 
-                                <h4 className="text-xl font-semibold text-gray-900">
+                                <h3 className="!text-[20px] font-semibold text-gray-900">
                                     Match your fare to your packing style.
-                                </h4>
+                                </h3>
 
                                 <p className="mt-3 leading-8 text-gray-600">
                                     If you regularly travel with 16 to 20 kg, a slightly higher fare class with a 20 kg allowance often costs less than paying per-kilo excess baggage charges on a cheaper ticket.
@@ -142,9 +142,9 @@ function BaggageChargesIndia() {
 
                             <div className="mt-8">
 
-                                <h4 className="text-xl font-semibold text-gray-900">
+                                <h3 className="text-xl font-semibold text-gray-900">
                                     Wear your heaviest items.
-                                </h4>
+                                </h3>
 
                                 <p className="mt-3 leading-8 text-gray-600">
                                     Boots, jackets, and bulky layers worn onto the plane do not count against your allowance.
@@ -155,9 +155,9 @@ function BaggageChargesIndia() {
 
                             <div className="mt-8">
 
-                                <h4 className="text-xl font-semibold text-gray-900">
+                                <h3 className="!text-[20px] font-semibold text-gray-900">
                                     Use compression packing cubes.
-                                </h4>
+                                </h3>
 
                                 <p className="mt-3 leading-8 text-gray-600">
                                     They will not reduce weight, but they help you avoid a second-piece charge by keeping everything in one bag.
@@ -221,9 +221,9 @@ function BaggageChargesIndia() {
                                 <div className="mt-10 grid gap-5 sm:grid-cols-2">
 
                                     <div className="rounded-xl border border-gray-200 bg-gray-50 p-5">
-                                        <h4 className="text-lg font-semibold text-gray-900">
+                                        <h3 className="!text-[20px] font-semibold text-gray-900">
                                             Save More
-                                        </h4>
+                                        </h3>
 
                                         <p className="mt-2 text-gray-600">
                                             Avoid high airline excess baggage fees by choosing a more
@@ -232,9 +232,9 @@ function BaggageChargesIndia() {
                                     </div>
 
                                     <div className="rounded-xl border border-gray-200 bg-gray-50 p-5">
-                                        <h4 className="text-lg font-semibold text-gray-900">
+                                        <h3 className="!text-[20px] font-semibold text-gray-900">
                                             Travel Hands-Free
-                                        </h4>
+                                        </h3>
 
                                         <p className="mt-2 text-gray-600">
                                             Skip hauling heavy luggage through airports, security
@@ -243,9 +243,9 @@ function BaggageChargesIndia() {
                                     </div>
 
                                     <div className="rounded-xl border border-gray-200 bg-gray-50 p-5">
-                                        <h4 className="text-lg font-semibold text-gray-900">
+                                        <h3 className="!text-[20px] font-semibold text-gray-900">
                                             Doorstep Convenience
-                                        </h4>
+                                        </h3>
 
                                         <p className="mt-2 text-gray-600">
                                             Your luggage is collected from your home and delivered
@@ -254,9 +254,9 @@ function BaggageChargesIndia() {
                                     </div>
 
                                     <div className="rounded-xl border border-gray-200 bg-gray-50 p-5">
-                                        <h4 className="text-lg font-semibold text-gray-900">
+                                        <h3  className="!text-[20px] font-semibold text-gray-900">
                                             Less Stress
-                                        </h4>
+                                        </h3>
 
                                         <p className="mt-2 text-gray-600">
                                             Avoid long check-in queues, baggage delays, and the hassle
@@ -423,9 +423,9 @@ function BaggageChargesIndia() {
                                     Modern Travel
                                 </span>
 
-                                <h4 className="mt-5 text-3xl md:text-4xl font-bold text-gray-900 leading-tight">
+                                <h3 className="mt-5 text-3xl md:text-4xl font-bold text-gray-900 leading-tight">
                                     Why More Travelers Are Choosing Luggage Delivery
-                                </h4>
+                                </h3>
 
                                 <p className="mt-6 text-lg leading-8 text-gray-600">
                                     A growing number of Indian travellers have realised that their luggage does not need to share their seat, their schedule, or their stress. Shipping bags ahead has shifted from a niche idea to a mainstream travel habit, and the reasons are practical.
