@@ -79,9 +79,9 @@ const ServiceCard = ({ service }) => {
       viewport={{ once: true, amount: 0.3 }}
     >
       <div className="relative z-10">
-        <h4 className={` ${service.textColor}`}>
+        <h3 className={` ${service.textColor} md:text-[20px] text-[18px]`}>
           {service.title}
-        </h4>
+        </h3>
 
         <p className={`mt-4 text-base ${service.descColor}`}>
           {service.description}
@@ -121,7 +121,7 @@ const FeatureCard = ({
   return (
     <div className="relative bg-white rounded-3xl p-8 h-[500px] overflow-hidden transition-transform hover:-translate-y-2">
       <div className="relative z-10">
-        <h4 className="">{title}</h4>
+        <h3 className="md:text-[20px] text-[18px]">{title}</h3>
 
         <p className="mt-3 text-gray-500">{description}</p>
 
@@ -186,7 +186,7 @@ const ServicesSection = () => {
             href="/book-shipment"
             className="btn-primary hover:scale-105 transition-all"
           >
-            Book Now 
+            Book Now
           </Link>
         </div>
       </div>

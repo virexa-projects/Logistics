@@ -16,7 +16,7 @@ import Corporate from "@/asset/why-choose/corporate.png";
 import Support from "@/asset/why-choose/support.png";
 
 const data = [
-   
+
   {
     title: "Costs Less Than Carrying It ",
     desc: "Excess baggage fees add up fast, so you can ship 20 kg or more for far less and pay once, without surprises.",
@@ -37,7 +37,7 @@ const data = [
     desc: "Forgot to ship earlier? Express and Premium services get your luggage moving fast. Same day pickups available. Delivered in 3-5 days or less.",
     img: OnTime,
   },
-  
+
   {
     title: "Live Updates Keep You in the Loop",
     desc: "Real time tracking plus SMS and WhatsApp alerts at every step. You always know where your luggage is. No more guess games.",
@@ -53,7 +53,7 @@ const data = [
     desc: "Not just metros. We deliver across 25,000+ pincodes. From big cities to smaller towns, we deliver wherever your journey takes you.",
     img: Tier,
   },
-  
+
 ];
 
 export default function Slider() {
@@ -100,7 +100,7 @@ export default function Slider() {
           {data.map((item, i) => (
             <SwiperSlide key={i}>
               <div className="bg-white rounded-3xl p-8 h-[500px] relative overflow-hidden">
-                <h4 className=" font-semibold">{item.title}</h4>
+                <h3 className=" font-semibold text-[18px] md:text-[21px]">{item.title}</h3>
                 <p className="text-sm mt-2 text-second">{item.desc}</p>
 
                 <div className="absolute bottom-0 left-0 right-0 h-[60%]">

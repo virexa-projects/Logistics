@@ -68,9 +68,9 @@ function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Content */}
             <div className="flex flex-col justify-center">
-              <h4 className=" font-semibold  text-center md:text-start mb-4">
+              <h2 className="!text-[18px] md:!text-[20px] font-bold leading-[1.2em] text-center md:text-start mb-4">
                 About Frisbi
-              </h4>
+              </h2>
               <h2 className="md:text-left text-center mb-4">
                 Built for worry-free luggage delivery across cities
               </h2>
@@ -83,12 +83,12 @@ function Home() {
               </p>
 
               <ul className="space-y-3 font-medium text-[15px] mb-8">
-                
+
                 <li className="flex items-start gap-3">
                   <Check className="w-5 h-5 text-primary mt-0.5" />
                   Door step pickup and delivery
                 </li>
-                 <li className="flex items-start gap-3">
+                <li className="flex items-start gap-3">
                   <Check className="w-5 h-5 text-primary mt-0.5" />
                   Dedicated point of contact for every shipment
                 </li>
@@ -164,7 +164,7 @@ function Home() {
       <section className=" bg-[#F1F2F6] mx-auto overflow-x-hidden ">
         <ContactSection />
       </section>
-     
+
 
       <section className="w-full px-4 py-12   md:py-20 md:pb-0 ">
         <div className="relative container mx-auto rounded-3xl overflow-hidden">
@@ -209,7 +209,7 @@ function Home() {
         </div>
       </section>
 
-       <MarqueeLogos />
+      <MarqueeLogos />
     </div>
   );
 }
