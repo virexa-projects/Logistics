@@ -268,10 +268,10 @@ function Trackyourpackage() {
 
             {/* FORM CARD */}
             <div className="mt-8 bg-white rounded-3xl drop-shadow-[0_4px_100px_rgba(0,0,0,0.08)] p-10">
-              <h4 className="text-xl md:text-2xl font-semibold text-gray-900">
+              <h3 className="!text-[20px] font-semibold text-gray-900">
                 Track Your Orders Easily
 
-              </h4>
+              </h3>
 
               <div className="mt-5">
                 <input

@@ -56,9 +56,9 @@ function BaggageChargesIndia() {
                     <div className="max-w-5xl mx-auto">
                         <p className="text-lg text-gray-700 leading-9">You pack carefully, reach the airport early, and then the check-in scale stops you cold: your bag is 4 kilos over, and you owe more than you paid for half your ticket. Excess baggage charges have quietly become one of the most frustrating costs of flying within India, and most travellers only discover them at the counter when it is too late to do anything about it.</p>
                         <p className="text-lg text-gray-700 leading-9 mt-3">The good news is that these fees are almost entirely avoidable. With a little planning, and the right alternative for heavier loads, you never have to hand over another rupee in excess baggage charges again. Here is exactly how.</p>
-                        <h5 className="text-2xl font-bold text-gray-900 mb-3 mt-4">
+                        <h3 className="!text-[23px] font-bold text-gray-900 mb-3 mt-4">
                             Why Airline Excess Baggage Fees Are Increasing
-                        </h5>
+                        </h3>
 
                         <p className="text-lg text-gray-700 leading-9">
                             Indian airlines have steadily moved toward an "unbundled" pricing model, where your fare buys you a seat and very little else. Baggage, seat selection, and meals are now treated as separate add-ons. Under this approach, your free check-in allowance has shrunk while the cost of exceeding it has climbed.
@@ -69,16 +69,16 @@ function BaggageChargesIndia() {
                             The numbers tell the story. Excess baggage fees across Indian carriers rose by roughly 18% between 2024 and 2026, and today most domestic airlines charge somewhere between ₹600 and ₹700 per kilogram at the airport counter. On a basic economy fare, your free check-in allowance is usually just 15 kg in a single piece, plus 7 kg of cabin baggage. Step beyond that, and the meter starts running fast. </p>
 
                         <p className="text-lg text-gray-700 leading-9 mt-4">For airlines, baggage fees are pure ancillary revenue, a high-margin income stream that grows with every passenger who packs an extra pair of shoes. For travellers, it means the era of generous 20 kg and 25 kg free allowances on cheap tickets is largely over. Understanding this shift is the first step to keeping your money in your own pocket.</p>
-                        <h5 className="text-2xl font-bold text-gray-900 mb-3 mt-4">
+                        <h3 className="!text-[23px] font-bold text-gray-900 mb-3 mt-4">
                             Common Reasons Travelers Pay Extra
-                        </h5>
+                        </h3>
                         <p className="text-lg text-gray-700 leading-9 mt-4">Most excess baggage charges are not the result of reckless overpacking. They come from small, predictable mistakes that catch even seasoned flyers off guard.</p>
                         <p className="text-lg text-gray-700 leading-9 mt-4">The biggest culprit is the single-piece rule. On low-cost domestic fares from IndiGo, SpiceJet, and Akasa, your 15 kg allowance must fit into one bag. Split it into two suitcases of 7.5 kg each and the second bag is billed as an "extra piece," often ₹1,800 to ₹3,400, even though your total weight was within limit.</p>
                         <p className="text-lg text-gray-700 leading-9 mt-4">The second is fare confusion. Travellers assume every ticket includes 20 kg, but allowances now vary by fare class. A Saver fare and a Flexi fare on the same flight can carry very different baggage rights.</p>
                         <p className="text-lg text-gray-700 leading-9 mt-4">Other frequent traps include forgetting that cabin baggage is capped at 7 kg and gets weighed at busy metro airports, underestimating the weight of gifts and shopping picked up during the trip, and leaving baggage decisions until check-in, when airport rates are at their highest. Each of these turns a manageable trip into an unexpected bill.</p>
-                        <h5 className="text-2xl font-bold text-gray-900 mb-3 mt-4">
+                        <h3 className="!text-[23px] font-bold text-gray-900 mb-3 mt-4">
                             Smart Ways to Avoid Excess Baggage Charges
-                        </h5>
+                        </h3>
                         <p className="text-lg text-gray-700 leading-9 mt-4">If you do plan to fly with all your luggage, a handful of disciplined habits will keep your costs down.</p>
 
 

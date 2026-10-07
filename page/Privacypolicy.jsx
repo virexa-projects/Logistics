@@ -64,7 +64,7 @@ function Privacypolicy() {
           <p className="text-second mt-4">
             We may collect the following categories of information:
           </p>
-          <h4 className="mt-4">A. Personal Information</h4>
+          <h3 className="mt-4 !text-[20px]">A. Personal Information</h3>
           <ul className="mt-4 list-disc pl-5 space-y-4 font-medium text-[15px]">
             <li className="text-second">Full name</li>
             <li className="text-second">Phone number</li>
@@ -76,7 +76,7 @@ function Privacypolicy() {
               Identity information (if mandated by airport/security authorities)
             </li>
           </ul>
-          <h4 className="mt-4">B. Booking & Service Information</h4>
+          <h3 className="mt-4 !text-[20px]">B. Booking & Service Information</h3>
           <ul className="mt-4 list-disc pl-5 space-y-4 font-medium text-[15px]">
             <li className="text-second">Pickup and delivery addresses</li>
             <li className="text-second">Preferred time slots for pickup</li>
@@ -88,7 +88,7 @@ function Privacypolicy() {
             <li className="text-second">Order history</li>
           </ul>
 
-          <h4 className="mt-4">C. Payment Information</h4>
+          <h3 className="mt-4 !text-[20px]">C. Payment Information</h3>
           <ul className="mt-4 list-disc pl-5 space-y-4 font-medium text-[15px]">
             <li className="text-second">Mode of payment</li>
             <li className="text-second">Transaction details</li>
@@ -99,7 +99,7 @@ function Privacypolicy() {
             through secure third-party payment gateways.
           </p>
 
-          <h4 className="mt-4">D. Device & Usage Information</h4>
+          <h3 className="mt-4 !text-[20px]">D. Device & Usage Information</h3>
           <ul className="mt-4 list-disc pl-5 space-y-4 font-medium text-[15px]">
             <li className="text-second">IP address</li>
             <li className="text-second">Browser/app details</li>
@@ -117,64 +117,64 @@ function Privacypolicy() {
             We use your information to operate and improve our Services,
             including:
           </p>
-          <div class="overflow-x-auto mt-4">
-            <table class="min-w-full border border-[#f5f5f5] rounded-lg">
+          <div className="overflow-x-auto mt-4">
+            <table className="min-w-full border border-[#f5f5f5] rounded-lg">
               <thead className="bg-gray-100">
                 <tr>
-                  <th class="px-4 py-2 text-left font-semibold border border-[#f5f5f5]">
+                  <th className="px-4 py-2 text-left font-semibold border border-[#f5f5f5]">
                     Category
                   </th>
-                  <th class="px-4 py-2 text-left font-semibold border border-[#f5f5f5]">
+                  <th className="px-4 py-2 text-left font-semibold border border-[#f5f5f5]">
                     Purpose / Description
                   </th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td class="px-4 py-2 border border-[#f5f5f5]">
+                  <td className="px-4 py-2 border border-[#f5f5f5]">
                     Service Fulfilment
                   </td>
-                  <td class="px-4 py-2 border border-[#f5f5f5]">
+                  <td className="px-4 py-2 border border-[#f5f5f5]">
                     Pickup, handling, transport, delivery
                   </td>
                 </tr>
-                <tr class="bg-gray-50">
-                  <td class="px-4 py-2 border border-[#f5f5f5]">
+                <tr className="bg-gray-50">
+                  <td className="px-4 py-2 border border-[#f5f5f5]">
                     User Support
                   </td>
-                  <td class="px-4 py-2 border border-[#f5f5f5]">
+                  <td className="px-4 py-2 border border-[#f5f5f5]">
                     Chat, call, WhatsApp customer support
                   </td>
                 </tr>
                 <tr>
-                  <td class="px-4 py-2 border border-[#f5f5f5]">
+                  <td className="px-4 py-2 border border-[#f5f5f5]">
                     Payment & Billing
                   </td>
-                  <td class="px-4 py-2 border border-[#f5f5f5]">
+                  <td className="px-4 py-2 border border-[#f5f5f5]">
                     Processing payments, generating invoices
                   </td>
                 </tr>
-                <tr class="bg-gray-50">
-                  <td class="px-4 py-2 border border-[#f5f5f5]">
+                <tr className="bg-gray-50">
+                  <td className="px-4 py-2 border border-[#f5f5f5]">
                     Security & Compliance
                   </td>
-                  <td class="px-4 py-2 border border-[#f5f5f5]">
+                  <td className="px-4 py-2 border border-[#f5f5f5]">
                     Fraud prevention, legal obligations
                   </td>
                 </tr>
                 <tr>
-                  <td class="px-4 py-2 border border-[#f5f5f5]">
+                  <td className="px-4 py-2 border border-[#f5f5f5]">
                     Service Optimization
                   </td>
-                  <td class="px-4 py-2 border border-[#f5f5f5]">
+                  <td className="px-4 py-2 border border-[#f5f5f5]">
                     Improving routes, reducing delays
                   </td>
                 </tr>
-                <tr class="bg-gray-50">
-                  <td class="px-4 py-2 border border-[#f5f5f5]">
+                <tr className="bg-gray-50">
+                  <td className="px-4 py-2 border border-[#f5f5f5]">
                     Marketing & Offers (Optional)
                   </td>
-                  <td class="px-4 py-2 border border-[#f5f5f5]">
+                  <td className="px-4 py-2 border border-[#f5f5f5]">
                     Promotions, discounts, push notifications
                   </td>
                 </tr>
