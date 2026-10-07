@@ -4,6 +4,6 @@ export default function robots() {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://www.frisbi.in/sitemap.xml",
+    sitemap: "https://frisbi.in/sitemap.xml",
   };
 }

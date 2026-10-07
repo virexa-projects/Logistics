@@ -16,6 +16,7 @@ body {
   0% {
     left: -100%;
   }
+
   100% {
     left: 120%;
   }
@@ -30,61 +31,75 @@ body {
   position: relative;
 }
 
-h1 {
-  font-size: 48px;
-  font-weight: 600;
-  line-height: 1.2em;
-}
-h2 {
-  font-size: 36px;
-  font-weight: 600;
-  line-height: 1.2em;
-}
-h3 {
-  font-size: 28px;
-  font-weight: 700;
-  line-height: 1.2em;
-}
+@layer base {
+  h1 {
+    font-size: 48px;
+    font-weight: 600;
+    line-height: 1.2em;
+  }
 
-h4 {
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 1.2em;
-}
-h5 {
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 1.2em;
-}
-p {
-  font-size: 15px;
-  font-weight: 500;
-  line-height: 1.6rem;
+  h2 {
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 1.2em;
+  }
+
+  h3 {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.2em;
+  }
+
+  h4 {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.2em;
+  }
+
+  h5 {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.2em;
+  }
+
+  p {
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.6rem;
+  }
 }
 
 .text-primary {
   color: #013efe;
 }
+
 .bg-primary {
   background-color: #013efe;
 }
+
 .ring-primary {
   color: #013efe;
 }
+
 .border-primary {
   color: #013efe;
 }
+
 .swiper-button-next,
 .swiper-button-prev {
-  color: #fff !important; /* arrow color */
-  stroke: #fff !important; /* sometimes needed */
+  color: #fff !important;
+  /* arrow color */
+  stroke: #fff !important;
+  /* sometimes needed */
 }
 
 .swiper-button-next::after,
 .swiper-button-prev::after {
-  color: #fff !important; /* arrow icon color */
+  color: #fff !important;
+  /* arrow icon color */
   font-size: 18px;
 }
+
 .text-second {
   color: #4a5565;
 }
@@ -106,6 +121,7 @@ p {
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(-50%);
   }
@@ -115,6 +131,7 @@ p {
   0% {
     transform: translateX(-50%);
   }
+
   100% {
     transform: translateX(0);
   }
@@ -130,34 +147,42 @@ p {
     padding-right: 16px;
   }
 }
+
 @media screen and (max-width: 600px) {
   .-mt-16 {
     margin-top: -5rem;
   }
-  h1 {
-    font-size: 32px;
-    font-weight: 600;
-    line-height: 1.4em;
-  }
-  h2 {
-    font-size: 26px;
-    font-weight: 600;
-    line-height: 1.4em;
-  }
-  h3 {
-    font-size: 22px;
-    font-weight: 600;
-    line-height: 1.4em;
-  }
-  h4 {
-    font-size: 18px;
-    font-weight: 600;
-    line-height: 1.4em;
-  }
-  h5 {
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 1.4em;
+
+  @layer base {
+    h1 {
+      font-size: 32px;
+      font-weight: 600;
+      line-height: 1.4em;
+    }
+
+    h2 {
+      font-size: 26px;
+      font-weight: 600;
+      line-height: 1.4em;
+    }
+
+    h3 {
+      font-size: 22px;
+      font-weight: 600;
+      line-height: 1.4em;
+    }
+
+    h4 {
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 1.4em;
+    }
+
+    h5 {
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 1.4em;
+    }
   }
 
   .content-top {
@@ -305,11 +330,10 @@ p {
 }
 
 .bg-light {
-  background: linear-gradient(
-    to top,
-    #ffffff 0%,
-    /* #f2f5ff 50%, */ #013efe 100%
-  );
+  background: linear-gradient(to top,
+      #ffffff 0%,
+      /* #f2f5ff 50%, */
+      #013efe 100%);
 }
 
 .bg-light-blue {

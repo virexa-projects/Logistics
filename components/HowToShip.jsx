@@ -44,7 +44,7 @@ export function HowToShip() {
     <div className="py-12 md:py-16 lg:py-24 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-center mb-4">
-         Here’s how we move your luggage
+          Here’s how we move your luggage
         </h2>
         <p className="mb-6 text-center text-second">
           Five quick steps to stress-free delivery.
@@ -62,7 +62,7 @@ export function HowToShip() {
                     {step.number}
                   </div> */}
                 </div>
-                <h5 className="mb-2">{step.title}</h5>
+                <h3 className="mb-2 md:text-[18px] text-[16px]">{step.title}</h3>
                 <p className="text-second">{step.description}</p>
               </div>
 
