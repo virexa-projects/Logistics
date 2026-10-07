@@ -116,7 +116,7 @@ function Info({ icon: Icon, title, value }) {
         <Icon className="w-6 h-6 text-primary" />
       </div>
       <div>
-        <h5 className="font-medium">{title}</h5>
+        <h3 className="font-medium !text-[20px]">{title}</h3>
         <p className="text-gray-600 mt-1">{value}</p>
       </div>
     </div>
@@ -344,7 +344,7 @@ export default function ContactSection() {
             className="bg-white p-8 rounded-2xl drop-shadow-[0_4px_100px_rgba(0,0,0,0.08)]"
           >
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
-              <h4 className="text-xl font-semibold">Plan Your Delivery</h4>
+              <h3 className="!text-[20px] font-semibold">Plan Your Delivery</h3>
               <RadioGroup value={form.userType} onChange={handleChange} />
             </div>
 

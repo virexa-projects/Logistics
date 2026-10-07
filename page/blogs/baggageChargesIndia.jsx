@@ -101,9 +101,9 @@ function BaggageChargesIndia() {
 
                             <div className="mt-10 rounded-2xl ">
 
-                                <h4 className="text-xl font-semibold text-gray-900">
+                                <h3 className="!text-[20px] font-semibold text-gray-900">
                                     Weigh Everything at Home
-                                </h4>
+                                </h3>
 
                                 <p className="mt-3 leading-8 text-gray-600">
                                     A basic digital scale costs less than a single excess baggage penalty. Stand on a bathroom scale holding your bag, subtract your weight, and you will know exactly where you stand before you leave the house.
@@ -115,9 +115,9 @@ function BaggageChargesIndia() {
 
                             <div className="mt-8">
 
-                                <h4 className="text-xl font-semibold text-gray-900">
+                                <h3 className="!text-[20px] font-semibold text-gray-900">
                                     Pre-book Extra Weight Online
-                                </h4>
+                                </h3>
 
                                 <p className="mt-3 leading-8 text-gray-600">
                                     This is the single most effective tactic. Buying additional allowance through the airline's "Manage Booking" section, rather than at the airport, typically saves 30% to 50%. Across a sample of bookings in 2026, the average airport excess charge was around ₹3,260 versus roughly ₹1,847 online for the same weight.
@@ -129,9 +129,9 @@ function BaggageChargesIndia() {
 
                             <div className="mt-8">
 
-                                <h4 className="text-xl font-semibold text-gray-900">
+                                <h3 className="!text-[20px] font-semibold text-gray-900">
                                     Match your fare to your packing style.
-                                </h4>
+                                </h3>
 
                                 <p className="mt-3 leading-8 text-gray-600">
                                     If you regularly travel with 16 to 20 kg, a slightly higher fare class with a 20 kg allowance often costs less than paying per-kilo excess baggage charges on a cheaper ticket.
@@ -142,9 +142,9 @@ function BaggageChargesIndia() {
 
                             <div className="mt-8">
 
-                                <h4 className="text-xl font-semibold text-gray-900">
+                                <h3 className="text-xl font-semibold text-gray-900">
                                     Wear your heaviest items.
-                                </h4>
+                                </h3>
 
                                 <p className="mt-3 leading-8 text-gray-600">
                                     Boots, jackets, and bulky layers worn onto the plane do not count against your allowance.
@@ -155,9 +155,9 @@ function BaggageChargesIndia() {
 
                             <div className="mt-8">
 
-                                <h4 className="text-xl font-semibold text-gray-900">
+                                <h3 className="!text-[20px] font-semibold text-gray-900">
                                     Use compression packing cubes.
-                                </h4>
+                                </h3>
 
                                 <p className="mt-3 leading-8 text-gray-600">
                                     They will not reduce weight, but they help you avoid a second-piece charge by keeping everything in one bag.
@@ -221,9 +221,9 @@ function BaggageChargesIndia() {
                                 <div className="mt-10 grid gap-5 sm:grid-cols-2">
 
                                     <div className="rounded-xl border border-gray-200 bg-gray-50 p-5">
-                                        <h4 className="text-lg font-semibold text-gray-900">
+                                        <h3 className="!text-[20px] font-semibold text-gray-900">
                                             Save More
-                                        </h4>
+                                        </h3>
 
                                         <p className="mt-2 text-gray-600">
                                             Avoid high airline excess baggage fees by choosing a more
@@ -232,9 +232,9 @@ function BaggageChargesIndia() {
                                     </div>
 
                                     <div className="rounded-xl border border-gray-200 bg-gray-50 p-5">
-                                        <h4 className="text-lg font-semibold text-gray-900">
+                                        <h3 className="!text-[20px] font-semibold text-gray-900">
                                             Travel Hands-Free
-                                        </h4>
+                                        </h3>
 
                                         <p className="mt-2 text-gray-600">
                                             Skip hauling heavy luggage through airports, security
@@ -243,9 +243,9 @@ function BaggageChargesIndia() {
                                     </div>
 
                                     <div className="rounded-xl border border-gray-200 bg-gray-50 p-5">
-                                        <h4 className="text-lg font-semibold text-gray-900">
+                                        <h3 className="!text-[20px] font-semibold text-gray-900">
                                             Doorstep Convenience
-                                        </h4>
+                                        </h3>
 
                                         <p className="mt-2 text-gray-600">
                                             Your luggage is collected from your home and delivered
@@ -254,9 +254,9 @@ function BaggageChargesIndia() {
                                     </div>
 
                                     <div className="rounded-xl border border-gray-200 bg-gray-50 p-5">
-                                        <h4 className="text-lg font-semibold text-gray-900">
+                                        <h3  className="!text-[20px] font-semibold text-gray-900">
                                             Less Stress
-                                        </h4>
+                                        </h3>
 
                                         <p className="mt-2 text-gray-600">
                                             Avoid long check-in queues, baggage delays, and the hassle
@@ -423,9 +423,9 @@ function BaggageChargesIndia() {
                                     Modern Travel
                                 </span>
 
-                                <h4 className="mt-5 text-3xl md:text-4xl font-bold text-gray-900 leading-tight">
+                                <h3 className="mt-5 text-3xl md:text-4xl font-bold text-gray-900 leading-tight">
                                     Why More Travelers Are Choosing Luggage Delivery
-                                </h4>
+                                </h3>
 
                                 <p className="mt-6 text-lg leading-8 text-gray-600">
                                     A growing number of Indian travellers have realised that their luggage does not need to share their seat, their schedule, or their stress. Shipping bags ahead has shifted from a niche idea to a mainstream travel habit, and the reasons are practical.

@@ -81,7 +81,7 @@ function PricingStructure() {
                 </div>
                 <span className="text-3xl text-second">{index + 1}</span>
               </div>
-              <h4 className="mb-2 ">{factor.title}</h4>
+              <h3 className="mb-2 !text-[20px]">{factor.title}</h3>
               <p className="text-second">{factor.description}</p>
             </motion.div>
           ))}

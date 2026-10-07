@@ -57,7 +57,7 @@ export function WhyChooseProcess() {
                     {step.number}
                   </div>
                 </div>
-                <h4 className="mb-2">{step.title}</h4>
+                <h3 className="mb-2 !text-[20px]">{step.title}</h3>
                 <p className="text-second">{step.description}</p>
               </div>
 

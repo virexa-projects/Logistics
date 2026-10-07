@@ -46,7 +46,7 @@ export default function AboutCompanySection() {
                 </svg>
               </div>
               <div>
-                <h4 className="font-bold text-lg">Online Tracking</h4>
+                <h3 className="font-bold !text-[20px]">Online Tracking</h3>
                 <p className="text-second text-sm mt-5">The is a long established fact that a reader.</p>
               </div>
             </div>

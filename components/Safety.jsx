@@ -23,7 +23,7 @@ export function Safety() {
               <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4">
                 <feature.icon className="w-8 h-8 text-primary" />
               </div>
-              <h5 className="font-bold">{feature.text}</h5>
+              <h3 className="font-bold !text-[20px]">{feature.text}</h3>
             </div>
           ))}
         </div>

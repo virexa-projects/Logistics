@@ -84,9 +84,9 @@ export function WhyChoose() {
 
                 {/* Content */}
                 <div>
-                  <h4 className="mb-2 font-semibold">
+                  <h3 className="mb-2 font-semibold !text-[20px]">
                     {benefit.title}
-                  </h4>
+                  </h3>
                   <p className="text-white/80 text-sm leading-relaxed">
                     {benefit.description}
                   </p>

@@ -883,7 +883,7 @@ export default function ShipmentBookingForm({
 
         {/* Customer Details */}
         <div>
-          <h4 className="font-semibold mb-4">Customer Details</h4>
+          <h3 className="font-semibold mb-4 !text-[20px]">Customer Details</h3>
 
           <div className="flex items-center gap-6 mb-4">
             <label className="flex items-center gap-2">
@@ -984,7 +984,7 @@ export default function ShipmentBookingForm({
 
         {/* Pickup & Drop */}
         <div>
-          <h4 className="font-semibold mb-4">Pickup  Location</h4>
+          <h3 className="font-semibold mb-4 !text-[20px]">Pickup  Location</h3>
           <div className="grid md:grid-cols-2 gap-6">
 
             {/* Name */}
@@ -1096,7 +1096,7 @@ export default function ShipmentBookingForm({
 
           </div>
 
-          <h4 className="font-semibold mb-4 mt-3">Drop  Location</h4>
+          <h3 className="font-semibold mb-4 mt-3 !text-[20px]">Drop  Location</h3>
           <div className="grid md:grid-cols-2 gap-6">
             <div className="space-y-1">
               <label className="text-sm font-medium text-gray-700">Name</label>
@@ -1207,7 +1207,7 @@ export default function ShipmentBookingForm({
 
         {/* Pickup & Delivery */}
         <div>
-          <h4 className="font-semibold mb-4">Select Pickup Date & Time Slot</h4>
+          <h3 className="font-semibold mb-4 !text-[20px]">Select Pickup Date & Time Slot</h3>
           <div className="grid md:grid-cols-3 gap-4">
             <div>
               <input
@@ -1249,7 +1249,7 @@ export default function ShipmentBookingForm({
 
         {/* Service */}
         <div>
-          <h4 className="font-semibold mb-4">Service</h4>
+          <h3 className="font-semibold mb-4 !text-[20px]">Service</h3>
           <select
             className={fieldClass}
             value={values.service}   // ✅ MUST
@@ -1270,7 +1270,7 @@ export default function ShipmentBookingForm({
 
         {/* Luggage */}
         <div>
-          <h4 className="font-semibold mb-4">Luggage Details</h4>
+          <h3 className="font-semibold mb-4 !text-[20px]">Luggage Details</h3>
           <div className="grid md:grid-cols-4 gap-4">
 
 
@@ -1412,7 +1412,7 @@ export default function ShipmentBookingForm({
 
         {/* Add-ons */}
         <div>
-          <h4 className="font-semibold mb-4">Add-ons</h4>
+          <h3 className="font-semibold mb-4 !text-[20px]">Add-ons</h3>
           <div className="flex flex-wrap gap-6">
             {Object.keys(ADDON_PRICES).map((addon) => (
               <label key={addon} className="flex gap-2">

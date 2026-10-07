@@ -109,9 +109,9 @@ function Aboutus() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Content */}
             <div className="flex flex-col justify-center">
-              <h5 className="  text-center md:text-start  mb-4">
+              <h2 className="text-center md:text-start  mb-4 !font-semibold !text-[20px]">
                 The Idea Behind Frisbi
-              </h5>
+              </h2>
               <h2 className="md:text-left text-center mb-4">
                 Built to make luggage the easiest part of your journey
               </h2>
@@ -212,14 +212,14 @@ function Aboutus() {
             {/* VALUES LIST */}
             <div className="mt-6 space-y-8 md:text-left text-center">
               <div>
-                <h4 className="text-lg font-semibold">Care</h4>
+                <h3 className=" font-semibold !text-[20px]">Care</h3>
                 <p className="text-second text-sm mt-1 max-w-md">
                   Every bag gets handled properly. We make sure your belongings move safely from first pickup to final delivery.
                 </p>
               </div>
 
               <div>
-                <h4 className="text-lg font-semibold">Clarity</h4>
+                <h3 className="font-semibold !text-[20px] ">Clarity</h3>
                 <p className="text-second text-sm mt-1 max-w-md">
                   The price you see upfront is what you pay. Get realistic timelines and real-time updates as things move forward.
 
@@ -227,7 +227,7 @@ function Aboutus() {
               </div>
 
               <div>
-                <h4 className="text-lg font-semibold">Commitment</h4>
+                <h3 className="font-semibold !text-[20px] ">Commitment</h3>
                 <p className="text-second text-sm mt-1 max-w-md">
                   On time, every time. Scheduled pickups stay on track, delivery dates are met, and your bags arrive as promised.
 

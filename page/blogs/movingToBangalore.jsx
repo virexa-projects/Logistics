@@ -239,9 +239,9 @@ export default function MovingToBangalore() {
 
             {/* Comparison */}
             <div className="mt-16">
-              <h4 className="text-4xl font-bold mb-3">
+              <h3 className="!text-[20px] font-semibold mb-3">
                 Different Ways to Move Your Luggage:
-              </h4>
+              </h3>
 
               <p className="text-lg leading-8 text-gray-700">When it comes to transporting your luggage to Bangalore, you have a few options. Here's how they compare:</p>
 
@@ -465,7 +465,7 @@ export default function MovingToBangalore() {
                     key={index}
                     className="border rounded-xl p-6 bg-gray-50"
                   >
-                    <h4 className="font-semibold text-xl">{faq.q}</h4>
+                    <h3 className="!text-[20px] font-semibold">{faq.q}</h3>
                     <p className="mt-3 text-gray-600">{faq.a}</p>
                   </div>
                 ))}

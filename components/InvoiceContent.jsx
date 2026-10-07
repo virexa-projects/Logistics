@@ -60,9 +60,9 @@ function InvoiceContent({ values, price }) {
       >
         {/* Customer */}
         <div>
-          <h4 style={{ fontWeight: 600, marginBottom: 8 }}>
+          <h3 className="!text-[20px]" style={{ fontWeight: 600, marginBottom: 8 }}>
             Customer Details
-          </h4>
+          </h3>
           <p><b>Name:</b> {values.name}</p>
           <p><b>Phone:</b> {values.phone}</p>
           <p><b>Email:</b> {values.email}</p>
@@ -78,9 +78,9 @@ function InvoiceContent({ values, price }) {
 
         {/* Shipment */}
         <div>
-          <h4 style={{ fontWeight: 600, marginBottom: 8 }}>
+          <h3 className="!text-[20px]" style={{ fontWeight: 600, marginBottom: 8 }}>
             Shipment Details
-          </h4>
+          </h3>
           <p><b>Pickup City:</b> {values.pickupCity}</p>
           <p><b>Drop City:</b> {values.dropCity}</p>
           <p><b>Pickup Date:</b> {values.pickupDate}</p>
