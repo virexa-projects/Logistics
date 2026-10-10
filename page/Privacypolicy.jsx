@@ -50,7 +50,7 @@ function Privacypolicy() {
             your privacy. This Privacy Policy describes how we collect, use,
             store, share, and safeguard your personal information when you
             access or use our luggage pickup and delivery services (“Services”)
-            via our website, mobile application, WhatsApp, call, or partner
+            via our website, WhatsApp, call, or partner
             platforms.
           </p>
           <p className="mt-3 text-second">
@@ -102,7 +102,7 @@ function Privacypolicy() {
           <h3 className="mt-4 !text-[20px]">D. Device & Usage Information</h3>
           <ul className="mt-4 list-disc pl-5 space-y-4 font-medium text-[15px]">
             <li className="text-second">IP address</li>
-            <li className="text-second">Browser/app details</li>
+            <li className="text-second">Browser details</li>
             <li className="text-second">Device identifiers</li>
             <li className="text-second">
               Cookies and tracking data (for analytics and performance)
@@ -175,7 +175,7 @@ function Privacypolicy() {
                     Marketing & Offers (Optional)
                   </td>
                   <td className="px-4 py-2 border border-[#f5f5f5]">
-                    Promotions, discounts, push notifications
+                    Promotions, discounts, and special offers
                   </td>
                 </tr>
               </tbody>
@@ -268,14 +268,13 @@ function Privacypolicy() {
         <div className="mt-5">
           <h3 className="">6. Cookies & Tracking</h3>
           <p className="text-second mt-4">
-            Our website/app uses cookies and similar technologies to:
+            Our website uses cookies and similar technologies to:
           </p>
 
           <ul className="mt-4 list-disc pl-5 space-y-4 font-medium text-[15px]">
             <li className="text-second">Improve user experience</li>
-            <li className="text-second">Measure website/app performance</li>
+            <li className="text-second">Measure website performance</li>
             <li className="text-second">Provide personalized suggestions</li>
-            <li className="text-second">Airport/security protocols</li>
           </ul>
           <p className="text-second mt-4">
             You can disable cookies in your browser settings, but some functions
@@ -323,7 +322,7 @@ function Privacypolicy() {
 
             </li>
             <li className="text-second">
-              Additional attempts may involve rescheduling fees
+              Restriction or objection to data processing
             </li>
             <li className="text-second">
               Correction of inaccurate information
@@ -349,7 +348,7 @@ function Privacypolicy() {
           <h3 className="">10. Third-Party Links
 </h3>
           <p className="text-second mt-4">
-          Our website/app may contain links to external sites. We are not responsible for their content or privacy practices.
+          Our website may contain links to external sites. We are not responsible for their content or privacy practices.
 
           </p>
 
@@ -375,18 +374,28 @@ function Privacypolicy() {
 
           <ul className="mt-4 list-decimal pl-5 space-y-4 font-medium text-[15px]">
             <li className="text-second">
-              Email:{" "}
-              <span className="font-bold text-black"> support@frisbi.in</span>
+              Customer Support & Privacy Inquiries:{" "}
+              <a href="mailto:support@frisbi.in" className="font-bold text-black hover:text-primary">
+                support@frisbi.in
+              </a>
+            </li>
+            <li className="text-second">
+              General & Business Inquiries:{" "}
+              <a href="mailto:info@frisbi.in" className="font-bold text-black hover:text-primary">
+                info@frisbi.in
+              </a>
             </li>
             <li className="text-second">
               Contact Us:{" "}
-              <span className="font-bold text-black"> +91 7418152531</span>
+              <a href="tel:7418152531" className="font-bold text-black hover:text-primary">
+                +91 7418152531
+              </a>
             </li>
             <li className="text-second">
               Website:{" "}
               <span className="font-bold text-black">
                 {" "}
-                <Link href="www.frisbi.in" className="text-primary">
+                <Link href="https://www.frisbi.in" target="_blank" rel="noopener noreferrer" className="text-primary">
                   www.frisbi.in
                 </Link>{" "}
               </span>

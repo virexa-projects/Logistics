@@ -47,11 +47,11 @@ function Termsofservice() {
             </span>
           </p>
           <p className="mt-3 text-second">
-            Welcome to <b> Frisbi.</b> These Terms & Conditions (“Terms”) govern
+            Welcome to <b>Frisbi.</b> These Terms & Conditions (“Terms”) govern
             your access to and use of Frisbi’s luggage pick-up, transport, and
             delivery services (“Services”). By booking or using our services via
-            website, mobile app, WhatsApp, call, or partner platforms, you agree
-            to these Terms. If you do not agree, please do not use the Services.
+            our website, WhatsApp, call, or partner platforms, you agree to
+            these Terms. If you do not agree, please do not use the Services.
           </p>
         </div>
         <hr className="mt-5 " />
@@ -135,7 +135,7 @@ function Termsofservice() {
               Liquids, inflammable items, chemicals, sharp objects
             </li>
             <li className="text-second">
-              Illegal items by accordance by indian law.{" "}
+              Items prohibited under applicable Indian laws and regulations
             </li>
             <li className="text-second">
               Items restricted by airport/security regulations
@@ -208,12 +208,13 @@ function Termsofservice() {
             </li>
           </ul>
           <p className="text-second mt-4">
-            Frisbi is
-            <span className="text-black font-bold"> not liable</span> for:
+            Frisbi is <span className="text-black font-bold">not liable</span> for the following:
           </p>
           <ul className="mt-4 list-disc pl-5 space-y-4 font-medium text-[15px]">
             <li className="text-second">Improper packing by customer</li>
-            <li className="text-second">Normal wear & tear , Scartches</li>
+            <li className="text-second">
+              Normal wear and tear, scratches, or minor cosmetic damage
+            </li>
             <li className="text-second">
               Delay-related losses (missed flights, shows, meetings, etc.)
             </li>
@@ -227,7 +228,7 @@ function Termsofservice() {
         <div className="mt-5">
           <h3 className="">8. Cancellations & Refunds</h3>
           <p className="text-second mt-4">
-            Frisbi attempts timely delivery within scheduled slots.
+            Order cancellations and refund eligibility are subject to the following terms:
           </p>
 
           <ul className="mt-4 list-disc pl-5 space-y-4 font-medium text-[15px]">
@@ -304,7 +305,7 @@ function Termsofservice() {
           </p>
           <ul className="mt-4 list-decimal pl-5 space-y-4 font-medium text-[15px]">
             <li className="text-second">Service fulfillment</li>
-            <li className="text-second"> KYC Identity verification</li>
+            <li className="text-second">KYC and identity verification</li>
             <li className="text-second">Safety & compliance</li>
 
             <li className="text-second">Customer support & communication</li>
@@ -330,12 +331,11 @@ function Termsofservice() {
             </li>
           </ul>
           <p className="text-second mt-4">
-            Violation may result in
+            Violation may result in{" "}
             <span className="font-bold text-black">
-              {" "}
-              denial of current and future services.{" "}
+              denial of current and future services.
             </span>{" "}
-            and legal actions.
+            Frisbi reserves the right to take appropriate legal action where necessary.
           </p>
         </div>
 
@@ -360,9 +360,8 @@ function Termsofservice() {
           </p>
 
           <p className="text-second mt-4">
-            Any disputes shall be subject to{" "}
-            <span className="text-black font-bold">Bangalore city</span>{" "}
-            jurisdiction.
+            Any disputes shall be subject to the exclusive jurisdiction of the
+            courts in <span className="text-black font-bold">Bangalore, India</span>.
           </p>
         </div>
 
@@ -370,24 +369,33 @@ function Termsofservice() {
         <div className="mt-5">
           <h3 className="">15. Contact Information</h3>
           <p className="text-second mt-4">
-            For support, disputes, or escalations:
-            <span className="text-black font-bold">India.</span>
+            For support, disputes, or escalations, please contact Frisbi at support@frisbi.in:
           </p>
 
           <ul className="mt-4 list-decimal pl-5 space-y-4 font-medium text-[15px]">
             <li className="text-second">
-              Email:{" "}
-              <span className="font-bold text-black"> support@frisbi.in</span>
+              Customer Support & Escalations:{" "}
+              <a href="mailto:support@frisbi.in" className="font-bold text-black hover:text-primary">
+                support@frisbi.in
+              </a>
+            </li>
+            <li className="text-second">
+              General & Business Inquiries:{" "}
+              <a href="mailto:info@frisbi.in" className="font-bold text-black hover:text-primary">
+                info@frisbi.in
+              </a>
             </li>
             <li className="text-second">
               Contact Us:{" "}
-              <span className="font-bold text-black"> +91 7418152531</span>
+              <a href="tel:7418152531" className="font-bold text-black hover:text-primary">
+                +91 7418152531
+              </a>
             </li>
             <li className="text-second">
               Website:{" "}
               <span className="font-bold text-black">
                 {" "}
-                <Link href="www.frisbi.in" className="text-primary">
+                <Link href="https://www.frisbi.in" target="_blank" rel="noopener noreferrer" className="text-primary">
                   www.frisbi.in
                 </Link>{" "}
               </span>

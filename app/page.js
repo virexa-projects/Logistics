@@ -48,8 +48,13 @@ const schema = {
         },
         {
           "@type": "ContactPoint",
-          email: "info@frisbi.in",
+          email: "support@frisbi.in",
           contactType: "customer support",
+        },
+        {
+          "@type": "ContactPoint",
+          email: "info@frisbi.in",
+          contactType: "general inquiries",
         },
       ],
     },
