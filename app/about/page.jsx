@@ -6,9 +6,9 @@ export const metadata = {
   description:
     "Discover Frisbi, Bangalore’s trusted door-to-door luggage delivery service. Learn how we make baggage shipping safe, affordable, and stress-free.",
   keywords: [
-    "about Frisbi",
-    "luggage delivery company India",
-    "travel convenience company"
+   "luggage delivery company in Bangalore",
+  "luggage delivery service Bangalore",
+  "about Frisbi",
   ],
   alternates: {
     canonical: "https://frisbi.in/about",

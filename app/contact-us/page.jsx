@@ -2,7 +2,7 @@ import Haveanyqueries from '@/page/Haveanyqueries'
 import React from 'react'
 
 export const metadata = {
-  title: "Contact Frisbi Bangalore | Baggage Shipping Customer Support | Frisbi",
+  title: "Contact Frisbi | Luggage Pickup & Delivery Support",
   description:
     "Need help with luggage shipping or baggage pickup in Bangalore? Contact Frisbi’s support team for booking assistance, inquiries, and customer care.",
   keywords: [

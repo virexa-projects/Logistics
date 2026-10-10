@@ -128,9 +128,9 @@ export default function ExpressServices() {
               <motion.h1
                 {...fadeUp}
                 transition={{ duration: 0.6, delay: 0.1 }}
-                className="text-black text-4xl md:text-6xl font-black mb-6 text-center md:text-start"
+                className="text-black -6 text-center md:text-start"
               >
-                Fast Same-Day Express Luggage Delivery & Priority Shipping in Bangalore
+                Premium Luggage Handling & Travel Support 
               </motion.h1>
 
               <motion.p

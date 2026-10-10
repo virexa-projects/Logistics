@@ -156,7 +156,7 @@ function Blogs() {
 
                     <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 max-w-3xl mx-auto">
 
-                        <h1 className="text-black mb-4">Luggage Shipping Insights, Packing Guides & Travel Tips in Bangalore</h1>
+                        <h1 className="text-black mb-4">Luggage Travel Tips & Guides</h1>
 
                         <p className="text-black/80 text-base md:text-lg">
 

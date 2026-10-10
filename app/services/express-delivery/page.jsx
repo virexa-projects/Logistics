@@ -2,7 +2,7 @@ import ExpressServices from '@/page/ExpressServices'
 import React from 'react'
 
 export const metadata = {
-  title: "Express Luggage Delivery in Bangalore | Same-Day Baggage Shipping | Frisbi",
+  title: "Fast Luggage Shipping for Last-Minute Travel | Frisbi",
   description:
     "Need urgent baggage transport? Frisbi offers fast, same-day express luggage delivery and priority pickup across Bangalore. Book your express shipping now!.",
   keywords: [

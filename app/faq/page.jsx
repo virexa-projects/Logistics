@@ -2,7 +2,7 @@ import Faq from "@/page/Faq";
 import React from "react";
 
 export const metadata = {
-  title: "Luggage Delivery FAQ in Bangalore | Shipping Questions Answered | Frisbi",
+  title: "Luggage Delivery FAQs | Frisbi",
   description:
     "Have questions about door-to-door luggage delivery in Bangalore? Get clear answers on booking, pricing, safety, and pickup slots from Frisbi experts.",
   keywords: [

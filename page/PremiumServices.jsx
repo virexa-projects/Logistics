@@ -123,7 +123,7 @@ export default function PremiumServices() {
                 transition={{ duration: 0.6, delay: 0.1 }}
                 className="text-black text-4xl md:text-5xl font-bold mb-6 text-center md:text-start"
               >
-                Exclusive Premium Luggage Delivery & White-Glove Baggage Transport in Bangalore
+                   Travel with less hassle with Frisbi's premium option
               </motion.h1>
 
               <motion.p
