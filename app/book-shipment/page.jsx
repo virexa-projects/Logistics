@@ -9,7 +9,9 @@ export const metadata = {
   title: "Book Shipment Online | Fast & Easy Delivery | Frisbi",
   description:
     "Book shipment made simple with Frisbi. Schedule pickup, track deliveries, and ship books across India quickly, safely, and at affordable rates.",
- 
+  alternates: {
+    canonical: "https://frisbi.in/book-shipment",
+  },
 };
 export default async function Page({ searchParams }) {
   // ✅ unwrap promise
