@@ -219,6 +219,17 @@ const submitToGoogleSheet = async (values, totalPrice, router, skipRedirect = fa
 const calculatePriceBreakup = (values) => {
   const weight = Number(values.weight || 0);
 
+  // Show zero/placeholder until shipment weight is entered
+  if (!values.weight || weight <= 0) {
+    return {
+      subtotal: 0,
+      discount: 0,
+      gst: 0,
+      total: 0,
+      hasDetails: false,
+    };
+  }
+
   const service = SERVICE_PRICING[values.service] || {
     base: 0,
     perKg: 0,
@@ -227,7 +238,7 @@ const calculatePriceBreakup = (values) => {
   const baseCost = service.base;
   const weightCost = weight * service.perKg;
 
-  // 🔥 ADD THIS (MISSING BEFORE)
+  // Volume cost based on dimensions (if provided)
   const volumeCost =
     (Number(values.length || 0) +
       Number(values.width || 0) +
@@ -235,8 +246,7 @@ const calculatePriceBreakup = (values) => {
 
   let subtotal = baseCost + weightCost;
 
-
-  // ✅ addons (optional)
+  // addons (optional)
   const addonTotal = (values.addons || []).reduce(
     (sum, addon) => sum + (ADDON_PRICES[addon] || 0),
     0
@@ -244,11 +254,7 @@ const calculatePriceBreakup = (values) => {
 
   subtotal += addonTotal;
 
-  // ✅ multipliers (optional)
-  // subtotal *= BAG_SIZE_MULTIPLIER[values.bagSize || "Small"];
-  // subtotal *= LUGGAGE_TYPE_MULTIPLIER[values.luggageType || "Suitcase"];
-
-  // ✅ discount
+  // discount
   let discount = 0;
   if (values.customerType === "Corporate") {
     discount += (subtotal * CORPORATE_DISCOUNT_PERCENT) / 100;
@@ -256,7 +262,7 @@ const calculatePriceBreakup = (values) => {
 
   const discountedTotal = subtotal - discount;
 
-  // ✅ GST
+  // GST
   const gst =
     values.customerType === "Corporate" || values.includeGST
       ? (discountedTotal * GST_PERCENT) / 100
@@ -267,7 +273,41 @@ const calculatePriceBreakup = (values) => {
     discount: Math.round(discount),
     gst: Math.round(gst),
     total: Math.round(discountedTotal + gst),
+    hasDetails: true,
   };
+};
+
+const initialValues = {
+  customerType: "Individual",
+  addons: [],
+  includeGST: false,
+  luggageType: "Suitcase",
+
+  // already existing
+  pickupCity: "",
+  dropCity: "",
+  name: "",
+  phone: "",
+  email: "",
+  // ✅ ADD THESE (NEW)
+  pickupAddress: "",
+  pickupState: "",
+  pickupPincode: "",
+  pickupPhone: "",
+  pickupName: "",
+  dropAddress: "",
+  dropState: "",
+  dropPincode: "",
+  pickupDate: "",
+  pickupTimeSlot: "",
+  // bags: "",
+  weight: "",
+  length: "",
+  width: "",
+  height: "",
+  bagSize: "",
+  service: "Express",
+  serviceType: "",
 };
 
 export default function ShipmentBookingForm({
@@ -284,37 +324,13 @@ export default function ShipmentBookingForm({
 
   const [errors, setErrors] = useState({});
 
-  const [values, setValues] = useState({
-    customerType: "Individual",
-    addons: [],
-    includeGST: false,
-    luggageType: "Suitcase",
+  const [values, setValues] = useState(initialValues);
 
-    // already existing
-    pickupCity: "",
-    dropCity: "",
-    name: "",
-    phone: "",
-    email: "",
-    // ✅ ADD THESE (NEW)
-    pickupAddress: "",
-    pickupState: "",
-    pickupPincode: "",
-    pickupPhone: "",
-    pickupName: "",
-    dropAddress: "",
-    dropState: "",
-    dropPincode: "",
-    // bags: "",
-    weight: "",
-    length: "",
-    width: "",
-    height: "",
-    bagSize: "",
-    service: "Express",
-    serviceType: "",
-  });
-
+  const resetForm = () => {
+    setValues(initialValues);
+    setErrors({});
+    setAddonError("");
+  };
 
   console.log("values", values)
 
@@ -628,6 +644,12 @@ export default function ShipmentBookingForm({
       { duration: 6000 }
     );
 
+    // Empty input fields
+    resetForm();
+
+    // Navigate to thank-you page
+    router.push("/thank-you");
+
     /* ============================================================
     // 🔁 RAZORPAY FLOW — RESTORE THIS BLOCK WHEN BANK IS FIXED
     // ============================================================
@@ -914,9 +936,11 @@ export default function ShipmentBookingForm({
               <input
                 placeholder="Enter Name"
                 className={fieldClass}
-                value={values.pickupName}
-                onChange={(e) => handleChange("name", e.target.value)}
-
+                value={values.pickupName || ""}
+                onChange={(e) => {
+                  handleChange("pickupName", e.target.value);
+                  handleChange("name", e.target.value);
+                }}
               />
               {errors.pickupName && (
                 <p className="text-red-500 text-sm mt-1">
@@ -928,7 +952,11 @@ export default function ShipmentBookingForm({
               <input
                 placeholder="Whatsapp Number"
                 className={fieldClass}
-                onChange={(e) => handleChange("phone", e.target.value)}
+                value={values.phone || ""}
+                onChange={(e) => {
+                  handleChange("phone", e.target.value);
+                  handleChange("pickupPhone", e.target.value);
+                }}
               />
               {errors.phone && (
                 <p className="text-red-500 text-sm mt-1">
@@ -940,6 +968,7 @@ export default function ShipmentBookingForm({
               <input
                 placeholder="Email"
                 className={fieldClass}
+                value={values.email || ""}
                 onChange={(e) => handleChange("email", e.target.value)}
               />
               {errors.email && (
@@ -955,6 +984,7 @@ export default function ShipmentBookingForm({
                   <input
                     placeholder="Company Name"
                     className={fieldClass}
+                    value={values.companyName || ""}
                     onChange={(e) => handleChange("companyName", e.target.value)}
                   />
                   {errors.companyName && (
@@ -967,6 +997,7 @@ export default function ShipmentBookingForm({
                   <input
                     placeholder="GST Number"
                     className={fieldClass}
+                    value={values.gstNumber || ""}
                     onChange={(e) => handleChange("gstNumber", e.target.value)}
                   />
                   {errors.gstNumber && (
@@ -1213,6 +1244,7 @@ export default function ShipmentBookingForm({
               <input
                 type="date"
                 className={fieldClass}
+                value={values.pickupDate || ""}
                 min={new Date().toISOString().split("T")[0]}   // ✅ block past dates
                 onChange={(e) => handleChange("pickupDate", e.target.value)}
               />
@@ -1230,6 +1262,7 @@ export default function ShipmentBookingForm({
             <div>
               <select
                 className={fieldClass}
+                value={values.pickupTimeSlot || ""}
                 onChange={(e) => handleChange("pickupTimeSlot", e.target.value)}
               >
                 <option value="">Pickup Time Slot</option>
@@ -1373,6 +1406,7 @@ export default function ShipmentBookingForm({
             <div>
               <select
                 className={fieldClass}
+                value={values.bagSize || ""}
                 onChange={(e) => handleChange("bagSize", e.target.value)}
               >
                 <option value="">Select Bag size</option>
@@ -1439,11 +1473,24 @@ export default function ShipmentBookingForm({
 
 
         {/* Price */}
-        <div className="bg-blue-50 border rounded-xl p-5">
-          <div className="flex justify-between font-bold text-lg">
+        <div className="bg-blue-50 border border-blue-200 rounded-xl p-5">
+          <div className="flex justify-between font-bold text-lg items-center">
             <span>Total Payable</span>
-            <span>₹{price.total}</span>
+            <span>
+              {price.hasDetails ? (
+                `₹${price.total}`
+              ) : (
+                <span className="text-sm font-normal text-gray-500">
+                  Calculated after entering luggage details
+                </span>
+              )}
+            </span>
           </div>
+          {!price.hasDetails && (
+            <p className="text-xs text-gray-500 mt-1">
+              Enter luggage weight above to see the payable amount
+            </p>
+          )}
         </div>
 
         <button
@@ -1457,8 +1504,10 @@ export default function ShipmentBookingForm({
               <Loader2 className="w-5 h-5 animate-spin" />
               Wait a moment...
             </>
-          ) : (
+          ) : price.hasDetails ? (
             `Pay ₹${price.total} & Confirm Booking`
+          ) : (
+            "Pay & Confirm Booking"
           )}
         </button>
 

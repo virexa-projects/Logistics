@@ -145,8 +145,8 @@ export default function Footer() {
 
         {/* CONTACT */}
         <div className="flex flex-col items-center md:items-start">
-          <h3 className="font-semibold mb-5 !text-[20px]">Support</h3>
-          <ul className="space-y-4 text-sm font-semibold">
+          <h3 className="font-semibold mb-5 !text-[20px]">Support & Contact</h3>
+          <ul className="space-y-3 text-sm font-semibold">
             <li>
               <Link href="tel:7418152531" className="hover:text-blue-900">
                 • +91 7418152531
@@ -154,10 +154,18 @@ export default function Footer() {
             </li>
             <li>
               <Link
+                href="mailto:support@frisbi.in"
+                className="hover:text-blue-900"
+              >
+                • support@frisbi.in <span className="font-normal text-xs text-gray-500"></span>
+              </Link>
+            </li>
+            <li>
+              <Link
                 href="mailto:info@frisbi.in"
                 className="hover:text-blue-900"
               >
-                • info@frisbi.in
+                • info@frisbi.in <span className="font-normal text-xs text-gray-500"></span>
               </Link>
             </li>
           </ul>
@@ -187,8 +195,8 @@ export default function Footer() {
             <Link href="/privacy-policy" className="hover:text-blue-900">Privacy Policy</Link>
             <span>|</span>
             <Link href="/shipping-policy" className="hover:text-blue-900">Shipping Policy</Link>
-            <span>|</span>
-            <Link href="/sitemap.xml" className="hover:text-primary-900">Sitemap</Link>
+            {/* <span>|</span>
+            <Link href="/sitemap.xml" className="hover:text-primary-900">Sitemap</Link> */}
           </div>
         </div>
       </div>

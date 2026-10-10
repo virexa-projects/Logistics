@@ -182,7 +182,9 @@ function Shippingpolicy() {
             <li className="text-second">
               Liquids, explosives, toxic or flammable items
             </li>
-            <li className="text-second">illegal items  by accordance by indian law.</li>
+            <li className="text-second">
+              Items prohibited under applicable Indian laws and regulations
+            </li>
             <li className="text-second">Perishable and high-value items</li>
           </ul>
           <p className="text-second mt-4">
@@ -205,8 +207,7 @@ function Shippingpolicy() {
             handling.
           </p>
           <p className="text-second mt-4">
-            Frisbi is <span className="text-black font-bold"> not liable </span>{" "}
-            for: s
+            Frisbi is <span className="text-black font-bold">not liable</span> for the following:
           </p>
 
           <ul className="mt-4 list-disc pl-5 space-y-4 font-medium text-[15px]">
@@ -253,7 +254,7 @@ function Shippingpolicy() {
             <li className="text-second">
               SMS / WhatsApp / Email notifications
             </li>
-            <li className="text-second">Website / App tracking dashboard</li>
+            <li className="text-second">Website tracking dashboard</li>
             <li className="text-second">Customer support chat</li>
           </ul>
           <p className="text-second mt-4">
@@ -358,39 +359,49 @@ function Shippingpolicy() {
             <li className="text-second">
               Service category
             </li>
-             <li className="text-second">
+            <li className="text-second">
               Add-on services (insurance, express service, packaging, storage, etc.)
-              </li>
-           <p className="text-second mt-4">
-            Shipments are processed <span className="font-bold text-black"> only after successful payment.</span>
-
-          </p>
-            
+            </li>
           </ul>
+          <p className="text-second mt-4">
+            Shipments are processed{" "}
+            <span className="font-bold text-black">
+              only after successful payment.
+            </span>
+          </p>
         </div>
 
         <hr className="mt-5 " />
         <div className="mt-5">
           <h3 className="">12. Support & Escalation</h3>
           <p className="text-second mt-4">
-           For delivery support, delays, package disputes, or feedback:
-
+            For support, disputes, or escalations, please contact Frisbi at support@frisbi.in:
           </p>
 
           <ul className="mt-4 list-decimal pl-5 space-y-4 font-medium text-[15px]">
             <li className="text-second">
-              Email:{" "}
-              <span className="font-bold text-black"> support@frisbi.in</span>
+              Delivery Support & Escalations:{" "}
+              <a href="mailto:support@frisbi.in" className="font-bold text-black hover:text-primary">
+                support@frisbi.in
+              </a>
             </li>
-           <li className="text-second">
+            <li className="text-second">
+              General & Business Inquiries:{" "}
+              <a href="mailto:info@frisbi.in" className="font-bold text-black hover:text-primary">
+                info@frisbi.in
+              </a>
+            </li>
+            <li className="text-second">
               Contact Us:{" "}
-              <span className="font-bold text-black"> +91 7418152531</span>
+              <a href="tel:7418152531" className="font-bold text-black hover:text-primary">
+                +91 7418152531
+              </a>
             </li>
             <li className="text-second">
               Website:{" "}
               <span className="font-bold text-black">
                 {" "}
-                <Link href="www.frisbi.in" className="text-primary">
+                <Link href="https://www.frisbi.in" target="_blank" rel="noopener noreferrer" className="text-primary">
                   www.frisbi.in
                 </Link>{" "}
               </span>

@@ -108,15 +108,22 @@ function RadioGroup({ value, onChange }) {
 
 /* ---------------- INFO ITEM ---------------- */
 
-function Info({ icon: Icon, title, value }) {
+function Info({ icon: Icon, title, value, href, subtext }) {
   return (
     <div className="flex items-start gap-4">
-      <div className="p-3 bg-gray-100 rounded-xl">
+      <div className="p-3 bg-gray-100 rounded-xl shrink-0">
         <Icon className="w-6 h-6 text-primary" />
       </div>
       <div>
-        <h3 className="font-medium !text-[20px]">{title}</h3>
-        <p className="text-gray-600 mt-1">{value}</p>
+        <h3 className="font-medium !text-[18px] md:!text-[20px]">{title}</h3>
+        {href ? (
+          <a href={href} className="text-gray-600 mt-1 block hover:text-primary transition font-medium">
+            {value}
+          </a>
+        ) : (
+          <p className="text-gray-600 mt-1">{value}</p>
+        )}
+        {subtext && <p className="text-gray-500 text-xs mt-0.5">{subtext}</p>}
       </div>
     </div>
   );
@@ -336,11 +343,28 @@ export default function ContactSection() {
               care of your luggage.
             </p>
 
-            <div className="space-y-8 mt-8">
-              {/* <Info icon={MapPin} title="Where to Find Us" value="India" /> */}
-            
-              <Info icon={Phone} title="Call us" value="+91 7418152531" />
-                <Info icon={Mail} title="Drop us a line" value="info@frisbi.in" />
+            <div className="space-y-6 mt-8">
+              <Info
+                icon={Phone}
+                title="Call us"
+                value="+91 7418152531"
+                href="tel:7418152531"
+                subtext="Available 9 AM to 9 PM, 7 days a week"
+              />
+              <Info
+                icon={Mail}
+                title="Customer Support"
+                value="support@frisbi.in"
+                href="mailto:support@frisbi.in"
+                subtext="For bookings, tracking assistance & order support"
+              />
+              <Info
+                icon={Mail}
+                title="General & Business Inquiries"
+                value="info@frisbi.in"
+                href="mailto:info@frisbi.in"
+                subtext="For corporate partnerships & general queries"
+              />
             </div>
           </motion.div>
 

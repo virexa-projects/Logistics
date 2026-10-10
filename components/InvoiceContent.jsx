@@ -182,7 +182,7 @@ function InvoiceContent({ values, price }) {
         }}
       >
         <p>Thank you for choosing Frisbi Logistics 🚚</p>
-        <p>info@frisbi.in | +91 74181 52531</p>
+        <p>support@frisbi.in | info@frisbi.in | +91 74181 52531</p>
       </div>
     </>
   );
