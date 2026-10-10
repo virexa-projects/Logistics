@@ -9,7 +9,7 @@ import Link from 'next/link';
 function BaggageChargesIndia() {
     return (
         <main className="bg-white">
-            {/* Hero Section */}
+            {}
             <section className="relative h-[500px] md:h-[600px]">
                 <Image
                     src={blogbg}
@@ -32,11 +32,7 @@ function BaggageChargesIndia() {
                                 How to Avoid Excess Baggage Charges on Domestic Flights in India
                             </h1>
 
-                            {/* <div className="flex items-center gap-4 mt-6 text-white/90">
-                      <span>July 15, 2026</span>
-                      <span>•</span>
-                      <span>8 min read</span>
-                    </div> */}
+                            {}
                         </div>
                     </div>
                 </div>

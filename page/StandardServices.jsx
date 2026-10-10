@@ -126,7 +126,7 @@ export default function Services() {
               </p>
 
               <motion.h1 {...fadeUp} className="text-black mb-6">
-                Reliable Standard Baggage Shipping & Scheduled Luggage Delivery in Bangalore
+            Affordable Luggage Shipping for Planned Travel
               </motion.h1>
 
               <motion.p {...fadeUp} className="text-black max-w-2xl mb-6">

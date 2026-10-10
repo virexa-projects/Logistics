@@ -3,7 +3,7 @@ import React from 'react'
 
 
 export const metadata = {
-  title: "Luggage Shipping & Baggage Delivery Services in Bangalore | Frisbi",
+  title: "Luggage Shipping & Baggage Delivery Services | Frisbi",
   description:
     "Compare Frisbi’s door-to-door luggage shipping and baggage delivery services in Bangalore. Choose standard, express, or custom options. Book your service today!.",
   keywords: [

@@ -265,7 +265,7 @@ function Faq() {
         />
 
         <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 max-w-3xl mx-auto">
-          <h1 className="text-black mb-4">FAQ About Luggage Delivery & Baggage Shipping in Bangalore </h1>
+          <h1 className="text-black mb-4">Frequently Asked Questions </h1>
           <p className="text-black mb-4 text-sm md:text-base">
             India’s trusted luggage delivery service built for stress-free travel.
           </p>

@@ -43,7 +43,7 @@ function Aboutus() {
         {/* CONTENT */}
         <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 max-w-3xl mx-auto">
           <h1 className="text-black text-3xl md:text-4xl font-semibold mb-4">
-            Bangalore’s Trusted Door-to-Door Luggage Delivery & Pickup Service
+            Bengaluru’s Trusted Luggage Logistics & Delivery Partner
           </h1>
 
           <p className="text-black mb-8 text-sm md:text-base">

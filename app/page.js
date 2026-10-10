@@ -1,12 +1,15 @@
 import Home from "@/page/Home";
 
 export const metadata = {
-  title: "Bangalore's Best Door-to-Door Luggage Delivery & Pickup Service | Frisbi",
+  title: "Luggage Pickup & Delivery Service in Bangalore | Frisbi",
   description:
     "Skip heavy bags! Frisbi offers secure door-to-door luggage pickup and delivery across Bangalore. Book reliable baggage shipping & travel hands-free today.",
   keywords: [
-    "luggage delivery service",
-    "luggage movers in Bangalore",
+     "luggage delivery service",
+  "luggage pickup and delivery Bangalore",
+  "door to door luggage delivery Bangalore",
+  "luggage delivery in Bangalore",
+  "luggage movers in Bangalore",
   ],
   alternates: {
     canonical: "https://frisbi.in",

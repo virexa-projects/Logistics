@@ -187,7 +187,7 @@ function Trackyourpackage() {
           />
 
           <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 max-w-3xl mx-auto">
-            <h1 className="text-black  mb-4">Live Baggage Shipping Tracking & Luggage Delivery Status in Bangalore </h1>
+            <h1 className="text-black  mb-4">Track Your Luggage Shipment </h1>
             <p className="text-black mb-8 text-sm md:text-base">
               India's trusted luggage delivery service, built to make travel lighter, smarter, and stress-free.
             </p>
