@@ -72,13 +72,13 @@ export default function HeroSlider() {
             className="absolute inset-0"
           > */}
         <Image
-          src={bannerone}
-          alt={bannerone}
+          src="/hero-desktop.jpg"
+          alt="Frisbi Door-to-Door Luggage Delivery"
           fill
           priority
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-black/30" />
+        <div className="absolute inset-0 bg-black/35" />
         {/* </motion.div>
         ))} */}
 

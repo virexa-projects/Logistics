@@ -24,7 +24,7 @@ export default function FloatingActions() {
   };
 
   return (
-    <div className="fixed bottom-28 right-6 z-50 flex flex-col items-center gap-4">
+    <div className="hidden md:flex fixed bottom-28 right-6 z-50 flex-col items-center gap-4">
 
       {/* 🔼 Back to Top */}
       <AnimatePresence>

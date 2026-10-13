@@ -76,11 +76,12 @@ export default function Header() {
   };
 
   return (
-    <header className={`sticky top-0 z-50 transition-all duration-300 ${headerBg}`}>
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-5 flex justify-between items-center gap-4">
+    <header className={`sticky top-0 z-50 transition-all duration-300 ${scroll ? "bg-white shadow-md" : "bg-white lg:bg-transparent"}`}>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-3.5 sm:py-5 flex justify-between items-center gap-4">
         {/* Logo */}
         <Link href="/" className="font-bold shrink-0 flex items-center">
-          <Image src={logoSrc} alt="Logo" width={140} height={40} className="object-contain w-auto h-8 sm:h-9" priority />
+          <Image src={LogoBlack} alt="Frisbi Logo" width={140} height={40} className="object-contain w-auto h-8 sm:h-9 lg:hidden block" priority />
+          <Image src={logoSrc} alt="Frisbi Logo" width={140} height={40} className="object-contain w-auto h-8 sm:h-9 hidden lg:block" priority />
         </Link>
 
         {/* Desktop Navigation */}
@@ -208,107 +209,24 @@ export default function Header() {
           </motion.div>
         </div>
 
-        {/* Mobile Menu Button & Track button */}
-        <div className="lg:hidden flex items-center gap-3 sm:gap-4 shrink-0">
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="relative shrink-0"
+        {/* Mobile Menu Button & Book Now button */}
+        <div className="lg:hidden flex items-center gap-2.5 sm:gap-3 shrink-0">
+          <Link
+            href="/rate-calculator"
+            className="bg-[#013EFE] hover:bg-blue-700 text-white px-4 py-2 rounded-full text-xs font-semibold shadow-sm transition active:scale-95"
           >
-            {/* Glow Effect */}
-            <motion.div
-              animate={{
-                scale: [1, 1.15, 1],
-                opacity: [0.3, 0.6, 0.3],
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-              }}
-              className="absolute inset-0 bg-blue-500 blur-xl rounded-full"
-            />
-
-            <Link
-              href="/track-your-package"
-              onClick={handleTrackClick}
-              className="
-                relative
-                overflow-hidden
-                flex
-                items-center
-                justify-center
-                gap-1.5
-                bg-gradient-to-r
-                from-blue-500
-                via-blue-600
-                to-blue-700
-                px-3.5
-                sm:px-4
-                py-2
-                rounded-full
-                text-white
-                text-xs
-                sm:text-sm
-                font-semibold
-                whitespace-nowrap
-                shadow-[0_8px_20px_rgba(37,99,235,0.35)]
-                transition-all
-                duration-300
-                hover:scale-105
-              "
-            >
-              {/* Moving Shine */}
-              <motion.span
-                animate={{
-                  x: ["-150%", "250%"],
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  ease: "linear",
-                  repeatDelay: 1,
-                }}
-                className="
-                  absolute
-                  top-0
-                  left-0
-                  w-16
-                  h-full
-                  bg-white/20
-                  skew-x-12
-                  blur-md
-                "
-              />
-
-              {/* Text */}
-              <span className="relative z-10">Track Now</span>
-
-              {/* Arrow */}
-              <motion.span
-                animate={{
-                  x: [0, 3, 0],
-                }}
-                transition={{
-                  duration: 1,
-                  repeat: Infinity,
-                }}
-                className="relative z-10"
-              >
-                →
-              </motion.span>
-            </Link>
-          </motion.div>
+            Book Now
+          </Link>
 
           <button
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle Menu"
-            className="p-1 rounded-md hover:bg-black/5 transition"
+            className="p-1.5 border border-gray-200 rounded-xl hover:bg-gray-50 transition text-gray-800 bg-white"
           >
             {isOpen ? (
-              <X className="h-8 w-8 text-black transition" />
+              <X className="h-6 w-6 text-gray-800 transition" />
             ) : (
-              <Menu className={`h-8 w-8 transition ${textColor}`} />
+              <Menu className="h-6 w-6 text-gray-800 transition" />
             )}
           </button>
         </div>

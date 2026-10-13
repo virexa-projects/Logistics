@@ -21,6 +21,7 @@ import FAQSection from "@/components/AccordionCorporate";
 import ContactSection from "@/components/ContactSection";
 import HowToShip from "@/components/HowToShip";
 import Testimonials from "@/components/Testimonials";
+import MobileHome from "@/components/MobileHome";
 
 function Home() {
   const faqData = [
@@ -60,7 +61,9 @@ function Home() {
 
   return (
     <div>
-      <HeroSlider />
+      {/* DESKTOP VIEW - 100% UNCHANGED */}
+      <div className="hidden md:block">
+        <HeroSlider />
 
       <section className="container mx-auto relative px-4 py-12 md:py-20  sm:px-6 lg:px-8">
         {/* Section Heading */}
@@ -209,7 +212,13 @@ function Home() {
         </div>
       </section>
 
-      <MarqueeLogos />
+        <MarqueeLogos />
+      </div>
+
+      {/* MOBILE VIEW - Figma Reference UI, Cards & Scroll Methods */}
+      <div className="block md:hidden">
+        <MobileHome />
+      </div>
     </div>
   );
 }

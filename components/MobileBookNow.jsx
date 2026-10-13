@@ -2,8 +2,10 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 export default function MobileBookNow() {
+  const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -15,6 +17,8 @@ export default function MobileBookNow() {
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  if (pathname === "/") return null;
 
   return (
     <div
