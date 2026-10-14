@@ -22,6 +22,7 @@ import ContactSection from "@/components/ContactSection";
 import HowToShip from "@/components/HowToShip";
 import Testimonials from "@/components/Testimonials";
 import MobileHome from "@/components/MobileHome";
+import HowYourBagsTravel from "@/components/HowYourBagsTravel";
 
 function Home() {
   const faqData = [
@@ -61,9 +62,12 @@ function Home() {
 
   return (
     <div>
-      {/* DESKTOP VIEW - 100% UNCHANGED */}
+      {/* DESKTOP VIEW */}
       <div className="hidden md:block">
         <HeroSlider />
+
+        {/* HOW YOUR BAGS TRAVEL (Desktop right-to-left auto-scroll) */}
+        <HowYourBagsTravel variant="desktop" />
 
       <section className="container mx-auto relative px-4 py-12 md:py-20  sm:px-6 lg:px-8">
         {/* Section Heading */}

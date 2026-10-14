@@ -50,6 +50,7 @@ import TanyaProfile from "@/asset/profiles/tanya.jpg";
 import ParulProfile from "@/asset/profiles/paurl.jpg";
 
 import MarqueeLogos from "@/components/MarqueeLogos";
+import HowYourBagsTravel from "@/components/HowYourBagsTravel";
 
 export default function MobileHome() {
   const router = useRouter();
@@ -464,48 +465,9 @@ export default function MobileHome() {
         </div>
       </section>
       {/* ============================================================
-          2. HOW YOUR BAGS TRAVEL (Horizontal Scrollable Packaging Photos)
+          2. HOW YOUR BAGS TRAVEL (Bottom-to-Top Auto-scroll, Swipable, Large Cards)
          ============================================================ */}
-      <section className="py-8 px-4 bg-white">
-        <div className="mb-4">
-          <h2 className="text-xl font-bold text-gray-900 tracking-tight">
-            How Your Bags Travel
-          </h2>
-          <p className="text-xs text-gray-500 mt-1">
-            Real photos of multi-layer protection and sealed baggage in transit.
-          </p>
-        </div>
-
-        {/* Horizontal scroll track with smooth snap */}
-        <div className="flex gap-3.5 overflow-x-auto pb-3 snap-x snap-mandatory scrollbar-none -mx-4 px-4">
-          {packagingList.map((item, idx) => (
-            <div
-              key={idx}
-              className="min-w-[220px] max-w-[220px] shrink-0 bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden snap-start flex flex-col"
-            >
-              <div className="relative w-full h-[185px] bg-gray-100">
-                <Image
-                  src={item.img}
-                  alt={item.title}
-                  fill
-                  className="object-cover"
-                  sizes="220px"
-                />
-              </div>
-              <div className="p-3 flex flex-col flex-1 justify-between">
-                <div>
-                  <h3 className="text-sm font-bold text-gray-900 leading-snug">
-                    {item.title}
-                  </h3>
-                  <p className="text-[11px] text-gray-500 leading-normal mt-1">
-                    {item.desc}
-                  </p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
+      <HowYourBagsTravel variant="mobile" />
 
       {/* ============================================================
           3. ABOUT FRISBI
