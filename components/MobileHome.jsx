@@ -23,12 +23,11 @@ import {
   Home as HomeIcon,
   Calculator as CalcIcon,
   HelpCircle,
-  ArrowRight,
 } from "lucide-react";
 import { FaWhatsapp, FaStar } from "react-icons/fa";
 
 // Assets
-import AboutImg from "@/asset/home/about-frisbi.png";
+import About from "@/asset/home/about-frisbi.png";
 import StandardImg from "@/asset/service/standard-banner-img.svg";
 import ExpressImg from "@/asset/service/express.svg";
 import PremiumImg from "@/asset/service/premium-banner-img.svg";
@@ -115,46 +114,56 @@ export default function MobileHome() {
       title: "Standard Delivery",
       desc: "For trips and moves planned ahead. A reliable, cost-effective way to send your packages with care.",
       bg: "bg-white",
-      text: "text-gray-900",
-      descColor: "text-gray-600",
+      text: "text-black",
+      descColor: "text-black",
+      linkColor: "text-black hover:text-[#013EFE]",
       link: "/services/standard-delivery",
       img: StandardImg,
+      isFeature: false,
     },
     {
       title: "Express Delivery",
       desc: "Faster delivery without cutting corners on safety. With added flexibility and priority handling.",
-      bg: "bg-[#EAB308]",
-      text: "text-gray-900",
-      descColor: "text-gray-900",
+      bg: "bg-yellow-500",
+      text: "text-black",
+      descColor: "text-black",
+      linkColor: "text-black hover:text-[#013EFE]",
       link: "/services/express-delivery",
       img: ExpressImg,
+      isFeature: false,
     },
     {
       title: "Premium Delivery",
       desc: "White glove care, end to end. For deliveries you would rather not think twice about.",
       bg: "bg-[#013EFE]",
       text: "text-white",
-      descColor: "text-white/90",
+      descColor: "text-white",
+      linkColor: "text-white hover:text-white",
       link: "/services/premium-delivery",
       img: PremiumImg,
+      isFeature: false,
     },
     {
       title: "Corporate",
       desc: "Business delivery that handles it all. From employee moves to event travel, we handle baggage so work keeps moving.",
       bg: "bg-white",
-      text: "text-gray-900",
-      descColor: "text-gray-600",
-      link: "/corporate",
+      text: "text-black",
+      descColor: "text-gray-500",
+      linkColor: "text-[16px] font-semibold hover:text-[#013EFE]",
+      link: "/book/corporate",
       img: CorporateImg,
+      isFeature: true,
     },
     {
       title: "Individual",
       desc: "When life requires extra bags, longer stays, or city transfers, we step in to make sure your luggage reaches safely.",
       bg: "bg-white",
-      text: "text-gray-900",
-      descColor: "text-gray-600",
-      link: "/individual",
+      text: "text-black",
+      descColor: "text-gray-500",
+      linkColor: "text-[16px] font-semibold hover:text-[#013EFE]",
+      link: "/book/individual",
       img: IndividualImg,
+      isFeature: true,
     },
   ];
 
@@ -534,6 +543,19 @@ export default function MobileHome() {
           >
             Know More
           </Link>
+
+          {/* Image */}
+          <div className="flex justify-center lg:justify-end mt-6">
+            <div className="relative w-full max-w-xl h-[280px] md:h-[500px] rounded-2xl overflow-hidden">
+              <Image
+                src={About}
+                alt="Frisbi luggage delivery illustration"
+                fill
+                className="object-contain"
+                priority
+              />
+            </div>
+          </div>
         </div>
       </section>
 
@@ -555,71 +577,72 @@ export default function MobileHome() {
 
         {/* Sticky Stacking Cards Container: 5 -> 4 -> 3 -> 2 -> 1 with reverse unstacking */}
         <div className="relative pb-6 max-w-md mx-auto">
-          {servicesList.map((svc, i) => (
-            <div
-              key={i}
-              style={{
-                position: "sticky",
-                top: `${68 + i * 16}px`,
-                zIndex: i + 10,
-              }}
-              className={`${svc.bg} rounded-[28px] p-6 shadow-[0_12px_32px_rgba(0,0,0,0.08)] border border-black/5 overflow-hidden flex flex-col justify-between mb-8 last:mb-0 ${i < 3 ? "min-h-[450px]" : "min-h-[410px]"
-                } transition-all`}
-            >
-              <div>
-                <div className="flex items-center justify-between mb-2.5">
-                  <span
-                    className={`text-[10px] font-bold tracking-wider uppercase px-2.5 py-1 rounded-full ${svc.text === "text-white"
-                      ? "bg-white/20 text-white"
-                      : "bg-black/5 text-gray-700"
-                      }`}
-                  >
-                    0{i + 1} / 05
-                  </span>
-                  <span
-                    className={`text-[11px] font-semibold tracking-wide ${svc.text === "text-white"
-                      ? "text-white/80"
-                      : "text-[#013EFE]"
-                      }`}
+          {servicesList.map((svc, i) => {
+            const isFeature = svc.isFeature;
+            return (
+              <div
+                key={i}
+                style={{
+                  position: "sticky",
+                  top: `${68 + i * 16}px`,
+                  zIndex: i + 10,
+                }}
+                className={`relative ${isFeature
+                  ? "bg-white rounded-3xl p-8 h-[500px]"
+                  : `${svc.bg} rounded-3xl p-6 md:p-8 lg:p-10 h-[500px]`
+                  } flex flex-col justify-between shadow-[0_12px_32px_rgba(0,0,0,0.08)] border border-black/5 overflow-hidden mb-8 last:mb-0 transition-all`}
+              >
+                <div className="relative z-10">
+                  <h3
+                    className={`${isFeature ? "text-black" : svc.text
+                      } md:text-[20px] text-[18px]`}
                   >
                     {svc.title}
-                  </span>
-                </div>
-                <h3 className={`text-lg font-bold ${svc.text} mb-1.5`}>
-                  {svc.title}
-                </h3>
-                <p className={`text-xs sm:text-[13px] ${svc.descColor} leading-relaxed mb-3`}>
-                  {svc.desc}
-                </p>
-                <Link
-                  href={svc.link}
-                  className={`inline-flex items-center gap-1 text-xs font-bold ${svc.text === "text-white"
-                    ? "text-white underline"
-                    : "text-[#013EFE]"
-                    } hover:opacity-80 transition`}
-                >
-                  Learn more <ArrowRight className="w-3.5 h-3.5" />
-                </Link>
-              </div>
+                  </h3>
 
-              <div className={`relative w-full ${i < 3 ? "h-[215px]" : "h-[185px]"} mt-4 flex items-center justify-center`}>
-                <Image
-                  src={svc.img}
-                  alt={svc.title}
-                  fill
-                  className="object-contain"
-                  sizes="340px"
-                />
+                  <p
+                    className={`${isFeature
+                      ? "mt-3 text-gray-500"
+                      : `mt-4 text-base ${svc.descColor}`
+                      }`}
+                  >
+                    {svc.desc}
+                  </p>
+
+                  <Link
+                    href={svc.link || "#"}
+                    className={`${isFeature
+                      ? "mt-4 inline-block text-[16px] font-semibold hover:text-[#013EFE]"
+                      : `mt-4 inline-block font-semibold ${svc.linkColor}`
+                      }`}
+                  >
+                    Learn more
+                  </Link>
+                </div>
+
+                {/* Image */}
+                <div
+                  className={`absolute bottom-0 inset-x-0 ${isFeature ? "h-[70%]" : "w-full h-[55%] z-0"
+                    }`}
+                >
+                  <Image
+                    src={svc.img}
+                    alt={svc.title}
+                    fill
+                    className={isFeature ? "object-cover" : "object-contain"}
+                    priority={i === 0}
+                  />
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
-        {/* Book Now Button */}
-        <div className="text-center mt-8 pt-2">
+        {/* CTA */}
+        <div className="flex justify-center mt-8">
           <Link
-            href="/rate-calculator"
-            className="inline-block bg-[#013EFE] hover:bg-blue-700 text-white text-sm font-semibold px-8 py-3 rounded-full shadow-lg transition-transform active:scale-95"
+            href="/book-shipment"
+            className="btn-primary hover:scale-105 transition-all"
           >
             Book Now
           </Link>
