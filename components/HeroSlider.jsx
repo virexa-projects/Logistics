@@ -12,7 +12,7 @@ import PorterPickupDrop from "./PickupDropBooking";
 
 const slides = [
   {
-    title: "Bangalore’s Best Door-to-Door Luggage Delivery & Pickup Service",
+    title: "Door-to-Door Luggage Pickup & Delivery in Bangalore",
     desc: "Skip the heavy bags and travel hands-free. Frisbi picks up your luggage from your doorstep and delivers it safely to your destination.",
     img: bannerone,
   },

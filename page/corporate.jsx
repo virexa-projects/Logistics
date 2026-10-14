@@ -37,7 +37,7 @@ function Corporate() {
               <motion.h1
                 {...fadeUp}
                 transition={{ delay: 0.1 }}
-                className="text-black font-black mb-6 max-w-xl"
+                className="text-black mb-6 max-w-xl"
               >
                 Bulk Luggage Shipping & B2B Corporate Baggage Logistics in Bangalore
               </motion.h1>

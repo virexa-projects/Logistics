@@ -74,13 +74,13 @@ export default function FAQ() {
                 className="flex justify-between items-center cursor-pointer select-none gap-4"
                 onClick={() => toggle(i)}
               >
-                <h5
-                  className={`text-lg transition-colors duration-200 ${
+                <h3
+                  className={`!text-[20px] transition-colors duration-200 ${
                     isOpen ? "font-semibold text-gray-900" : "font-medium text-gray-900"
                   }`}
                 >
                   {faq.question}
-                </h5>
+                </h3>
                 <div className="shrink-0 text-black">
                   {isOpen ? (
                     <ChevronUp className="w-6 h-6 transition-transform duration-200" />

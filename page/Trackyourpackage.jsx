@@ -187,7 +187,7 @@ function Trackyourpackage() {
           />
 
           <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 max-w-3xl mx-auto">
-            <h1 className="text-black  mb-4">Live Baggage Shipping Tracking & Luggage Delivery Status in Bangalore </h1>
+            <h1 className="text-black  mb-4">Track Your Luggage Shipment </h1>
             <p className="text-black mb-8 text-sm md:text-base">
               India's trusted luggage delivery service, built to make travel lighter, smarter, and stress-free.
             </p>
@@ -268,10 +268,10 @@ function Trackyourpackage() {
 
             {/* FORM CARD */}
             <div className="mt-8 bg-white rounded-3xl drop-shadow-[0_4px_100px_rgba(0,0,0,0.08)] p-10">
-              <h4 className="text-xl md:text-2xl font-semibold text-gray-900">
+              <h3 className="!text-[20px] font-semibold text-gray-900">
                 Track Your Orders Easily
 
-              </h4>
+              </h3>
 
               <div className="mt-5">
                 <input

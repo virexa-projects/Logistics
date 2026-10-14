@@ -72,9 +72,9 @@ export function UseCases() {
 
                 {/* Content */}
                 <div>
-                  <h5 className="text-black font-semibold mb-1">
+                  <h3 className="text-black !text-[20px] font-semibold mb-1">
                     {item.title}
-                  </h5>
+                  </h3>
                   <p className="text-sm text-second leading-relaxed">
                     {item.description}
                   </p>

@@ -44,7 +44,7 @@ export default function Services() {
 
           <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 max-w-3xl mx-auto">
             <h1 className="text-black text-3xl mb-4 md:text-4xl font-semibold ">
-              Reliable Luggage Shipping & Baggage Delivery Services in Bangalore
+              Reliable Luggage Shipping & Baggage Delivery Services
             </h1>
             <p className="text-black mb-4 text-sm md:text-base">
               Thoughtfully built to make travel easier, calmer, and more predictable across India.

@@ -306,9 +306,9 @@ export default function PorterPickupDrop() {
             exit={{ y: "100%" }}
           >
             <div className="flex justify-between items-center mb-4">
-              <h4 className="font-semibold text-sm">
+              <h3 className="font-semibold !text-[20px]">
                 {open === "pickup" ? "Pickup Location" : "Drop Location"}
-              </h4>
+              </h3>
               <button onClick={() => setOpen(null)}>✕</button>
             </div>
 

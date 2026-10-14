@@ -2,11 +2,14 @@ import StandardServices from '@/page/StandardServices'
 import React from 'react'
 
 export const metadata = {
-  title: "Standard Baggage Shipping in Bangalore | Scheduled Delivery | Frisbi Meta",
+  title: "Standard Delivery Option for Luggage | Frisbi",
   description:
     "Book affordable standard baggage shipping in Bangalore with Frisbi. Safe, scheduled doorstep luggage transport across the city. Schedule your delivery today!.",
   keywords: [
-    "affordable luggage delivery service, baggage delivery India, luggage shipping India"
+    "standard delivery",
+  "standard luggage shipping",
+  "regular luggage delivery",
+  "standard baggage delivery",
   ],
   alternates: {
     canonical: "https://frisbi.in/services/standard-delivery",

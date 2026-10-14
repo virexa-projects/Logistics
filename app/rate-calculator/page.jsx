@@ -6,7 +6,10 @@ export const metadata = {
   description:
     "Looking for luggage shipping prices in Bangalore? Use Frisbi's instant calculator for transparent door-to-door baggage delivery rates. Check your price now!.",
   keywords: [
-    "luggage delivery cost calculator, baggage delivery pricing, luggage parcel price calculator"
+    "luggage delivery cost calculator",
+  "luggage delivery charges",
+  "luggage shipping cost",
+  "luggage delivery price",
   ],
   alternates: {
     canonical: "https://frisbi.in/rate-calculator",

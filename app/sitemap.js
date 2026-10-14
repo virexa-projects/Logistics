@@ -26,6 +26,13 @@ export default function sitemap() {
     },
 
     {
+      url: "https://frisbi.in/book-shipment",
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+
+    {
       url: "https://frisbi.in/blog",
       lastModified: new Date(),
       changeFrequency: "monthly",

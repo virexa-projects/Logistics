@@ -2,12 +2,14 @@ import Trackyourpackage from '@/page/Trackyourpackage'
 import React from 'react'
 
 export const metadata = {
-  title: "Track Baggage Shipping Bangalore | Real-Time Luggage Status | Frisbi",
+  title: "Track Your Luggage Delivery Online | Frisbi",
   description:
     "Track your baggage shipment live in Bangalore. Enter your tracking ID for instant status updates on your scheduled luggage and parcel delivery with Frisbi.",
   keywords: [
-    "track luggage delivery india, baggage tracking online, real-time luggage tracking, track my baggage shipment, luggage courier tracking india, baggage delivery status, track luggage online india, frisbi tracking number, luggage shipment tracking, live baggage tracking india"
-  ],
+ "track luggage delivery",
+  "luggage tracking",
+  "track luggage shipment",
+  "luggage delivery tracking"  ],
   alternates: {
     canonical: "https://frisbi.in/track-your-package",
   },

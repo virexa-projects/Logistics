@@ -26,7 +26,7 @@ export default function Footer() {
           <p className="text-black">India’s Smart Luggage Delivery Solution</p>
 
           <div>
-            <h4 className="font-semibold mb-2">Social Media</h4>
+            <h3 className="font-semibold mb-2 !text-[20px]">Social Media</h3>
             <div className="flex items-center gap-4 justify-center md:justify-start">
               {/* YouTube */}
               <Link href="https://youtube.com/@frisbi-luggage-delivery?si=sfdhhiZOjdpNhNTs">
@@ -55,7 +55,7 @@ export default function Footer() {
         {/* SERVICES */}
         <div className="flex flex-col items-center md:items-start">
           <div>
-            <h4 className="font-semibold mb-5 text-lg">Book Pickup</h4>
+            <h3 className="font-semibold mb-5 !text-[20px]">Book Pickup</h3>
             <ul className="space-y-4 text-sm font-semibold">
               <li>
                 <Link href="/book/corporate" className="hover:text-blue-900">
@@ -71,7 +71,7 @@ export default function Footer() {
           </div>
 
           <div className="mt-5">
-            <h4 className="font-semibold mb-5 text-lg">Services</h4>
+            <h3 className="font-semibold mb-5 !text-[20px]">Services</h3>
             <ul className="space-y-4 text-sm font-semibold">
               <li>
                 <Link
@@ -103,7 +103,7 @@ export default function Footer() {
 
         {/* COMPANY */}
         <div className="flex flex-col items-center md:items-start">
-          <h4 className="font-semibold mb-5 text-lg">Company</h4>
+          <h3 className="font-semibold mb-5 !text-[20px]">Company</h3>
           <ul className="space-y-4 text-sm font-semibold">
             <li>
               <Link href="/about" className="hover:text-blue-900">
@@ -145,8 +145,8 @@ export default function Footer() {
 
         {/* CONTACT */}
         <div className="flex flex-col items-center md:items-start">
-          <h4 className="font-semibold mb-5">Support</h4>
-          <ul className="space-y-4 text-sm font-semibold">
+          <h3 className="font-semibold mb-5 !text-[20px]">Support & Contact</h3>
+          <ul className="space-y-3 text-sm font-semibold">
             <li>
               <Link href="tel:7418152531" className="hover:text-blue-900">
                 • +91 7418152531
@@ -154,10 +154,18 @@ export default function Footer() {
             </li>
             <li>
               <Link
+                href="mailto:support@frisbi.in"
+                className="hover:text-blue-900"
+              >
+                • support@frisbi.in <span className="font-normal text-xs text-gray-500"></span>
+              </Link>
+            </li>
+            <li>
+              <Link
                 href="mailto:info@frisbi.in"
                 className="hover:text-blue-900"
               >
-                • info@frisbi.in
+                • info@frisbi.in <span className="font-normal text-xs text-gray-500"></span>
               </Link>
             </li>
           </ul>
@@ -187,8 +195,8 @@ export default function Footer() {
             <Link href="/privacy-policy" className="hover:text-blue-900">Privacy Policy</Link>
             <span>|</span>
             <Link href="/shipping-policy" className="hover:text-blue-900">Shipping Policy</Link>
-            <span>|</span>
-            <Link href="/sitemap.xml" className="hover:text-primary-900">Sitemap</Link>
+            {/* <span>|</span>
+            <Link href="/sitemap.xml" className="hover:text-primary-900">Sitemap</Link> */}
           </div>
         </div>
       </div>

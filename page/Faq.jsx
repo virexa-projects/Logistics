@@ -173,7 +173,7 @@ const faqData = {
     },
     {
       q: "How do I contact customer support?",
-      a: "Call or WhatsApp +91 7418152531, email info@frisbi.in, or use the contact form on our website. Support is available 9 AM to 9 PM, 7 days a week.",
+      a: "Call or WhatsApp +91 7418152531, email support@frisbi.in (for bookings & shipment support) or info@frisbi.in (for general inquiries), or use the contact form on our website. Support is available 9 AM to 9 PM, 7 days a week.",
     },
     {
       q: "Do I get a dedicated contact person?",
@@ -265,7 +265,7 @@ function Faq() {
         />
 
         <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 max-w-3xl mx-auto">
-          <h1 className="text-black mb-4">FAQ About Luggage Delivery & Baggage Shipping in Bangalore </h1>
+          <h1 className="text-black mb-4">Frequently Asked Questions </h1>
           <p className="text-black mb-4 text-sm md:text-base">
             India’s trusted luggage delivery service built for stress-free travel.
           </p>

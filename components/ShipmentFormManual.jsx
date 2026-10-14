@@ -217,6 +217,17 @@ const submitToGoogleSheet = async (values, totalPrice, router) => {
 const calculatePriceBreakup = (values) => {
     const weight = Number(values.weight || 0);
 
+    // Show zero/placeholder until shipment weight is entered
+    if (!values.weight || weight <= 0) {
+        return {
+            subtotal: 0,
+            discount: 0,
+            gst: 0,
+            total: 0,
+            hasDetails: false,
+        };
+    }
+
     const service = SERVICE_PRICING[values.service] || {
         base: 0,
         perKg: 0,
@@ -225,7 +236,7 @@ const calculatePriceBreakup = (values) => {
     const baseCost = service.base;
     const weightCost = weight * service.perKg;
 
-    // 🔥 ADD THIS (MISSING BEFORE)
+    // Volume cost based on dimensions (if provided)
     const volumeCost =
         (Number(values.length || 0) +
             Number(values.width || 0) +
@@ -233,8 +244,7 @@ const calculatePriceBreakup = (values) => {
 
     let subtotal = baseCost + weightCost;
 
-
-    // ✅ addons (optional)
+    // addons (optional)
     const addonTotal = (values.addons || []).reduce(
         (sum, addon) => sum + (ADDON_PRICES[addon] || 0),
         0
@@ -242,11 +252,7 @@ const calculatePriceBreakup = (values) => {
 
     subtotal += addonTotal;
 
-    // ✅ multipliers (optional)
-    // subtotal *= BAG_SIZE_MULTIPLIER[values.bagSize || "Small"];
-    // subtotal *= LUGGAGE_TYPE_MULTIPLIER[values.luggageType || "Suitcase"];
-
-    // ✅ discount
+    // discount
     let discount = 0;
     if (values.customerType === "Corporate") {
         discount += (subtotal * CORPORATE_DISCOUNT_PERCENT) / 100;
@@ -254,7 +260,7 @@ const calculatePriceBreakup = (values) => {
 
     const discountedTotal = subtotal - discount;
 
-    // ✅ GST
+    // GST
     const gst =
         values.customerType === "Corporate" || values.includeGST
             ? (discountedTotal * GST_PERCENT) / 100
@@ -265,6 +271,7 @@ const calculatePriceBreakup = (values) => {
         discount: Math.round(discount),
         gst: Math.round(gst),
         total: Math.round(discountedTotal + gst),
+        hasDetails: true,
     };
 };
 
@@ -1276,11 +1283,24 @@ export default function ShipmentFormManual({
 
 
                 {/* Price */}
-                <div className="bg-blue-50 border rounded-xl p-5">
-                    <div className="flex justify-between font-bold text-lg">
+                <div className="bg-blue-50 border border-blue-200 rounded-xl p-5">
+                    <div className="flex justify-between font-bold text-lg items-center">
                         <span>Total Payable</span>
-                        <span>₹{price.total}</span>
+                        <span>
+                            {price.hasDetails ? (
+                                `₹${price.total}`
+                            ) : (
+                                <span className="text-sm font-normal text-gray-500">
+                                    Calculated after entering luggage details
+                                </span>
+                            )}
+                        </span>
                     </div>
+                    {!price.hasDetails && (
+                        <p className="text-xs text-gray-500 mt-1">
+                            Enter luggage weight above to see the payable amount
+                        </p>
+                    )}
                 </div>
 
                 <button
@@ -1294,8 +1314,10 @@ export default function ShipmentFormManual({
                             <Loader2 className="w-5 h-5 animate-spin" />
                             Wait a moment...
                         </>
-                    ) : (
+                    ) : price.hasDetails ? (
                         `Submit Booking ₹${price.total}`
+                    ) : (
+                        "Submit Booking"
                     )}
                 </button>
 

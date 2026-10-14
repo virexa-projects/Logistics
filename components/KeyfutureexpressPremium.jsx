@@ -118,9 +118,9 @@ export default function StickyStepsOverlap() {
 
                 <div className="flex items-start gap-5">
                   <div>
-                    <h4 className="text-2xl font-semibold mb-3">
+                    <h3 className="!text-[20px] font-semibold mb-3">
                       {item.title}
-                    </h4>
+                    </h3>
 
                     <p className="text-gray-500 mb-4">{item.desc}</p>
 

@@ -50,7 +50,7 @@ function Privacypolicy() {
             your privacy. This Privacy Policy describes how we collect, use,
             store, share, and safeguard your personal information when you
             access or use our luggage pickup and delivery services (“Services”)
-            via our website, mobile application, WhatsApp, call, or partner
+            via our website, WhatsApp, call, or partner
             platforms.
           </p>
           <p className="mt-3 text-second">
@@ -64,7 +64,7 @@ function Privacypolicy() {
           <p className="text-second mt-4">
             We may collect the following categories of information:
           </p>
-          <h4 className="mt-4">A. Personal Information</h4>
+          <h3 className="mt-4 !text-[20px]">A. Personal Information</h3>
           <ul className="mt-4 list-disc pl-5 space-y-4 font-medium text-[15px]">
             <li className="text-second">Full name</li>
             <li className="text-second">Phone number</li>
@@ -76,7 +76,7 @@ function Privacypolicy() {
               Identity information (if mandated by airport/security authorities)
             </li>
           </ul>
-          <h4 className="mt-4">B. Booking & Service Information</h4>
+          <h3 className="mt-4 !text-[20px]">B. Booking & Service Information</h3>
           <ul className="mt-4 list-disc pl-5 space-y-4 font-medium text-[15px]">
             <li className="text-second">Pickup and delivery addresses</li>
             <li className="text-second">Preferred time slots for pickup</li>
@@ -88,7 +88,7 @@ function Privacypolicy() {
             <li className="text-second">Order history</li>
           </ul>
 
-          <h4 className="mt-4">C. Payment Information</h4>
+          <h3 className="mt-4 !text-[20px]">C. Payment Information</h3>
           <ul className="mt-4 list-disc pl-5 space-y-4 font-medium text-[15px]">
             <li className="text-second">Mode of payment</li>
             <li className="text-second">Transaction details</li>
@@ -99,10 +99,10 @@ function Privacypolicy() {
             through secure third-party payment gateways.
           </p>
 
-          <h4 className="mt-4">D. Device & Usage Information</h4>
+          <h3 className="mt-4 !text-[20px]">D. Device & Usage Information</h3>
           <ul className="mt-4 list-disc pl-5 space-y-4 font-medium text-[15px]">
             <li className="text-second">IP address</li>
-            <li className="text-second">Browser/app details</li>
+            <li className="text-second">Browser details</li>
             <li className="text-second">Device identifiers</li>
             <li className="text-second">
               Cookies and tracking data (for analytics and performance)
@@ -117,65 +117,65 @@ function Privacypolicy() {
             We use your information to operate and improve our Services,
             including:
           </p>
-          <div class="overflow-x-auto mt-4">
-            <table class="min-w-full border border-[#f5f5f5] rounded-lg">
+          <div className="overflow-x-auto mt-4">
+            <table className="min-w-full border border-[#f5f5f5] rounded-lg">
               <thead className="bg-gray-100">
                 <tr>
-                  <th class="px-4 py-2 text-left font-semibold border border-[#f5f5f5]">
+                  <th className="px-4 py-2 text-left font-semibold border border-[#f5f5f5]">
                     Category
                   </th>
-                  <th class="px-4 py-2 text-left font-semibold border border-[#f5f5f5]">
+                  <th className="px-4 py-2 text-left font-semibold border border-[#f5f5f5]">
                     Purpose / Description
                   </th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td class="px-4 py-2 border border-[#f5f5f5]">
+                  <td className="px-4 py-2 border border-[#f5f5f5]">
                     Service Fulfilment
                   </td>
-                  <td class="px-4 py-2 border border-[#f5f5f5]">
+                  <td className="px-4 py-2 border border-[#f5f5f5]">
                     Pickup, handling, transport, delivery
                   </td>
                 </tr>
-                <tr class="bg-gray-50">
-                  <td class="px-4 py-2 border border-[#f5f5f5]">
+                <tr className="bg-gray-50">
+                  <td className="px-4 py-2 border border-[#f5f5f5]">
                     User Support
                   </td>
-                  <td class="px-4 py-2 border border-[#f5f5f5]">
+                  <td className="px-4 py-2 border border-[#f5f5f5]">
                     Chat, call, WhatsApp customer support
                   </td>
                 </tr>
                 <tr>
-                  <td class="px-4 py-2 border border-[#f5f5f5]">
+                  <td className="px-4 py-2 border border-[#f5f5f5]">
                     Payment & Billing
                   </td>
-                  <td class="px-4 py-2 border border-[#f5f5f5]">
+                  <td className="px-4 py-2 border border-[#f5f5f5]">
                     Processing payments, generating invoices
                   </td>
                 </tr>
-                <tr class="bg-gray-50">
-                  <td class="px-4 py-2 border border-[#f5f5f5]">
+                <tr className="bg-gray-50">
+                  <td className="px-4 py-2 border border-[#f5f5f5]">
                     Security & Compliance
                   </td>
-                  <td class="px-4 py-2 border border-[#f5f5f5]">
+                  <td className="px-4 py-2 border border-[#f5f5f5]">
                     Fraud prevention, legal obligations
                   </td>
                 </tr>
                 <tr>
-                  <td class="px-4 py-2 border border-[#f5f5f5]">
+                  <td className="px-4 py-2 border border-[#f5f5f5]">
                     Service Optimization
                   </td>
-                  <td class="px-4 py-2 border border-[#f5f5f5]">
+                  <td className="px-4 py-2 border border-[#f5f5f5]">
                     Improving routes, reducing delays
                   </td>
                 </tr>
-                <tr class="bg-gray-50">
-                  <td class="px-4 py-2 border border-[#f5f5f5]">
+                <tr className="bg-gray-50">
+                  <td className="px-4 py-2 border border-[#f5f5f5]">
                     Marketing & Offers (Optional)
                   </td>
-                  <td class="px-4 py-2 border border-[#f5f5f5]">
-                    Promotions, discounts, push notifications
+                  <td className="px-4 py-2 border border-[#f5f5f5]">
+                    Promotions, discounts, and special offers
                   </td>
                 </tr>
               </tbody>
@@ -268,14 +268,13 @@ function Privacypolicy() {
         <div className="mt-5">
           <h3 className="">6. Cookies & Tracking</h3>
           <p className="text-second mt-4">
-            Our website/app uses cookies and similar technologies to:
+            Our website uses cookies and similar technologies to:
           </p>
 
           <ul className="mt-4 list-disc pl-5 space-y-4 font-medium text-[15px]">
             <li className="text-second">Improve user experience</li>
-            <li className="text-second">Measure website/app performance</li>
+            <li className="text-second">Measure website performance</li>
             <li className="text-second">Provide personalized suggestions</li>
-            <li className="text-second">Airport/security protocols</li>
           </ul>
           <p className="text-second mt-4">
             You can disable cookies in your browser settings, but some functions
@@ -323,7 +322,7 @@ function Privacypolicy() {
 
             </li>
             <li className="text-second">
-              Additional attempts may involve rescheduling fees
+              Restriction or objection to data processing
             </li>
             <li className="text-second">
               Correction of inaccurate information
@@ -349,7 +348,7 @@ function Privacypolicy() {
           <h3 className="">10. Third-Party Links
 </h3>
           <p className="text-second mt-4">
-          Our website/app may contain links to external sites. We are not responsible for their content or privacy practices.
+          Our website may contain links to external sites. We are not responsible for their content or privacy practices.
 
           </p>
 
@@ -375,18 +374,28 @@ function Privacypolicy() {
 
           <ul className="mt-4 list-decimal pl-5 space-y-4 font-medium text-[15px]">
             <li className="text-second">
-              Email:{" "}
-              <span className="font-bold text-black"> support@frisbi.in</span>
+              Customer Support & Privacy Inquiries:{" "}
+              <a href="mailto:support@frisbi.in" className="font-bold text-black hover:text-primary">
+                support@frisbi.in
+              </a>
+            </li>
+            <li className="text-second">
+              General & Business Inquiries:{" "}
+              <a href="mailto:info@frisbi.in" className="font-bold text-black hover:text-primary">
+                info@frisbi.in
+              </a>
             </li>
             <li className="text-second">
               Contact Us:{" "}
-              <span className="font-bold text-black"> +91 7418152531</span>
+              <a href="tel:7418152531" className="font-bold text-black hover:text-primary">
+                +91 7418152531
+              </a>
             </li>
             <li className="text-second">
               Website:{" "}
               <span className="font-bold text-black">
                 {" "}
-                <Link href="www.frisbi.in" className="text-primary">
+                <Link href="https://www.frisbi.in" target="_blank" rel="noopener noreferrer" className="text-primary">
                   www.frisbi.in
                 </Link>{" "}
               </span>

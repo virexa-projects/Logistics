@@ -267,37 +267,7 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
   };
 
   /* ---------------- PRICE ---------------- */
-  // const calculatePrice = async () => {
-  //   if (!validate()) return;
 
-  //   const serviceRates = {
-  //     Express: { base: 699, perKg: 109 },
-  //     Standard: { base: 499, perKg: 79 },
-  //     Premium: { base: 999, perKg: 249 },
-  //   };
-
-  //   const selectedService = serviceRates[service];
-
-  //   if (!selectedService) return;
-
-  //   const weightNum = Number(weight);
-
-  //   const baseCost = selectedService.base;
-  //   const weightCost = weightNum * selectedService.perKg;
-
-  //   // Optional: volume cost (keep if needed)
-  //   const volumeCost =
-  //     (Number(length || 0) +
-  //       Number(width || 0) +
-  //       Number(height || 0)) * 0.5;
-
-  //   const totalPrice = baseCost + weightCost ;
-
-  //   setTotal(totalPrice);
-
-  //   // ✅ CALL WHATSAPP API
-  //   await sendMessage(totalPrice);
-  // };
 
   const calculatePrice = async () => {
     if (!validate()) return;
@@ -623,6 +593,7 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
                   value={luggageType}
                   onChange={(e) => {
                     setluggageType(e.target.value);
+                    if (total !== null) setTotal(null);
                     if (errors.luggageType) {
                       setErrors((prev) => ({ ...prev, luggageType: "" }));
                     }
@@ -654,6 +625,7 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
                   value={service}
                   onChange={(e) => {
                     setService(e.target.value);
+                    if (total !== null) setTotal(null);
                     if (errors.service) {
                       setErrors((prev) => ({ ...prev, service: "" }));
                     }
@@ -682,6 +654,7 @@ export default function ShipmentCalculator({ pickupFromUrl, dropFromUrl }) {
                   value={weight}
                   onChange={(e) => {
                     const value = e.target.value;
+                    if (total !== null) setTotal(null);
 
                     if (value === "") {
                       setWeight("");

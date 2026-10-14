@@ -26,6 +26,7 @@ const servicesData = [
     imageAlt: "Standard luggage delivery",
     delay: 0,
     link: "/services/standard-delivery", // Cleaned up duplicates
+    buttton:"Learn more about Standard Delivery"
   },
   {
     title: "Express Delivery",
@@ -39,6 +40,7 @@ const servicesData = [
     imageAlt: "Express delivery service",
     delay: 0.15,
     link: "/services/express-delivery", // Added missing link
+    buttton:"Learn more about Express Delivery"
   },
   {
     title: "Premium Delivery",
@@ -52,6 +54,7 @@ const servicesData = [
     imageAlt: "Premium delivery service",
     delay: 0.3,
     link: "/services/premium-delivery", // Added missing link
+    buttton:"Learn more about Premium Delivery"
   },
 ];
 
@@ -90,9 +93,11 @@ const ServiceCard = ({ service }) => {
         {/* Safeguarded link with a fallback */}
         <Link
           href={service.link || "#"}
-          className={`mt-4 inline-block font-semibold ${service.linkColor}`}
+          className={`mt-4 inline-block font-semibold hover:underline ${service.linkColor}`}
         >
-          Learn more
+          {service.buttton || "Learn more"}
+
+      
         </Link>
       </div>
 
@@ -129,7 +134,9 @@ const FeatureCard = ({
           href={link}
           className="mt-4 inline-block text-[16px] font-semibold hover:text-[#013EFE]"
         >
-          Learn more
+          
+Learn more about {title}
+
         </Link>
       </div>
 

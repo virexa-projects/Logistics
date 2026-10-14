@@ -75,7 +75,7 @@ export default function Testimonials() {
                 <div className="ml-4 w-full">
                   {/* Name + Stars */}
                   <div className="flex justify-between items-center">
-                    <h5 className="font-semibold">{item.name}</h5>
+                    <h3 className="font-semibold !text-[20px]">{item.name}</h3>
 
                     <div className="flex">
                       {[...Array(item.rating)].map((_, index) => (

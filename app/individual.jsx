@@ -37,7 +37,7 @@ function Individual() {
                 initial="hidden"
                 animate="visible"
                 transition={{ duration: 0.6, delay: 0.1 }}
-                className="text-black font-extrabold text-4xl md:text-6xl max-w-xl mb-6"
+                className="text-black font-extrabol mb-6"
               >
                 Personal Baggage Transport & Individual Luggage Shipping Across Bangalore
               </motion.h1>
@@ -71,9 +71,9 @@ function Individual() {
                 transition={{ duration: 0.6, delay: 0.4 }}
                 className="flex flex-wrap gap-4"
               >
-                <a href="rate-calculator" className="btn-primary hover:scale-105 transition-all">
+                <Link href="/rate-calculator" className="btn-primary hover:scale-105 transition-all">
                   Book Your Delivery Now
-                </a>
+                </Link>
               </motion.div>
             </div>
 
