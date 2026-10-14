@@ -33,7 +33,7 @@ import StandardImg from "@/asset/service/standard-banner-img.svg";
 import ExpressImg from "@/asset/service/express.svg";
 import PremiumImg from "@/asset/service/premium-banner-img.svg";
 import CorporateImg from "@/asset/service/corporate.svg";
-import IndividualImg from "@/asset/home/individual.png";
+import IndividualImg from "@/asset/service/individual.svg";
 
 // Why choose images
 import SupportImg from "@/asset/why-choose/support.png";
@@ -554,63 +554,61 @@ export default function MobileHome() {
         </div>
 
         {/* Sticky Stacking Cards Container: 5 -> 4 -> 3 -> 2 -> 1 with reverse unstacking */}
-        <div className="relative pb-6">
+        <div className="relative pb-6 max-w-md mx-auto">
           {servicesList.map((svc, i) => (
             <div
               key={i}
               style={{
                 position: "sticky",
-                top: `${72 + i * 14}px`,
+                top: `${68 + i * 16}px`,
                 zIndex: i + 10,
               }}
-              className={`${svc.bg} rounded-[28px] p-5 shadow-[0_12px_32px_rgba(0,0,0,0.08)] border border-black/5 overflow-hidden flex flex-col justify-between mb-8 last:mb-0 min-h-[320px] transition-all`}
+              className={`${svc.bg} rounded-[28px] p-6 shadow-[0_12px_32px_rgba(0,0,0,0.08)] border border-black/5 overflow-hidden flex flex-col justify-between mb-8 last:mb-0 ${i < 3 ? "min-h-[450px]" : "min-h-[410px]"
+                } transition-all`}
             >
               <div>
-                <div className="flex items-center justify-between mb-2">
+                <div className="flex items-center justify-between mb-2.5">
                   <span
-                    className={`text-[10px] font-bold tracking-wider uppercase px-2.5 py-1 rounded-full ${
-                      svc.text === "text-white"
-                        ? "bg-white/20 text-white"
-                        : "bg-black/5 text-gray-700"
-                    }`}
+                    className={`text-[10px] font-bold tracking-wider uppercase px-2.5 py-1 rounded-full ${svc.text === "text-white"
+                      ? "bg-white/20 text-white"
+                      : "bg-black/5 text-gray-700"
+                      }`}
                   >
                     0{i + 1} / 05
                   </span>
                   <span
-                    className={`text-[11px] font-semibold tracking-wide ${
-                      svc.text === "text-white"
-                        ? "text-white/80"
-                        : "text-[#013EFE]"
-                    }`}
+                    className={`text-[11px] font-semibold tracking-wide ${svc.text === "text-white"
+                      ? "text-white/80"
+                      : "text-[#013EFE]"
+                      }`}
                   >
                     {svc.title}
                   </span>
                 </div>
-                <h3 className={`text-base font-bold ${svc.text} mb-1.5`}>
+                <h3 className={`text-lg font-bold ${svc.text} mb-1.5`}>
                   {svc.title}
                 </h3>
-                <p className={`text-xs ${svc.descColor} leading-relaxed mb-3`}>
+                <p className={`text-xs sm:text-[13px] ${svc.descColor} leading-relaxed mb-3`}>
                   {svc.desc}
                 </p>
                 <Link
                   href={svc.link}
-                  className={`inline-flex items-center gap-1 text-xs font-bold ${
-                    svc.text === "text-white"
-                      ? "text-white underline"
-                      : "text-[#013EFE]"
-                  } hover:opacity-80 transition`}
+                  className={`inline-flex items-center gap-1 text-xs font-bold ${svc.text === "text-white"
+                    ? "text-white underline"
+                    : "text-[#013EFE]"
+                    } hover:opacity-80 transition`}
                 >
-                  Learn more <ArrowRight className="w-3 h-3" />
+                  Learn more <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
               </div>
 
-              <div className="relative w-full h-[160px] mt-3 flex items-center justify-center">
+              <div className={`relative w-full ${i < 3 ? "h-[215px]" : "h-[185px]"} mt-4 flex items-center justify-center`}>
                 <Image
                   src={svc.img}
                   alt={svc.title}
                   fill
                   className="object-contain"
-                  sizes="320px"
+                  sizes="340px"
                 />
               </div>
             </div>
@@ -696,9 +694,8 @@ export default function MobileHome() {
             {whyChooseFeatures.map((_, dotIdx) => (
               <span
                 key={dotIdx}
-                className={`w-2 h-2 rounded-full transition-all ${
-                  dotIdx === whyIndex ? "bg-white w-4" : "bg-white/40"
-                }`}
+                className={`w-2 h-2 rounded-full transition-all ${dotIdx === whyIndex ? "bg-white w-4" : "bg-white/40"
+                  }`}
               />
             ))}
           </div>
@@ -872,22 +869,20 @@ export default function MobileHome() {
               <button
                 type="button"
                 onClick={() => setDeliveryType("Individual")}
-                className={`flex-1 py-1.5 px-3 rounded-full text-xs font-semibold border transition ${
-                  deliveryType === "Individual"
-                    ? "border-[#013EFE] bg-blue-50/50 text-[#013EFE]"
-                    : "border-gray-200 text-gray-600"
-                }`}
+                className={`flex-1 py-1.5 px-3 rounded-full text-xs font-semibold border transition ${deliveryType === "Individual"
+                  ? "border-[#013EFE] bg-blue-50/50 text-[#013EFE]"
+                  : "border-gray-200 text-gray-600"
+                  }`}
               >
                 {deliveryType === "Individual" ? "◉" : "○"} Individual
               </button>
               <button
                 type="button"
                 onClick={() => setDeliveryType("Corporate")}
-                className={`flex-1 py-1.5 px-3 rounded-full text-xs font-semibold border transition ${
-                  deliveryType === "Corporate"
-                    ? "border-[#013EFE] bg-blue-50/50 text-[#013EFE]"
-                    : "border-gray-200 text-gray-600"
-                }`}
+                className={`flex-1 py-1.5 px-3 rounded-full text-xs font-semibold border transition ${deliveryType === "Corporate"
+                  ? "border-[#013EFE] bg-blue-50/50 text-[#013EFE]"
+                  : "border-gray-200 text-gray-600"
+                  }`}
               >
                 {deliveryType === "Corporate" ? "◉" : "○"} Corporate
               </button>

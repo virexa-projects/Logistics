@@ -1,38 +1,42 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import Image from "next/image";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Navigation } from "swiper/modules";
+import "swiper/css";
 
 export const packagingItems = [
   {
     id: 1,
+    title: "Heavy-Duty Box Packaging",
+    desc: "Reinforced double-wall carton with cross-band security tape and direct route waybill.",
+    img: "/packaging/pack_5.jpg",
+  },
+  {
+    id: 2,
     title: "Bubble Wrap Cushioning",
     desc: "High-density shock-absorbing wrap protects fragile contents.",
     img: "/packaging/pack_4.jpg",
   },
   {
-    id: 2,
+    id: 3,
     title: "Zip lock Sealing",
     desc: "Tamper-evident sealing and protective wrap for complete luggage safety.",
     img: "/packaging/pack_2.jpg",
   },
   {
-    id: 3,
+    id: 4,
     title: "360° Foam & Wrap",
     desc: "Multi-layer protective film against scratches and moisture.",
     img: "/packaging/pack_8.jpg",
   },
   {
-    id: 4,
+    id: 5,
     title: "Foam Base & Corner Armor",
     desc: "Shock-absorbing foam cradles trolley wheels and vulnerable corners before dispatch.",
     img: "/packaging/pack_6.jpg",
-  },
-  {
-    id: 5,
-    title: "Heavy-Duty Box Packaging",
-    desc: "Reinforced double-wall carton with cross-band security tape and direct route waybill.",
-    img: "/packaging/pack_5.jpg",
   },
   {
     id: 6,
@@ -49,171 +53,116 @@ export const packagingItems = [
 ];
 
 export default function HowYourBagsTravel({ variant = "both" }) {
-  // Mobile vertical bottom-to-top auto-scroll with swipe support
-  const mobileRef = useRef(null);
-  const isMobileInteractingRef = useRef(false);
-  const mobileTimeoutRef = useRef(null);
-
-  // Desktop horizontal right-to-left auto-scroll with swipe/hover support
-  const desktopRef = useRef(null);
-  const isDesktopInteractingRef = useRef(false);
-  const desktopTimeoutRef = useRef(null);
-
-  // Mobile auto-scroll (bottom to top)
-  useEffect(() => {
-    if (variant === "desktop") return;
-    const el = mobileRef.current;
-    if (!el) return;
-
-    let animId;
-    const speed = 0.85; // smooth upward pace
-
-    const step = () => {
-      if (!isMobileInteractingRef.current && el) {
-        el.scrollTop += speed;
-        const half = el.scrollHeight / 2;
-        if (half > 0 && el.scrollTop >= half) {
-          el.scrollTop -= half;
-        } else if (half > 0 && el.scrollTop < 0) {
-          el.scrollTop += half;
-        }
-      }
-      animId = requestAnimationFrame(step);
-    };
-
-    animId = requestAnimationFrame(step);
-    return () => cancelAnimationFrame(animId);
-  }, [variant]);
-
-  // Desktop auto-scroll (right to left)
-  useEffect(() => {
-    if (variant === "mobile") return;
-    const el = desktopRef.current;
-    if (!el) return;
-
-    let animId;
-    const speed = 1.0; // smooth horizontal pace
-
-    const step = () => {
-      if (!isDesktopInteractingRef.current && el) {
-        el.scrollLeft += speed;
-        const half = el.scrollWidth / 2;
-        if (half > 0 && el.scrollLeft >= half) {
-          el.scrollLeft -= half;
-        } else if (half > 0 && el.scrollLeft < 0) {
-          el.scrollLeft += half;
-        }
-      }
-      animId = requestAnimationFrame(step);
-    };
-
-    animId = requestAnimationFrame(step);
-    return () => cancelAnimationFrame(animId);
-  }, [variant]);
-
-  const pauseMobile = () => {
-    isMobileInteractingRef.current = true;
-    if (mobileTimeoutRef.current) clearTimeout(mobileTimeoutRef.current);
-  };
-
-  const resumeMobile = (delay = 2000) => {
-    if (mobileTimeoutRef.current) clearTimeout(mobileTimeoutRef.current);
-    mobileTimeoutRef.current = setTimeout(() => {
-      isMobileInteractingRef.current = false;
-    }, delay);
-  };
-
-  const pauseDesktop = () => {
-    isDesktopInteractingRef.current = true;
-    if (desktopTimeoutRef.current) clearTimeout(desktopTimeoutRef.current);
-  };
-
-  const resumeDesktop = (delay = 1500) => {
-    if (desktopTimeoutRef.current) clearTimeout(desktopTimeoutRef.current);
-    desktopTimeoutRef.current = setTimeout(() => {
-      isDesktopInteractingRef.current = false;
-    }, delay);
-  };
+  const desktopSwiperRef = useRef(null);
 
   const showDesktop = variant === "both" || variant === "desktop";
   const showMobile = variant === "both" || variant === "mobile";
 
+  // Doubled array for seamless infinite looping
+  const allSlides = [...packagingItems, ...packagingItems];
+
   return (
     <section className="bg-white">
-      {/* Hide scrollbars completely - no scroll indicator on mobile or desktop */}
+      {/* Hide scrollbars completely */}
       <style>{`
-        .bags-scroll-track::-webkit-scrollbar {
+        .bags-swiper .swiper-wrapper {
+          align-items: stretch;
+        }
+        .bags-swiper::-webkit-scrollbar {
           display: none !important;
           width: 0px !important;
           height: 0px !important;
-        }
-        .bags-scroll-track {
-          -ms-overflow-style: none !important;
-          scrollbar-width: none !important;
         }
       `}</style>
 
       {/* ============================================================
           DESKTOP VIEW
-          Auto-scroll from RIGHT to LEFT, user can hover/swipe, no scrollbar
+          - Shows EXACTLY THREE cards side-by-side
+          - All cards have identical height and width
+          - Navigation arrows (< and >) in header
+          - Auto-scrolls right to left one card fully like a swipe
+          - No white shadow, no image padding, matches user screenshot
          ============================================================ */}
       {showDesktop && (
-        <div className={`${variant === "both" ? "hidden md:block" : ""} py-14 overflow-hidden border-b border-gray-100`}>
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 mb-8">
-            <div className="text-center md:text-left">
-              <h2 className="text-3xl font-bold text-gray-900 tracking-tight">
-                How Your Bags Travel
-              </h2>
-              <p className="text-second text-sm mt-1.5">
-                Real photos of multi-layer protection and sealed baggage in transit.
-              </p>
-            </div>
-          </div>
+        <div className={`${variant === "both" ? "hidden md:block" : ""} py-12 lg:py-16 overflow-hidden`}>
+          <div className="container max-w-[1220px] mx-auto px-6 sm:px-8 lg:px-10">
+            {/* Header with Title and Left/Right Arrows */}
+            <div className="flex items-center justify-between mb-8">
+              <div>
+                <h2 className="text-3xl font-bold text-gray-900 tracking-tight">
+                  How Your Bags Travel
+                </h2>
+                <p className="text-second text-sm mt-1.5">
+                  Real photos of multi-layer protection and sealed baggage in transit.
+                </p>
+              </div>
 
-          {/* Desktop horizontal track */}
-          <div className="relative w-full">
-            {/* Subtle edge fade masks */}
-            <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-28 bg-gradient-to-r from-white via-white/85 to-transparent z-10" />
-            <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-28 bg-gradient-to-l from-white via-white/85 to-transparent z-10" />
-
-            <div
-              ref={desktopRef}
-              onMouseEnter={pauseDesktop}
-              onMouseLeave={() => resumeDesktop(800)}
-              onTouchStart={pauseDesktop}
-              onTouchEnd={() => resumeDesktop(2000)}
-              onMouseDown={pauseDesktop}
-              onMouseUp={() => resumeDesktop(1000)}
-              className="flex gap-6 overflow-x-auto bags-scroll-track py-4 px-8 cursor-grab active:cursor-grabbing select-none"
-              style={{
-                scrollbarWidth: "none",
-                msOverflowStyle: "none",
-              }}
-            >
-              {[...packagingItems, ...packagingItems].map((item, idx) => (
-                <div
-                  key={idx}
-                  className="w-[360px] shrink-0 bg-white rounded-3xl border border-gray-200/80 p-4 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+              {/* Navigation Arrows matching screenshot */}
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => desktopSwiperRef.current?.slidePrev()}
+                  className="w-10 h-10 rounded-lg border border-gray-200 bg-white hover:bg-gray-50 flex items-center justify-center text-gray-700 shadow-xs transition-transform active:scale-95 cursor-pointer"
+                  aria-label="Previous card"
                 >
-                  <div className="relative w-full h-[270px] rounded-2xl overflow-hidden bg-gray-100 mb-3.5">
-                    <Image
-                      src={item.img}
-                      alt={item.title}
-                      fill
-                      className="object-cover"
-                      sizes="360px"
-                    />
-                  </div>
-                  <div className="px-1.5 pb-1">
-                    <h3 className="text-lg font-bold text-gray-900 leading-snug">
-                      {item.title}
-                    </h3>
-                    <p className="text-xs text-gray-500 leading-relaxed mt-1">
-                      {item.desc}
-                    </p>
-                  </div>
-                </div>
-              ))}
+                  <ChevronLeft className="w-5 h-5" />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => desktopSwiperRef.current?.slideNext()}
+                  className="w-10 h-10 rounded-lg border border-gray-200 bg-white hover:bg-gray-50 flex items-center justify-center text-gray-700 shadow-xs transition-transform active:scale-95 cursor-pointer"
+                  aria-label="Next card"
+                >
+                  <ChevronRight className="w-5 h-5" />
+                </button>
+              </div>
+            </div>
+
+            {/* Exactly 3 cards track */}
+            <div className="w-full">
+              <Swiper
+                modules={[Autoplay, Navigation]}
+                onSwiper={(swiper) => (desktopSwiperRef.current = swiper)}
+                direction="horizontal"
+                loop={true}
+                speed={700}
+                autoplay={{
+                  delay: 3000,
+                  disableOnInteraction: false,
+                  pauseOnMouseEnter: true,
+                }}
+                grabCursor={true}
+                slidesPerView={3}
+                spaceBetween={24}
+                className="bags-swiper w-full"
+              >
+                {allSlides.map((item, idx) => (
+                  <SwiperSlide key={idx} className="h-auto">
+                    {/* Fixed uniform card: exact same height and width for all cards */}
+                    <div className="w-full h-[510px] bg-white rounded-3xl border border-gray-200/90 overflow-hidden flex flex-col justify-between shadow-xs select-none">
+                      {/* Fixed height image with NO padding, flush to top, left, right */}
+                      <div className="relative w-full h-[370px] bg-gray-100 overflow-hidden shrink-0">
+                        <Image
+                          src={item.img}
+                          alt={item.title}
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 1280px) 33vw, 420px"
+                        />
+                      </div>
+                      {/* Fixed height text container so all 3 cards align perfectly */}
+                      <div className="p-5 sm:p-6 bg-white flex flex-col justify-start flex-1">
+                        <h3 className="text-[18px] font-bold text-gray-900 leading-snug line-clamp-1">
+                          {item.title}
+                        </h3>
+                        <p className="text-xs sm:text-[13px] text-gray-500 leading-relaxed mt-1.5 line-clamp-2">
+                          {item.desc}
+                        </p>
+                      </div>
+                    </div>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
             </div>
           </div>
         </div>
@@ -221,8 +170,9 @@ export default function HowYourBagsTravel({ variant = "both" }) {
 
       {/* ============================================================
           MOBILE VIEW
-          Auto-scroll from BOTTOM to TOP, user can swipe, NO scroll indicator,
-          large card size matching reference Figma screenshot & video
+          Auto-scrolls continuously one card fully like a swipe (bottom to top),
+          user can swipe vertically, NO scroll indicator,
+          NO white shadows, NO padding around image
          ============================================================ */}
       {showMobile && (
         <div className={`${variant === "both" ? "block md:hidden" : ""} py-8 px-4`}>
@@ -235,57 +185,48 @@ export default function HowYourBagsTravel({ variant = "both" }) {
             </p>
           </div>
 
-          {/* Mobile vertical reel container with subtle gradient edges */}
-          <div className="relative h-[530px] overflow-hidden rounded-3xl">
-            {/* Subtle top & bottom edge fade masks */}
-            <div className="pointer-events-none absolute inset-x-0 top-0 h-10 bg-gradient-to-b from-white via-white/80 to-transparent z-10" />
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-white via-white/80 to-transparent z-10" />
-
-            {/* Upward auto-scrolling stream */}
-            <div
-              ref={mobileRef}
-              onTouchStart={pauseMobile}
-              onTouchMove={pauseMobile}
-              onTouchEnd={() => resumeMobile(2000)}
-              onMouseDown={pauseMobile}
-              onMouseUp={() => resumeMobile(1500)}
-              onWheel={() => {
-                pauseMobile();
-                resumeMobile(2000);
+          {/* Mobile vertical Swiper container */}
+          <div className="w-full" style={{ height: "460px" }}>
+            <Swiper
+              modules={[Autoplay]}
+              direction="vertical"
+              loop={true}
+              speed={700}
+              autoplay={{
+                delay: 2800,
+                disableOnInteraction: false,
               }}
-              className="h-full overflow-y-auto bags-scroll-track flex flex-col gap-4 py-2"
-              style={{
-                scrollbarWidth: "none",
-                msOverflowStyle: "none",
-                WebkitOverflowScrolling: "touch",
-              }}
+              slidesPerView={1}
+              spaceBetween={20}
+              className="bags-swiper w-full h-full"
             >
-              {[...packagingItems, ...packagingItems].map((item, idx) => (
-                <div
-                  key={idx}
-                  className="w-full bg-white rounded-3xl border border-gray-200/80 p-3.5 shadow-md flex flex-col shrink-0"
-                >
-                  {/* Large prominent photo (matching Figma Image 2) */}
-                  <div className="relative w-full h-[320px] rounded-2xl overflow-hidden bg-gray-100 mb-3.5">
-                    <Image
-                      src={item.img}
-                      alt={item.title}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 768px) 100vw, 400px"
-                    />
+              {allSlides.map((item, idx) => (
+                <SwiperSlide key={idx} className="h-full">
+                  <div className="w-full h-full bg-white rounded-3xl border border-gray-200 overflow-hidden flex flex-col select-none">
+                    {/* Large photo with NO padding around image */}
+                    <div className="relative w-full h-[340px] bg-gray-100 overflow-hidden shrink-0">
+                      <Image
+                        src={item.img}
+                        alt={item.title}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, 400px"
+                        priority={idx < 2}
+                      />
+                    </div>
+                    {/* Card text content with standard padding */}
+                    <div className="p-4 sm:p-5 bg-white flex-1 flex flex-col justify-center">
+                      <h3 className="text-[18px] font-bold text-gray-900 leading-snug">
+                        {item.title}
+                      </h3>
+                      <p className="text-xs text-gray-500 leading-relaxed mt-1">
+                        {item.desc}
+                      </p>
+                    </div>
                   </div>
-                  <div className="px-1.5 pb-1">
-                    <h3 className="text-[18px] font-bold text-gray-900 leading-snug">
-                      {item.title}
-                    </h3>
-                    <p className="text-xs text-gray-500 leading-relaxed mt-1">
-                      {item.desc}
-                    </p>
-                  </div>
-                </div>
+                </SwiperSlide>
               ))}
-            </div>
+            </Swiper>
           </div>
         </div>
       )}
