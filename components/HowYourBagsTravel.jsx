@@ -11,37 +11,37 @@ export const packagingItems = [
   {
     id: 1,
     title: "Heavy-Duty Box Packaging",
-    desc: "Reinforced double-wall carton with cross-band security tape and direct route waybill.",
+    desc: "Reinforced double-wall cartons protect against stacking pressure in transit.",
     img: "/packaging/labeled-transit.jpg",
   },
   {
     id: 2,
     title: "Bubble Wrap Cushioning",
-    desc: "High-density shock-absorbing wrap protects fragile contents.",
+    desc: "Multi-layer bubble wrap absorbs shocks and protects delicate contents.",
     img: "/packaging/pack_4.jpg",
   },
   {
     id: 3,
     title: "Zip lock Sealing",
-    desc: "Tamper-evident sealing and protective wrap for complete luggage safety.",
+    desc: "Tamper-evident zip locks prevent accidental opening or unauthorized access.",
     img: "/packaging/pack_6.jpg",
   },
   {
     id: 4,
     title: "360° Industrial Shrink Wrap",
-    desc: "Multi-layer protective film against scratches and moisture.",
+    desc: "Tight multi-layer stretch wrap seals out moisture, dust, and scratches.",
     img: "/packaging/pack_8.jpg",
   },
   {
     id: 5,
     title: "Foam Base & Corner Armor",
-    desc: "Shock-absorbing foam cradles trolley wheels and vulnerable corners before dispatch.",
+    desc: "High-density foam base cushions trolley bottoms from ground impacts.",
     img: "/packaging/pack_2.jpg",
   },
   {
     id: 6,
     title: "Corner & Wheel guards",
-    desc: "Reinforced cardboard corners and padded wheels cushion against impact.",
+    desc: "Reinforced edge caps and wheel sleeves safeguard vulnerable spinner wheels.",
     img: "/packaging/pack_9.jpg",
   },
 ];
