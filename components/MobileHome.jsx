@@ -584,13 +584,13 @@ export default function MobileHome() {
                 key={i}
                 style={{
                   position: "sticky",
-                  top: `${68 + i * 16}px`,
+                  top: "70px",
                   zIndex: i + 10,
                 }}
                 className={`relative ${isFeature
                   ? "bg-white rounded-3xl p-8 h-[500px]"
                   : `${svc.bg} rounded-3xl p-6 md:p-8 lg:p-10 h-[500px]`
-                  } flex flex-col justify-between shadow-[0_12px_32px_rgba(0,0,0,0.08)] border border-black/5 overflow-hidden mb-8 last:mb-0 transition-all`}
+                  } flex flex-col justify-between shadow-[0_12px_32px_rgba(0,0,0,0.08)] border border-black/5 overflow-hidden mb-8 last:mb-0`}
               >
                 <div className="relative z-10">
                   <h3
