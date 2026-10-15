@@ -12,7 +12,7 @@ export const packagingItems = [
     id: 1,
     title: "Heavy-Duty Box Packaging",
     desc: "Reinforced double-wall carton with cross-band security tape and direct route waybill.",
-    img: "/packaging/pack_5.jpg",
+    img: "/packaging/labeled-transit.jpg",
   },
   {
     id: 2,
@@ -24,11 +24,11 @@ export const packagingItems = [
     id: 3,
     title: "Zip lock Sealing",
     desc: "Tamper-evident sealing and protective wrap for complete luggage safety.",
-    img: "/packaging/pack_2.jpg",
+    img: "/packaging/pack_6.jpg",
   },
   {
     id: 4,
-    title: "360° Foam & Wrap",
+    title: "360° Industrial Shrink Wrap",
     desc: "Multi-layer protective film against scratches and moisture.",
     img: "/packaging/pack_8.jpg",
   },
@@ -36,19 +36,13 @@ export const packagingItems = [
     id: 5,
     title: "Foam Base & Corner Armor",
     desc: "Shock-absorbing foam cradles trolley wheels and vulnerable corners before dispatch.",
-    img: "/packaging/pack_6.jpg",
+    img: "/packaging/pack_2.jpg",
   },
   {
     id: 6,
-    title: "Barcode Tracking",
-    desc: "Clear courier transit labels for instant live tracking updates.",
-    img: "/packaging/labeled-transit.jpg",
-  },
-  {
-    id: 7,
-    title: "Tamper-Evident Seals",
-    desc: "Heavy-duty security tape applied before dispatch.",
-    img: "/packaging/reinforced-seal.jpg",
+    title: "Corner & Wheel guards",
+    desc: "Reinforced cardboard corners and padded wheels cushion against impact.",
+    img: "/packaging/pack_9.jpg",
   },
 ];
 

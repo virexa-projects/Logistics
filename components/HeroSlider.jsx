@@ -10,7 +10,7 @@ import bannertwo from "@/asset/luggage-bag.jpg";
 import bannerthree from "@/asset/luggage-person.jpg";
 import PorterPickupDrop from "./PickupDropBooking";
 
-const slides = [
+export const heroSlides = [
   {
     title: "Door-to-Door Luggage Pickup & Delivery in Bangalore",
     desc: "Skip the heavy bags and travel hands-free. Frisbi picks up your luggage from your doorstep and delivers it safely to your destination.",
@@ -27,6 +27,8 @@ const slides = [
     img: bannerthree,
   },
 ];
+
+const slides = heroSlides;
 
 export default function HeroSlider() {
   const [index, setIndex] = useState(0);
