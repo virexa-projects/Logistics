@@ -190,9 +190,13 @@ export default function HowYourBagsTravel({ variant = "both" }) {
                 delay: 2800,
                 disableOnInteraction: false,
               }}
+              allowTouchMove={false}
+              simulateTouch={false}
+              touchStartPreventDefault={false}
+              touchMoveStopPropagation={false}
               slidesPerView={1}
               spaceBetween={20}
-              className="bags-swiper w-full h-full"
+              className="bags-swiper w-full h-full touch-pan-y"
             >
               {allSlides.map((item, idx) => (
                 <SwiperSlide key={idx} className="h-full">

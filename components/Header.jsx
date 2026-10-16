@@ -76,141 +76,190 @@ export default function Header() {
   };
 
   return (
-    <header className={`sticky top-0 z-50 transition-all duration-300 ${scroll ? "bg-white shadow-md" : "bg-white lg:bg-transparent"}`}>
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-3.5 sm:py-5 flex justify-between items-center gap-4">
-        {/* Logo */}
-        <Link href="/" className="font-bold shrink-0 flex items-center">
-          <Image src={LogoBlack} alt="Frisbi Logo" width={140} height={40} className="object-contain w-auto h-8 sm:h-9 lg:hidden block" priority />
-          <Image src={logoSrc} alt="Frisbi Logo" width={140} height={40} className="object-contain w-auto h-8 sm:h-9 hidden lg:block" priority />
-        </Link>
-
-        {/* Desktop Navigation */}
-        <nav className={`hidden lg:flex items-center space-x-5 xl:space-x-8 text-[14px] xl:text-[15px] font-semibold whitespace-nowrap transition-all duration-300 ${textColor}`}>
-          <Link href="/about" className="whitespace-nowrap hover:text-[#013efe] transition">About Us</Link>
-
-          {/* Services Dropdown */}
-          <div className="relative" onMouseEnter={() => setHoverService(true)} onMouseLeave={() => setHoverService(false)}>
-            <button className="flex items-center gap-1 whitespace-nowrap transition hover:text-[#013efe]">
-              Services <ChevronDown className="h-4 w-4" />
-            </button>
-            {hoverService && (
-              <motion.div
-                initial={{ opacity: 0, y: -5 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.2 }}
-                className="absolute left-0 mt-0 w-52 bg-white shadow-lg rounded-lg py-3 z-50"
-              >
-                {servicesList.map((item, index) => (
-                  <Link
-                    key={index}
-                    href={`/services/${item.toLowerCase().replace(/ /g, "-")}`}
-                    className="block px-4 py-2 text-black hover:bg-blue-50 hover:text-[#013efe] transition whitespace-nowrap"
-                  >
-                    {item}
-                  </Link>
-                ))}
-              </motion.div>
-            )}
-          </div>
-
-          <Link href="/rate-calculator" onClick={handleRateCalcClick} className="whitespace-nowrap hover:text-[#013efe] transition">Rate Calculator</Link>
-          <Link href="/faq" className="whitespace-nowrap hover:text-[#013efe] transition">FAQs</Link>
-          <Link href="/contact-us" className="whitespace-nowrap hover:text-[#013efe] transition">Contact Us</Link>
-        </nav>
-
-        {/* Desktop Button */}
-        <div className="hidden lg:flex items-center justify-center shrink-0">
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="relative"
-          >
-            {/* Pulse Glow */}
-            <motion.div
-              animate={{
-                scale: [1, 1.2, 1],
-                opacity: [0.4, 0.7, 0.4],
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-              }}
-              className="absolute inset-0 rounded-full bg-blue-500 blur-2xl"
+    <header className="sticky top-0 z-50 transition-all duration-300 w-full pointer-events-none">
+      {/* 🖥️ Desktop Header - Floating Pill Design (Matching Figma Reference) */}
+      <div className="hidden lg:block w-full pt-4 pb-2 px-6 lg:px-8 pointer-events-auto">
+        <div className="max-w-[1240px] mx-auto bg-white rounded-full shadow-[0_4px_30px_rgba(0,0,0,0.08)] border border-gray-100/80 px-8 py-3 flex justify-between items-center gap-6">
+          {/* Logo */}
+          <Link href="/" className="font-bold shrink-0 flex items-center">
+            <Image
+              src={LogoBlack}
+              alt="Frisbi Logo"
+              width={140}
+              height={40}
+              className="object-contain w-auto h-8"
+              priority
             />
+          </Link>
 
-            {/* Main Button */}
+          {/* Desktop Navigation Links */}
+          <nav className="flex items-center space-x-6 xl:space-x-8 text-[14px] xl:text-[15px] font-semibold text-gray-800 whitespace-nowrap">
             <Link
-              href="/track-your-package"
-              onClick={handleTrackClick}
-              className="
-            relative
-            overflow-hidden
-            px-5
-            py-2
-            rounded-full
-            bg-gradient-to-r
-            from-blue-500
-            via-blue-600
-            to-blue-700
-            text-white
-            font-semibold
-            text-lg
-            shadow-[0_10px_35px_rgba(37,99,235,0.5)]
-            flex
-            items-center
-            gap-2
-            hover:scale-105
-            transition-all
-            duration-300
-            whitespace-nowrap
-          "
+              href="/about"
+              className="hover:text-[#013efe] transition"
             >
-              {/* Moving Light Effect */}
-              <motion.span
+              About Us
+            </Link>
+
+            {/* Services Dropdown */}
+            <div
+              className="relative"
+              onMouseEnter={() => setHoverService(true)}
+              onMouseLeave={() => setHoverService(false)}
+            >
+              <button className="flex items-center gap-1.5 hover:text-[#013efe] transition">
+                Services <ChevronDown className="h-4 w-4" />
+              </button>
+              {hoverService && (
+                <motion.div
+                  initial={{ opacity: 0, y: -5 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.2 }}
+                  className="absolute left-1/2 -translate-x-1/2 mt-3 w-52 bg-white shadow-xl rounded-2xl py-3 border border-gray-100 z-50"
+                >
+                  {servicesList.map((item, index) => (
+                    <Link
+                      key={index}
+                      href={`/services/${item.toLowerCase().replace(/ /g, "-")}`}
+                      className="block px-5 py-2.5 text-black hover:bg-blue-50 hover:text-[#013efe] transition whitespace-nowrap text-sm"
+                    >
+                      {item}
+                    </Link>
+                  ))}
+                </motion.div>
+              )}
+            </div>
+
+            <Link
+              href="/rate-calculator"
+              onClick={handleRateCalcClick}
+              className="hover:text-[#013efe] transition"
+            >
+              Rate Calculator
+            </Link>
+            <Link
+              href="/faq"
+              className="hover:text-[#013efe] transition"
+            >
+              FAQs
+            </Link>
+            <Link
+              href="/contact-us"
+              className="hover:text-[#013efe] transition"
+            >
+              Contact Us
+            </Link>
+          </nav>
+
+          {/* Desktop Track Now Button */}
+          <div className="flex items-center justify-center shrink-0">
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="relative"
+            >
+              {/* Pulse Glow */}
+              <motion.div
                 animate={{
-                  x: ["-150%", "250%"],
+                  scale: [1, 1.2, 1],
+                  opacity: [0.4, 0.7, 0.4],
                 }}
                 transition={{
                   duration: 2,
                   repeat: Infinity,
-                  ease: "linear",
-                  repeatDelay: 1,
                 }}
-                className="
-              absolute
-              top-0
-              left-0
-              w-20
-              h-full
-              bg-white/20
-              skew-x-12
-              blur-md
-            "
+                className="absolute inset-0 rounded-full bg-blue-500 blur-xl"
               />
 
-              {/* Text */}
-              <span className="relative z-10 text-[14px]">Track Now</span>
-
-              {/* Arrow Animation */}
-              <motion.span
-                animate={{
-                  x: [0, 5, 0],
-                }}
-                transition={{
-                  duration: 1,
-                  repeat: Infinity,
-                }}
-                className="relative z-10"
+              {/* Main Button */}
+              <Link
+                href="/track-your-package"
+                onClick={handleTrackClick}
+                className="
+                  relative
+                  overflow-hidden
+                  px-5
+                  py-2
+                  rounded-full
+                  bg-gradient-to-r
+                  from-blue-500
+                  via-blue-600
+                  to-blue-700
+                  text-white
+                  font-semibold
+                  text-[14px]
+                  shadow-[0_10px_35px_rgba(37,99,235,0.5)]
+                  flex
+                  items-center
+                  gap-2
+                  hover:scale-105
+                  transition-all
+                  duration-300
+                  whitespace-nowrap
+                "
               >
-                →
-              </motion.span>
-            </Link>
-          </motion.div>
+                {/* Moving Light Effect */}
+                <motion.span
+                  animate={{
+                    x: ["-150%", "250%"],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "linear",
+                    repeatDelay: 1,
+                  }}
+                  className="
+                    absolute
+                    top-0
+                    left-0
+                    w-20
+                    h-full
+                    bg-white/20
+                    skew-x-12
+                    blur-md
+                  "
+                />
+
+                {/* Text */}
+                <span className="relative z-10 text-[14px]">Track Now</span>
+
+                {/* Arrow Animation */}
+                <motion.span
+                  animate={{
+                    x: [0, 5, 0],
+                  }}
+                  transition={{
+                    duration: 1,
+                    repeat: Infinity,
+                  }}
+                  className="relative z-10 font-bold"
+                >
+                  →
+                </motion.span>
+              </Link>
+            </motion.div>
+          </div>
         </div>
+      </div>
+
+      {/* 📱 Mobile Header Bar */}
+      <div className="lg:hidden bg-white px-4 sm:px-6 py-3.5 flex justify-between items-center border-b border-gray-100 shadow-sm pointer-events-auto">
+        {/* Logo */}
+        <Link href="/" className="font-bold shrink-0 flex items-center">
+          <Image
+            src={LogoBlack}
+            alt="Frisbi Logo"
+            width={140}
+            height={40}
+            className="object-contain w-auto h-8 sm:h-9"
+            priority
+          />
+        </Link>
 
         {/* Mobile Menu Button & Book Now button */}
-        <div className="lg:hidden flex items-center gap-2.5 sm:gap-3 shrink-0">
+        <div className="flex items-center gap-2.5 sm:gap-3 shrink-0">
           <Link
             href="/rate-calculator"
             className="bg-[#013EFE] hover:bg-blue-700 text-white px-4 py-2 rounded-full text-xs font-semibold shadow-sm transition active:scale-95"
@@ -230,7 +279,6 @@ export default function Header() {
             )}
           </button>
         </div>
-
       </div>
 
       {/* Mobile Dropdown */}

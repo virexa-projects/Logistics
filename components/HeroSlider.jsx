@@ -80,7 +80,7 @@ export default function HeroSlider() {
           priority
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-black/35" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/20 to-transparent" />
         {/* </motion.div>
         ))} */}
 

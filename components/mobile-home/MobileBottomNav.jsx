@@ -1,11 +1,44 @@
-import React from "react";
+"use client";
+
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { Home as HomeIcon, Calculator as CalcIcon, Phone } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 
 export default function MobileBottomNav() {
+  const [inFooter, setInFooter] = useState(false);
+
+  useEffect(() => {
+    const checkFooter = () => {
+      const footerEl =
+        document.getElementById("main-footer") || document.querySelector("footer");
+      if (!footerEl) return false;
+      const rect = footerEl.getBoundingClientRect();
+      return rect.top <= window.innerHeight - 20;
+    };
+
+    const handleScroll = () => {
+      setInFooter(checkFooter());
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll, { passive: true });
+    handleScroll();
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
+  }, []);
+
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-t border-gray-200/80 shadow-[0_-4px_25px_rgba(0,0,0,0.08)] py-2 px-6 flex justify-between items-center max-w-lg mx-auto">
+    <div
+      className={`fixed bottom-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-t border-gray-200/80 shadow-[0_-4px_25px_rgba(0,0,0,0.08)] py-2 px-6 flex justify-between items-center max-w-lg mx-auto transition-all duration-300 ease-in-out md:hidden ${
+        inFooter
+          ? "translate-y-full opacity-0 pointer-events-none"
+          : "translate-y-0 opacity-100"
+      }`}
+    >
       {/* Home Tab */}
       <Link
         href="/"
