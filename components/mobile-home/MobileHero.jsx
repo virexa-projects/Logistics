@@ -51,7 +51,7 @@ export default function MobileHero() {
   const currentSlide = heroSlides[slideIndex] || heroSlides[0];
 
   return (
-    <section className="relative w-full min-h-[92vh] flex flex-col justify-between overflow-hidden">
+    <section className="relative w-full min-h-[78vh] flex flex-col justify-between overflow-hidden">
       {/* Background Portrait Image */}
       <div className="absolute inset-0 z-0">
         <Image
@@ -59,14 +59,14 @@ export default function MobileHero() {
           alt="Luggage at airport ready for delivery"
           fill
           priority
-          className="object-cover object-center"
+          className="object-cover object-top"
         />
         {/* Subtle gradient overlay for contrast */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/15 to-black/50" />
       </div>
 
       {/* Content Container */}
-      <div className="relative z-10 px-4 pt-2 pb-14 flex flex-col justify-start flex-1">
+      <div className="relative z-10 px-4 pt-12 pb-8 flex flex-col justify-start flex-1">
         {/* TOP CARD: Send Your Luggage Across India */}
         <motion.div
           initial={{ opacity: 0, y: -15 }}
@@ -148,7 +148,7 @@ export default function MobileHero() {
         </motion.div>
 
         {/* BOTTOM HERO TEXT OVER IMAGE - Slides Title & Desc from HeroSlider */}
-        <div className="mt-8 text-white text-left px-1">
+        <div className="mt-12 text-white text-left px-1">
           <AnimatePresence mode="wait">
             <motion.div
               key={slideIndex}
@@ -156,7 +156,7 @@ export default function MobileHero() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -15 }}
               transition={{ duration: 0.5 }}
-              className="min-h-[110px]"
+              className="min-h-[100px]"
             >
               <h1 className="text-2xl sm:text-3xl font-extrabold leading-tight mb-2 tracking-tight drop-shadow-md">
                 {currentSlide.title}
@@ -169,7 +169,7 @@ export default function MobileHero() {
 
           <Link
             href="/rate-calculator"
-            className="inline-flex items-center gap-2 bg-[#013EFE] hover:bg-blue-700 mt-4 text-white text-sm font-semibold px-6 py-2.5 rounded-full shadow-md transition-transform active:scale-95"
+            className="inline-flex items-center gap-2 bg-[#013EFE] hover:bg-blue-700 mt-3 text-white text-sm font-semibold px-6 py-2.5 rounded-full shadow-md transition-transform active:scale-95"
           >
             Get Quote
           </Link>

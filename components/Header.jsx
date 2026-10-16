@@ -159,19 +159,6 @@ export default function Header() {
               transition={{ duration: 0.8 }}
               className="relative"
             >
-              {/* Pulse Glow */}
-              <motion.div
-                animate={{
-                  scale: [1, 1.2, 1],
-                  opacity: [0.4, 0.7, 0.4],
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                }}
-                className="absolute inset-0 rounded-full bg-blue-500 blur-xl"
-              />
-
               {/* Main Button */}
               <Link
                 href="/track-your-package"
@@ -189,7 +176,6 @@ export default function Header() {
                   text-white
                   font-semibold
                   text-[14px]
-                  shadow-[0_10px_35px_rgba(37,99,235,0.5)]
                   flex
                   items-center
                   gap-2

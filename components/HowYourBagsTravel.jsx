@@ -67,6 +67,12 @@ export default function HowYourBagsTravel({ variant = "both" }) {
           width: 0px !important;
           height: 0px !important;
         }
+        .mobile-bags-swiper,
+        .mobile-bags-swiper .swiper-wrapper,
+        .mobile-bags-swiper .swiper-slide {
+          touch-action: pan-y !important;
+          pointer-events: none !important;
+        }
       `}</style>
 
       {/* ============================================================
@@ -180,7 +186,7 @@ export default function HowYourBagsTravel({ variant = "both" }) {
           </div>
 
           {/* Mobile vertical Swiper container */}
-          <div className="w-full" style={{ height: "460px" }}>
+          <div className="w-full pointer-events-none" style={{ height: "460px", touchAction: "pan-y" }}>
             <Swiper
               modules={[Autoplay]}
               direction="vertical"
@@ -189,6 +195,7 @@ export default function HowYourBagsTravel({ variant = "both" }) {
               autoplay={{
                 delay: 2800,
                 disableOnInteraction: false,
+                pauseOnMouseEnter: false,
               }}
               allowTouchMove={false}
               simulateTouch={false}
@@ -196,7 +203,7 @@ export default function HowYourBagsTravel({ variant = "both" }) {
               touchMoveStopPropagation={false}
               slidesPerView={1}
               spaceBetween={20}
-              className="bags-swiper w-full h-full touch-pan-y"
+              className="bags-swiper mobile-bags-swiper w-full h-full pointer-events-none touch-pan-y"
             >
               {allSlides.map((item, idx) => (
                 <SwiperSlide key={idx} className="h-full">
