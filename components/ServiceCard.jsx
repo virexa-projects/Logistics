@@ -115,13 +115,12 @@ const ServiceCard = ({ service }) => {
   );
 };
 
-// --- Feature Card Component ---
 const FeatureCard = ({
   title,
   description,
   image,
   link = "#",
-  fit = "cover",
+  fit = "contain",
 }) => {
   return (
     <div className="relative bg-white rounded-3xl p-8 h-[500px] overflow-hidden transition-transform hover:-translate-y-2">
@@ -134,18 +133,16 @@ const FeatureCard = ({
           href={link}
           className="mt-4 inline-block text-[16px] font-semibold hover:text-[#013EFE]"
         >
-          
-Learn more about {title}
-
+          Learn more about {title}
         </Link>
       </div>
 
-      <div className="absolute bottom-0 inset-x-0 h-[70%]">
+      <div className="absolute bottom-0 inset-x-0 h-[50%] pb-2 px-2">
         <Image
           src={image}
           alt={title}
           fill
-          className={`object-${fit}`}
+          className={`object-${fit} object-bottom`}
           priority
         />
       </div>

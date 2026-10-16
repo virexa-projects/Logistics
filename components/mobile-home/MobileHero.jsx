@@ -66,13 +66,13 @@ export default function MobileHero() {
       </div>
 
       {/* Content Container */}
-      <div className="relative z-10 px-4 pt-4 pb-24 flex flex-col justify-between flex-1">
+      <div className="relative z-10 px-4 pt-2 pb-14 flex flex-col justify-start flex-1">
         {/* TOP CARD: Send Your Luggage Across India */}
         <motion.div
           initial={{ opacity: 0, y: -15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="w-full bg-white/95 backdrop-blur-md rounded-[28px] p-5 shadow-2xl border border-white/60 mx-auto max-w-sm mt-3.5 sm:mt-5"
+          className="w-full bg-white/95 backdrop-blur-md rounded-[28px] p-5 shadow-2xl border border-white/60 mx-auto max-w-sm mt-2 sm:mt-3"
         >
           <h2 className="text-[19px] font-bold text-center text-gray-900 mb-4 tracking-tight">
             Send Your Luggage Across India
@@ -161,7 +161,7 @@ export default function MobileHero() {
               <h1 className="text-2xl sm:text-3xl font-extrabold leading-tight mb-2 tracking-tight drop-shadow-md">
                 {currentSlide.title}
               </h1>
-              <p className="text-xs sm:text-sm text-gray-100 leading-relaxed mb-4 line-clamp-3 drop-shadow">
+              <p className="text-sm sm:text-sm text-gray-100 leading-relaxed mb-4 line-clamp-3 drop-shadow">
                 {currentSlide.desc}
               </p>
             </motion.div>

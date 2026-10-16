@@ -128,14 +128,17 @@ export default function MobileServices() {
 
               {/* Image */}
               <div
-                className={`absolute bottom-0 inset-x-0 ${isFeature ? "h-[70%]" : "w-full h-[55%] z-0"
-                  }`}
+                className={`absolute bottom-0 inset-x-0 ${
+                  isFeature ? "h-[48%] pb-2 px-3" : "w-full h-[55%] z-0"
+                }`}
               >
                 <Image
                   src={svc.img}
                   alt={svc.title}
                   fill
-                  className={isFeature ? "object-cover" : "object-contain"}
+                  className={
+                    isFeature ? "object-contain object-bottom" : "object-contain"
+                  }
                   priority={i === 0}
                 />
               </div>
