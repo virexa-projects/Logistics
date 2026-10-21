@@ -151,38 +151,47 @@ const FeatureCard = ({
 };
 
 // --- Main Services Section ---
-const ServicesSection = () => {
+const ServicesSection = ({
+  heading = "Three ways to move your luggage. One way to travel lighter.",
+  showFeatures = false,
+}) => {
   return (
     <section className="py-12 md:py-16 lg:py-24">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Heading */}
         <h2 className="text-center mb-10 md:mb-12 lg:mb-16">
-          Five ways to move your luggage. One way to travel lighter.
+          {heading}
         </h2>
 
         {/* Services Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+        <div
+          className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ${
+            showFeatures ? "mb-10" : "mb-12"
+          }`}
+        >
           {servicesData.map((service, index) => (
             <ServiceCard key={index} service={service} />
           ))}
         </div>
 
         {/* Feature Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
-          <FeatureCard
-            title="Corporate"
-            description="Business delivery that handles it all. From employee moves to event travel, we handle baggage so work keeps moving."
-            image={Corporate}
-            link="/book/corporate"
-          />
+        {showFeatures && (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
+            <FeatureCard
+              title="Corporate"
+              description="Business delivery that handles it all. From employee moves to event travel, we handle baggage so work keeps moving."
+              image={Corporate}
+              link="/book/corporate"
+            />
 
-          <FeatureCard
-            title="Individual"
-            description="When life requires extra bags, longer stays, or city transfers, we step in to make sure your luggage reaches safely."
-            image={Packing}
-            link="/book/individual"
-          />
-        </div>
+            <FeatureCard
+              title="Individual"
+              description="When life requires extra bags, longer stays, or city transfers, we step in to make sure your luggage reaches safely."
+              image={Packing}
+              link="/book/individual"
+            />
+          </div>
+        )}
 
         {/* CTA */}
         <div className="flex justify-center">

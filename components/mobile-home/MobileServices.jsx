@@ -41,29 +41,7 @@ const servicesList = [
     link: "/services/premium-delivery",
     img: PremiumImg,
     isFeature: false,
-  },
-  {
-    title: "Corporate",
-    desc: "Business delivery that handles it all. From employee moves to event travel, we handle baggage so work keeps moving.",
-    bg: "bg-white",
-    text: "text-black",
-    descColor: "text-gray-500",
-    linkColor: "text-[16px] font-semibold hover:text-[#013EFE]",
-    link: "/book/corporate",
-    img: CorporateImg,
-    isFeature: true,
-  },
-  {
-    title: "Individual",
-    desc: "When life requires extra bags, longer stays, or city transfers, we step in to make sure your luggage reaches safely.",
-    bg: "bg-white",
-    text: "text-black",
-    descColor: "text-gray-500",
-    linkColor: "text-[16px] font-semibold hover:text-[#013EFE]",
-    link: "/book/individual",
-    img: IndividualImg,
-    isFeature: true,
-  },
+  }
 ];
 
 export default function MobileServices() {
@@ -74,7 +52,7 @@ export default function MobileServices() {
           Our Services
         </span>
         <h2 className="text-xl font-bold text-gray-900 leading-snug">
-          Five ways to move your luggage. One way to travel lighter.
+          Three ways to move your luggage. One way to travel lighter.
         </h2>
         <p className="text-xs text-gray-500 mt-1">
           Scroll to see each service stack smoothly in sequence.
@@ -94,8 +72,8 @@ export default function MobileServices() {
                 zIndex: i + 10,
               }}
               className={`relative ${isFeature
-                  ? "bg-white rounded-3xl p-8 h-[500px]"
-                  : `${svc.bg} rounded-3xl p-6 md:p-8 lg:p-10 h-[500px]`
+                ? "bg-white rounded-3xl p-8 h-[500px]"
+                : `${svc.bg} rounded-3xl p-6 md:p-8 lg:p-10 h-[500px]`
                 } flex flex-col justify-between shadow-[0_12px_32px_rgba(0,0,0,0.08)] border border-black/5 overflow-hidden mb-8 last:mb-0`}
             >
               <div className="relative z-10">
@@ -108,8 +86,8 @@ export default function MobileServices() {
 
                 <p
                   className={`${isFeature
-                      ? "mt-3 text-gray-500"
-                      : `mt-4 text-base ${svc.descColor}`
+                    ? "mt-3 text-gray-500"
+                    : `mt-4 text-base ${svc.descColor}`
                     }`}
                 >
                   {svc.desc}
@@ -118,8 +96,8 @@ export default function MobileServices() {
                 <Link
                   href={svc.link || "#"}
                   className={`${isFeature
-                      ? "mt-4 inline-block text-[16px] font-semibold hover:text-[#013EFE]"
-                      : `mt-4 inline-block font-semibold ${svc.linkColor}`
+                    ? "mt-4 inline-block text-[16px] font-semibold hover:text-[#013EFE]"
+                    : `mt-4 inline-block font-semibold ${svc.linkColor}`
                     }`}
                 >
                   Learn more about {svc.title}
@@ -128,9 +106,8 @@ export default function MobileServices() {
 
               {/* Image */}
               <div
-                className={`absolute bottom-0 inset-x-0 ${
-                  isFeature ? "h-[48%] pb-2 px-3" : "w-full h-[55%] z-0"
-                }`}
+                className={`absolute bottom-0 inset-x-0 ${isFeature ? "h-[48%] pb-2 px-3" : "w-full h-[55%] z-0"
+                  }`}
               >
                 <Image
                   src={svc.img}

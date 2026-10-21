@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { Menu, X, ChevronDown } from "lucide-react";
 import Image from "next/image";
@@ -23,6 +23,25 @@ export default function Header() {
   const [bookOpen, setBookOpen] = useState(false);
   const [hoverBook, setHoverBook] = useState(false);
   const [scroll, setScroll] = useState(false);
+
+  const timeoutRef = useRef(null);
+
+  const handleServiceMouseEnter = () => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    setHoverService(true);
+  };
+
+  const handleServiceMouseLeave = () => {
+    timeoutRef.current = setTimeout(() => {
+      setHoverService(false);
+    }, 150);
+  };
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
+  }, []);
 
   // Scroll detection
   useEffect(() => {
@@ -103,30 +122,41 @@ export default function Header() {
 
             {/* Services Dropdown */}
             <div
-              className="relative"
-              onMouseEnter={() => setHoverService(true)}
-              onMouseLeave={() => setHoverService(false)}
+              className="relative py-1"
+              onMouseEnter={handleServiceMouseEnter}
+              onMouseLeave={handleServiceMouseLeave}
             >
-              <button className="flex items-center gap-1.5 hover:text-[#013efe] transition">
-                Services <ChevronDown className="h-4 w-4" />
+              <button
+                type="button"
+                className="flex items-center gap-1.5 hover:text-[#013efe] transition py-1"
+              >
+                Services{" "}
+                <ChevronDown
+                  className={`h-4 w-4 transition-transform duration-200 ${
+                    hoverService ? "rotate-180 text-[#013efe]" : ""
+                  }`}
+                />
               </button>
               {hoverService && (
-                <motion.div
-                  initial={{ opacity: 0, y: -5 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.2 }}
-                  className="absolute left-1/2 -translate-x-1/2 mt-3 w-52 bg-white shadow-xl rounded-2xl py-3 border border-gray-100 z-50"
-                >
-                  {servicesList.map((item, index) => (
-                    <Link
-                      key={index}
-                      href={`/services/${item.toLowerCase().replace(/ /g, "-")}`}
-                      className="block px-5 py-2.5 text-black hover:bg-blue-50 hover:text-[#013efe] transition whitespace-nowrap text-sm"
-                    >
-                      {item}
-                    </Link>
-                  ))}
-                </motion.div>
+                <div className="absolute left-1/2 -translate-x-1/2 top-full pt-2 z-50">
+                  <motion.div
+                    initial={{ opacity: 0, y: -4 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.15 }}
+                    className="relative w-52 bg-white shadow-xl rounded-2xl py-3 border border-gray-100 before:content-[''] before:absolute before:-top-3 before:left-0 before:right-0 before:h-3"
+                  >
+                    {servicesList.map((item, index) => (
+                      <Link
+                        key={index}
+                        href={`/services/${item.toLowerCase().replace(/ /g, "-")}`}
+                        onClick={() => setHoverService(false)}
+                        className="block px-5 py-2.5 text-black hover:bg-blue-50 hover:text-[#013efe] transition whitespace-nowrap text-sm"
+                      >
+                        {item}
+                      </Link>
+                    ))}
+                  </motion.div>
+                </div>
               )}
             </div>
 
@@ -161,7 +191,7 @@ export default function Header() {
             >
               {/* Main Button */}
               <Link
-                href="/track-your-package"
+                href="/book-shipment"
                 onClick={handleTrackClick}
                 className="
                   relative
@@ -209,7 +239,7 @@ export default function Header() {
                 />
 
                 {/* Text */}
-                <span className="relative z-10 text-[14px]">Track Now</span>
+                <span className="relative z-10 text-[14px]">Book Now</span>
 
                 {/* Arrow Animation */}
                 <motion.span
@@ -247,7 +277,7 @@ export default function Header() {
         {/* Mobile Menu Button & Book Now button */}
         <div className="flex items-center gap-2.5 sm:gap-3 shrink-0">
           <Link
-            href="/rate-calculator"
+            href="/book-shipment"
             className="bg-[#013EFE] hover:bg-blue-700 text-white px-4 py-2 rounded-full text-xs font-semibold shadow-sm transition active:scale-95"
           >
             Book Now
