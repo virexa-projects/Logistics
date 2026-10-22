@@ -59,7 +59,7 @@ export default function FAQ() {
   const visibleFaqs = showAll ? faqData : faqData.slice(0, 5);
 
   return (
-    <div className="w-full max-w-3xl mx-auto py-12 md:pt-16  md:pb-24 px-4">
+    <div className="w-full max-w-3xl mx-auto py-12 md:py-16 px-4">
       <h2 className="text-center mb-10 md:mb-12 lg:mb-16">
         Frequently asked questions
       </h2>

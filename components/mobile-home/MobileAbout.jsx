@@ -15,7 +15,7 @@ const features = [
 
 export default function MobileAbout() {
   return (
-    <section className="py-8 px-4 bg-white border-t border-gray-100">
+    <section className="py-12 md:py-16 px-4 bg-white border-t border-gray-100">
       <div>
         <span className="text-[11px] font-bold text-[#013EFE] uppercase tracking-wider">
           About Frisbi
