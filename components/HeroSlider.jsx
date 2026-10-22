@@ -10,7 +10,7 @@ import bannertwo from "@/asset/luggage-bag.jpg";
 import bannerthree from "@/asset/luggage-person.jpg";
 import PorterPickupDrop from "./PickupDropBooking";
 
-const slides = [
+export const heroSlides = [
   {
     title: "Door-to-Door Luggage Pickup & Delivery in Bangalore",
     desc: "Skip the heavy bags and travel hands-free. Frisbi picks up your luggage from your doorstep and delivers it safely to your destination.",
@@ -27,6 +27,8 @@ const slides = [
     img: bannerthree,
   },
 ];
+
+const slides = heroSlides;
 
 export default function HeroSlider() {
   const [index, setIndex] = useState(0);
@@ -72,13 +74,13 @@ export default function HeroSlider() {
             className="absolute inset-0"
           > */}
         <Image
-          src={bannerone}
-          alt={bannerone}
+          src="/hero-desktop.jpg"
+          alt="Frisbi Door-to-Door Luggage Delivery"
           fill
           priority
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-black/30" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/20 to-transparent" />
         {/* </motion.div>
         ))} */}
 

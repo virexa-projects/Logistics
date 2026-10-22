@@ -9,16 +9,16 @@ import MobileBookNow from "./MobileBookNow";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#F2F2F2] text-black pt-16 pb-8 px-6">
+    <footer id="main-footer" className="bg-[#F2F2F2] text-black pt-16 pb-8 px-6">
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}
-        className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 text-center md:text-left"
+        className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-left"
       >
         {/* LOGO + DESCRIPTION */}
-        <div className="space-y-8 flex flex-col items-center md:items-start">
+        <div className="space-y-8 flex flex-col items-start">
           <div className="flex items-center gap-2">
             <Image src={Logo} alt="Frisbi" width={180} height={40} />
           </div>
@@ -27,7 +27,7 @@ export default function Footer() {
 
           <div>
             <h3 className="font-semibold mb-2 !text-[20px]">Social Media</h3>
-            <div className="flex items-center gap-4 justify-center md:justify-start">
+            <div className="flex items-center gap-4 justify-start">
               {/* YouTube */}
               <Link href="https://youtube.com/@frisbi-luggage-delivery?si=sfdhhiZOjdpNhNTs">
                 <div className="p-3 bg-red-600 rounded-full hover:bg-red-700 transition">
@@ -53,7 +53,7 @@ export default function Footer() {
         </div>
 
         {/* SERVICES */}
-        <div className="flex flex-col items-center md:items-start">
+        <div className="flex flex-col items-start">
           <div>
             <h3 className="font-semibold mb-5 !text-[20px]">Book Pickup</h3>
             <ul className="space-y-4 text-sm font-semibold">
@@ -102,7 +102,7 @@ export default function Footer() {
         </div>
 
         {/* COMPANY */}
-        <div className="flex flex-col items-center md:items-start">
+        <div className="flex flex-col items-start">
           <h3 className="font-semibold mb-5 !text-[20px]">Company</h3>
           <ul className="space-y-4 text-sm font-semibold">
             <li>
@@ -144,7 +144,7 @@ export default function Footer() {
         </div>
 
         {/* CONTACT */}
-        <div className="flex flex-col items-center md:items-start">
+        <div className="flex flex-col items-start">
           <h3 className="font-semibold mb-5 !text-[20px]">Support & Contact</h3>
           <ul className="space-y-3 text-sm font-semibold">
             <li>
@@ -170,7 +170,7 @@ export default function Footer() {
             </li>
           </ul>
 
-          <div className="flex items-center gap-2 mt-5">
+          <div className="flex items-center gap-2 mt-5 justify-start">
             <Link
               href="https://wa.me/917418152531"
               target="_blank"
@@ -184,12 +184,12 @@ export default function Footer() {
 
       {/* BOTTOM LINE */}
       <div className="border-t border-gray-700 mt-12 pt-6">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-center md:justify-between text-sm text-gray-400 gap-4 items-center">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-start md:justify-between text-sm text-gray-400 gap-4 items-start md:items-center">
           <span className="text-[14px] text-black text-sm font-medium">
             Copyright © 2026 – All Right Reserved
           </span>
 
-          <div className="flex items-center text-black text-sm font-medium gap-4 flex-wrap justify-center md:justify-start">
+          <div className="flex items-center text-black text-sm font-medium gap-4 flex-wrap justify-start">
             <Link href="/terms-and-conditions" className="hover:text-blue-900">Terms and Condition</Link>
             <span>|</span>
             <Link href="/privacy-policy" className="hover:text-blue-900">Privacy Policy</Link>

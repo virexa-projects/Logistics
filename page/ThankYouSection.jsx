@@ -45,8 +45,10 @@ export default function ThankYouSection() {
       </motion.div>
 
       <section className=" bg-[#f1f1f5] pt-16 pb-8">
-        <ServicesSection />
-      
+        <ServicesSection
+          showFeatures={true}
+          heading="Five ways to move your luggage. One way to travel lighter."
+        />
       </section>
        <section className="pt-24">
       <Testimonials />

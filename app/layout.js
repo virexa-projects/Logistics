@@ -20,8 +20,8 @@ export default function RootLayout({ children }) {
   const is404 = pathname === "/not-found";
 
   return (
-    <html lang="en">
-      <body className={`${inter.variable} antialiased`}>
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${inter.variable} antialiased`} suppressHydrationWarning>
         {/* Google Ads Tag Link */}
         <Script id="google-ads" strategy="afterInteractive">
           {`

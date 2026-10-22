@@ -1,0 +1,19 @@
+# Frisbi
+
+> Frisbi is a luggage pickup and delivery service in Bangalore that transports bags between airports, hotels, and homes.
+
+## Core Services & Booking
+
+- [Rate Calculator](https://frisbi.in/rate-calculator): Calculate luggage transport pricing and request a pickup quote.
+- [Book Shipment](https://frisbi.in/book-shipment): Schedule luggage pickup, transfer, and door-to-door delivery.
+- [Corporate Booking](https://frisbi.in/book/corporate): Corporate luggage logistics solutions for business travelers and hotels.
+- [Home Page](https://frisbi.in/): Overview of Frisbi's luggage transport and delivery services.
+
+## Company Information
+
+- [About Us](https://frisbi.in/about): Learn about Frisbi's mission and luggage delivery services.
+- [Contact Us](https://frisbi.in/contact-us): Customer support and operational inquiries.
+
+## Optional
+
+- [Blog](https://frisbi.in/blog): Travel tips, packing guides, and service updates.
