@@ -9,13 +9,13 @@ import MobileBookNow from "./MobileBookNow";
 
 export default function Footer() {
   return (
-    <footer id="main-footer" className="bg-[#F2F2F2] text-black pt-16 pb-8 px-6">
+    <footer id="main-footer" className="bg-[#F2F2F2] text-black pt-16 pb-8">
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}
-        className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-left"
+        className="container mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-left"
       >
         {/* LOGO + DESCRIPTION */}
         <div className="space-y-8 flex flex-col items-start">
@@ -184,7 +184,7 @@ export default function Footer() {
 
       {/* BOTTOM LINE */}
       <div className="border-t border-gray-700 mt-12 pt-6">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-start md:justify-between text-sm text-gray-400 gap-4 items-start md:items-center">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-start md:justify-between text-sm text-gray-400 gap-4 items-start md:items-center">
           <span className="text-[14px] text-black text-sm font-medium">
             Copyright © 2026 – All Right Reserved
           </span>

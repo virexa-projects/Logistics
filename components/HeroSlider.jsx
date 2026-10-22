@@ -57,22 +57,7 @@ export default function HeroSlider() {
   return (
     <div>
       <section className="relative w-full h-[110vh] md:h-screen -mt-24 overflow-hidden">
-        {/* FLOATING COMPONENT */}
-        <div className="absolute z-40 hidden md:block
-                bottom-4 left-1/2 -translate-x-1/2 md:right-10 md:top-1/2 md:bottom-auto md:translate-x-0 md:-translate-y-1/2">
-          <PorterPickupDrop />
-        </div>
-
-
-        {/* SLIDES (both old and new) */}
-        {/* {slides.map((slide, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: i === index ? 1 : 0 }}
-            animate={{ opacity: i === nextIndex ? 1 : i === index ? 1 : 0 }}
-            transition={{ duration: 0.8, ease: "easeInOut" }}
-            className="absolute inset-0"
-          > */}
+        {/* SLIDES background */}
         <Image
           src="/hero-desktop.jpg"
           alt="Frisbi Door-to-Door Luggage Delivery"
@@ -81,11 +66,9 @@ export default function HeroSlider() {
           className="object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/20 to-transparent" />
-        {/* </motion.div>
-        ))} */}
 
         {/* CONTENT */}
-        <div className="relative z-20 h-full container mx-auto px-4  md:px-8 flex items-center">
+        <div className="relative z-20 h-full container mx-auto px-4 md:px-8 pt-16 flex items-center justify-between gap-8 lg:gap-12">
           <motion.div
             key={index + "-text"}
             initial={{ opacity: 0, y: 30 }}
@@ -107,9 +90,12 @@ export default function HeroSlider() {
               Get  Quote
             </Link>
           </motion.div>
+
+          {/* DESKTOP CHECK PRICE CARD */}
+          <div className="hidden md:block flex-shrink-0 w-full max-w-md">
+            <PorterPickupDrop />
+          </div>
         </div>
-
-
       </section>
       <div className=" mb-7  block md:hidden" style={{ marginTop: -180, zIndex: 24, position: "relative" }}
       >

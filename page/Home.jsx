@@ -147,13 +147,11 @@ function Home() {
         </div>
       </section>
 
-      <section className="bg-[#F1F2F6]  overflow-x-hidden">
-        <div className="container mx-auto">
-          <ServicesSection
-            heading="Three ways to move your luggage. One way to travel lighter."
-            showFeatures={false}
-          />
-        </div>
+      <section className="bg-[#F1F2F6] overflow-x-hidden">
+        <ServicesSection
+          heading="Three ways to move your luggage. One way to travel lighter."
+          showFeatures={false}
+        />
       </section>
 
       <HowToShip />

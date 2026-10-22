@@ -84,7 +84,7 @@ export default function MobileHero() {
               <label className="block text-xs font-semibold text-gray-700 mb-1 ml-1">
                 Pickup PIN code
               </label>
-              <div className="flex items-center gap-2.5 bg-gray-50/90 border border-gray-200 rounded-2xl px-3.5 py-2.5 focus-within:border-[#013EFE] focus-within:bg-white transition-all shadow-inner">
+              <div className="flex items-center gap-2.5 bg-gray-50/90 border border-gray-200 rounded-2xl px-3.5 py-2.5 focus-within:border-[#013EFE] focus-within:bg-white transition-all">
                 <div className="w-7 h-7 rounded-full bg-blue-50 flex items-center justify-center shrink-0">
                   <MapPin className="w-4 h-4 text-[#013EFE]" />
                 </div>
@@ -109,7 +109,7 @@ export default function MobileHero() {
               <label className="block text-xs font-semibold text-gray-700 mb-1 ml-1">
                 Drop PIN code
               </label>
-              <div className="flex items-center gap-2.5 bg-gray-50/90 border border-gray-200 rounded-2xl px-3.5 py-2.5 focus-within:border-[#013EFE] focus-within:bg-white transition-all shadow-inner">
+              <div className="flex items-center gap-2.5 bg-gray-50/90 border border-gray-200 rounded-2xl px-3.5 py-2.5 focus-within:border-[#013EFE] focus-within:bg-white transition-all">
                 <div className="w-7 h-7 rounded-full bg-blue-50 flex items-center justify-center shrink-0">
                   <MapPin className="w-4 h-4 text-[#013EFE]" />
                 </div>
