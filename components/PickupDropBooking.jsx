@@ -177,7 +177,7 @@ export default function PorterPickupDrop() {
 
           <div
             className={`flex items-center gap-3 bg-white border ${pickupError ? "border-red-500 ring-1 ring-red-400" : "border-gray-200"
-              } rounded-2xl px-4 py-2 shadow-sm transition-all`}
+              } rounded-2xl px-4 py-2 transition-all`}
           >
             {/* ICON */}
             <div
@@ -235,7 +235,7 @@ export default function PorterPickupDrop() {
 
           <div
             className={`flex items-center gap-3 bg-white border ${dropError ? "border-red-500 ring-1 ring-red-400" : "border-gray-200"
-              } rounded-2xl px-4 py-2 shadow-sm transition-all`}
+              } rounded-2xl px-4 py-2 transition-all`}
           >
             {/* ICON */}
             <div

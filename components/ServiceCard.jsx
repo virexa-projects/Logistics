@@ -156,7 +156,7 @@ const ServicesSection = ({
   showFeatures = false,
 }) => {
   return (
-    <section className="py-12 md:py-16 lg:py-24">
+    <section className="py-12 md:py-16">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Heading */}
         <h2 className="text-center mb-10 md:mb-12 lg:mb-16">

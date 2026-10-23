@@ -95,7 +95,7 @@ export default function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-50 transition-all duration-300 w-full pointer-events-none">
+    <header className="sticky top-0 z-50 transition-all duration-300 w-full pointer-events-auto lg:pointer-events-none">
       {/* 🖥️ Desktop Header - Floating Pill Design (Matching Figma Reference) */}
       <div className="hidden lg:block w-full pt-4 pb-2 px-6 lg:px-8 pointer-events-auto">
         <div className="max-w-[1240px] mx-auto bg-white rounded-full shadow-[0_4px_30px_rgba(0,0,0,0.08)] border border-gray-100/80 px-8 py-3 flex justify-between items-center gap-6">
@@ -132,9 +132,8 @@ export default function Header() {
               >
                 Services{" "}
                 <ChevronDown
-                  className={`h-4 w-4 transition-transform duration-200 ${
-                    hoverService ? "rotate-180 text-[#013efe]" : ""
-                  }`}
+                  className={`h-4 w-4 transition-transform duration-200 ${hoverService ? "rotate-180 text-[#013efe]" : ""
+                    }`}
                 />
               </button>
               {hoverService && (
@@ -168,10 +167,11 @@ export default function Header() {
               Rate Calculator
             </Link>
             <Link
-              href="/faq"
+              href="/track-your-package"
+              onClick={handleTrackClick}
               className="hover:text-[#013efe] transition"
             >
-              FAQs
+              Track Now
             </Link>
             <Link
               href="/contact-us"
@@ -192,7 +192,6 @@ export default function Header() {
               {/* Main Button */}
               <Link
                 href="/book-shipment"
-                onClick={handleTrackClick}
                 className="
                   relative
                   overflow-hidden
@@ -303,7 +302,7 @@ export default function Header() {
           initial={{ height: 0, opacity: 0 }}
           animate={{ height: "auto", opacity: 1 }}
           transition={{ duration: 0.25 }}
-          className="lg:hidden bg-white overflow-hidden shadow-lg border-t border-gray-100"
+          className="lg:hidden bg-white overflow-hidden shadow-lg border-t border-gray-100 pointer-events-auto"
         >
           <div className="flex flex-col px-6 py-4 space-y-3 font-medium text-base text-gray-800">
             <Link href="/" onClick={handleLinkClick} className="hover:text-[#013efe] py-1 transition">Home</Link>
@@ -337,6 +336,17 @@ export default function Header() {
             <Link href="/rate-calculator" onClick={handleRateCalcClick} className="hover:text-[#013efe] py-1 transition">Rate Calculator</Link>
             <Link href="/faq" onClick={handleLinkClick} className="hover:text-[#013efe] py-1 transition">FAQs</Link>
             <Link href="/contact-us" onClick={handleLinkClick} className="hover:text-[#013efe] py-1 transition">Contact Us</Link>
+
+            {/* Track Now CTA Button */}
+            <div className="pt-2">
+              <Link
+                href="/track-your-package"
+                onClick={handleTrackClick}
+                className="w-full bg-[#013EFE] hover:bg-blue-700 text-white py-2.5 px-4 rounded-full font-semibold text-sm flex items-center justify-center gap-2 shadow-md shadow-blue-500/15 transition active:scale-95"
+              >
+                Track Now
+              </Link>
+            </div>
           </div>
         </motion.div>
       )}

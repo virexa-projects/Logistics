@@ -46,7 +46,7 @@ const servicesList = [
 
 export default function MobileServices() {
   return (
-    <section className="py-10 px-4 bg-[#F1F2F6] pb-16">
+    <section className="py-12 md:py-16 px-4 bg-[#F1F2F6]">
       <div className="mb-6">
         <span className="text-[11px] font-bold text-[#013EFE] uppercase tracking-wider block mb-1">
           Our Services

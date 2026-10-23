@@ -5,11 +5,11 @@ export const metadata = {
   description:
     "Skip heavy bags! Frisbi offers secure door-to-door luggage pickup and delivery across Bangalore. Book reliable baggage shipping & travel hands-free today.",
   keywords: [
-     "luggage delivery service",
-  "luggage pickup and delivery Bangalore",
-  "door to door luggage delivery Bangalore",
-  "luggage delivery in Bangalore",
-  "luggage movers in Bangalore",
+    "luggage delivery service",
+    "luggage pickup and delivery Bangalore",
+    "door to door luggage delivery Bangalore",
+    "luggage delivery in Bangalore",
+    "luggage movers in Bangalore",
   ],
   alternates: {
     canonical: "https://frisbi.in",
@@ -45,11 +45,6 @@ const schema = {
           telephone: "+91-7418152531",
           contactType: "customer support",
           availableLanguage: ["English", "Hindi"],
-        },
-        {
-          "@type": "ContactPoint",
-          email: "support@frisbi.in",
-          contactType: "customer support",
         },
         {
           "@type": "ContactPoint",

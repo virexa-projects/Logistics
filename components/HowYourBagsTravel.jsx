@@ -84,7 +84,7 @@ export default function HowYourBagsTravel({ variant = "both" }) {
           - No white shadow, no image padding, matches user screenshot
          ============================================================ */}
       {showDesktop && (
-        <div className={`${variant === "both" ? "hidden md:block" : ""} py-12 lg:py-16 overflow-hidden`}>
+        <div className={`${variant === "both" ? "hidden md:block" : ""} py-12 md:py-16 overflow-hidden`}>
           <div className="container max-w-[1220px] mx-auto px-6 sm:px-8 lg:px-10">
             {/* Header with Title and Left/Right Arrows */}
             <div className="flex items-center justify-between mb-8">
@@ -139,7 +139,7 @@ export default function HowYourBagsTravel({ variant = "both" }) {
                 {allSlides.map((item, idx) => (
                   <SwiperSlide key={idx} className="h-auto">
                     {/* Fixed uniform card: exact same height and width for all cards */}
-                    <div className="w-full h-[510px] bg-white rounded-3xl border border-gray-200/90 overflow-hidden flex flex-col justify-between shadow-xs select-none">
+                    <div className="w-full bg-white rounded-3xl border border-gray-200/90 overflow-hidden flex flex-col shadow-xs select-none">
                       {/* Fixed height image with NO padding, flush to top, left, right */}
                       <div className="relative w-full h-[370px] bg-gray-100 overflow-hidden shrink-0">
                         <Image
@@ -150,8 +150,8 @@ export default function HowYourBagsTravel({ variant = "both" }) {
                           sizes="(max-width: 1280px) 33vw, 420px"
                         />
                       </div>
-                      {/* Fixed height text container so all 3 cards align perfectly */}
-                      <div className="p-5 sm:p-6 bg-white flex flex-col justify-start flex-1">
+                      {/* Text container with uniform padding where py matches px */}
+                      <div className="p-5 sm:p-6 bg-white flex flex-col">
                         <h3 className="text-[18px] font-bold text-gray-900 leading-snug line-clamp-1">
                           {item.title}
                         </h3>
@@ -175,7 +175,7 @@ export default function HowYourBagsTravel({ variant = "both" }) {
           NO white shadows, NO padding around image
          ============================================================ */}
       {showMobile && (
-        <div className={`${variant === "both" ? "block md:hidden" : ""} py-8 px-4`}>
+        <div className={`${variant === "both" ? "block md:hidden" : ""} py-12 md:py-16 px-4`}>
           <div className="mb-4">
             <h2 className="text-2xl font-bold text-gray-900 tracking-tight">
               How Your Bags Travel
@@ -186,7 +186,7 @@ export default function HowYourBagsTravel({ variant = "both" }) {
           </div>
 
           {/* Mobile vertical Swiper container */}
-          <div className="w-full pointer-events-none" style={{ height: "460px", touchAction: "pan-y" }}>
+          <div className="w-full pointer-events-none" style={{ height: "440px", touchAction: "pan-y" }}>
             <Swiper
               modules={[Autoplay]}
               direction="vertical"

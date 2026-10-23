@@ -69,7 +69,7 @@ function Home() {
         {/* HOW YOUR BAGS TRAVEL (Desktop right-to-left auto-scroll) */}
         <HowYourBagsTravel variant="desktop" />
 
-      <section className="container mx-auto relative px-4 py-12 md:py-20  sm:px-6 lg:px-8">
+      <section className="container mx-auto relative px-4 py-12 md:py-16 sm:px-6 lg:px-8">
         {/* Section Heading */}
         <div className="relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -147,13 +147,11 @@ function Home() {
         </div>
       </section>
 
-      <section className="bg-[#F1F2F6]  overflow-x-hidden">
-        <div className="container mx-auto">
-          <ServicesSection
-            heading="Three ways to move your luggage. One way to travel lighter."
-            showFeatures={false}
-          />
-        </div>
+      <section className="bg-[#F1F2F6] overflow-x-hidden">
+        <ServicesSection
+          heading="Three ways to move your luggage. One way to travel lighter."
+          showFeatures={false}
+        />
       </section>
 
       <HowToShip />
@@ -162,7 +160,7 @@ function Home() {
         <CustomSlider />
       </section>
 
-      <section className="  mx-auto relative px-4 py-12 md:py-16 lg:py-24 sm:px-6 lg:px-8">
+      <section className="container mx-auto relative px-4 py-12 md:py-16 sm:px-6 lg:px-8">
         <Testimonials />
       </section>
 
@@ -176,7 +174,7 @@ function Home() {
       </section>
 
 
-      <section className="w-full px-4 py-12   md:py-20 md:pb-0 ">
+      <section className="w-full px-4 py-12 md:py-16">
         <div className="relative container mx-auto rounded-3xl overflow-hidden">
           {/* Background Image */}
           <Image

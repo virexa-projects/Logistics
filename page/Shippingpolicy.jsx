@@ -29,7 +29,7 @@ function Shippingpolicy() {
           <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 max-w-3xl mx-auto">
             <h1 className="text-black text-3xl md:text-4xl">Shipping Policy</h1>
 
-         
+
           </div>
         </motion.section>
       </div>
@@ -375,16 +375,10 @@ function Shippingpolicy() {
         <div className="mt-5">
           <h3 className="">12. Support & Escalation</h3>
           <p className="text-second mt-4">
-            For support, disputes, or escalations, please contact Frisbi at support@frisbi.in:
+            For support, disputes, or escalations, please contact Frisbi at info@frisbi.in:
           </p>
 
           <ul className="mt-4 list-decimal pl-5 space-y-4 font-medium text-[15px]">
-            <li className="text-second">
-              Delivery Support & Escalations:{" "}
-              <a href="mailto:support@frisbi.in" className="font-bold text-black hover:text-primary">
-                support@frisbi.in
-              </a>
-            </li>
             <li className="text-second">
               General & Business Inquiries:{" "}
               <a href="mailto:info@frisbi.in" className="font-bold text-black hover:text-primary">

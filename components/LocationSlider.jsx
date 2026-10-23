@@ -22,7 +22,7 @@ const servicesData = [
     descColor: "text-black",
     linkColor: "text-black hover:text-[#013EFE]",
     phoneno: "+91 7418152531",
-    mail: "support@frisbi.in",
+    mail: "info@frisbi.in",
     delay: 0,
   },
   {
@@ -34,7 +34,7 @@ const servicesData = [
     descColor: "text-black",
     linkColor: "text-black hover:text-[#013EFE]",
     phoneno: "+91 7418152531",
-    mail: "support@frisbi.in",
+    mail: "info@frisbi.in",
     delay: 0,
   },
   {
@@ -46,7 +46,7 @@ const servicesData = [
     descColor: "text-black",
     linkColor: "text-black hover:text-[#013EFE]",
     phoneno: "+91 7418152531",
-    mail: "support@frisbi.in",
+    mail: "info@frisbi.in",
     delay: 0,
   },
   {
@@ -58,7 +58,7 @@ const servicesData = [
     descColor: "text-black",
     linkColor: "text-black hover:text-[#013EFE]",
     phoneno: "+91 7418152531",
-    mail: "support@frisbi.in",
+    mail: "info@frisbi.in",
     delay: 0,
   },
 ];

@@ -32,7 +32,7 @@ function Termsofservice() {
           </div>
         </motion.section>
 
-    
+
       </div>
 
       <section className="container mx-auto py-12 md:py-24 px-4">
@@ -369,16 +369,10 @@ function Termsofservice() {
         <div className="mt-5">
           <h3 className="">15. Contact Information</h3>
           <p className="text-second mt-4">
-            For support, disputes, or escalations, please contact Frisbi at support@frisbi.in:
+            For support, disputes, or escalations, please contact Frisbi at info@frisbi.in:
           </p>
 
           <ul className="mt-4 list-decimal pl-5 space-y-4 font-medium text-[15px]">
-            <li className="text-second">
-              Customer Support & Escalations:{" "}
-              <a href="mailto:support@frisbi.in" className="font-bold text-black hover:text-primary">
-                support@frisbi.in
-              </a>
-            </li>
             <li className="text-second">
               General & Business Inquiries:{" "}
               <a href="mailto:info@frisbi.in" className="font-bold text-black hover:text-primary">
