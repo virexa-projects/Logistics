@@ -20,9 +20,8 @@ function Input({ type = "text", name, value, onChange, placeholder, maxLength, i
         placeholder={placeholder}
         maxLength={maxLength}
         inputMode={inputMode}
-        className={`w-full bg-[#f5f5f5] text-black px-4 py-3 rounded-xl outline-none transition text-sm placeholder:text-sm placeholder:text-gray-600 border ${
-          error ? "border-red-500 ring-1 ring-red-400" : "border-transparent focus:ring-1 focus:ring-[#013efe]"
-        }`}
+        className={`w-full bg-[#f5f5f5] text-black px-4 py-3 rounded-xl outline-none transition text-sm placeholder:text-sm placeholder:text-gray-600 border ${error ? "border-red-500 ring-1 ring-red-400" : "border-transparent focus:ring-1 focus:ring-[#013efe]"
+          }`}
       />
       {error && <p className="text-red-500 text-xs mt-1.5 font-medium ml-1">{error}</p>}
     </div>
@@ -36,9 +35,8 @@ function Select({ name, value, onChange, options = [], placeholder, error }) {
         name={name}
         value={value}
         onChange={onChange}
-        className={`w-full bg-[#f5f5f5] text-black px-4 py-3 rounded-xl outline-none transition text-sm placeholder:text-xs placeholder:text-gray-600 border ${
-          error ? "border-red-500 ring-1 ring-red-400" : "border-transparent focus:ring-1 focus:ring-[#013efe]"
-        }`}
+        className={`w-full bg-[#f5f5f5] text-black px-4 py-3 rounded-xl outline-none transition text-sm placeholder:text-xs placeholder:text-gray-600 border ${error ? "border-red-500 ring-1 ring-red-400" : "border-transparent focus:ring-1 focus:ring-[#013efe]"
+          }`}
       >
         <option value="" disabled>
           {placeholder}
@@ -63,9 +61,8 @@ function Textarea({ name, value, onChange, placeholder, error }) {
         onChange={onChange}
         placeholder={placeholder}
         rows={5}
-        className={`w-full bg-[#f5f5f5] text-black px-4 py-3 rounded-xl outline-none transition text-sm placeholder:text-sm placeholder:text-gray-600 border ${
-          error ? "border-red-500 ring-1 ring-red-400" : "border-transparent focus:ring-1 focus:ring-[#013efe]"
-        }`}
+        className={`w-full bg-[#f5f5f5] text-black px-4 py-3 rounded-xl outline-none transition text-sm placeholder:text-sm placeholder:text-gray-600 border ${error ? "border-red-500 ring-1 ring-red-400" : "border-transparent focus:ring-1 focus:ring-[#013efe]"
+          }`}
       />
       {error && <p className="text-red-500 text-xs mt-1.5 font-medium ml-1">{error}</p>}
     </div>
@@ -350,13 +347,6 @@ export default function ContactSection() {
                 value="+91 7418152531"
                 href="tel:7418152531"
                 subtext="Available 9 AM to 9 PM, 7 days a week"
-              />
-              <Info
-                icon={Mail}
-                title="Customer Support"
-                value="support@frisbi.in"
-                href="mailto:support@frisbi.in"
-                subtext="For bookings, tracking assistance & order support"
               />
               <Info
                 icon={Mail}

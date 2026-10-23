@@ -9,6 +9,7 @@ import bannerone from "@/asset/banner-1-1.webp";
 import bannertwo from "@/asset/luggage-bag.jpg";
 import bannerthree from "@/asset/luggage-person.jpg";
 import PorterPickupDrop from "./PickupDropBooking";
+import heroBg from "@/public/hero-desktop.jpg";
 
 export const heroSlides = [
   {
@@ -56,14 +57,14 @@ export default function HeroSlider() {
 
   return (
     <div>
-      <section className="relative w-full h-[110vh] md:h-screen -mt-24 overflow-hidden">
+      <section className="relative w-full h-[110vh] md:h-screen -mt-24 overflow-hidden bg-white">
         {/* SLIDES background */}
         <Image
-          src="/hero-desktop.jpg"
+          src={heroBg}
           alt="Frisbi Door-to-Door Luggage Delivery"
           fill
           priority
-          className="object-cover"
+          className="object-cover scale-[1.01]"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/20 to-transparent" />
 

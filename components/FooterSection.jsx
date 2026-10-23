@@ -154,14 +154,6 @@ export default function Footer() {
             </li>
             <li>
               <Link
-                href="mailto:support@frisbi.in"
-                className="hover:text-blue-900"
-              >
-                • support@frisbi.in <span className="font-normal text-xs text-gray-500"></span>
-              </Link>
-            </li>
-            <li>
-              <Link
                 href="mailto:info@frisbi.in"
                 className="hover:text-blue-900"
               >

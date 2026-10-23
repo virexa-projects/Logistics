@@ -29,7 +29,7 @@ function Privacypolicy() {
           <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 max-w-3xl mx-auto">
             <h1 className="text-black text-3xl md:text-4xl">Privacy Policy</h1>
 
-           
+
           </div>
         </motion.section>
       </div>
@@ -311,14 +311,14 @@ function Privacypolicy() {
         <hr className="mt-5 " />
         <div className="mt-5">
           <h3 className="">9.  Your Rights
-</h3>
+          </h3>
           <p className="text-second mt-4">
             You may request the following anytime:
 
           </p>
           <ul className="mt-4 list-decimal pl-5 space-y-4 font-medium text-[15px]">
             <li className="text-second">
-             Access to your stored data
+              Access to your stored data
 
             </li>
             <li className="text-second">
@@ -327,15 +327,15 @@ function Privacypolicy() {
             <li className="text-second">
               Correction of inaccurate information
             </li>
-             <li className="text-second">
-             Data deletion (unless restricted by legal or airport compliance)
+            <li className="text-second">
+              Data deletion (unless restricted by legal or airport compliance)
 
             </li>
             <li className="text-second">
               Opt-out from marketing messages
 
             </li>
-            
+
           </ul>
           <p className="text-second mt-4">
             Contact details provided below.
@@ -346,9 +346,9 @@ function Privacypolicy() {
         <hr className="mt-5 " />
         <div className="mt-5">
           <h3 className="">10. Third-Party Links
-</h3>
+          </h3>
           <p className="text-second mt-4">
-          Our website may contain links to external sites. We are not responsible for their content or privacy practices.
+            Our website may contain links to external sites. We are not responsible for their content or privacy practices.
 
           </p>
 
@@ -357,28 +357,22 @@ function Privacypolicy() {
         <hr className="mt-5 " />
         <div className="mt-5">
           <h3 className="">11. Changes to This Privacy Policy
-</h3>
+          </h3>
           <p className="text-second mt-4">
-          Frisbi may update this Privacy Policy at any time. Continued use of the Services implies acceptance of updated terms.
+            Frisbi may update this Privacy Policy at any time. Continued use of the Services implies acceptance of updated terms.
           </p>
-          
+
         </div>
 
         <hr className="mt-5 " />
         <div className="mt-5">
           <h3 className="">12. Contact Information</h3>
-         <p className="text-second mt-4">
+          <p className="text-second mt-4">
             For privacy concerns, data deletion, or policy queries:
 
           </p>
 
           <ul className="mt-4 list-decimal pl-5 space-y-4 font-medium text-[15px]">
-            <li className="text-second">
-              Customer Support & Privacy Inquiries:{" "}
-              <a href="mailto:support@frisbi.in" className="font-bold text-black hover:text-primary">
-                support@frisbi.in
-              </a>
-            </li>
             <li className="text-second">
               General & Business Inquiries:{" "}
               <a href="mailto:info@frisbi.in" className="font-bold text-black hover:text-primary">
@@ -403,8 +397,8 @@ function Privacypolicy() {
           </ul>
         </div>
 
-       
-     
+
+
       </section>
     </div>
   );
