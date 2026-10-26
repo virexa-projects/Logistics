@@ -3,21 +3,18 @@
 import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import bg from "@/asset/profiles/cta-banner.svg"; // <<< CHANGE TO YOUR BG IMAGE
-import ContactSection from "@/components/ContactSection";
+import dynamic from "next/dynamic";
+import bg from "@/asset/profiles/cta-banner.svg";
 import trackmobile from "@/asset/shippment/track-your-package.svg";
-
-import Testimonials from "@/components/Testimonials";
 import { motion } from "framer-motion";
 import { Loader2 } from "lucide-react";
-
-import MarqueeLogos from "@/components/MarqueeLogos";
-import FAQ from "@/components/AccordionCorporate";
-import aboutmobile from "@/asset/about/about-banner-img.svg";
-
 import trackbg from "@/asset/track-your-package.png";
-import tracking from "@/asset/shippment/track-your-package.svg";
 import { API_CONFIG } from "@/utils/apiConfig";
+
+const FAQ = dynamic(() => import("@/components/AccordionCorporate"), { ssr: true });
+const ContactSection = dynamic(() => import("@/components/ContactSection"), { ssr: true });
+const Testimonials = dynamic(() => import("@/components/Testimonials"), { ssr: true });
+const MarqueeLogos = dynamic(() => import("@/components/MarqueeLogos"), { ssr: true });
 
 function Trackyourpackage() {
   const trackSectionRef = useRef(null);
@@ -39,10 +36,15 @@ function Trackyourpackage() {
   };
 
   useEffect(() => {
-    // 1. Initial scroll when landing on page
-    const timer = setTimeout(scrollToTracking, 200);
+    // Only auto-scroll if landing with #track-section in URL hash
+    if (typeof window !== "undefined" && window.location.hash === "#track-section") {
+      const timer = setTimeout(scrollToTracking, 200);
+      return () => clearTimeout(timer);
+    }
+  }, []);
 
-    // 2. Global listener: when staying on this page and clicking any link to track-your-package
+  useEffect(() => {
+    // Global listener: when staying on this page and clicking any link to track-your-package
     const handleDocumentClick = (e) => {
       const anchor = e.target?.closest ? e.target.closest("a") : null;
       if (!anchor) return;
@@ -67,7 +69,6 @@ function Trackyourpackage() {
     window.addEventListener("scroll-to-track", scrollToTracking);
 
     return () => {
-      clearTimeout(timer);
       document.removeEventListener("click", handleDocumentClick);
       window.removeEventListener("hashchange", scrollToTracking);
       window.removeEventListener("scroll-to-track", scrollToTracking);
@@ -183,6 +184,8 @@ function Trackyourpackage() {
             alt="Track Package Background"
             fill
             priority
+            fetchPriority="high"
+            sizes="100vw"
             className="md:object-contain object-cover bg-center"
           />
 
@@ -231,9 +234,11 @@ function Trackyourpackage() {
               <div className="relative w-full h-[260px] sm:h-[300px] md:h-[420px] flex justify-center">
                 <Image
                   src={trackmobile}
-                  alt="Hero"
+                  alt="Track your baggage shipment live"
                   fill
                   priority
+                  fetchPriority="high"
+                  sizes="(max-width: 768px) 100vw, 420px"
                   className="object-contain"
                 />
               </div>
@@ -252,9 +257,10 @@ function Trackyourpackage() {
           {/* IMAGE */}
           <div className="hidden md:block w-full rounded-3xl overflow-hidden ">
             <Image
-              src={tracking}
+              src={trackmobile}
               alt="Shipment"
-
+              width={560}
+              height={560}
               className="w-full h-[300px] md:h-[560px] object-contain"
             />
           </div>
@@ -385,8 +391,8 @@ function Trackyourpackage() {
             src={bg}
             alt="CTA background"
             fill
+            sizes="(max-width: 1220px) 100vw, 1220px"
             className="object-cover"
-            priority
           />
 
           {/* Gradient overlay */}

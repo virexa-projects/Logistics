@@ -37,6 +37,13 @@ export default function RootLayout({ children }) {
 
         <FloatingActions />
 
+        {/* Razorpay SDK */}
+        {/* <Script
+          src="https://checkout.razorpay.com/v1/checkout.js"
+          strategy="afterInteractive"
+        /> */}
+
+
         <FooterSection />
 
         {/* Toast notifications */}
@@ -47,4 +54,4 @@ export default function RootLayout({ children }) {
       </body>
     </html>
   );
-}
+}

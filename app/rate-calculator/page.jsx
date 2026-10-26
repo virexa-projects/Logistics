@@ -26,8 +26,6 @@ export default async function Page({ searchParams }) {
   const pickup = params?.pickup ?? "";
   const drop = params?.drop ?? "";
 
-  console.log("pickup, drop:", pickup, drop);
-
   return (
     <div>
       <script
