@@ -1,10 +1,7 @@
-"use client";
-
 import { Inter } from "next/font/google";
 import "./globals.css";
 import HeaderWrapper from "@/components/HeaderWrapper";
 import FooterSection from "@/components/FooterSection";
-import { usePathname } from "next/navigation";
 import { Toaster } from "react-hot-toast";
 import FloatingActions from "@/components/FloatingActions";
 import Script from "next/script";
@@ -13,17 +10,20 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
+  display: "swap",
 });
 
 export default function RootLayout({ children }) {
-  const pathname = usePathname();
-  const is404 = pathname === "/not-found";
-
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+      </head>
       <body className={`${inter.variable} antialiased`} suppressHydrationWarning>
-        {/* Google Ads Tag Link */}
-        <Script id="google-ads" strategy="afterInteractive">
+        {/* Google Ads Tag Link - deferred to avoid blocking main thread */}
+        <Script id="google-ads" strategy="lazyOnload">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
@@ -31,26 +31,20 @@ export default function RootLayout({ children }) {
           `}
         </Script>
 
-        {!is404 && <HeaderWrapper />}
+        <HeaderWrapper />
 
         {children}
 
         <FloatingActions />
 
-        {!is404 && <FooterSection />}
+        <FooterSection />
 
-        {/* Razorpay SDK */}
-        <Script
-          src="https://checkout.razorpay.com/v1/checkout.js"
-          strategy="afterInteractive"
-        />
-
-        {/* Toast */}
+        {/* Toast notifications */}
         <Toaster position="top-right" reverseOrder={false} />
 
-        {/* Updated New Google Analytics 4 ID */}
+        {/* Google Analytics 4 */}
         <GoogleAnalytics gaId="G-CVY124PE8B" />
       </body>
     </html>
   );
-}
+}

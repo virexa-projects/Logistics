@@ -59,6 +59,8 @@ export default function MobileHero() {
           alt="Luggage at airport ready for delivery"
           fill
           priority
+          fetchPriority="high"
+          sizes="100vw"
           className="object-cover object-top"
         />
         {/* Subtle gradient overlay for contrast */}

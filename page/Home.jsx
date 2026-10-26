@@ -7,8 +7,16 @@ import HeroSlider from "@/components/HeroSlider";
 import Image from "next/image";
 import { Check, Minus, NetworkIcon, Plus } from "lucide-react";
 
-import CustomSlider from "@/components/Slider";
-import MarqueeLogos from "@/components/MarqueeLogos";
+import dynamic from "next/dynamic";
+
+const CustomSlider = dynamic(() => import("@/components/Slider"), { ssr: true });
+const MarqueeLogos = dynamic(() => import("@/components/MarqueeLogos"), { ssr: true });
+const FAQSection = dynamic(() => import("@/components/AccordionCorporate"), { ssr: true });
+const ContactSection = dynamic(() => import("@/components/ContactSection"), { ssr: true });
+const HowToShip = dynamic(() => import("@/components/HowToShip"), { ssr: true });
+const Testimonials = dynamic(() => import("@/components/Testimonials"), { ssr: true });
+const HowYourBagsTravel = dynamic(() => import("@/components/HowYourBagsTravel"), { ssr: true });
+const MobileHome = dynamic(() => import("@/components/MobileHome"), { ssr: true });
 import ServicesSection from "@/components/ServiceCard";
 import { motion, AnimatePresence } from "framer-motion";
 import Packing from "@/asset/icon/express.svg";
@@ -16,13 +24,6 @@ import Packing from "@/asset/icon/express.svg";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-
-import FAQSection from "@/components/AccordionCorporate";
-import ContactSection from "@/components/ContactSection";
-import HowToShip from "@/components/HowToShip";
-import Testimonials from "@/components/Testimonials";
-import MobileHome from "@/components/MobileHome";
-import HowYourBagsTravel from "@/components/HowYourBagsTravel";
 
 function Home() {
   const faqData = [
@@ -139,7 +140,7 @@ function Home() {
                   alt="Frisbi luggage delivery illustration"
                   fill
                   className="object-contain"
-                  priority
+                  sizes="(max-width: 1024px) 100vw, 550px"
                 />
               </div>
             </div>
@@ -182,7 +183,7 @@ function Home() {
             alt="CTA background"
             fill
             className="object-cover"
-            priority
+            sizes="(max-width: 1220px) 100vw, 1220px"
           />
 
           {/* Gradient overlay */}

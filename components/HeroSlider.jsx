@@ -64,6 +64,8 @@ export default function HeroSlider() {
           alt="Frisbi Door-to-Door Luggage Delivery"
           fill
           priority
+          fetchPriority="high"
+          sizes="100vw"
           className="object-cover scale-[1.01]"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/20 to-transparent" />
