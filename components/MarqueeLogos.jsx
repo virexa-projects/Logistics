@@ -18,6 +18,7 @@ export default function PoweredBy() {
             width={240}
             height={240}
             className="object-cover"
+            loading="lazy"
           />
         </div>
       </div>

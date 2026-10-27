@@ -70,6 +70,7 @@ export default function Testimonials() {
                   width={40}
                   height={40}
                   className="rounded-full"
+                  loading="lazy"
                 />
 
                 <div className="ml-4 w-full">
