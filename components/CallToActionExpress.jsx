@@ -14,8 +14,8 @@ export default function CallToAction() {
           src={bg}
           alt="CTA background"
           fill
+          sizes="100vw"
           className="object-cover"
-          priority
         />
 
         {/* Gradient overlay */}

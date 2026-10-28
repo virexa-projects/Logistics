@@ -26,16 +26,16 @@ function InvoiceContent({ values, price }) {
         }}
       >
         <div>
-          <h1
+          <p
+            className="text-2xl font-bold"
             style={{
               color: "#1D4ED8",
-              fontSize: 28,
               fontWeight: 700,
               marginBottom: 4,
             }}
           >
             FRISBI LOGISTICS
-          </h1>
+          </p>
           <p style={{ color: "#6B7280", fontSize: 14 }}>
             Door-to-Door Luggage Delivery
           </p>

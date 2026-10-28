@@ -2,19 +2,16 @@
 import React, { useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import aboutmobile from "@/asset/shippment/rate-caluculator.svg";
-import { Check, Minus, NetworkIcon, Plus } from "lucide-react";
-
-import bg from "@/asset/profiles/cta-banner.svg"; // <<< CHANGE TO YOUR BG IMAGE
+import dynamic from "next/dynamic";
+import bg from "@/asset/profiles/cta-banner.svg";
 import { motion } from "framer-motion";
-import MarqueeLogos from "@/components/MarqueeLogos";
 import ShipmentCostCalculator from "@/components/ShipmentCostCalculator";
-import FAQ from "@/components/RateAccordion";
 import ratecalculator from "@/asset/rate-calculator.png";
-import CallToAction from "@/components/CallToAction";
-import Testimonials from "@/components/Testimonials";
 import lugggaevariations from "@/asset/rate-lugggae-mobie.svg";
-import lugggaevariationsmobile from "@/asset/rate-lugggae-variation-mg.svg";
+
+const FAQ = dynamic(() => import("@/components/RateAccordion"), { ssr: true });
+const Testimonials = dynamic(() => import("@/components/Testimonials"), { ssr: true });
+const MarqueeLogos = dynamic(() => import("@/components/MarqueeLogos"), { ssr: true });
 
 function RateCalculator({ pickupFromUrl, dropFromUrl }) {
   const calculatorSectionRef = useRef(null);
@@ -83,15 +80,10 @@ function RateCalculator({ pickupFromUrl, dropFromUrl }) {
             alt="About Background"
             fill
             priority
+            fetchPriority="high"
+            sizes="100vw"
             className="md:object-contain object-cover bg-center"
           />
-
-
-
-
-
-          {/* Gradient Overlay */}
-          {/* <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/40 to-blue-700/90"></div> */}
 
           {/* CONTENT */}
           <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 max-w-3xl mx-auto">
@@ -144,17 +136,6 @@ function RateCalculator({ pickupFromUrl, dropFromUrl }) {
                   Calculate Your Cost
                 </button>
               </div>
-
-              {/* RIGHT — IMAGE */}
-              <div className="relative w-full h-[260px] sm:h-[300px] md:h-[420px] flex justify-center hidden md:hidden">
-                <Image
-                  src={aboutmobile}
-                  alt="Hero"
-                  fill
-                  priority
-                  className="object-contain"
-                />
-              </div>
             </div>
           </div>
         </section>
@@ -193,22 +174,11 @@ function RateCalculator({ pickupFromUrl, dropFromUrl }) {
                   src={lugggaevariations}
                   alt="Frisbi luggage delivery illustration"
                   fill
-                  priority
+                  sizes="(max-width: 1024px) 100vw, 800px"
                   className="object-contain "
                 />
               </div>
             </div>
-            {/* <div className="flex justify-center lg:justify-end ">
-              <div className="relative w-full h-[900px]">
-                <Image
-                  src={lugggaevariationsmobile}
-                  alt="Frisbi luggage delivery illustration"
-                  fill
-                  priority
-                  className="object-contain h-full"
-                />
-              </div>
-            </div> */}
           </div>
         </div>
       </section>
@@ -228,8 +198,8 @@ function RateCalculator({ pickupFromUrl, dropFromUrl }) {
             src={bg}
             alt="CTA background"
             fill
+            sizes="(max-width: 1220px) 100vw, 1220px"
             className="object-cover"
-            priority
           />
 
           {/* Gradient overlay */}

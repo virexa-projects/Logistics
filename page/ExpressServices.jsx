@@ -1,12 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
-import { Check, Minus, Plus } from "lucide-react";
+import { Check } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import MarqueeLogos from "@/components/MarqueeLogos";
 
 import SaveTime from "@/asset/icon/save-time.svg";
 import Safe from "@/asset/icon/safe.svg";
@@ -17,40 +16,19 @@ import Peace from "@/asset/icon/delivery.svg";
 import herobg from "@/asset/service/express.svg";
 import one from "@/asset/service/express-cover.png";
 
-// 🔥 CLIENT-ONLY COMPONENTS (SSR SAFE)
-const ContactSection = dynamic(() => import("@/components/ContactSection"), {
-  ssr: false,
-});
-const ServiceFAQSection = dynamic(
-  () => import("@/components/ServiceAccordionExpress"),
-  { ssr: false }
-);
-const CallToAction = dynamic(() => import("@/components/CallToActionExpress"), {
-  ssr: false,
-});
-const Comparison = dynamic(() => import("@/components/Comparison"), {
-  ssr: false,
-});
-const PricingStructure = dynamic(
-  () => import("@/components/PricingStructureExpress"),
-  { ssr: false }
-);
-const Keyfuture = dynamic(() => import("@/components/Keyfutureexpress"), {
-  ssr: false,
-});
-const HowItWorks = dynamic(() => import("@/components/OurProcessexpress"), {
-  ssr: false,
-});
-const Testimonials = dynamic(() => import("@/components/Testimonials"), {
-  ssr: false,
-});
-const TransformingCities = dynamic(() => import("@/components/Locations"), {
-  ssr: false,
-});
+// SSR-Safe Progressive Imports
+const ContactSection = dynamic(() => import("@/components/ContactSection"), { ssr: true });
+const ServiceFAQSection = dynamic(() => import("@/components/ServiceAccordionExpress"), { ssr: true });
+const CallToAction = dynamic(() => import("@/components/CallToActionExpress"), { ssr: true });
+const Comparison = dynamic(() => import("@/components/Comparison"), { ssr: true });
+const PricingStructure = dynamic(() => import("@/components/PricingStructureExpress"), { ssr: true });
+const Keyfuture = dynamic(() => import("@/components/Keyfutureexpress"), { ssr: true });
+const HowItWorks = dynamic(() => import("@/components/OurProcessexpress"), { ssr: true });
+const Testimonials = dynamic(() => import("@/components/Testimonials"), { ssr: true });
+const TransformingCities = dynamic(() => import("@/components/Locations"), { ssr: true });
+const MarqueeLogos = dynamic(() => import("@/components/MarqueeLogos"), { ssr: true });
 
 export default function ExpressServices() {
-  // ✅ FIX: removed <number | null>
-  const [open, setOpen] = useState(1);
 
   const steps = [
     {
@@ -170,9 +148,11 @@ export default function ExpressServices() {
             <div className="relative w-full h-[300px] md:h-[420px]">
               <Image
                 src={herobg}
-                alt="Express Delivery"
+                alt="Fast Express Luggage Delivery by Frisbi"
                 fill
                 priority
+                fetchPriority="high"
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-contain"
               />
             </div>
@@ -185,7 +165,8 @@ export default function ExpressServices() {
         <div className="container mx-auto grid md:grid-cols-3 items-center gap-10">
           <Image
             src={one}
-            alt="Overview"
+            alt="Frisbi Express Luggage Overview"
+            sizes="(max-width: 768px) 100vw, 33vw"
             className="rounded-3xl h-[400px] object-cover"
           />
 

@@ -6,8 +6,12 @@ import Link from "next/link";
 import { FaInstagram, FaYoutube, FaFacebookF } from "react-icons/fa";
 import Logo from "@/asset/logo-black.svg";
 import MobileBookNow from "./MobileBookNow";
+import { usePathname } from "next/navigation";
 
 export default function Footer() {
+  const pathname = usePathname();
+  if (pathname === "/not-found") return null;
+
   return (
     <footer id="main-footer" className="bg-[#F2F2F2] text-black pt-16 pb-8">
       <motion.div

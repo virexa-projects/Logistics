@@ -73,7 +73,7 @@ export default function MovingToBangalore() {
           <div className="max-w-4xl mx-auto">
 
 
-              <div className="my-5 mx-auto">
+            <div className="my-5 mx-auto">
               <Image
                 src={blogone}
                 alt="Luggage Transport Bangalore"
@@ -168,7 +168,14 @@ export default function MovingToBangalore() {
 
               </p>
               <p className="text-lg text-gray-700 leading-9 mt-5">
-                Airlines charge steep fees for excess baggage, and most economy tickets allow only 15 kg, which is nothing when you're shifting your entire life. Trains are cheaper but come with their own struggles, limited space, no guarantee your bags stay secure, and the physical effort of hauling them on and off platforms.
+                Airlines charge steep fees for excess baggage, and most economy tickets allow only 15 kg. Calculate your savings with the{" "}
+                <Link
+                  href="https://frisbi.in/rate-calculator"
+                  className="text-blue-600 underline hover:text-blue-800 transition-colors"
+                >
+                  Frisbi rate calculator
+                </Link>{" "}
+                before booking extra airline baggage. Trains are cheaper but come with their own struggles, limited space, no guarantee your bags stay secure, and the physical effort of hauling them on and off platforms.
               </p>
               <p className="text-lg text-gray-700 leading-9 mt-5">
                 Then there's the last leg. Kempegowda International Airport sits around 35–40 km from most parts of the city, so even after you land, you still have to haul your bags into a cab, fight through traffic, and carry them up to your floor. For anyone moving with bulky items, electronics, or fragile belongings, doing this solo is exhausting and risky. Simply put, your back, your budget, and your sanity deserve better.
@@ -396,14 +403,14 @@ export default function MovingToBangalore() {
 
               <div className="space-y-6 text-lg text-gray-700 leading-9">
                 <p>
-                 Moving to Bangalore should feel like the start of an exciting new chapter, not a logistics nightmare. By choosing door-to-door luggage delivery instead of dragging heavy bags across the country, you save time, money, and a whole lot of effort.
+                  Moving to Bangalore should feel like the start of an exciting new chapter, not a logistics nightmare. By choosing door-to-door luggage delivery instead of dragging heavy bags across the country, you save time, money, and a whole lot of effort.
                 </p>
 
                 <p>
-                 Ready to make your move to Bangalore effortless? Let Frisbi pick up your luggage from your doorstep and deliver it safely to your new home, so you can travel light and start fresh. Book your luggage delivery with Frisbi today.
+                  Ready to make your move to Bangalore effortless? Let Frisbi pick up your luggage from your doorstep and deliver it safely to your new home, so you can travel light and start fresh. Book your luggage delivery with Frisbi today.
                 </p>
 
-            
+
               </div>
 
 
@@ -416,8 +423,15 @@ export default function MovingToBangalore() {
               </h3>
 
               <p className="text-white/90 mt-4 text-lg">
-                Let Frisbi pick up your luggage from your doorstep and deliver
-                it safely to your new home.
+                Let{" "}
+                <Link
+                  href="https://frisbi.in/"
+                  className="underline font-semibold text-white hover:text-white/80 transition-colors"
+                >
+                  Frisbi
+                </Link>{" "}
+                pick up your luggage from your doorstep and deliver it safely to
+                your new home.
               </p>
 
               <Link

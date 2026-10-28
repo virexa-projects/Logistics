@@ -3,7 +3,7 @@ import { Check, X } from "lucide-react";
 export default function Comparison() {
   const comparisons = [
     { feature: "Delivery Time", standard: "5–7 days", express: "3–5 days" },
-    { feature: "Cost", standard: "LoBudget-friendlyw", express: "Slightly higher, worth the speed" },
+    { feature: "Cost", standard: "Budget-friendly", express: "Slightly higher, worth the speed" },
     { feature: "Priority Handling", standard: false, express: true },
     { feature: "Insurance", standard: "Basic coverage", express: "Enhanced protection" },
     { feature: "Best For", standard: "Trips planned in advance", express: "Last-minute & urgent travel" },

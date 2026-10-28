@@ -1,23 +1,22 @@
-"use client";
-
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import dynamic from "next/dynamic";
 import bg from "@/asset/profiles/cta-banner.svg";
 
 import MobileHero from "./mobile-home/MobileHero";
-import HowYourBagsTravel from "@/components/HowYourBagsTravel";
 import MobileAbout from "./mobile-home/MobileAbout";
 import MobileServices from "./mobile-home/MobileServices";
-
-import HowToShip from "@/components/HowToShip";
-import CustomSlider from "@/components/Slider";
-import Testimonials from "@/components/Testimonials";
-import FAQSection from "@/components/AccordionCorporate";
-import ContactSection from "@/components/ContactSection";
-import MarqueeLogos from "@/components/MarqueeLogos";
 import MobileBottomNav from "./mobile-home/MobileBottomNav";
+
+const HowYourBagsTravel = dynamic(() => import("@/components/HowYourBagsTravel"), { ssr: true });
+const HowToShip = dynamic(() => import("@/components/HowToShip"), { ssr: true });
+const CustomSlider = dynamic(() => import("@/components/Slider"), { ssr: true });
+const Testimonials = dynamic(() => import("@/components/Testimonials"), { ssr: true });
+const FAQSection = dynamic(() => import("@/components/AccordionCorporate"), { ssr: true });
+const ContactSection = dynamic(() => import("@/components/ContactSection"), { ssr: true });
+const MarqueeLogos = dynamic(() => import("@/components/MarqueeLogos"), { ssr: true });
 
 // Swiper styles
 import "swiper/css";
@@ -73,7 +72,7 @@ export default function MobileHome() {
             alt="CTA background"
             fill
             className="object-cover"
-            priority
+            sizes="(max-width: 768px) 100vw, 768px"
           />
 
           {/* CONTENT */}

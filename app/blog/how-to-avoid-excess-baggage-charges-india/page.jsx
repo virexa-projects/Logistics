@@ -23,6 +23,72 @@ export const metadata = {
 function page() {
   return (
     <div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@graph": [
+              {
+                "@type": "BlogPosting",
+                "@id": "https://frisbi.in/blog/how-to-avoid-excess-baggage-charges-india/#article",
+                "isPartOf": {
+                  "@id": "https://frisbi.in/blog/how-to-avoid-excess-baggage-charges-india/#webpage"
+                },
+                "headline": "How to Avoid Excess Baggage Charges on Domestic Flights in India",
+                "description": "Discover practical strategies to avoid expensive airline excess baggage fees in India. Compare door-to-door luggage courier services vs airport baggage rates.",
+                "mainEntityOfPage": "https://frisbi.in/blog/how-to-avoid-excess-baggage-charges-india",
+                "publisher": {
+                  "@id": "https://frisbi.in/#organization"
+                },
+                "author": {
+                  "@id": "https://frisbi.in/#organization"
+                }
+              },
+              {
+                "@type": "WebPage",
+                "@id": "https://frisbi.in/blog/how-to-avoid-excess-baggage-charges-india/#webpage",
+                "url": "https://frisbi.in/blog/how-to-avoid-excess-baggage-charges-india",
+                "name": "How to Avoid Airline Excess Baggage Charges in India | Frisbi",
+                "description": "Discover practical strategies to avoid expensive airline excess baggage fees in India. Compare door-to-door luggage courier services vs airport baggage rates.",
+                "isPartOf": {
+                  "@id": "https://frisbi.in/#website"
+                },
+                "about": {
+                  "@id": "https://frisbi.in/#organization"
+                },
+                "breadcrumb": {
+                  "@id": "https://frisbi.in/blog/how-to-avoid-excess-baggage-charges-india/#breadcrumb"
+                }
+              },
+              {
+                "@type": "BreadcrumbList",
+                "@id": "https://frisbi.in/blog/how-to-avoid-excess-baggage-charges-india/#breadcrumb",
+                "itemListElement": [
+                  {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": "https://frisbi.in"
+                  },
+                  {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "Blog",
+                    "item": "https://frisbi.in/blog"
+                  },
+                  {
+                    "@type": "ListItem",
+                    "position": 3,
+                    "name": "Avoid Excess Baggage Charges",
+                    "item": "https://frisbi.in/blog/how-to-avoid-excess-baggage-charges-india"
+                  }
+                ]
+              }
+            ]
+          })
+        }}
+      />
       <BaggageChargesIndia />
     </div>
   );

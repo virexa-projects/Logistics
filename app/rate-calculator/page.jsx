@@ -7,9 +7,9 @@ export const metadata = {
     "Looking for luggage shipping prices in Bangalore? Use Frisbi's instant calculator for transparent door-to-door baggage delivery rates. Check your price now!.",
   keywords: [
     "luggage delivery cost calculator",
-  "luggage delivery charges",
-  "luggage shipping cost",
-  "luggage delivery price",
+    "luggage delivery charges",
+    "luggage shipping cost",
+    "luggage delivery price",
   ],
   alternates: {
     canonical: "https://frisbi.in/rate-calculator",
@@ -26,8 +26,6 @@ export default async function Page({ searchParams }) {
   const pickup = params?.pickup ?? "";
   const drop = params?.drop ?? "";
 
-  console.log("pickup, drop:", pickup, drop);
-
   return (
     <div>
       <script
@@ -40,17 +38,39 @@ export default async function Page({ searchParams }) {
                 "@type": "WebPage",
                 "@id": "https://frisbi.in/rate-calculator/#webpage",
                 "url": "https://frisbi.in/rate-calculator",
-                "name": "Luggage Delivery Cost Calculator in India | Frisbi",
-                "description": "Know your luggage parcel price in 60 seconds with Frisbi’s luggage delivery cost calculator. Calculate now, book when ready, and travel lighter.",
+                "name": "Luggage Shipping Rate Calculator | Frisbi",
+                "description": "Calculate doorstep luggage shipping costs instantly with Frisbi's rate calculator. Transparent pricing for door-to-door baggage transport across India.",
                 "isPartOf": {
                   "@id": "https://frisbi.in/#website"
                 },
                 "about": {
                   "@id": "https://frisbi.in/#organization"
+                },
+                "breadcrumb": {
+                  "@id": "https://frisbi.in/rate-calculator/#breadcrumb"
                 }
+              },
+              {
+                "@type": "BreadcrumbList",
+                "@id": "https://frisbi.in/rate-calculator/#breadcrumb",
+                "itemListElement": [
+                  {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": "https://frisbi.in"
+                  },
+                  {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "Rate Calculator",
+                    "item": "https://frisbi.in/rate-calculator"
+                  }
+                ]
               }
             ]
-          })
+          }
+          )
         }}
       />
       <RateCalculator

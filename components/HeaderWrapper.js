@@ -9,6 +9,8 @@ export default function HeaderWrapper() {
  const blackHeaderPages = ["/thank-you", "/not-found"];
 
 
+  if (pathname === "/not-found") return null;
+
   const isBlackHeader = blackHeaderPages.some((p) =>
     pathname.startsWith(p)
   );

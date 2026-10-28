@@ -33,31 +33,55 @@ function page() {
                 "@type": "Service",
                 "@id": "https://frisbi.in/services/standard-delivery/#service",
                 "name": "Standard Luggage Delivery Service",
+                "description": "Affordable door-to-door standard baggage transport across India. Safe, reliable, and trackable intercity luggage shipping for travelers and students.",
+                "url": "https://frisbi.in/services/standard-delivery",
                 "provider": {
                   "@id": "https://frisbi.in/#organization"
                 },
-                "description": "Affordable and secure door-to-door standard luggage delivery service across India with live tracking and professional handling.",
                 "areaServed": {
                   "@type": "Country",
                   "name": "India"
-                },
-                "serviceType": "Baggage Shipping & Luggage Delivery"
+                }
               },
               {
                 "@type": "WebPage",
                 "@id": "https://frisbi.in/services/standard-delivery/#webpage",
                 "url": "https://frisbi.in/services/standard-delivery",
-                "name": "Affordable Luggage Delivery Service Across India | Frisbi",
-                "description": "Send your bags ahead with Frisbi’s affordable luggage delivery service. Enjoy secure pan-India baggage transport with doorstep pickup and tracking.",
+                "name": "Standard Luggage Delivery | Door-to-Door Baggage Courier – Frisbi",
+                "description": "Book affordable standard luggage delivery services with Frisbi. Send baggage safely across 25,000+ pincodes in India with door-to-door pickup and real-time tracking.",
                 "isPartOf": {
                   "@id": "https://frisbi.in/#website"
                 },
                 "about": {
-                  "@id": "https://frisbi.in/services/standard-delivery/#service"
+                  "@id": "https://frisbi.in/#organization"
                 },
-                "mainEntity": {
-                  "@id": "https://frisbi.in/services/standard-delivery/#service"
+                "breadcrumb": {
+                  "@id": "https://frisbi.in/services/standard-delivery/#breadcrumb"
                 }
+              },
+              {
+                "@type": "BreadcrumbList",
+                "@id": "https://frisbi.in/services/standard-delivery/#breadcrumb",
+                "itemListElement": [
+                  {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": "https://frisbi.in"
+                  },
+                  {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "Services",
+                    "item": "https://frisbi.in/services"
+                  },
+                  {
+                    "@type": "ListItem",
+                    "position": 3,
+                    "name": "Standard Delivery",
+                    "item": "https://frisbi.in/services/standard-delivery"
+                  }
+                ]
               }
             ]
           })

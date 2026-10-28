@@ -2,16 +2,14 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import MarqueeLogos from "@/components/MarqueeLogos";
-import { Mail, Phone, MapPin } from "lucide-react";
-import CustomSlider from "@/components/LocationSlider";
+import dynamic from "next/dynamic";
 import ContactSection from "@/components/Contactmain";
-import Testimonials from "@/components/Testimonials";
-import TransformingCities from "@/components/Locations";
 import contactmobile from "@/asset/shippment/contact-banner.svg";
-
-import TestimonialSliderRight from "@/components/TestimonialSliderRight";
 import ContactUs from "@/asset/contact-us.png";
+
+const TransformingCities = dynamic(() => import("@/components/Locations"), { ssr: true });
+const Testimonials = dynamic(() => import("@/components/Testimonials"), { ssr: true });
+const MarqueeLogos = dynamic(() => import("@/components/MarqueeLogos"), { ssr: true });
 
 function Haveanyqueries() {
   return (
@@ -27,14 +25,13 @@ function Haveanyqueries() {
           {/* Background Image */}
           <Image
             src={ContactUs} // your hero image path
-            alt="About Background"
+            alt="Contact Frisbi"
             fill
             priority
+            fetchPriority="high"
+            sizes="100vw"
             className="md:object-contain object-cover bg-center"
           />
-
-          {/* Gradient Overlay */}
-          {/* <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/40 to-blue-700/90"></div> */}
 
           {/* CONTENT */}
           <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 max-w-3xl mx-auto">
@@ -71,9 +68,11 @@ function Haveanyqueries() {
               <div className="relative w-full h-[260px] sm:h-[300px] md:h-[420px] flex justify-center">
                 <Image
                   src={contactmobile}
-                  alt="Hero"
+                  alt="Contact Frisbi baggage shipping and pickup support"
                   fill
                   priority
+                  fetchPriority="high"
+                  sizes="(max-width: 768px) 100vw, 420px"
                   className="object-contain"
                 />
               </div>

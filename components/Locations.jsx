@@ -124,6 +124,7 @@ export default function TransformingCities() {
                 width={100}
                 height={100}
                 className="object-contain"
+                loading="lazy"
               />
               <p className="mt-2 text-white text-xs font-medium text-center">
                 {city}

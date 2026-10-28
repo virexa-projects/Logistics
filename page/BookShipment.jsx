@@ -37,17 +37,17 @@ function BookShipment({ bookingData }) {
           <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 max-w-3xl mx-auto">
             <h1 className="text-black mb-4">Book Shipment</h1>
             <p className="text-black mb-4 text-sm md:text-base">
-                  India’s trusted luggage delivery service, built to make travel
-                  lighter, smarter, and stress-free.
-                </p>
+              India’s trusted luggage delivery service, built to make travel
+              lighter, smarter, and stress-free.
+            </p>
 
-                {/* CTA */}
-                <Link
-                  href="/contact-us"
-                  className="btn-primary hover:scale-105 transition-all"
-                >
-                  Contact Us
-                </Link>
+            {/* CTA */}
+            <Link
+              href="/contact-us"
+              className="btn-primary hover:scale-105 transition-all"
+            >
+              Contact Us
+            </Link>
           </div>
         </motion.section>
 
@@ -57,7 +57,7 @@ function BookShipment({ bookingData }) {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
               {/* LEFT — CONTENT */}
               <div className="relative z-10 mt-10 text-center md:text-left flex flex-col items-center md:items-start">
-                <h1 className="text-black mb-4">Book Shipment</h1>
+                <p className="text-black mb-4 text-3xl">Book Shipment</p>
 
                 <p className="text-black mb-4 text-sm md:text-base">
                   India’s trusted luggage delivery service, built to make travel
@@ -87,16 +87,16 @@ function BookShipment({ bookingData }) {
           </div>
         </section>
       </div>
-      
+
 
       <div>
-        <ShipmentForm bookingData={bookingData}  />
+        <ShipmentForm bookingData={bookingData} />
       </div>
 
       <section className="py-12 md:pb-0">
         <FAQ />
       </section>
-     
+
     </div>
   );
 }

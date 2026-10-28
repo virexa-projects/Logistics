@@ -6,10 +6,10 @@ export const metadata = {
   description:
     "Track your baggage shipment live in Bangalore. Enter your tracking ID for instant status updates on your scheduled luggage and parcel delivery with Frisbi.",
   keywords: [
- "track luggage delivery",
-  "luggage tracking",
-  "track luggage shipment",
-  "luggage delivery tracking"  ],
+    "track luggage delivery",
+    "luggage tracking",
+    "track luggage shipment",
+    "luggage delivery tracking"],
   alternates: {
     canonical: "https://frisbi.in/track-your-package",
   },
@@ -39,10 +39,32 @@ function page() {
                 },
                 "about": {
                   "@id": "https://frisbi.in/#organization"
+                },
+                "breadcrumb": {
+                  "@id": "https://frisbi.in/track-your-package/#breadcrumb"
                 }
+              },
+              {
+                "@type": "BreadcrumbList",
+                "@id": "https://frisbi.in/track-your-package/#breadcrumb",
+                "itemListElement": [
+                  {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": "https://frisbi.in"
+                  },
+                  {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "Track Your Package",
+                    "item": "https://frisbi.in/track-your-package"
+                  }
+                ]
               }
             ]
-          })
+          }
+          )
         }}
       />
       <Trackyourpackage />

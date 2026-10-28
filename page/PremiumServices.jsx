@@ -1,49 +1,36 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Image from "next/image";
-import { Minus, Plus } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import dynamic from "next/dynamic";
+import { motion } from "framer-motion";
 import Link from "next/link";
 import { Check } from "lucide-react";
-import bg from "@/asset/profiles/cta-banner.svg"; // <<< CHANGE TO YOUR BG IMAGE
+import bg from "@/asset/profiles/cta-banner.svg";
 
 import Maximum from "@/asset/icon/security-lock.svg";
 import goods from "@/asset/icon/goods.svg";
 import Transparency from "@/asset/icon/transparency.svg";
 import Priority from "@/asset/icon/safe.svg";
 import Peace from "@/asset/icon/delivery.svg";
-import MarqueeLogos from "@/components/MarqueeLogos";
 
 // Assets
 import herobg from "@/asset/service/premium-banner-img.svg";
 import one from "@/asset/service/express-cover.png";
 
-
-// Components
-import ContactSection from "@/components/ContactSection";
-import ServiceFAQSection from "@/components/ServiceAccordionPremium";
-import CallToAction from "@/components/CallToActionPremium";
-import Comparison from "@/components/ComparisonPremium";
-import PricingStructure from "@/components/PricingStructurePremium";
-import Keyfuture from "@/components/KeyfutureexpressPremium";
-import HowItWorks from "@/components/OurProcesspremium";
-import Testimonials from "@/components/Testimonials";
-import TransformingCities from "@/components/Locations";
+// SSR-Safe Progressive Imports for Performance and Code Splitting
+const ContactSection = dynamic(() => import("@/components/ContactSection"), { ssr: true });
+const ServiceFAQSection = dynamic(() => import("@/components/ServiceAccordionPremium"), { ssr: true });
+const Comparison = dynamic(() => import("@/components/ComparisonPremium"), { ssr: true });
+const PricingStructure = dynamic(() => import("@/components/PricingStructurePremium"), { ssr: true });
+const Keyfuture = dynamic(() => import("@/components/KeyfutureexpressPremium"), { ssr: true });
+const HowItWorks = dynamic(() => import("@/components/OurProcesspremium"), { ssr: true });
+const Testimonials = dynamic(() => import("@/components/Testimonials"), { ssr: true });
+const TransformingCities = dynamic(() => import("@/components/Locations"), { ssr: true });
+const MarqueeLogos = dynamic(() => import("@/components/MarqueeLogos"), { ssr: true });
 
 export default function PremiumServices() {
-  /* ----------------------------------------
-     ✅ SSR FIX (IMPORTANT)
-  ---------------------------------------- */
-  const [mounted, setMounted] = useState(false);
-  const [open, setOpen] = useState(1);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  // ⛔ Prevent server-side crash (HTMLDivElement error)
-  if (!mounted) return null;
+  // Enable SSR for SEO and Core Web Vitals (FCP, LCP, CLS)
 
   const idealFor = [
     "Expensive luggage with high-value contents",
@@ -169,6 +156,8 @@ export default function PremiumServices() {
                 alt="Premium Delivery"
                 fill
                 priority
+                fetchPriority="high"
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover rounded-3xl"
               />
             </div>
@@ -182,7 +171,9 @@ export default function PremiumServices() {
           <Image
             src={one}
             alt="Overview"
+            sizes="(max-width: 768px) 100vw, 33vw"
             className="rounded-3xl h-[400px] object-cover"
+            loading="lazy"
           />
 
           <div className="md:col-span-2">
@@ -286,8 +277,9 @@ export default function PremiumServices() {
             src={bg}
             alt="CTA background"
             fill
+            sizes="100vw"
             className="object-cover"
-            priority
+            loading="lazy"
           />
 
           {/* Gradient overlay */}

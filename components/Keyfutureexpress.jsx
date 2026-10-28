@@ -99,8 +99,8 @@ export default function StickyStepsOverlap() {
                 alt="Logistics Overview"
                 width={500}
                 height={500}
+                sizes="(max-width: 1024px) 100vw, 500px"
                 className="rounded-3xl object-cover w-full mt-10"
-                priority
               />
             </div>
           </div>

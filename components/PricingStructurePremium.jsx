@@ -124,6 +124,8 @@ function PricingStructure() {
                 width={400}
                 height={400}
                 className="rounded-3xl object-cover w-full lg:w-1/2"
+                loading="lazy"
+                sizes="(max-width: 1024px) 100vw, 400px"
               />
             </div>
 

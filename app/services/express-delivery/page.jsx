@@ -28,33 +28,57 @@ function page() {
             "@graph": [
               {
                 "@type": "Service",
-                "@id": "https://frisbi.in/services/premium-delivery/#service",
-                "name": "Premium Luggage Delivery Service in India",
+                "@id": "https://frisbi.in/services/express-delivery/#service",
+                "name": "Express Luggage Delivery Service",
+                "description": "Fast and urgent door-to-door luggage shipping across India. Guaranteed priority handling and expedited baggage transit for urgent travel needs.",
+                "url": "https://frisbi.in/services/express-delivery",
                 "provider": {
                   "@id": "https://frisbi.in/#organization"
                 },
-                "description": "Frisbi offers premium luggage delivery with white-glove handling for valuable baggage, heavy gear, and sensitive items across India.",
                 "areaServed": {
                   "@type": "Country",
                   "name": "India"
-                },
-                "serviceType": "Premium Luggage Delivery & White-Glove Shipping"
+                }
               },
               {
                 "@type": "WebPage",
-                "@id": "https://frisbi.in/services/premium-delivery/#webpage",
-                "url": "https://frisbi.in/services/premium-delivery",
-                "name": "Premium Luggage Delivery Service in India | White-Glove Handling",
-                "description": "Frisbi offers premium luggage delivery with white-glove handling for valuable baggage, heavy gear, and sensitive items across India.",
+                "@id": "https://frisbi.in/services/express-delivery/#webpage",
+                "url": "https://frisbi.in/services/express-delivery",
+                "name": "Express Luggage Delivery | Fast Door-to-Door Baggage Shipping – Frisbi",
+                "description": "Need urgent luggage shipping? Book Frisbi express luggage delivery for priority pickup, accelerated transit, and fast doorstep delivery across India.",
                 "isPartOf": {
                   "@id": "https://frisbi.in/#website"
                 },
                 "about": {
-                  "@id": "https://frisbi.in/services/premium-delivery/#service"
+                  "@id": "https://frisbi.in/#organization"
                 },
-                "mainEntity": {
-                  "@id": "https://frisbi.in/services/premium-delivery/#service"
+                "breadcrumb": {
+                  "@id": "https://frisbi.in/services/express-delivery/#breadcrumb"
                 }
+              },
+              {
+                "@type": "BreadcrumbList",
+                "@id": "https://frisbi.in/services/express-delivery/#breadcrumb",
+                "itemListElement": [
+                  {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": "https://frisbi.in"
+                  },
+                  {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "Services",
+                    "item": "https://frisbi.in/services"
+                  },
+                  {
+                    "@type": "ListItem",
+                    "position": 3,
+                    "name": "Express Delivery",
+                    "item": "https://frisbi.in/services/express-delivery"
+                  }
+                ]
               }
             ]
           })

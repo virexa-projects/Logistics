@@ -2,25 +2,22 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import aboutone from "@/asset/about/aboutone.png";
-import About from "@/asset/home/about-frisbi.png";
+import dynamic from "next/dynamic";
+import Link from "next/link";
 
+import About from "@/asset/home/about-frisbi.png";
 import aboutUs from "@/asset/about/about-bg.png";
 import aboutmobile from "@/asset/about/about-banner-img.svg";
-import { Check, Minus, NetworkIcon, Plus } from "lucide-react";
-
 import vision from "@/asset/about/vision.png";
 import mission from "@/asset/about/mission.jpeg";
-import CallToAction from "@/components/CallToActionabout";
-import Testimonials from "@/components/Testimonials";
-import MarqueeLogos from "@/components/MarqueeLogos";
 
-import Stats from "@/components/Stats";
-import ContactSection from "@/components/ContactSection";
-import TransformingCities from "@/components/Locations";
-// import { Link } from "lucide-react";
+const Stats = dynamic(() => import("@/components/Stats"), { ssr: true });
+const TransformingCities = dynamic(() => import("@/components/Locations"), { ssr: true });
+const Testimonials = dynamic(() => import("@/components/Testimonials"), { ssr: true });
+const ContactSection = dynamic(() => import("@/components/ContactSection"), { ssr: true });
+const CallToAction = dynamic(() => import("@/components/CallToActionabout"), { ssr: true });
+const MarqueeLogos = dynamic(() => import("@/components/MarqueeLogos"), { ssr: true });
 
-import Link from "next/link";
 function Aboutus() {
   return (
     <div className="-mt-24">
@@ -37,6 +34,8 @@ function Aboutus() {
           alt="About Background"
           fill
           priority
+          fetchPriority="high"
+          sizes="100vw"
           className="md:object-contain object-cover bg-center"
         />
         {/* <div className="absolute inset-0 bg-black/30 " /> */}
@@ -96,6 +95,8 @@ function Aboutus() {
                 alt="Hero"
                 fill
                 priority
+                fetchPriority="high"
+                sizes="(max-width: 768px) 100vw, 420px"
                 className="object-contain"
               />
             </div>
@@ -148,8 +149,8 @@ function Aboutus() {
                   src={About}
                   alt="Frisbi luggage delivery illustration"
                   fill
+                  sizes="(max-width: 768px) 100vw, 576px"
                   className="object-contain"
-                  priority
                 />
               </div>
             </div>
@@ -185,6 +186,7 @@ function Aboutus() {
                 alt="Truck image"
                 width={500}
                 height={400}
+                sizes="(max-width: 768px) 50vw, 250px"
                 className="w-full h-full object-cover"
               />
             </div>
@@ -196,6 +198,7 @@ function Aboutus() {
                 alt="Cargo image"
                 width={800}
                 height={500}
+                sizes="(max-width: 768px) 100vw, 500px"
                 className="w-full h-full object-cover"
               />
             </div>

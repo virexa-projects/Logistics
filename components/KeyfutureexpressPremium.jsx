@@ -100,7 +100,8 @@ export default function StickyStepsOverlap() {
                 width={500}
                 height={500}
                 className="rounded-3xl object-cover w-full mt-10"
-                priority
+                loading="lazy"
+                sizes="(max-width: 768px) 100vw, 500px"
               />
             </div>
           </div>

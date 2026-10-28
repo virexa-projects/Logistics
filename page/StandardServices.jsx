@@ -1,12 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
-import { Check, Minus, NetworkIcon, Plus } from "lucide-react";
+import { Check } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import MarqueeLogos from "@/components/MarqueeLogos";
 
 // Assets
 import LowCost from "@/asset/icon/low-cost.svg";
@@ -18,48 +17,19 @@ import Hidden from "@/asset/icon/hidden-charges.svg";
 import herobg from "@/asset/service/standard-banner-img.svg";
 import one from "@/asset/service/standard-overview-1.webp";
 
-// 🔥 SSR-SAFE DYNAMIC IMPORTS
-const ContactSection = dynamic(() => import("@/components/ContactSection"), {
-  ssr: false,
-});
-const ServiceFAQSection = dynamic(
-  () => import("@/components/ServiceAccordion"),
-  { ssr: false }
-);
-const CallToAction = dynamic(() => import("@/components/CallToActionStandard"), {
-  ssr: false,
-});
-
-const PricingStructure = dynamic(
-  () => import("@/components/PricingStructure"),
-  { ssr: false }
-);
-const Keyfuture = dynamic(() => import("@/components/Keyfuture"), {
-  ssr: false,
-});
-const PackageGuidelines = dynamic(
-  () => import("@/components/PackageGuidelines"),
-  { ssr: false }
-);
-const HowItWorks = dynamic(() => import("@/components/OurProcess"), {
-  ssr: false,
-});
-const Testimonials = dynamic(() => import("@/components/Testimonials"), {
-  ssr: false,
-});
-const TransformingCities = dynamic(() => import("@/components/Locations"), {
-  ssr: false,
-});
-
-const WhyChooseProcess = dynamic(
-  () => import("@/components/WhychooseProcess"),
-  {
-    ssr: false,
-  }
-);
+// SSR-Safe Progressive Imports
+const ContactSection = dynamic(() => import("@/components/ContactSection"), { ssr: true });
+const ServiceFAQSection = dynamic(() => import("@/components/ServiceAccordion"), { ssr: true });
+const CallToAction = dynamic(() => import("@/components/CallToActionStandard"), { ssr: true });
+const PricingStructure = dynamic(() => import("@/components/PricingStructure"), { ssr: true });
+const Keyfuture = dynamic(() => import("@/components/Keyfuture"), { ssr: true });
+const PackageGuidelines = dynamic(() => import("@/components/PackageGuidelines"), { ssr: true });
+const HowItWorks = dynamic(() => import("@/components/OurProcess"), { ssr: true });
+const Testimonials = dynamic(() => import("@/components/Testimonials"), { ssr: true });
+const TransformingCities = dynamic(() => import("@/components/Locations"), { ssr: true });
+const MarqueeLogos = dynamic(() => import("@/components/MarqueeLogos"), { ssr: true });
 
 export default function Services() {
-  const [open, setOpen] = useState(1);
   const steps = [
     {
       number: "1",
@@ -126,7 +96,7 @@ export default function Services() {
               </p>
 
               <motion.h1 {...fadeUp} className="text-black mb-6">
-            Affordable Luggage Shipping for Planned Travel
+                Affordable Luggage Shipping for Planned Travel
               </motion.h1>
 
               <motion.p {...fadeUp} className="text-black max-w-2xl mb-6">
@@ -162,9 +132,11 @@ export default function Services() {
             <div className="relative w-full h-[260px] sm:h-[300px] md:h-[420px] flex justify-center">
               <Image
                 src={herobg}
-                alt="Hero"
+                alt="Affordable luggage shipping with Frisbi Standard Delivery"
                 fill
                 priority
+                fetchPriority="high"
+                sizes="(max-width: 768px) 100vw, 420px"
                 className="object-contain"
               />
             </div>
@@ -178,7 +150,8 @@ export default function Services() {
         <div className="container mx-auto grid md:grid-cols-2 gap-10 order-2 items-center">
           <Image
             src={one}
-            alt="Overview"
+            alt="Frisbi standard luggage overview"
+            sizes="(max-width: 768px) 100vw, 50vw"
             className="rounded-3xl h-[380px] object-cover "
           />
 

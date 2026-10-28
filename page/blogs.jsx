@@ -40,6 +40,8 @@ const blogs = [
 
         slug: "/blog/moving-to-bangalore-luggage-transport",
 
+        ariaLabel: "Read more about moving to Bangalore luggage transport",
+
     },
 
     {
@@ -58,7 +60,9 @@ const blogs = [
 
             "You pack carefully, reach the airport early, and then the check-in scale stops you cold: your bag is 4 kilos over, and you owe more than you paid for half your ticket. Excess baggage charges have quietly become one of the most frustrating costs of flying within India, and most travellers only discover them at the counter when it is too late to do anything about it",
 
-        slug: "blog/how-to-avoid-excess-baggage-charges-india",
+        slug: "/blog/how-to-avoid-excess-baggage-charges-india",
+
+        ariaLabel: "Read more about how to avoid excess baggage charges on domestic flights in India",
 
     },
 
@@ -260,6 +264,7 @@ function Blogs() {
 
                                 className="inline-block mt-4 font-semibold text-[#013efe] hover:underline"
 
+                                aria-label={blog.ariaLabel || `Read more about ${blog.title}`}
                             >
 
                                 Read more...

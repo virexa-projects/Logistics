@@ -29,5 +29,53 @@ export default async function Page({ searchParams }) {
 
   // console.log("Received booking data:", formData);
 
-  return <BookShipment bookingData={formData} />;
+  return (
+    <div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@graph": [
+              {
+                "@type": "WebPage",
+                "@id": "https://frisbi.in/book-shipment/#webpage",
+                "url": "https://frisbi.in/book-shipment",
+                "name": "Book Doorstep Luggage Pickup & Delivery | Frisbi",
+                "description": "Book doorstep luggage pickup and intercity delivery across India with Frisbi. Schedule instant baggage courier services with real-time tracking.",
+                "isPartOf": {
+                  "@id": "https://frisbi.in/#website"
+                },
+                "about": {
+                  "@id": "https://frisbi.in/#organization"
+                },
+                "breadcrumb": {
+                  "@id": "https://frisbi.in/book-shipment/#breadcrumb"
+                }
+              },
+              {
+                "@type": "BreadcrumbList",
+                "@id": "https://frisbi.in/book-shipment/#breadcrumb",
+                "itemListElement": [
+                  {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": "https://frisbi.in"
+                  },
+                  {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "Book Shipment",
+                    "item": "https://frisbi.in/book-shipment"
+                  }
+                ]
+              }
+            ]
+          }),
+        }}
+      />
+      <BookShipment bookingData={formData} />
+    </div>
+  );
 }
