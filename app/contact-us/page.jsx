@@ -20,6 +20,50 @@ export const metadata = {
 function page() {
   return (
     <div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@graph": [
+              {
+                "@type": "ContactPage",
+                "@id": "https://frisbi.in/contact-us/#webpage",
+                "url": "https://frisbi.in/contact-us",
+                "name": "Contact Us | Frisbi – Doorstep Luggage Delivery Support",
+                "description": "Get in touch with Frisbi support team for queries, baggage tracking assistance, or booking help. Reach out via phone, email, or WhatsApp.",
+                "isPartOf": {
+                  "@id": "https://frisbi.in/#website"
+                },
+                "about": {
+                  "@id": "https://frisbi.in/#organization"
+                },
+                "breadcrumb": {
+                  "@id": "https://frisbi.in/contact-us/#breadcrumb"
+                }
+              },
+              {
+                "@type": "BreadcrumbList",
+                "@id": "https://frisbi.in/contact-us/#breadcrumb",
+                "itemListElement": [
+                  {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": "https://frisbi.in"
+                  },
+                  {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "Contact Us",
+                    "item": "https://frisbi.in/contact-us"
+                  }
+                ]
+              }
+            ]
+          })
+        }}
+      />
       <Haveanyqueries />
     </div>
   )

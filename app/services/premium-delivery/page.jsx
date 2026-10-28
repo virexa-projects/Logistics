@@ -29,35 +29,60 @@ function page() {
               {
                 "@type": "Service",
                 "@id": "https://frisbi.in/services/premium-delivery/#service",
-                "name": "Premium Luggage Delivery Service in India",
+                "name": "Premium Luggage Delivery Service",
+                "description": "White-glove, high-security door-to-door luggage shipping across India. Features dedicated handling, priority dispatch, and enhanced protective transit for high-value baggage.",
+                "url": "https://frisbi.in/services/premium-delivery",
                 "provider": {
                   "@id": "https://frisbi.in/#organization"
                 },
-                "description": "Frisbi offers premium luggage delivery with white-glove handling for valuable baggage, heavy gear, and sensitive items across India.",
                 "areaServed": {
                   "@type": "Country",
                   "name": "India"
-                },
-                "serviceType": "Premium Luggage Delivery & White-Glove Shipping"
+                }
               },
               {
                 "@type": "WebPage",
                 "@id": "https://frisbi.in/services/premium-delivery/#webpage",
                 "url": "https://frisbi.in/services/premium-delivery",
-                "name": "Premium Luggage Delivery Service in India | White-Glove Handling",
-                "description": "Frisbi offers premium luggage delivery with white-glove handling for valuable baggage, heavy gear, and sensitive items across India.",
+                "name": "Premium Luggage Delivery | Secure Door-to-Door Shipping – Frisbi",
+                "description": "Experience white-glove luggage handling with Frisbi Premium Delivery. Enjoy dedicated support, real-time tracking, and priority doorstep service across India.",
                 "isPartOf": {
                   "@id": "https://frisbi.in/#website"
                 },
                 "about": {
-                  "@id": "https://frisbi.in/services/premium-delivery/#service"
+                  "@id": "https://frisbi.in/#organization"
                 },
-                "mainEntity": {
-                  "@id": "https://frisbi.in/services/premium-delivery/#service"
+                "breadcrumb": {
+                  "@id": "https://frisbi.in/services/premium-delivery/#breadcrumb"
                 }
+              },
+              {
+                "@type": "BreadcrumbList",
+                "@id": "https://frisbi.in/services/premium-delivery/#breadcrumb",
+                "itemListElement": [
+                  {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": "https://frisbi.in"
+                  },
+                  {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "Services",
+                    "item": "https://frisbi.in/services"
+                  },
+                  {
+                    "@type": "ListItem",
+                    "position": 3,
+                    "name": "Premium Delivery",
+                    "item": "https://frisbi.in/services/premium-delivery"
+                  }
+                ]
               }
             ]
-          })
+          }
+          )
         }}
       />
       <PremiumServices />

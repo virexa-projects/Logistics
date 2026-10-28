@@ -30,17 +30,39 @@ function page() {
                 "@type": "CollectionPage",
                 "@id": "https://frisbi.in/blog/#webpage",
                 "url": "https://frisbi.in/blog",
-                "name": "Luggage Delivery Blog & Travel Tips | Frisbi",
-                "description": "Read the latest tips, guides, and news about door-to-door luggage delivery, city-to-city travel, and baggage shipping across India.",
+                "name": "Luggage Shipping & Travel Tips Blog | Frisbi",
+                "description": "Read expert tips on intercity travel, luggage shipping guides, relocation advice, and updates from Frisbi's door-to-door baggage delivery blog.",
                 "isPartOf": {
                   "@id": "https://frisbi.in/#website"
                 },
                 "about": {
                   "@id": "https://frisbi.in/#organization"
+                },
+                "breadcrumb": {
+                  "@id": "https://frisbi.in/blog/#breadcrumb"
                 }
+              },
+              {
+                "@type": "BreadcrumbList",
+                "@id": "https://frisbi.in/blog/#breadcrumb",
+                "itemListElement": [
+                  {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": "https://frisbi.in"
+                  },
+                  {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "Blog",
+                    "item": "https://frisbi.in/blog"
+                  }
+                ]
               }
             ]
-          })
+          }
+          )
         }}
       />
       <Blogs />

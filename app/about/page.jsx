@@ -6,9 +6,9 @@ export const metadata = {
   description:
     "Discover Frisbi, Bangalore’s trusted door-to-door luggage delivery service. Learn how we make baggage shipping safe, affordable, and stress-free.",
   keywords: [
-   "luggage delivery company in Bangalore",
-  "luggage delivery service Bangalore",
-  "about Frisbi",
+    "luggage delivery company in Bangalore",
+    "luggage delivery service Bangalore",
+    "about Frisbi",
   ],
   alternates: {
     canonical: "https://frisbi.in/about",
@@ -33,7 +33,7 @@ function page() {
                 "@id": "https://frisbi.in/about/#webpage",
                 "url": "https://frisbi.in/about",
                 "name": "About Us | Frisbi – India's Door-to-Door Luggage Delivery",
-                "description": "Learn about Frisbi, India’s travel convenience and luggage delivery company helping travelers move bags easily across cities with secure doorstep delivery ",
+                "description": "Learn about Frisbi, India’s travel convenience and luggage delivery company helping travelers move bags easily across cities with secure doorstep delivery",
                 "isPartOf": {
                   "@id": "https://frisbi.in/#website"
                 },
@@ -41,9 +41,29 @@ function page() {
                   "@id": "https://frisbi.in/#organization"
                 },
                 "mainEntity": {
-                  "@type": "Organization",
                   "@id": "https://frisbi.in/#organization"
+                },
+                "breadcrumb": {
+                  "@id": "https://frisbi.in/about/#breadcrumb"
                 }
+              },
+              {
+                "@type": "BreadcrumbList",
+                "@id": "https://frisbi.in/about/#breadcrumb",
+                "itemListElement": [
+                  {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": "https://frisbi.in"
+                  },
+                  {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "About Us",
+                    "item": "https://frisbi.in/about"
+                  }
+                ]
               }
             ]
           })
