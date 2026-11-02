@@ -90,61 +90,64 @@ export default function MovingToBangalore() {
               If you've ever dragged three overweight bags through a crowded railway station or paid a fortune in airline excess baggage, you already know the answer isn't simple. The good news? Transporting your luggage when moving to Bangalore has become far easier than it used to be. Let's break down exactly how.
             </p>
 
-            <blockquote className=" my-8 text-2xl font-semibold text-gray-900">
-              Challenges of Moving to Bangalore:
-            </blockquote>
+            {/* Common Challenges Section */}
+            <section className="my-8">
+              <h2 className="my-8 text-2xl font-semibold text-gray-900">
+                Common Challenges When Relocating to Bangalore
+              </h2>
 
-            <p className="text-lg text-gray-700 leading-9">
-              Relocating to a metro city comes with its own set of headaches, and Bangalore is no exception. A few common challenges people face:
-            </p>
+              <p className="text-lg text-gray-700 leading-9">
+                Relocating to a metro city comes with its own set of headaches, and Bangalore is no exception. A few common challenges people face:
+              </p>
 
-            {/* Section */}
-            <div className="mt-3">
+              {/* Section */}
+              <div className="mt-3">
 
 
-              <div className="border-l-4 border-[#013efe] bg-blue-50 p-6 rounded-r-xl mb-6">
-                <h3 className="!text-[20px] font-bold text-gray-900 mb-3">
-                  Traffic and Distance
-                </h3>
+                <div className="border-l-4 border-[#013efe] bg-blue-50 p-6 rounded-r-xl mb-6">
+                  <h3 className="!text-[20px] font-bold text-gray-900 mb-3">
+                    Traffic and Distance
+                  </h3>
 
-                <p className="text-lg leading-8 text-gray-700">
-                  Bangalore is sprawling. Areas like Whitefield, Electronic City, and Sarjapur are far from the airport and railway stations, which means extra time and cost just to reach your final address with your bags.
-                </p>
+                  <p className="text-lg leading-8 text-gray-700">
+                    Bangalore is sprawling. Areas like Whitefield, Electronic City, and Sarjapur are far from the airport and railway stations, which means extra time and cost just to reach your final address with your bags.
+                  </p>
+                </div>
+                <div className="border-l-4 border-[#013efe] bg-blue-50 p-6 rounded-r-xl mb-6">
+                  <h3 className="!text-[20px] font-bold text-gray-900 mb-3">
+                    Finding accommodation first
+                  </h3>
+
+                  <p className="text-lg leading-8 text-gray-700">
+                    Many people move before their house or PG is fully ready, leaving them juggling luggage with no fixed place to store it.
+
+                  </p>
+                </div>
+                <div className="border-l-4 border-[#013efe] bg-blue-50 p-6 rounded-r-xl mb-6">
+                  <h3 className="!text-[20px] font-bold text-gray-900 mb-3">
+                    Cost adds up fast.
+                  </h3>
+
+                  <p className="text-lg leading-8 text-gray-700">
+                    Deposits, brokerage, transport, and travel, relocation expenses pile on quickly, so you want to avoid overpaying for moving your belongings.
+
+                  </p>
+                </div>
+                <div className="border-l-4 border-[#013efe] bg-blue-50 p-6 rounded-r-xl mb-6">
+                  <h3 className="!text-[20px] font-bold text-gray-900 mb-3">
+                    Doing it all alone.
+                  </h3>
+
+                  <p className="text-lg leading-8 text-gray-700">
+                    Most people relocating for a job or education don't have help on the ground, so every bag becomes their personal responsibility from doorstep to doorstep.
+
+                  </p>
+                </div>
               </div>
-              <div className="border-l-4 border-[#013efe] bg-blue-50 p-6 rounded-r-xl mb-6">
-                <h3 className="!text-[20px] font-bold text-gray-900 mb-3">
-                  Finding accommodation first
-                </h3>
-
-                <p className="text-lg leading-8 text-gray-700">
-                  Many people move before their house or PG is fully ready, leaving them juggling luggage with no fixed place to store it.
-
-                </p>
-              </div>
-              <div className="border-l-4 border-[#013efe] bg-blue-50 p-6 rounded-r-xl mb-6">
-                <h3 className="!text-[20px] font-bold text-gray-900 mb-3">
-                  Cost adds up fast.
-                </h3>
-
-                <p className="text-lg leading-8 text-gray-700">
-                  Deposits, brokerage, transport, and travel, relocation expenses pile on quickly, so you want to avoid overpaying for moving your belongings.
-
-                </p>
-              </div>
-              <div className="border-l-4 border-[#013efe] bg-blue-50 p-6 rounded-r-xl mb-6">
-                <h3 className="!text-[20px] font-bold text-gray-900 mb-3">
-                  Doing it all alone.
-                </h3>
-
-                <p className="text-lg leading-8 text-gray-700">
-                  Most people relocating for a job or education don't have help on the ground, so every bag becomes their personal responsibility from doorstep to doorstep.
-
-                </p>
-              </div>
-            </div>
 
 
-            <p className="text-lg leading-8 text-gray-700">These challenges are manageable, but only if you plan your luggage transport smartly instead of leaving it for the last minute.</p>
+              <p className="text-lg leading-8 text-gray-700">These challenges are manageable, but only if you plan your luggage transport smartly instead of leaving it for the last minute.</p>
+            </section>
 
             {/* Image Section */}
             <div className="my-16 mx-auto">
@@ -246,9 +249,9 @@ export default function MovingToBangalore() {
 
             {/* Comparison */}
             <div className="mt-16">
-              <h3 className="!text-[20px] font-semibold mb-3">
+              <h2 className="!text-[20px] font-semibold mb-3">
                 Different Ways to Move Your Luggage:
-              </h3>
+              </h2>
 
               <p className="text-lg leading-8 text-gray-700">When it comes to transporting your luggage to Bangalore, you have a few options. Here's how they compare:</p>
 
@@ -272,9 +275,9 @@ export default function MovingToBangalore() {
 
             {/* Benefits */}
             <section className="my-16">
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">
                 Benefits of Door-to-Door Luggage Delivery:
-              </h3>
+              </h2>
 
               <p className="text-lg text-gray-600 mb-10">
                 Door-to-door luggage delivery is designed for people relocating to Bangalore,
@@ -336,9 +339,9 @@ export default function MovingToBangalore() {
 
             {/* Tips */}
             <section className="my-6">
-              <h3 className="!text-[27px] font-bold text-gray-900 mb-4">
+              <h2 className="!text-[27px] font-bold text-gray-900 mb-4">
                 Tips for a Hassle-Free Relocation:
-              </h3>
+              </h2>
 
               <p className="text-lg text-gray-600 mb-10 leading-8">
                 A little planning goes a long way. Keep these tips in mind to make your move smooth:
@@ -397,9 +400,9 @@ export default function MovingToBangalore() {
 
 
             <section className="my-20">
-              <h3 className="!text-[27px] font-bold text-gray-900 mb-6">
+              <h2 className="!text-[27px] font-bold text-gray-900 mb-6">
                 Conclusion:
-              </h3>
+              </h2>
 
               <div className="space-y-6 text-lg text-gray-700 leading-9">
                 <p>
@@ -418,9 +421,9 @@ export default function MovingToBangalore() {
 
             {/* CTA */}
             <div className="mt-20 bg-[#013efe] rounded-3xl p-10 text-center">
-              <h3 className="text-white text-4xl font-bold">
+              <h2 className="text-white text-4xl font-bold">
                 Ready to Move to Bangalore?
-              </h3>
+              </h2>
 
               <p className="text-white/90 mt-4 text-lg">
                 Let{" "}
