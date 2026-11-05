@@ -267,7 +267,7 @@ function Blogs() {
                                 aria-label={blog.ariaLabel || `Read more about ${blog.title}`}
                             >
 
-                                Read more...
+                                Read more... <span className="sr-only"> about {blog.title}</span>
 
                             </a>
 

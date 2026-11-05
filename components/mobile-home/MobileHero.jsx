@@ -160,9 +160,9 @@ export default function MobileHero() {
               transition={{ duration: 0.5 }}
               className="min-h-[100px]"
             >
-              <h1 className="text-2xl sm:text-3xl font-extrabold leading-tight mb-2 tracking-tight drop-shadow-md">
+              <p className="text-2xl sm:text-3xl font-extrabold leading-tight mb-2 tracking-tight drop-shadow-md">
                 {currentSlide.title}
-              </h1>
+              </p>
               <p className="text-sm sm:text-sm text-gray-100 leading-relaxed mb-4 line-clamp-3 drop-shadow">
                 {currentSlide.desc}
               </p>
