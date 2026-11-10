@@ -1,7 +1,6 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
 import bg from "@/asset/profiles/cta-banner.svg";
 
@@ -39,32 +38,34 @@ export default function MobileHome() {
       <MobileServices />
 
       {/* 5. How we move your luggage (Steps) */}
-      <HowToShip />
+      <section className="content-visibility-auto">
+        <HowToShip />
+      </section>
 
       {/* 6. Why people choose Frisbi (Slider) */}
-      <section className="relative bg-primary overflow-x-hidden">
+      <section className="relative bg-primary overflow-x-hidden content-visibility-auto">
         <CustomSlider />
       </section>
 
       {/* 7. Customer testimonials */}
-      <section className="container mx-auto relative px-4 py-12 md:py-16 sm:px-6 lg:px-8">
+      <section className="container mx-auto relative px-4 py-12 md:py-16 sm:px-6 lg:px-8 content-visibility-auto">
         <Testimonials />
       </section>
 
       {/* 8. Frequently asked questions */}
-      <section className="overflow-x-hidden">
+      <section className="overflow-x-hidden content-visibility-auto">
         <div>
           <FAQSection />
         </div>
       </section>
 
       {/* 9. Contact Section */}
-      <section className="bg-[#F1F2F6] mx-auto overflow-x-hidden">
+      <section className="bg-[#F1F2F6] mx-auto overflow-x-hidden content-visibility-auto">
         <ContactSection />
       </section>
 
       {/* 10. Blue CTA Banner */}
-      <section className="w-full px-4 py-12 md:py-16">
+      <section className="w-full px-4 py-12 md:py-16 content-visibility-auto">
         <div className="relative container mx-auto rounded-3xl overflow-hidden">
           {/* Background Image */}
           <Image
@@ -76,10 +77,7 @@ export default function MobileHome() {
           />
 
           {/* CONTENT */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+          <div
             className="relative z-10 text-center py-16 md:py-20 px-6"
           >
             <h2 className="text-white mb-4">
@@ -100,7 +98,7 @@ export default function MobileHome() {
                 Contact Us
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 

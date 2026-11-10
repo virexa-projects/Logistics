@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { FaInstagram, FaYoutube, FaFacebookF } from "react-icons/fa";
@@ -14,11 +13,7 @@ export default function Footer() {
 
   return (
     <footer id="main-footer" className="bg-[#F2F2F2] text-black pt-16 pb-8">
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
+      <div
         className="container mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-left"
       >
         {/* LOGO + DESCRIPTION */}
@@ -176,7 +171,7 @@ export default function Footer() {
             </Link>
           </div>
         </div>
-      </motion.div>
+      </div>
 
       {/* BOTTOM LINE */}
       <div className="border-t border-gray-700 mt-12 pt-6">

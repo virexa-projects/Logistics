@@ -3,12 +3,13 @@ import React, { useState } from "react";
 import bg from "@/asset/profiles/cta-banner.svg"; // <<< CHANGE TO YOUR BG IMAGE
 import About from "@/asset/home/about-frisbi.png";
 import Link from "next/link";
-import HeroSlider from "@/components/HeroSlider";
 import Image from "next/image";
 import { Check, Minus, NetworkIcon, Plus } from "lucide-react";
 
 import dynamic from "next/dynamic";
 
+const HeroSlider = dynamic(() => import("@/components/HeroSlider"), { ssr: true });
+const ServicesSection = dynamic(() => import("@/components/ServiceCard"), { ssr: true });
 const CustomSlider = dynamic(() => import("@/components/Slider"), { ssr: true });
 const MarqueeLogos = dynamic(() => import("@/components/MarqueeLogos"), { ssr: true });
 const FAQSection = dynamic(() => import("@/components/AccordionCorporate"), { ssr: true });
@@ -17,8 +18,6 @@ const HowToShip = dynamic(() => import("@/components/HowToShip"), { ssr: true })
 const Testimonials = dynamic(() => import("@/components/Testimonials"), { ssr: true });
 const HowYourBagsTravel = dynamic(() => import("@/components/HowYourBagsTravel"), { ssr: true });
 const MobileHome = dynamic(() => import("@/components/MobileHome"), { ssr: true });
-import ServicesSection from "@/components/ServiceCard";
-import { motion, AnimatePresence } from "framer-motion";
 import Packing from "@/asset/icon/express.svg";
 // Swiper styles are mandatory to import!
 import "swiper/css";
@@ -190,10 +189,7 @@ function Home() {
           {/* <div className="absolute inset-0 bg-[#003BE3] " /> */}
 
           {/* CONTENT */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+          <div
             className="relative z-10 text-center py-16 md:py-20 px-6"
           >
             <h2 className=" text-white mb-4">
@@ -214,7 +210,7 @@ function Home() {
                 Contact Us
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 

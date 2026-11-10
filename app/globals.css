@@ -370,3 +370,37 @@ body {
   white-space: nowrap;
   border-width: 0;
 }
+
+/* Defer rendering of offscreen sections to minimize main-thread work */
+.content-visibility-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 500px;
+}
+
+@keyframes arrowNudge {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+}
+
+.animate-arrow-nudge {
+  animation: arrowNudge 1s ease-in-out infinite;
+}
+
+@keyframes fadeInSimple {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeInSimple 0.2s ease-out forwards;
+}

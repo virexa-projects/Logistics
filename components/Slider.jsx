@@ -5,6 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import Image from "next/image";
+import Link from "next/link";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 import Safe from "@/asset/why-choose/safe-secure.png";
@@ -19,7 +20,18 @@ const data = [
 
   {
     title: "Costs Less Than Carrying It ",
-    desc: "Excess baggage fees add up fast, so you can ship 20 kg or more for far less and pay once, without surprises.",
+    desc: (
+      <>
+        Excess baggage fees add up fast, so you can ship 20 kg or more for far less and pay once, without surprises. Read our detailed guide on{" "}
+        <Link
+          href="/blog/how-to-avoid-excess-baggage-charges-india"
+          className="text-primary underline hover:text-blue-700 font-medium transition-colors"
+        >
+          how to avoid airline excess baggage charges
+        </Link>{" "}
+        to see how much you can save.
+      </>
+    ),
     img: Safe,
   },
   {
@@ -45,7 +57,18 @@ const data = [
   },
   {
     title: "Made for Group Travel and Corporate Moves",
-    desc: "Moving an entire team? Managing event luggage? Coordinating bags for a group trip? We handle multiple shipments to multiple destinations without the chaos.",
+    desc: (
+      <>
+        Moving an entire team? Managing event luggage? Coordinating bags for a group trip? We handle multiple shipments to multiple destinations without the chaos. Relocating soon? Read our guide on{" "}
+        <Link
+          href="/blog/moving-to-bangalore-luggage-transport"
+          className="text-primary underline hover:text-blue-700 font-medium transition-colors"
+        >
+          the easiest way to transport your luggage when moving to Bangalore
+        </Link>
+        .
+      </>
+    ),
     img: Corporate,
   },
   {
@@ -99,11 +122,13 @@ export default function Slider() {
         >
           {data.map((item, i) => (
             <SwiperSlide key={i}>
-              <div className="bg-white rounded-3xl p-8 h-[500px] relative overflow-hidden">
-                <h3 className=" font-semibold text-[18px] md:text-[21px]">{item.title}</h3>
-                <p className="text-sm mt-2 text-second">{item.desc}</p>
+              <div className="bg-white rounded-3xl p-8 h-[500px] relative overflow-hidden flex flex-col justify-between">
+                <div className="relative z-10">
+                  <h3 className=" font-semibold text-[18px] md:text-[21px]">{item.title}</h3>
+                  <p className="text-sm mt-2 text-second">{item.desc}</p>
+                </div>
 
-                <div className="absolute bottom-0 left-0 right-0 h-[60%]">
+                <div className="absolute bottom-0 left-0 right-0 h-[60%] pointer-events-none">
                   <Image
                     src={item.img}
                     alt="Frisbi luggage delivery feature"

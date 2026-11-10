@@ -4,8 +4,7 @@ import HeaderWrapper from "@/components/HeaderWrapper";
 import FooterSection from "@/components/FooterSection";
 import { Toaster } from "react-hot-toast";
 import FloatingActions from "@/components/FloatingActions";
-import Script from "next/script";
-import { GoogleAnalytics } from "@next/third-parties/google";
+import Analytics from "@/components/Analytics";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -22,14 +21,19 @@ export default function RootLayout({ children }) {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
       <body className={`${inter.variable} antialiased`} suppressHydrationWarning>
-        {/* Google Ads Tag Link - deferred to avoid blocking main thread */}
-        <Script id="google-ads" strategy="lazyOnload">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('config', 'AW-18152390227');
-          `}
-        </Script>
+        {/* Instant gtag / dataLayer queue stub so tracking calls anywhere never fail */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){window.dataLayer.push(arguments);}
+              window.gtag = gtag;
+              gtag('js', new Date());
+              gtag('config', 'G-CVY124PE8B', { send_page_view: true });
+              gtag('config', 'AW-18152390227');
+            `,
+          }}
+        />
 
         <HeaderWrapper />
 
@@ -49,8 +53,8 @@ export default function RootLayout({ children }) {
         {/* Toast notifications */}
         <Toaster position="top-right" reverseOrder={false} />
 
-        {/* Google Analytics 4 */}
-        <GoogleAnalytics gaId="G-CVY124PE8B" />
+        {/* Deferred Google Analytics 4 & Google Ads */}
+        <Analytics />
       </body>
     </html>
   );

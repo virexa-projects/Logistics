@@ -4,10 +4,9 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
 import toast from "react-hot-toast";
 import { MapPin } from "lucide-react";
-import { heroSlides } from "@/components/HeroSlider";
+import { heroSlides } from "@/data/heroSlides";
 
 export default function MobileHero() {
   const router = useRouter();
@@ -70,10 +69,7 @@ export default function MobileHero() {
       {/* Content Container */}
       <div className="relative z-10 px-4 pt-12 pb-8 flex flex-col justify-start flex-1">
         {/* TOP CARD: Send Your Luggage Across India */}
-        <motion.div
-          initial={{ opacity: 0, y: -15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+        <div
           className="w-full bg-white/95 backdrop-blur-md rounded-[28px] p-5 shadow-2xl border border-white/60 mx-auto max-w-sm mt-2 sm:mt-3"
         >
           <h2 className="text-[19px] font-bold text-center text-gray-900 mb-4 tracking-tight">
@@ -147,27 +143,21 @@ export default function MobileHero() {
               </button>
             </div>
           </form>
-        </motion.div>
+        </div>
 
         {/* BOTTOM HERO TEXT OVER IMAGE - Slides Title & Desc from HeroSlider */}
         <div className="mt-12 text-white text-left px-1">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={slideIndex}
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -15 }}
-              transition={{ duration: 0.5 }}
-              className="min-h-[100px]"
-            >
-              <p className="text-2xl sm:text-3xl font-extrabold leading-tight mb-2 tracking-tight drop-shadow-md">
-                {currentSlide.title}
-              </p>
-              <p className="text-sm sm:text-sm text-gray-100 leading-relaxed mb-4 line-clamp-3 drop-shadow">
-                {currentSlide.desc}
-              </p>
-            </motion.div>
-          </AnimatePresence>
+          <div
+            key={slideIndex}
+            className="min-h-[100px] animate-fade-in"
+          >
+            <p className="text-2xl sm:text-3xl font-extrabold leading-tight mb-2 tracking-tight drop-shadow-md">
+              {currentSlide.title}
+            </p>
+            <p className="text-sm sm:text-sm text-gray-100 leading-relaxed mb-4 line-clamp-3 drop-shadow">
+              {currentSlide.desc}
+            </p>
+          </div>
 
           <Link
             href="/rate-calculator"

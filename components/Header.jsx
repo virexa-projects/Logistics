@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { motion } from "framer-motion";
 import { Menu, X, ChevronDown } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -138,11 +137,8 @@ export default function Header() {
               </button>
               {hoverService && (
                 <div className="absolute left-1/2 -translate-x-1/2 top-full pt-2 z-50">
-                  <motion.div
-                    initial={{ opacity: 0, y: -4 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.15 }}
-                    className="relative w-52 bg-white shadow-xl rounded-2xl py-3 border border-gray-100 before:content-[''] before:absolute before:-top-3 before:left-0 before:right-0 before:h-3"
+                  <div
+                    className="relative w-52 bg-white shadow-xl rounded-2xl py-3 border border-gray-100 before:content-[''] before:absolute before:-top-3 before:left-0 before:right-0 before:h-3 animate-fade-in"
                   >
                     {servicesList.map((item, index) => (
                       <Link
@@ -154,7 +150,7 @@ export default function Header() {
                         {item}
                       </Link>
                     ))}
-                  </motion.div>
+                  </div>
                 </div>
               )}
             </div>
@@ -183,12 +179,7 @@ export default function Header() {
 
           {/* Desktop Track Now Button */}
           <div className="flex items-center justify-center shrink-0">
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="relative"
-            >
+            <div className="relative">
               {/* Main Button */}
               <Link
                 href="/book-shipment"
@@ -215,16 +206,7 @@ export default function Header() {
                 "
               >
                 {/* Moving Light Effect */}
-                <motion.span
-                  animate={{
-                    x: ["-150%", "250%"],
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: "linear",
-                    repeatDelay: 1,
-                  }}
+                <span
                   className="
                     absolute
                     top-0
@@ -234,6 +216,7 @@ export default function Header() {
                     bg-white/20
                     skew-x-12
                     blur-md
+                    animate-shine
                   "
                 />
 
@@ -241,20 +224,11 @@ export default function Header() {
                 <span className="relative z-10 text-[14px]">Book Now</span>
 
                 {/* Arrow Animation */}
-                <motion.span
-                  animate={{
-                    x: [0, 5, 0],
-                  }}
-                  transition={{
-                    duration: 1,
-                    repeat: Infinity,
-                  }}
-                  className="relative z-10 font-bold"
-                >
+                <span className="relative z-10 font-bold inline-block animate-arrow-nudge">
                   →
-                </motion.span>
+                </span>
               </Link>
-            </motion.div>
+            </div>
           </div>
         </div>
       </div>
@@ -298,11 +272,8 @@ export default function Header() {
 
       {/* Mobile Dropdown */}
       {isOpen && (
-        <motion.div
-          initial={{ height: 0, opacity: 0 }}
-          animate={{ height: "auto", opacity: 1 }}
-          transition={{ duration: 0.25 }}
-          className="lg:hidden bg-white overflow-hidden shadow-lg border-t border-gray-100 pointer-events-auto"
+        <div
+          className="lg:hidden bg-white overflow-hidden shadow-lg border-t border-gray-100 pointer-events-auto animate-fade-in"
         >
           <div className="flex flex-col px-6 py-4 space-y-3 font-medium text-base text-gray-800">
             <Link href="/" onClick={handleLinkClick} className="hover:text-[#013efe] py-1 transition">Home</Link>
@@ -348,7 +319,7 @@ export default function Header() {
               </Link>
             </div>
           </div>
-        </motion.div>
+        </div>
       )}
     </header>
   );

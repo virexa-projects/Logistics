@@ -1,3 +1,4 @@
+import Link from "next/link";
 import {
   MessageSquare,
   FileText,
@@ -13,6 +14,7 @@ export function HowToShip() {
       icon: MessageSquare,
       title: "Get an Instant Quote",
       description: "See the price upfront before you book.",
+      link: "/rate-calculator",
     },
     {
       number: "2",
@@ -55,14 +57,37 @@ export function HowToShip() {
             <div key={index} className="relative">
               <div className="flex flex-col items-center text-center">
                 <div className="relative mb-4">
-                  <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center">
-                    <step.icon className="w-8 h-8 text-white" />
-                  </div>
+                  {step.link ? (
+                    <Link
+                      href={step.link}
+                      className="cursor-pointer block focus:outline-none"
+                      aria-label={step.title}
+                    >
+                      <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center">
+                        <step.icon className="w-8 h-8 text-white" />
+                      </div>
+                    </Link>
+                  ) : (
+                    <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center">
+                      <step.icon className="w-8 h-8 text-white" />
+                    </div>
+                  )}
                   {/* <div className="absolute -top-1 -right-1 w-7 h-7 bg-white text-black rounded-full flex items-center justify-center text-xs font-semibold">
                     {step.number}
                   </div> */}
                 </div>
-                <h3 className="mb-2 md:text-[18px] text-[16px]">{step.title}</h3>
+                <h3 className="mb-2 md:text-[18px] text-[16px]">
+                  {step.link ? (
+                    <Link
+                      href={step.link}
+                      className="cursor-pointer text-inherit no-underline hover:text-inherit hover:no-underline focus:outline-none"
+                    >
+                      {step.title}
+                    </Link>
+                  ) : (
+                    step.title
+                  )}
+                </h3>
                 <p className="text-second">{step.description}</p>
               </div>
 

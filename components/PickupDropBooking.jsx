@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { Autocomplete, useLoadScript } from "@react-google-maps/api";
 import { AnimatePresence, motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";

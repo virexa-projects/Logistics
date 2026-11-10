@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import {
   MessageSquare,
   FileText,
@@ -13,6 +14,7 @@ const steps = [
     icon: MessageSquare,
     title: "Get an Instant Quote",
     desc: "See the price upfront before you book.",
+    link: "/rate-calculator",
   },
   {
     num: 2,
@@ -55,10 +57,33 @@ export default function MobileSteps() {
       <div className="space-y-6 max-w-sm mx-auto">
         {steps.map((st, i) => (
           <div key={i} className="flex flex-col items-center text-center">
-            <div className="w-12 h-12 rounded-full bg-[#013EFE] flex items-center justify-center text-white shadow-md mb-2.5">
-              <st.icon className="w-6 h-6 text-white stroke-[2.2]" />
-            </div>
-            <h3 className="text-sm font-bold text-gray-900">{st.title}</h3>
+            {st.link ? (
+              <Link
+                href={st.link}
+                className="cursor-pointer block focus:outline-none"
+                aria-label={st.title}
+              >
+                <div className="w-12 h-12 rounded-full bg-[#013EFE] flex items-center justify-center text-white shadow-md mb-2.5">
+                  <st.icon className="w-6 h-6 text-white stroke-[2.2]" />
+                </div>
+              </Link>
+            ) : (
+              <div className="w-12 h-12 rounded-full bg-[#013EFE] flex items-center justify-center text-white shadow-md mb-2.5">
+                <st.icon className="w-6 h-6 text-white stroke-[2.2]" />
+              </div>
+            )}
+            <h3 className="text-sm font-bold text-gray-900 mb-1">
+              {st.link ? (
+                <Link
+                  href={st.link}
+                  className="cursor-pointer text-inherit no-underline hover:text-inherit hover:no-underline focus:outline-none"
+                >
+                  {st.title}
+                </Link>
+              ) : (
+                st.title
+              )}
+            </h3>
             <p className="text-xs text-gray-500 mt-0.5 max-w-xs">{st.desc}</p>
           </div>
         ))}

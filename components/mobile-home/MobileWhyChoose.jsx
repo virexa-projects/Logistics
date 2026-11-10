@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 import SupportImg from "@/asset/why-choose/support.png";
@@ -19,7 +20,18 @@ const whyChooseFeatures = [
   },
   {
     title: "Costs Less Than Carrying It",
-    desc: "Excess baggage fees add up fast, so you can ship 20 kg or more for far less and pay once, without surprises.",
+    desc: (
+      <>
+        Excess baggage fees add up fast, so you can ship 20 kg or more for far less and pay once, without surprises. Read our detailed guide on{" "}
+        <Link
+          href="/blog/how-to-avoid-excess-baggage-charges-india"
+          className="text-primary underline hover:text-blue-700 font-medium transition-colors"
+        >
+          how to avoid airline excess baggage charges
+        </Link>{" "}
+        to see how much you can save.
+      </>
+    ),
     img: SafeSecureImg,
   },
   {

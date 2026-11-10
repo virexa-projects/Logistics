@@ -13,7 +13,7 @@ const nextConfig = {
   compress: true,
 
   experimental: {
-    optimizePackageImports: ["lucide-react", "react-icons", "framer-motion", "swiper"],
+    optimizePackageImports: ["lucide-react", "react-icons", "framer-motion", "swiper", "react-hot-toast"],
   },
 
   async headers() {
