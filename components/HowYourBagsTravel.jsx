@@ -4,7 +4,7 @@ import React, { useRef } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Navigation } from "swiper/modules";
+import { Autoplay } from "swiper/modules";
 import "swiper/css";
 
 export const packagingItems = [
@@ -121,7 +121,7 @@ export default function HowYourBagsTravel({ variant = "both" }) {
             {/* Exactly 3 cards track */}
             <div className="w-full">
               <Swiper
-                modules={[Autoplay, Navigation]}
+                modules={[Autoplay]}
                 onSwiper={(swiper) => (desktopSwiperRef.current = swiper)}
                 direction="horizontal"
                 loop={true}

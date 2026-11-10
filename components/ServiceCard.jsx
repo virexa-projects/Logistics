@@ -93,11 +93,10 @@ const ServiceCard = ({ service }) => {
         {/* Safeguarded link with a fallback */}
         <Link
           href={service.link || "#"}
+          aria-label={`Learn more about ${service.title}`}
           className={`mt-4 inline-block font-semibold hover:underline ${service.linkColor}`}
         >
           {service.buttton || "Learn more"}
-
-      
         </Link>
       </div>
 

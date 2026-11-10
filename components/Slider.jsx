@@ -94,16 +94,20 @@ export default function Slider() {
           {/* DESKTOP ARROWS */}
           <div className="hidden lg:flex gap-2">
             <button
+              type="button"
               onClick={() => swiperRef.current?.slidePrev()}
-              className="p-2 bg-white rounded"
+              aria-label="Previous slide"
+              className="p-2 bg-white rounded cursor-pointer"
             >
-              <ChevronLeft />
+              <ChevronLeft aria-hidden="true" />
             </button>
             <button
+              type="button"
               onClick={() => swiperRef.current?.slideNext()}
-              className="p-2 bg-white rounded"
+              aria-label="Next slide"
+              className="p-2 bg-white rounded cursor-pointer"
             >
-              <ChevronRight />
+              <ChevronRight aria-hidden="true" />
             </button>
           </div>
         </div>
@@ -144,16 +148,20 @@ export default function Slider() {
         {/* MOBILE ARROWS — BOTTOM CENTER */}
         <div className="flex justify-center gap-4 mt-8 lg:hidden">
           <button
+            type="button"
             onClick={() => swiperRef.current?.slidePrev()}
-            className="p-3 bg-white rounded-full"
+            aria-label="Previous slide"
+            className="p-3 bg-white rounded-full cursor-pointer"
           >
-            <ChevronLeft />
+            <ChevronLeft aria-hidden="true" />
           </button>
           <button
+            type="button"
             onClick={() => swiperRef.current?.slideNext()}
-            className="p-3 bg-white rounded-full"
+            aria-label="Next slide"
+            className="p-3 bg-white rounded-full cursor-pointer"
           >
-            <ChevronRight />
+            <ChevronRight aria-hidden="true" />
           </button>
         </div>
       </div>

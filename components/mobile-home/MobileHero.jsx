@@ -79,14 +79,15 @@ export default function MobileHero() {
           <form onSubmit={handleCheckPrice} className="space-y-3.5">
             {/* Pickup PIN */}
             <div>
-              <label className="block text-xs font-semibold text-gray-700 mb-1 ml-1">
+              <label htmlFor="mobile-pickup-pin" className="block text-xs font-semibold text-gray-700 mb-1 ml-1">
                 Pickup PIN code
               </label>
               <div className="flex items-center gap-2.5 bg-gray-50/90 border border-gray-200 rounded-2xl px-3.5 py-2.5 focus-within:border-[#013EFE] focus-within:bg-white transition-all">
                 <div className="w-7 h-7 rounded-full bg-blue-50 flex items-center justify-center shrink-0">
-                  <MapPin className="w-4 h-4 text-[#013EFE]" />
+                  <MapPin className="w-4 h-4 text-[#013EFE]" aria-hidden="true" />
                 </div>
                 <input
+                  id="mobile-pickup-pin"
                   type="text"
                   inputMode="numeric"
                   maxLength={6}
@@ -97,6 +98,7 @@ export default function MobileHero() {
                     if (pinError) setPinError("");
                   }}
                   placeholder="Enter pickup PIN code"
+                  aria-label="Enter pickup PIN code"
                   className="w-full bg-transparent text-sm text-gray-800 placeholder-gray-400 outline-none"
                 />
               </div>
@@ -104,14 +106,15 @@ export default function MobileHero() {
 
             {/* Drop PIN */}
             <div>
-              <label className="block text-xs font-semibold text-gray-700 mb-1 ml-1">
+              <label htmlFor="mobile-drop-pin" className="block text-xs font-semibold text-gray-700 mb-1 ml-1">
                 Drop PIN code
               </label>
               <div className="flex items-center gap-2.5 bg-gray-50/90 border border-gray-200 rounded-2xl px-3.5 py-2.5 focus-within:border-[#013EFE] focus-within:bg-white transition-all">
                 <div className="w-7 h-7 rounded-full bg-blue-50 flex items-center justify-center shrink-0">
-                  <MapPin className="w-4 h-4 text-[#013EFE]" />
+                  <MapPin className="w-4 h-4 text-[#013EFE]" aria-hidden="true" />
                 </div>
                 <input
+                  id="mobile-drop-pin"
                   type="text"
                   inputMode="numeric"
                   maxLength={6}
@@ -122,6 +125,7 @@ export default function MobileHero() {
                     if (pinError) setPinError("");
                   }}
                   placeholder="Enter drop PIN code"
+                  aria-label="Enter drop PIN code"
                   className="w-full bg-transparent text-sm text-gray-800 placeholder-gray-400 outline-none"
                 />
               </div>

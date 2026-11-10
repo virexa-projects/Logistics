@@ -78,12 +78,13 @@ export default function Testimonials() {
                   <div className="flex justify-between items-center">
                     <h3 className="font-semibold !text-[20px]">{item.name}</h3>
 
-                    <div className="flex">
+                    <div className="flex" aria-label={`${item.rating} out of 5 stars`}>
                       {[...Array(item.rating)].map((_, index) => (
                         <FaStar
                           key={index}
                           className="text-[#f79029] ml-1"
                           size={18}
+                          aria-hidden="true"
                         />
                       ))}
                     </div>

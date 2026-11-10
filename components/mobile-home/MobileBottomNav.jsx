@@ -42,10 +42,11 @@ export default function MobileBottomNav() {
       {/* Home Tab */}
       <Link
         href="/"
+        aria-label="Home"
         className="flex flex-col items-center gap-1 text-[#013EFE] group"
       >
         <div className="w-10 h-10 rounded-full bg-[#013EFE] flex items-center justify-center text-white shadow-md shadow-blue-500/20 group-hover:scale-105 transition">
-          <HomeIcon className="w-5 h-5" />
+          <HomeIcon className="w-5 h-5" aria-hidden="true" />
         </div>
         <span className="text-[11px] font-bold">Home</span>
       </Link>
@@ -53,10 +54,11 @@ export default function MobileBottomNav() {
       {/* Calculator Tab */}
       <Link
         href="/rate-calculator"
+        aria-label="Rate Calculator"
         className="flex flex-col items-center gap-1 text-gray-700 group"
       >
         <div className="w-10 h-10 rounded-full bg-[#F59E0B] flex items-center justify-center text-white shadow-md shadow-amber-500/20 group-hover:scale-105 transition">
-          <CalcIcon className="w-5 h-5" />
+          <CalcIcon className="w-5 h-5" aria-hidden="true" />
         </div>
         <span className="text-[11px] font-medium text-gray-600">Calculator</span>
       </Link>
@@ -64,10 +66,11 @@ export default function MobileBottomNav() {
       {/* Call Tab */}
       <a
         href="tel:+917418152531"
+        aria-label="Call +91 7418152531"
         className="flex flex-col items-center gap-1 text-gray-700 group"
       >
         <div className="w-10 h-10 rounded-full bg-[#013EFE] flex items-center justify-center text-white shadow-md shadow-blue-500/20 group-hover:scale-105 transition">
-          <Phone className="w-5 h-5" />
+          <Phone className="w-5 h-5" aria-hidden="true" />
         </div>
         <span className="text-[11px] font-medium text-gray-600">Call</span>
       </a>
@@ -77,10 +80,11 @@ export default function MobileBottomNav() {
         href="https://wa.me/917418152531"
         target="_blank"
         rel="noopener noreferrer"
+        aria-label="Chat on WhatsApp"
         className="flex flex-col items-center gap-1 text-gray-700 group"
       >
         <div className="w-10 h-10 rounded-full bg-[#22C55E] flex items-center justify-center text-white shadow-md shadow-emerald-500/20 group-hover:scale-105 transition">
-          <FaWhatsapp className="w-5 h-5" />
+          <FaWhatsapp className="w-5 h-5" aria-hidden="true" />
         </div>
         <span className="text-[11px] font-medium text-gray-600">WhatsApp</span>
       </a>

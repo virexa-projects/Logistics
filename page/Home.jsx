@@ -19,10 +19,6 @@ const Testimonials = dynamic(() => import("@/components/Testimonials"), { ssr: t
 const HowYourBagsTravel = dynamic(() => import("@/components/HowYourBagsTravel"), { ssr: true });
 const MobileHome = dynamic(() => import("@/components/MobileHome"), { ssr: true });
 import Packing from "@/asset/icon/express.svg";
-// Swiper styles are mandatory to import!
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
 
 function Home() {
   const faqData = [
