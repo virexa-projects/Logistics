@@ -17,10 +17,16 @@ export default function RootLayout({ children }) {
     <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://www.googletagmanager.com" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
       <body className={`${inter.variable} antialiased`} suppressHydrationWarning>
+        {/* Accessible skip link for keyboard & screen reader users */}
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-[#013EFE] focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus:shadow-lg focus:outline-none"
+        >
+          Skip to main content
+        </a>
+
         {/* Instant gtag / dataLayer queue stub so tracking calls anywhere never fail */}
         <script
           dangerouslySetInnerHTML={{
@@ -37,7 +43,9 @@ export default function RootLayout({ children }) {
 
         <HeaderWrapper />
 
-        {children}
+        <main id="main-content">
+          {children}
+        </main>
 
         <FloatingActions />
 

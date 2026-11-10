@@ -28,23 +28,38 @@ export default function Footer() {
             <h3 className="font-semibold mb-2 !text-[20px]">Social Media</h3>
             <div className="flex items-center gap-4 justify-start">
               {/* YouTube */}
-              <Link href="https://youtube.com/@frisbi-luggage-delivery?si=sfdhhiZOjdpNhNTs">
+              <Link
+                href="https://youtube.com/@frisbi-luggage-delivery?si=sfdhhiZOjdpNhNTs"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Visit Frisbi on YouTube"
+              >
                 <div className="p-3 bg-red-600 rounded-full hover:bg-red-700 transition">
-                  <FaYoutube className="w-5 h-5 text-white" />
+                  <FaYoutube className="w-5 h-5 text-white" aria-hidden="true" />
                 </div>
               </Link>
 
               {/* Instagram */}
-              <Link href="https://www.instagram.com/frisbi.in?igsh=ZTlrYWp3aGRjNnE5">
+              <Link
+                href="https://www.instagram.com/frisbi.in?igsh=ZTlrYWp3aGRjNnE5"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Visit Frisbi on Instagram"
+              >
                 <div className="p-3 bg-gradient-to-tr from-pink-500 via-purple-500 to-yellow-500 rounded-full hover:opacity-90 transition">
-                  <FaInstagram className="w-5 h-5 text-white" />
+                  <FaInstagram className="w-5 h-5 text-white" aria-hidden="true" />
                 </div>
               </Link>
 
               {/* Facebook */}
-              <Link href="https://www.facebook.com/profile.php?id=61590439647922">
+              <Link
+                href="https://www.facebook.com/profile.php?id=61590439647922"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Visit Frisbi on Facebook"
+              >
                 <div className="p-3 bg-blue-600 rounded-full hover:bg-blue-700 transition">
-                  <FaFacebookF className="w-5 h-5 text-white" />
+                  <FaFacebookF className="w-5 h-5 text-white" aria-hidden="true" />
                 </div>
               </Link>
             </div>

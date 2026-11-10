@@ -99,7 +99,7 @@ export default function Header() {
       <div className="hidden lg:block w-full pt-4 pb-2 px-6 lg:px-8 pointer-events-auto">
         <div className="max-w-[1240px] mx-auto bg-white rounded-full shadow-[0_4px_30px_rgba(0,0,0,0.08)] border border-gray-100/80 px-8 py-3 flex justify-between items-center gap-6">
           {/* Logo */}
-          <Link href="/" className="font-bold shrink-0 flex items-center">
+          <Link href="/" aria-label="Frisbi Home" className="font-bold shrink-0 flex items-center">
             <Image
               src={LogoBlack}
               alt="Frisbi Logo"
@@ -127,6 +127,8 @@ export default function Header() {
             >
               <button
                 type="button"
+                aria-expanded={hoverService}
+                aria-haspopup="true"
                 className="flex items-center gap-1.5 hover:text-[#013efe] transition py-1"
               >
                 Services{" "}
@@ -236,7 +238,7 @@ export default function Header() {
       {/* 📱 Mobile Header Bar */}
       <div className="lg:hidden bg-white px-4 sm:px-6 py-3.5 flex justify-between items-center border-b border-gray-100 shadow-sm pointer-events-auto">
         {/* Logo */}
-        <Link href="/" className="font-bold shrink-0 flex items-center">
+        <Link href="/" aria-label="Frisbi Home" className="font-bold shrink-0 flex items-center">
           <Image
             src={LogoBlack}
             alt="Frisbi Logo"
@@ -257,8 +259,11 @@ export default function Header() {
           </Link>
 
           <button
+            type="button"
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle Menu"
+            aria-expanded={isOpen}
+            aria-controls="mobile-nav-drawer"
             className="p-1.5 border border-gray-200 rounded-xl hover:bg-gray-50 transition text-gray-800 bg-white"
           >
             {isOpen ? (
@@ -273,6 +278,7 @@ export default function Header() {
       {/* Mobile Dropdown */}
       {isOpen && (
         <div
+          id="mobile-nav-drawer"
           className="lg:hidden bg-white overflow-hidden shadow-lg border-t border-gray-100 pointer-events-auto animate-fade-in"
         >
           <div className="flex flex-col px-6 py-4 space-y-3 font-medium text-base text-gray-800">

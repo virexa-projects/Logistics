@@ -76,9 +76,13 @@ export default function FAQ() {
                   : "py-5 px-2 border-b border-gray-200"
               }`}
             >
-              <div
-                className="flex justify-between items-center cursor-pointer select-none gap-4"
+              <button
+                type="button"
                 onClick={() => toggle(i)}
+                aria-expanded={isOpen}
+                aria-controls={`faq-answer-${i}`}
+                id={`faq-question-${i}`}
+                className="w-full text-left flex justify-between items-center cursor-pointer select-none gap-4 focus:outline-none"
               >
                 <h3
                   className={`!text-[20px] transition-colors duration-200 ${
@@ -89,17 +93,20 @@ export default function FAQ() {
                 </h3>
                 <div className="shrink-0 text-black">
                   {isOpen ? (
-                    <ChevronUp className="w-6 h-6 transition-transform duration-200" />
+                    <ChevronUp className="w-6 h-6 transition-transform duration-200" aria-hidden="true" />
                   ) : (
-                    <ChevronDown className="w-6 h-6 transition-transform duration-200" />
+                    <ChevronDown className="w-6 h-6 transition-transform duration-200" aria-hidden="true" />
                   )}
                 </div>
-              </div>
+              </button>
 
               <AnimatePresence initial={false}>
                 {isOpen && (
                   <motion.div
                     key="content"
+                    id={`faq-answer-${i}`}
+                    role="region"
+                    aria-labelledby={`faq-question-${i}`}
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: "auto", opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}

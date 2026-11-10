@@ -17,11 +17,6 @@ const FAQSection = dynamic(() => import("@/components/AccordionCorporate"), { ss
 const ContactSection = dynamic(() => import("@/components/ContactSection"), { ssr: true });
 const MarqueeLogos = dynamic(() => import("@/components/MarqueeLogos"), { ssr: true });
 
-// Swiper styles
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
-
 export default function MobileHome() {
   return (
     <div className="w-full bg-white text-gray-900 pb-24">

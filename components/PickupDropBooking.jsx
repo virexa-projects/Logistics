@@ -170,7 +170,7 @@ export default function PorterPickupDrop() {
 
         {/* PICKUP */}
         <div className="mb-6">
-          <label className="block text-sm font-semibold text-gray-700 mb-2">
+          <label htmlFor="desktop-pickup-pin" className="block text-sm font-semibold text-gray-700 mb-2">
             Pickup PIN code
           </label>
 
@@ -190,6 +190,7 @@ export default function PorterPickupDrop() {
                 viewBox="0 0 24 24"
                 stroke="currentColor"
                 strokeWidth={2}
+                aria-hidden="true"
               >
                 <path
                   strokeLinecap="round"
@@ -206,6 +207,7 @@ export default function PorterPickupDrop() {
 
             {/* INPUT */}
             <input
+              id="desktop-pickup-pin"
               type="text"
               inputMode="numeric"
               pattern="[0-9]*"
@@ -215,6 +217,7 @@ export default function PorterPickupDrop() {
               onKeyDown={handlePickupKeyDown}
               onBlur={handlePickupBlur}
               placeholder="Enter pickup PIN code"
+              aria-label="Enter pickup PIN code"
               className="w-full outline-none bg-transparent text-gray-700 placeholder-gray-400"
             />
           </div>
@@ -228,7 +231,7 @@ export default function PorterPickupDrop() {
 
         {/* DROP */}
         <div className="mb-6">
-          <label className="block text-sm font-semibold text-gray-700 mb-2">
+          <label htmlFor="desktop-drop-pin" className="block text-sm font-semibold text-gray-700 mb-2">
             Drop PIN code
           </label>
 
@@ -248,6 +251,7 @@ export default function PorterPickupDrop() {
                 viewBox="0 0 24 24"
                 stroke="currentColor"
                 strokeWidth={2}
+                aria-hidden="true"
               >
                 <path
                   strokeLinecap="round"
@@ -264,6 +268,7 @@ export default function PorterPickupDrop() {
 
             {/* INPUT */}
             <input
+              id="desktop-drop-pin"
               type="text"
               inputMode="numeric"
               pattern="[0-9]*"
@@ -273,6 +278,7 @@ export default function PorterPickupDrop() {
               onKeyDown={handleDropKeyDown}
               onBlur={handleDropBlur}
               placeholder="Enter drop PIN code"
+              aria-label="Enter drop PIN code"
               className="w-full outline-none bg-transparent text-gray-700 placeholder-gray-400"
             />
           </div>
