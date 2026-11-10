@@ -63,7 +63,7 @@ export default function MobileSteps() {
                 className="cursor-pointer block focus:outline-none"
                 aria-label={st.title}
               >
-                <div className="w-12 h-12 rounded-full bg-[#013EFE] flex items-center justify-center text-white shadow-md mb-2.5">
+                <div className="w-12 h-12 rounded-full bg-[#013EFE] flex items-center justify-center text-white shadow-md mb-2.5 hover:scale-105 transition-transform duration-200">
                   <st.icon className="w-6 h-6 text-white stroke-[2.2]" />
                 </div>
               </Link>
@@ -76,7 +76,7 @@ export default function MobileSteps() {
               {st.link ? (
                 <Link
                   href={st.link}
-                  className="cursor-pointer text-inherit no-underline hover:text-inherit hover:no-underline focus:outline-none"
+                  className="cursor-pointer text-inherit no-underline hover:text-[#013EFE] hover:no-underline transition-colors duration-200 focus:outline-none"
                 >
                   {st.title}
                 </Link>

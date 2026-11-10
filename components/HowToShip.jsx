@@ -63,7 +63,7 @@ export function HowToShip() {
                       className="cursor-pointer block focus:outline-none"
                       aria-label={step.title}
                     >
-                      <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center">
+                      <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center hover:scale-105 transition-transform duration-200">
                         <step.icon className="w-8 h-8 text-white" />
                       </div>
                     </Link>
@@ -80,7 +80,7 @@ export function HowToShip() {
                   {step.link ? (
                     <Link
                       href={step.link}
-                      className="cursor-pointer text-inherit no-underline hover:text-inherit hover:no-underline focus:outline-none"
+                      className="cursor-pointer text-inherit no-underline hover:text-[#013EFE] hover:no-underline transition-colors duration-200 focus:outline-none"
                     >
                       {step.title}
                     </Link>
