@@ -30,27 +30,46 @@ const schema = {
       "url": "https://www.frisbi.in",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://www.frisbi.in/_next/static/media/logo-black.e417d146.svg"
+        "url": "https://www.frisbi.in/_next/static/media/logo-black.e417d146.svg",
       },
-      "description": "India's door-to-door luggage delivery service. Ship your baggage safely between cities with live tracking, transparent pricing, and professional handling across 25,000+ pincodes.",
+      "description":
+        "India's door-to-door luggage delivery service, specializing in luggage pickup and delivery across Bangalore and nationwide.",
       "foundingDate": "2022",
-      "areaServed": {
-        "@type": "Country",
-        "name": "India"
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Bangalore",
+        "addressRegion": "Karnataka",
+        "addressCountry": "IN",
       },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 12.9716,
+        "longitude": 77.5946,
+      },
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Bangalore",
+          "sameAs": "https://en.wikipedia.org/wiki/Bangalore",
+        },
+        {
+          "@type": "Country",
+          "name": "India",
+        },
+      ],
       "contactPoint": [
         {
           "@type": "ContactPoint",
           "telephone": "+91-7418152531",
           "contactType": "customer support",
-          "availableLanguage": ["English", "Hindi"]
+          "availableLanguage": ["English", "Hindi"],
         },
         {
           "@type": "ContactPoint",
           "email": "info@frisbi.in",
-          "contactType": "general inquiries"
-        }
-      ]
+          "contactType": "general inquiries",
+        },
+      ],
     },
     {
       "@type": "WebSite",
@@ -58,29 +77,31 @@ const schema = {
       "url": "https://www.frisbi.in",
       "name": "Frisbi",
       "publisher": {
-        "@id": "https://www.frisbi.in/#organization"
+        "@id": "https://www.frisbi.in/#organization",
       },
       "potentialAction": {
         "@type": "SearchAction",
         "target": "https://www.frisbi.in/search?q={search_term_string}",
-        "query-input": "required name=search_term_string"
-      }
+        "query-input": "required name=search_term_string",
+      },
     },
     {
       "@type": "WebPage",
       "@id": "https://www.frisbi.in/#webpage",
       "url": "https://www.frisbi.in",
-      "name": "Luggage Delivery Service in Bangalore | Trusted Luggage Movers – Frisbi",
-      "description": "Frisbi offers secure luggage delivery services and trusted luggage movers in Bangalore. Send bags across India with door-to-door pickup and tracking.",
+      "name":
+        "Luggage Delivery Service in Bangalore | Trusted Luggage Movers – Frisbi",
+      "description":
+        "Frisbi offers secure luggage delivery services and trusted luggage movers in Bangalore. Send bags across India with door-to-door pickup and tracking.",
       "isPartOf": {
-        "@id": "https://www.frisbi.in/#website"
+        "@id": "https://www.frisbi.in/#website",
       },
       "about": {
-        "@id": "https://www.frisbi.in/#organization"
+        "@id": "https://www.frisbi.in/#organization",
       },
       "breadcrumb": {
-        "@id": "https://www.frisbi.in/#breadcrumb"
-      }
+        "@id": "https://www.frisbi.in/#breadcrumb",
+      },
     },
     {
       "@type": "BreadcrumbList",
@@ -90,11 +111,11 @@ const schema = {
           "@type": "ListItem",
           "position": 1,
           "name": "Home",
-          "item": "https://www.frisbi.in"
-        }
-      ]
-    }
-  ]
+          "item": "https://www.frisbi.in",
+        },
+      ],
+    },
+  ],
 };
 
 
