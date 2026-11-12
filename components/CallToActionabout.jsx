@@ -2,13 +2,13 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import bg from "@/asset/profiles/cta-banner.svg"; // <<< CHANGE TO YOUR BG IMAGE
+import Link from "next/link";
+import bg from "@/asset/profiles/cta-banner.svg";
 
 export default function CallToAction() {
   return (
-    <section className="w-full px-4 py-12  md:pb-0 md:pt-20  ">
+    <section className="w-full px-4 py-12 md:pb-0 md:pt-20">
       <div className="relative container mx-auto rounded-3xl overflow-hidden">
-
         {/* Background Image */}
         <Image
           src={bg}
@@ -17,11 +17,6 @@ export default function CallToAction() {
           sizes="100vw"
           className="object-cover"
         />
-
-        {/* Gradient overlay */}
-        {/* <div className="absolute inset-0 bg-[#003BE3] " /> */}
-
-      
 
         {/* CONTENT */}
         <motion.div
@@ -35,18 +30,17 @@ export default function CallToAction() {
           </h2>
 
           <p className="text-white mb-8 text-sm md:text-base">
-           Safe handling. Fair pricing. Delivery you can count on.
-
+            Safe handling. Fair pricing. Delivery you can count on.
           </p>
 
           <div className="flex flex-wrap justify-center gap-4">
-            <a href="/rate-calculator" className="btn-white hover:scale-105 transition-all">
-              Book  Now
-            </a>
+            <Link href="/rate-calculator" className="btn-white hover:scale-105 transition-all">
+              Book Now
+            </Link>
 
-            <a href="/contact-us" className="btn-white-outline hover:scale-105 transition-all">
+            <Link href="/contact-us" className="btn-white-outline hover:scale-105 transition-all">
               Contact Support
-            </a>
+            </Link>
           </div>
         </motion.div>
       </div>
