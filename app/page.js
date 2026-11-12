@@ -25,12 +25,12 @@ const schema = {
   "@graph": [
     {
       "@type": "Organization",
-      "@id": "https://www.frisbi.in/#organization",
+      "@id": "https://frisbi.in/#organization",
       "name": "Frisbi",
-      "url": "https://www.frisbi.in",
+      "url": "https://frisbi.in",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://www.frisbi.in/_next/static/media/logo-black.e417d146.svg",
+        "url": "https://frisbi.in/_next/static/media/logo-black.e417d146.svg",
       },
       "description":
         "India's door-to-door luggage delivery service, specializing in luggage pickup and delivery across Bangalore and nationwide.",
@@ -40,11 +40,6 @@ const schema = {
         "addressLocality": "Bangalore",
         "addressRegion": "Karnataka",
         "addressCountry": "IN",
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 12.9716,
-        "longitude": 77.5946,
       },
       "areaServed": [
         {
@@ -73,45 +68,40 @@ const schema = {
     },
     {
       "@type": "WebSite",
-      "@id": "https://www.frisbi.in/#website",
-      "url": "https://www.frisbi.in",
+      "@id": "https://frisbi.in/#website",
+      "url": "https://frisbi.in",
       "name": "Frisbi",
       "publisher": {
-        "@id": "https://www.frisbi.in/#organization",
-      },
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://www.frisbi.in/search?q={search_term_string}",
-        "query-input": "required name=search_term_string",
+        "@id": "https://frisbi.in/#organization",
       },
     },
     {
       "@type": "WebPage",
-      "@id": "https://www.frisbi.in/#webpage",
-      "url": "https://www.frisbi.in",
+      "@id": "https://frisbi.in/#webpage",
+      "url": "https://frisbi.in",
       "name":
         "Luggage Delivery Service in Bangalore | Trusted Luggage Movers – Frisbi",
       "description":
         "Frisbi offers secure luggage delivery services and trusted luggage movers in Bangalore. Send bags across India with door-to-door pickup and tracking.",
       "isPartOf": {
-        "@id": "https://www.frisbi.in/#website",
+        "@id": "https://frisbi.in/#website",
       },
       "about": {
-        "@id": "https://www.frisbi.in/#organization",
+        "@id": "https://frisbi.in/#organization",
       },
       "breadcrumb": {
-        "@id": "https://www.frisbi.in/#breadcrumb",
+        "@id": "https://frisbi.in/#breadcrumb",
       },
     },
     {
       "@type": "BreadcrumbList",
-      "@id": "https://www.frisbi.in/#breadcrumb",
+      "@id": "https://frisbi.in/#breadcrumb",
       "itemListElement": [
         {
           "@type": "ListItem",
           "position": 1,
           "name": "Home",
-          "item": "https://www.frisbi.in",
+          "item": "https://frisbi.in",
         },
       ],
     },
