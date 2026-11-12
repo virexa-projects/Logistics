@@ -586,6 +586,34 @@ function BaggageChargesIndia() {
                                     </p>
                                 </details>
 
+                                {/* FAQ 6 */}
+                                <details className="group rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+                                    <summary className="flex cursor-pointer list-none items-center justify-between font-semibold text-gray-900">
+                                        How do airlines calculate baggage allowances for domestic and international travel?
+                                        <span className="text-2xl transition-transform group-open:rotate-45">
+                                            +
+                                        </span>
+                                    </summary>
+
+                                    <p className="mt-4 leading-8 text-gray-600">
+                                        Airlines generally calculate limits based on either total baggage weight or the exact number of pieces of baggage you are allowed to check in. If you are carrying an additional piece or traveling on an international connecting flight, rules can vary significantly depending on the carrier and ticket type. Please note that checking your airline's specific baggage guidelines before heading to the airport helps prevent unexpected fees at the counter.
+                                    </p>
+                                </details>
+
+                                {/* FAQ 7 */}
+                                <details className="group rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+                                    <summary className="flex cursor-pointer list-none items-center justify-between font-semibold text-gray-900">
+                                        Is it better to buy pre-purchased airline baggage or ship extra bags separately?
+                                        <span className="text-2xl transition-transform group-open:rotate-45">
+                                            +
+                                        </span>
+                                    </summary>
+
+                                    <p className="mt-4 leading-8 text-gray-600">
+                                        While pre purchased online add-ons are typically cheaper than paying last-minute airport counter rates, pre purchased excess baggage can still become expensive for heavy or oversized suitcases. Many travelers choose to compare airline fees against door-to-door luggage delivery services to save money and avoid carrying heavy bags through busy terminals.
+                                    </p>
+                                </details>
+
                             </div>
 
                         </div>

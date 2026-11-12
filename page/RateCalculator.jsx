@@ -2,16 +2,15 @@
 import React, { useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import dynamic from "next/dynamic";
 import bg from "@/asset/profiles/cta-banner.svg";
 import { motion } from "framer-motion";
 import ShipmentCostCalculator from "@/components/ShipmentCostCalculator";
 import ratecalculator from "@/asset/rate-calculator.png";
 import lugggaevariations from "@/asset/rate-lugggae-mobie.svg";
 
-const FAQ = dynamic(() => import("@/components/RateAccordion"), { ssr: true });
-const Testimonials = dynamic(() => import("@/components/Testimonials"), { ssr: true });
-const MarqueeLogos = dynamic(() => import("@/components/MarqueeLogos"), { ssr: true });
+import FAQ from "@/components/RateAccordion";
+import Testimonials from "@/components/Testimonials";
+import MarqueeLogos from "@/components/MarqueeLogos";
 
 function RateCalculator({ pickupFromUrl, dropFromUrl }) {
   const calculatorSectionRef = useRef(null);
@@ -66,13 +65,13 @@ function RateCalculator({ pickupFromUrl, dropFromUrl }) {
   }, []);
   return (
     <div>
-      <div className="-mt-24 -mt-16 ">
+      <div className="-mt-24">
         <motion.section
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="relative w-full h-[460px] md:h-[460px] overflow-hidden  md:block hidden"
+          className="relative w-full h-[460px] md:h-[460px] overflow-hidden md:block hidden"
         >
           {/* Background Image */}
           <Image
@@ -169,13 +168,13 @@ function RateCalculator({ pickupFromUrl, dropFromUrl }) {
 
             {/* RIGHT IMAGE – BIG */}
             <div className="flex justify-center lg:justify-end">
-              <div className="relative w-full h-[160px] md:h-[480px] lg:h-[full]">
+              <div className="relative w-full h-[160px] md:h-[480px]">
                 <Image
                   src={lugggaevariations}
                   alt="Frisbi luggage delivery illustration"
                   fill
                   sizes="(max-width: 1024px) 100vw, 800px"
-                  className="object-contain "
+                  className="object-contain"
                 />
               </div>
             </div>
@@ -187,11 +186,11 @@ function RateCalculator({ pickupFromUrl, dropFromUrl }) {
         <FAQ />
       </section>
 
-      <section className="  mx-auto relative px-4 py-12 md:py-16 sm:px-6 lg:px-8">
+      <section className="container mx-auto relative px-4 py-12 md:py-16 sm:px-6 lg:px-8">
         <Testimonials />
       </section>
 
-      <section className="w-full px-4 py-12   md:py-20 md:pb-0 ">
+      <section className="w-full px-4 py-12 md:py-20 md:pb-0">
         <div className="relative container mx-auto rounded-3xl overflow-hidden">
           {/* Background Image */}
           <Image
@@ -202,9 +201,6 @@ function RateCalculator({ pickupFromUrl, dropFromUrl }) {
             className="object-cover"
           />
 
-          {/* Gradient overlay */}
-          {/* <div className="absolute inset-0 bg-[#003BE3] " /> */}
-
           {/* CONTENT */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -212,7 +208,7 @@ function RateCalculator({ pickupFromUrl, dropFromUrl }) {
             transition={{ duration: 0.5 }}
             className="relative z-10 text-center py-16 md:py-20 px-6"
           >
-            <h2 className=" text-white mb-4">From Your Door to Their Door.</h2>
+            <h2 className="text-white mb-4">From Your Door to Their Door.</h2>
 
             <p className="text-white mb-8 text-sm md:text-base">
               Fast, safe, and affordable – trusted by thousands across India.
