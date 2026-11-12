@@ -1,25 +1,15 @@
 import React from "react";
-import Image from "next/image";
-import Link from "next/link";
 import dynamic from "next/dynamic";
-import bg from "@/asset/profiles/cta-banner.svg";
 
 import MobileHero from "./mobile-home/MobileHero";
 import MobileAbout from "./mobile-home/MobileAbout";
 import MobileServices from "./mobile-home/MobileServices";
-import MobileBottomNav from "./mobile-home/MobileBottomNav";
 
 const HowYourBagsTravel = dynamic(() => import("@/components/HowYourBagsTravel"), { ssr: true });
-const HowToShip = dynamic(() => import("@/components/HowToShip"), { ssr: true });
-const CustomSlider = dynamic(() => import("@/components/Slider"), { ssr: true });
-const Testimonials = dynamic(() => import("@/components/Testimonials"), { ssr: true });
-const FAQSection = dynamic(() => import("@/components/AccordionCorporate"), { ssr: true });
-const ContactSection = dynamic(() => import("@/components/ContactSection"), { ssr: true });
-const MarqueeLogos = dynamic(() => import("@/components/MarqueeLogos"), { ssr: true });
 
 export default function MobileHome() {
   return (
-    <div className="w-full bg-white text-gray-900 pb-24">
+    <div className="w-full bg-white text-gray-900">
       {/* 1. Hero with PIN calculator & rotating slides title/desc */}
       <MobileHero />
 
@@ -29,79 +19,8 @@ export default function MobileHome() {
       {/* 3. About Frisbi */}
       <MobileAbout />
 
-      {/* 4. Five ways to move your luggage (Sticky stacking cards) */}
+      {/* 4. Three ways to move your luggage (Sticky stacking cards) */}
       <MobileServices />
-
-      {/* 5. How we move your luggage (Steps) */}
-      <section className="content-visibility-auto">
-        <HowToShip />
-      </section>
-
-      {/* 6. Why people choose Frisbi (Slider) */}
-      <section className="relative bg-primary overflow-x-hidden content-visibility-auto">
-        <CustomSlider />
-      </section>
-
-      {/* 7. Customer testimonials */}
-      <section className="container mx-auto relative px-4 py-12 md:py-16 sm:px-6 lg:px-8 content-visibility-auto">
-        <Testimonials />
-      </section>
-
-      {/* 8. Frequently asked questions */}
-      <section className="overflow-x-hidden content-visibility-auto">
-        <div>
-          <FAQSection />
-        </div>
-      </section>
-
-      {/* 9. Contact Section */}
-      <section className="bg-[#F1F2F6] mx-auto overflow-x-hidden content-visibility-auto">
-        <ContactSection />
-      </section>
-
-      {/* 10. Blue CTA Banner */}
-      <section className="w-full px-4 py-12 md:py-16 content-visibility-auto">
-        <div className="relative container mx-auto rounded-3xl overflow-hidden">
-          {/* Background Image */}
-          <Image
-            src={bg}
-            alt="CTA background"
-            fill
-            className="object-cover"
-            sizes="(max-width: 768px) 100vw, 768px"
-          />
-
-          {/* CONTENT */}
-          <div
-            className="relative z-10 text-center py-16 md:py-20 px-6"
-          >
-            <h2 className="text-white mb-4">
-              On-Time Luggage Delivery You Can Plan Around
-            </h2>
-
-            <p className="text-white mb-8 max-w-2xl mx-auto text-sm md:text-base">
-              We know your world does not fit into a 7 kg suitcase. That’s why
-              we move your baggage for you, so you can carry everything you want
-              without worrying about weight or limits.
-            </p>
-
-            <div className="flex flex-wrap justify-center gap-4">
-              <Link
-                href="/contact-us"
-                className="btn-white hover:scale-105 transition-all"
-              >
-                Contact Us
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 11. Powered by marquee */}
-      <MarqueeLogos />
-
-      {/* 12. Fixed bottom navigation */}
-      <MobileBottomNav />
     </div>
   );
 }

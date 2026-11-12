@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { ChevronDown, ChevronUp } from "lucide-react";
 
 const faqData = [
@@ -56,8 +56,6 @@ export default function FAQ() {
     setOpenIndex(openIndex === i ? null : i);
   };
 
-  const visibleFaqs = showAll ? faqData : faqData.slice(0, 5);
-
   return (
     <div className="w-full max-w-3xl mx-auto py-12 md:py-16 px-4">
       <h2 className="text-center mb-10 md:mb-12 lg:mb-16">
@@ -65,12 +63,15 @@ export default function FAQ() {
       </h2>
 
       <div className="space-y-6">
-        {visibleFaqs.map((faq, i) => {
+        {faqData.map((faq, i) => {
           const isOpen = openIndex === i;
+          const isHidden = !showAll && i >= 5;
           return (
             <div
               key={i}
               className={`transition-all duration-300 rounded-2xl ${
+                isHidden ? "hidden" : "block"
+              } ${
                 isOpen
                   ? "bg-white p-6 shadow-2xl"
                   : "py-5 px-2 border-b border-gray-200"
@@ -100,25 +101,22 @@ export default function FAQ() {
                 </div>
               </button>
 
-              <AnimatePresence initial={false}>
-                {isOpen && (
-                  <motion.div
-                    key="content"
-                    id={`faq-answer-${i}`}
-                    role="region"
-                    aria-labelledby={`faq-question-${i}`}
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3, ease: [0.04, 0.62, 0.23, 0.98] }}
-                    className="overflow-hidden"
-                  >
-                    <p className="mt-4 text-second leading-relaxed">
-                      {faq.answer}
-                    </p>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+              <motion.div
+                id={`faq-answer-${i}`}
+                role="region"
+                aria-labelledby={`faq-question-${i}`}
+                initial={false}
+                animate={{
+                  height: isOpen ? "auto" : 0,
+                  opacity: isOpen ? 1 : 0,
+                }}
+                transition={{ duration: 0.3, ease: [0.04, 0.62, 0.23, 0.98] }}
+                className="overflow-hidden"
+              >
+                <p className="mt-4 text-second leading-relaxed">
+                  {faq.answer}
+                </p>
+              </motion.div>
             </div>
           );
         })}
