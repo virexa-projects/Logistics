@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { ChevronDown, ChevronUp } from "lucide-react";
 
 const faqData = [
@@ -40,8 +40,14 @@ const faqData = [
     answer:
       "Standard takes longer (5-7 days) so we can optimize routes and vehicle loads. Express and Premium require priority handling, faster trucks, and dedicated scheduling, which increases operational costs reflected in pricing.",
   },
-  
-
+  {
+    question: "Can I ship cabin baggage, checked baggage, or excess baggage with Frisbi?",
+    answer: "Yes, Frisbi handles all standard travel luggage sizes, including cabin baggage, checked baggage, and heavy suitcases. If you are flying and exceed your airline's free baggage allowance, sending your additional baggage or excess baggage door-to-door with Frisbi is a convenient, cost-effective alternative to paying steep airport counter fees. Simply enter the dimensions and weight of each bag into our rate calculator above for an instant estimate."
+  },
+  {
+    question: "Is there a maximum weight limit or a list of restricted items for luggage delivery?",
+    answer: "To ensure safe handling and smooth transit across Bangalore and nationwide, each bag must stay within the maximum weight and size limits specified in the rate calculator. For safety and regulatory compliance, hazardous materials, flammable liquids, explosives, and perishable goods are strictly prohibited. Before packing your bags for pickup, please refer to our complete shipping guidelines and list of restricted items to avoid any delay"
+  }
 ];
 
 export default function FAQ() {
@@ -52,60 +58,62 @@ export default function FAQ() {
     setOpenIndex(openIndex === i ? null : i);
   };
 
-  const visibleFaqs = showAll ? faqData : faqData.slice(0, 5);
-
   return (
-    <div className="w-full max-w-3xl mx-auto py-12 md:pt-16  md:pb-24 px-4">
+    <div className="w-full max-w-3xl mx-auto py-12 md:pt-16 md:pb-24 px-4">
       <h2 className="text-center mb-10 md:mb-12 lg:mb-16">Questions about pricing and payments</h2>
 
       <div className="space-y-6">
-        {visibleFaqs.map((faq, i) => {
+        {faqData.map((faq, i) => {
           const isOpen = openIndex === i;
+          const isHidden = !showAll && i >= 5;
           return (
             <div
               key={i}
-              className={`transition-all duration-300 rounded-2xl ${
-                isOpen
+              className={`transition-all duration-300 rounded-2xl ${isHidden ? "hidden" : "block"
+                } ${isOpen
                   ? "bg-white p-6 shadow-2xl"
                   : "py-5 px-2 border-b border-gray-200"
-              }`}
+                }`}
             >
-              <div
-                className="flex justify-between items-center cursor-pointer select-none gap-4"
+              <button
+                type="button"
                 onClick={() => toggle(i)}
+                aria-expanded={isOpen}
+                aria-controls={`rate-faq-answer-${i}`}
+                id={`rate-faq-question-${i}`}
+                className="w-full text-left flex justify-between items-center cursor-pointer select-none gap-4 focus:outline-none"
               >
                 <h3
-                  className={`!text-[20px] transition-colors duration-200 ${
-                    isOpen ? "font-semibold text-gray-900" : "font-medium text-gray-900"
-                  }`}
+                  className={`!text-[20px] transition-colors duration-200 ${isOpen ? "font-semibold text-gray-900" : "font-medium text-gray-900"
+                    }`}
                 >
                   {faq.question}
                 </h3>
                 <div className="shrink-0 text-black">
                   {isOpen ? (
-                    <ChevronUp className="w-6 h-6 transition-transform duration-200" />
+                    <ChevronUp className="w-6 h-6 transition-transform duration-200" aria-hidden="true" />
                   ) : (
-                    <ChevronDown className="w-6 h-6 transition-transform duration-200" />
+                    <ChevronDown className="w-6 h-6 transition-transform duration-200" aria-hidden="true" />
                   )}
                 </div>
-              </div>
+              </button>
 
-              <AnimatePresence initial={false}>
-                {isOpen && (
-                  <motion.div
-                    key="content"
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3, ease: [0.04, 0.62, 0.23, 0.98] }}
-                    className="overflow-hidden"
-                  >
-                    <p className="mt-4 text-second leading-relaxed">
-                      {faq.answer}
-                    </p>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+              <motion.div
+                id={`rate-faq-answer-${i}`}
+                role="region"
+                aria-labelledby={`rate-faq-question-${i}`}
+                initial={false}
+                animate={{
+                  height: isOpen ? "auto" : 0,
+                  opacity: isOpen ? 1 : 0,
+                }}
+                transition={{ duration: 0.3, ease: [0.04, 0.62, 0.23, 0.98] }}
+                className="overflow-hidden"
+              >
+                <p className="mt-4 text-second leading-relaxed">
+                  {faq.answer}
+                </p>
+              </motion.div>
             </div>
           );
         })}

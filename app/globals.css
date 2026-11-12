@@ -404,3 +404,12 @@ body {
 .animate-fade-in {
   animation: fadeInSimple 0.2s ease-out forwards;
 }
+
+@keyframes marqueeScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee-scroll {
+  animation: marqueeScroll 20s linear infinite;
+}

@@ -1,10 +1,10 @@
 "use client";
-import React, { useState } from "react";
-import bg from "@/asset/profiles/cta-banner.svg"; // <<< CHANGE TO YOUR BG IMAGE
+import React from "react";
+import bg from "@/asset/profiles/cta-banner.svg";
 import About from "@/asset/home/about-frisbi.png";
 import Link from "next/link";
 import Image from "next/image";
-import { Check, Minus, NetworkIcon, Plus } from "lucide-react";
+import { Check } from "lucide-react";
 
 import dynamic from "next/dynamic";
 
@@ -18,138 +18,106 @@ const HowToShip = dynamic(() => import("@/components/HowToShip"), { ssr: true })
 const Testimonials = dynamic(() => import("@/components/Testimonials"), { ssr: true });
 const HowYourBagsTravel = dynamic(() => import("@/components/HowYourBagsTravel"), { ssr: true });
 const MobileHome = dynamic(() => import("@/components/MobileHome"), { ssr: true });
-import Packing from "@/asset/icon/express.svg";
+const MobileBottomNav = dynamic(() => import("@/components/mobile-home/MobileBottomNav"), { ssr: true });
 
 function Home() {
-  const faqData = [
-    {
-      id: 1,
-      title: "1. Get an Instant Quote",
-      content:
-        "Enter your pickup city, destination city, and number of bags to get a clear, upfront price—no hidden charges",
-    },
-    {
-      id: 2,
-      title: "2. Schedule Your Pickup",
-      content:
-        "Choose a convenient pickup date, time, and location (home, hotel, office, hostel, PG or Airbnb). We’ll confirm everything and assign a coordinator.",
-    },
-    {
-      id: 3,
-      title: "3. Handover Your Luggage",
-      content:
-        "Our executive arrives at your location, scans and secures your bags, applies seals, and shares digital proof of pickup. Optional premium packaging is available.",
-    },
-    {
-      id: 4,
-      title: "4. Track & Receive Delivery",
-      content:
-        "Track your shipment through our website with live status updates. Your luggage is delivered safely at your destination with digital proof of delivery.",
-    },
-    {
-      id: 5,
-      title: "5. Support & Rewards",
-      content:
-        "Benefit from 24/7 dedicated customer support and real-time shipment tracking to ensure a seamless service experience.",
-    },
-  ];
-
-  const [open, setOpen] = useState(1);
-
   return (
-    <div>
-      {/* DESKTOP VIEW */}
+    <div className="pb-20 md:pb-0">
+      {/* DESKTOP-SPECIFIC TOP SECTIONS */}
       <div className="hidden md:block">
         <HeroSlider />
 
         {/* HOW YOUR BAGS TRAVEL (Desktop right-to-left auto-scroll) */}
         <HowYourBagsTravel variant="desktop" />
 
-      <section className="container mx-auto relative px-4 py-12 md:py-16 sm:px-6 lg:px-8">
-        {/* Section Heading */}
-        <div className="relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Content */}
-            <div className="flex flex-col justify-center">
-              <h2 className="!text-[18px] md:!text-[20px] font-bold leading-[1.2em] text-center md:text-start mb-4">
-                About Frisbi
-              </h2>
-              <h2 className="md:text-left text-center mb-4">
-                Built for worry-free luggage delivery across cities
-              </h2>
-              <p className="text-second mb-8 text-center md:text-left max-w-xl leading-relaxed">
-                We started because dragging 20kg through airports didn’t make
-                sense. Neither did paying ₹2,000 in excess baggage fees or
-                leaving behind things you actually need. So we built a reliable
-                luggage delivery service made for real travel. Your luggage now
-                travels just as safely as you do.
-              </p>
+        <section className="container mx-auto relative px-4 py-12 md:py-16 sm:px-6 lg:px-8">
+          {/* Section Heading */}
+          <div className="relative z-10">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              {/* Content */}
+              <div className="flex flex-col justify-center">
+                <h2 className="!text-[18px] md:!text-[20px] font-bold leading-[1.2em] text-center md:text-start mb-4">
+                  About Frisbi
+                </h2>
+                <h2 className="md:text-left text-center mb-4">
+                  Built for worry-free luggage delivery across cities
+                </h2>
+                <p className="text-second mb-8 text-center md:text-left max-w-xl leading-relaxed">
+                  We started because dragging 20kg through airports didn’t make
+                  sense. Neither did paying ₹2,000 in excess baggage fees or
+                  leaving behind things you actually need. So we built a reliable
+                  luggage delivery service made for real travel. Your luggage now
+                  travels just as safely as you do.
+                </p>
 
-              <ul className="space-y-3 font-medium text-[15px] mb-8">
+                <ul className="space-y-3 font-medium text-[15px] mb-8">
+                  <li className="flex items-start gap-3">
+                    <Check className="w-5 h-5 text-primary mt-0.5" />
+                    Door step pickup and delivery
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <Check className="w-5 h-5 text-primary mt-0.5" />
+                    Dedicated point of contact for every shipment
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <Check className="w-5 h-5 text-primary mt-0.5" />
+                    Live tracking from pickup to delivery
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <Check className="w-5 h-5 text-primary mt-0.5" />
+                    Service available across 25,000+ pincodes in India
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <Check className="w-5 h-5 text-primary mt-0.5" />
+                    24/7 support, Live tracking from pickup to delivery
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <Check className="w-5 h-5 text-primary mt-0.5" />
+                    Professional packing using sturdy boxes
+                  </li>
+                </ul>
 
-                <li className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-primary mt-0.5" />
-                  Door step pickup and delivery
-                </li>
-                <li className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-primary mt-0.5" />
-                  Dedicated point of contact for every shipment
-                </li>
-                <li className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-primary mt-0.5" />
-                  Live tracking from pickup to delivery
-                </li>
-
-                <li className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-primary mt-0.5" />
-                  Service available across 25,000+ pincodes in India
-                </li>
-
-                <li className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-primary mt-0.5" />
-                  24/7 support, Live tracking from pickup to delivery
-                </li>
-
-                <li className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-primary mt-0.5" />
-                  Professional packing using sturdy boxes
-                </li>
-              </ul>
-
-              {/* CTA */}
-              <div className="flex justify-center md:justify-start">
-                <Link
-                  href="/about"
-                  className="btn-primary transition-transform hover:scale-105"
-                >
-                  Know More
-                </Link>
+                {/* CTA */}
+                <div className="flex justify-center md:justify-start">
+                  <Link
+                    href="/about"
+                    className="btn-primary transition-transform hover:scale-105"
+                  >
+                    Know More
+                  </Link>
+                </div>
               </div>
-            </div>
 
-            {/* Image */}
-            <div className="flex justify-center lg:justify-end">
-              <div className="relative w-full max-w-xl h-[280px] md:h-[500px] rounded-2xl overflow-hidden">
-                <Image
-                  src={About}
-                  alt="Frisbi luggage delivery illustration"
-                  fill
-                  className="object-contain"
-                  sizes="(max-width: 1024px) 100vw, 550px"
-                />
+              {/* Image */}
+              <div className="flex justify-center lg:justify-end">
+                <div className="relative w-full max-w-xl h-[280px] md:h-[500px] rounded-2xl overflow-hidden">
+                  <Image
+                    src={About}
+                    alt="Frisbi luggage delivery illustration"
+                    fill
+                    className="object-contain"
+                    sizes="(max-width: 1024px) 100vw, 550px"
+                  />
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="bg-[#F1F2F6] overflow-x-hidden">
-        <ServicesSection
-          heading="Three ways to move your luggage. One way to travel lighter."
-          showFeatures={false}
-        />
-      </section>
+        <section className="bg-[#F1F2F6] overflow-x-hidden">
+          <ServicesSection
+            heading="Three ways to move your luggage. One way to travel lighter."
+            showFeatures={false}
+          />
+        </section>
+      </div>
 
+      {/* MOBILE-SPECIFIC TOP SECTIONS */}
+      <div className="block md:hidden">
+        <MobileHome />
+      </div>
+
+      {/* SHARED SECTIONS (RENDERED ONCE FOR BOTH DESKTOP AND MOBILE) */}
       <HowToShip />
 
       <section className="relative bg-primary overflow-x-hidden">
@@ -160,15 +128,15 @@ function Home() {
         <Testimonials />
       </section>
 
-      <section className=" overflow-x-hidden ">
+      <section className="overflow-x-hidden">
         <div>
           <FAQSection />
         </div>
       </section>
-      <section className=" bg-[#F1F2F6] mx-auto overflow-x-hidden ">
+
+      <section className="bg-[#F1F2F6] mx-auto overflow-x-hidden">
         <ContactSection />
       </section>
-
 
       <section className="w-full px-4 py-12 md:py-16">
         <div className="relative container mx-auto rounded-3xl overflow-hidden">
@@ -181,14 +149,9 @@ function Home() {
             sizes="(max-width: 1220px) 100vw, 1220px"
           />
 
-          {/* Gradient overlay */}
-          {/* <div className="absolute inset-0 bg-[#003BE3] " /> */}
-
           {/* CONTENT */}
-          <div
-            className="relative z-10 text-center py-16 md:py-20 px-6"
-          >
-            <h2 className=" text-white mb-4">
+          <div className="relative z-10 text-center py-16 md:py-20 px-6">
+            <h2 className="text-white mb-4">
               On-Time Luggage Delivery You Can Plan Around
             </h2>
 
@@ -210,12 +173,11 @@ function Home() {
         </div>
       </section>
 
-        <MarqueeLogos />
-      </div>
+      <MarqueeLogos />
 
-      {/* MOBILE VIEW - Figma Reference UI, Cards & Scroll Methods */}
+      {/* Mobile Fixed Navigation Bar (hidden on md+ screens) */}
       <div className="block md:hidden">
-        <MobileHome />
+        <MobileBottomNav />
       </div>
     </div>
   );

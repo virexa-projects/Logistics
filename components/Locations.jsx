@@ -108,7 +108,6 @@ export default function TransformingCities() {
     Vijayawada,
   };
 
-  const visibleCities = showAll ? cities : cities.slice(0, 21);
 
   return (
     <section className="relative w-full bg-primary py-12 md:py-16 lg:py-24">
@@ -116,8 +115,13 @@ export default function TransformingCities() {
         <h2 className="text-center text-white">Connecting Cities, Made Simple</h2>
 
         <div className="mt-16 grid grid-cols-3 sm:grid-cols-4 md:grid-cols-7 gap-y-12 gap-x-6 place-items-center">
-          {visibleCities.map((city) => (
-            <div key={city} className="flex flex-col items-center">
+          {cities.map((city, i) => (
+            <div
+              key={city}
+              className={`flex flex-col items-center ${
+                !showAll && i >= 21 ? "hidden" : ""
+              }`}
+            >
               <Image
                 src={cityImages[city] || DefaultCity}
                 alt={city}

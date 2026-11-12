@@ -45,18 +45,8 @@ export default function Testimonials() {
       <h2 className="text-center mb-4">What customers actually say</h2>
       <p className="mb-6 text-center text-second">Real feedback. Unedited.</p>
 
-      <style>{`
-        @keyframes marqueeScroll {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-      `}</style>
-
       <div className="overflow-hidden mt-16 w-full space-y-6">
-        <div
-          className="flex gap-6 w-max"
-          style={{ animation: "marqueeScroll 20s linear infinite" }}
-        >
+        <div className="flex gap-6 w-max animate-marquee-scroll">
           {[...marqueeReviews, ...marqueeReviews].map((item, i) => (
             <div
               key={i}

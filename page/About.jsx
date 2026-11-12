@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import dynamic from "next/dynamic";
 import Link from "next/link";
 
 import About from "@/asset/home/about-frisbi.png";
@@ -11,12 +10,12 @@ import aboutmobile from "@/asset/about/about-banner-img.svg";
 import vision from "@/asset/about/vision.png";
 import mission from "@/asset/about/mission.jpeg";
 
-const Stats = dynamic(() => import("@/components/Stats"), { ssr: true });
-const TransformingCities = dynamic(() => import("@/components/Locations"), { ssr: true });
-const Testimonials = dynamic(() => import("@/components/Testimonials"), { ssr: true });
-const ContactSection = dynamic(() => import("@/components/ContactSection"), { ssr: true });
-const CallToAction = dynamic(() => import("@/components/CallToActionabout"), { ssr: true });
-const MarqueeLogos = dynamic(() => import("@/components/MarqueeLogos"), { ssr: true });
+import Stats from "@/components/Stats";
+import TransformingCities from "@/components/Locations";
+import Testimonials from "@/components/Testimonials";
+import ContactSection from "@/components/ContactSection";
+import CallToAction from "@/components/CallToActionabout";
+import MarqueeLogos from "@/components/MarqueeLogos";
 
 function Aboutus() {
   return (
@@ -38,7 +37,6 @@ function Aboutus() {
           sizes="100vw"
           className="md:object-contain object-cover bg-center"
         />
-        {/* <div className="absolute inset-0 bg-black/30 " /> */}
         {/* CONTENT */}
         <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 max-w-3xl mx-auto">
           <h1 className="text-black text-3xl md:text-4xl font-semibold mb-4">
@@ -110,7 +108,7 @@ function Aboutus() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Content */}
             <div className="flex flex-col justify-center">
-              <h2 className="text-center md:text-start  mb-4 !font-semibold !text-[20px]">
+              <h2 className="text-center md:text-start mb-4 !font-semibold !text-[20px]">
                 The Idea Behind Frisbi
               </h2>
               <h2 className="md:text-left text-center mb-4">
