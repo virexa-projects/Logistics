@@ -2,9 +2,8 @@
 
 import React from "react";
 import Image from "next/image";
-import dynamic from "next/dynamic";
 import { Check } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import Link from "next/link";
 
 // Assets
@@ -17,17 +16,17 @@ import Hidden from "@/asset/icon/hidden-charges.svg";
 import herobg from "@/asset/service/standard-banner-img.svg";
 import one from "@/asset/service/standard-overview-1.webp";
 
-// SSR-Safe Progressive Imports
-const ContactSection = dynamic(() => import("@/components/ContactSection"), { ssr: true });
-const ServiceFAQSection = dynamic(() => import("@/components/ServiceAccordion"), { ssr: true });
-const CallToAction = dynamic(() => import("@/components/CallToActionStandard"), { ssr: true });
-const PricingStructure = dynamic(() => import("@/components/PricingStructure"), { ssr: true });
-const Keyfuture = dynamic(() => import("@/components/Keyfuture"), { ssr: true });
-const PackageGuidelines = dynamic(() => import("@/components/PackageGuidelines"), { ssr: true });
-const HowItWorks = dynamic(() => import("@/components/OurProcess"), { ssr: true });
-const Testimonials = dynamic(() => import("@/components/Testimonials"), { ssr: true });
-const TransformingCities = dynamic(() => import("@/components/Locations"), { ssr: true });
-const MarqueeLogos = dynamic(() => import("@/components/MarqueeLogos"), { ssr: true });
+// Components
+import ContactSection from "@/components/ContactSection";
+import ServiceFAQSection from "@/components/ServiceAccordion";
+import CallToAction from "@/components/CallToActionStandard";
+import PricingStructure from "@/components/PricingStructure";
+import Keyfuture from "@/components/Keyfuture";
+import PackageGuidelines from "@/components/PackageGuidelines";
+import HowItWorks from "@/components/OurProcess";
+import Testimonials from "@/components/Testimonials";
+import TransformingCities from "@/components/Locations";
+import MarqueeLogos from "@/components/MarqueeLogos";
 
 export default function Services() {
   const steps = [
@@ -84,7 +83,7 @@ export default function Services() {
   };
 
   return (
-    <div className="-mt-24 -mt-16">
+    <div className="-mt-24">
       {/* HERO */}
       <section className="relative bg-white overflow-hidden">
         <div className="container mx-auto px-4 pt-28 pb-12 md:pt-28 md:pb-5">
@@ -199,8 +198,8 @@ export default function Services() {
       <HowItWorks />
       <TransformingCities />
 
-      {/* FAQ */}
-      <section className=" ">
+      {/* WHY CHOOSE */}
+      <section>
         <div className="py-24 bg-white">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-center mb-4">Why Choose Standard Delivery?</h2>
@@ -211,12 +210,8 @@ export default function Services() {
                   <div className="flex flex-col items-center text-center">
                     <div className="relative mb-4">
                       <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center">
-                        <Image src={step.icon} alt="icon
-                        " width={28} height={28} />
+                        <Image src={step.icon} alt={step.title} width={28} height={28} />
                       </div>
-                      {/* <div className="absolute -top-3 -right-1 w-7 h-7 bg-white text-black rounded-full shadow-xl flex items-center justify-center text-xs font-semibold">
-                        {step.number}
-                      </div> */}
                     </div>
                     <h3 className="mb-2 !text-[20px]">{step.title}</h3>
                     <p className="text-second">{step.description}</p>
@@ -236,7 +231,7 @@ export default function Services() {
         <Testimonials />
       </section>
       <section
-        className=" bg-[#F1F2F6] mx-auto overflow-x-hidden "
+        className="bg-[#F1F2F6] mx-auto overflow-x-hidden"
         id="contact"
       >
         <ContactSection />

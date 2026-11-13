@@ -2,26 +2,21 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import bg from "@/asset/profiles/cta-banner.svg"; // <<< CHANGE TO YOUR BG IMAGE
+import Link from "next/link";
+import bg from "@/asset/profiles/cta-banner.svg";
 
 export default function CallToAction() {
   return (
     <section className="w-full px-4 md:px-10 my-24 md:mb-0">
       <div className="relative container mx-auto rounded-3xl overflow-hidden">
-
         {/* Background Image */}
         <Image
           src={bg}
           alt="CTA background"
           fill
-          sizes="100vw"
+          sizes="(max-width: 1220px) 100vw, 1220px"
           className="object-cover"
         />
-
-        {/* Gradient overlay */}
-        {/* <div className="absolute inset-0 bg-[#003BE3] " /> */}
-
-      
 
         {/* CONTENT */}
         <motion.div
@@ -36,17 +31,16 @@ export default function CallToAction() {
 
           <p className="text-white mb-8 text-sm md:text-base">
             Fast, safe, and affordable. Trusted by thousands across India.
-
           </p>
 
           <div className="flex flex-wrap justify-center gap-4">
-            <a href="/rate-calculator" className="btn-white hover:scale-105 transition-all">
-              Book  Now
-            </a>
+            <Link href="/rate-calculator" className="btn-white hover:scale-105 transition-all">
+              Book Now
+            </Link>
 
-            <a href="/contact-us" className="btn-white-outline hover:scale-105 transition-all">
+            <Link href="/contact-us" className="btn-white-outline hover:scale-105 transition-all">
               Contact Support
-            </a>
+            </Link>
           </div>
         </motion.div>
       </div>
