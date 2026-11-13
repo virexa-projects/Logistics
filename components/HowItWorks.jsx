@@ -53,9 +53,6 @@ export function HowItWorks() {
                   <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center">
                     <step.icon className="w-8 h-8 text-white" />
                   </div>
-                  {/* <div className="absolute -top-1 -right-1 w-7 h-7 bg-white text-black rounded-full flex items-center justify-center text-xs font-semibold">
-                    {step.number}
-                  </div> */}
                 </div>
                 <h3 className="mb-2 !text-[20px]">{step.title}</h3>
                 <p className="text-second">{step.description}</p>

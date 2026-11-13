@@ -5,7 +5,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import MarqueeLogos from "@/components/MarqueeLogos";
 import { Safety } from "@/components/SafetyIndividual";
-import bg from "@/asset/profiles/cta-banner.svg"; // <<< CHANGE TO YOUR BG IMAGE
+import bg from "@/asset/profiles/cta-banner.svg";
 import Link from "next/link";
 import Testimonials from "@/components/Testimonials";
 import herobg from "@/asset/service/individual.svg";
@@ -14,9 +14,7 @@ import FAQSection from "@/components/AccordionIndividual";
 import ContactSection from "@/components/ContactSection";
 import { PerfectFor } from "@/components/PerfectFor";
 import { WhyChoose } from "@/components/Whychoose";
-import { WhenToUse } from "@/components/WhenToUse";
 import { HowItWorks } from "@/components/HowItWorksindividual";
-import CallToAction from "@/components/CallToActioncorporate";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -25,7 +23,7 @@ const fadeUp = {
 
 function Individual() {
   return (
-    <div className="-mt-24 -mt-16">
+    <div className="-mt-24">
       {/* HERO SECTION */}
       <section className="relative bg-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 pt-28 pb-12 md:pt-28 md:pb-0">
@@ -37,7 +35,7 @@ function Individual() {
                 initial="hidden"
                 animate="visible"
                 transition={{ duration: 0.6, delay: 0.1 }}
-                className="text-black font-extrabol mb-6"
+                className="text-black font-bold mb-6"
               >
                 Personal Baggage Transport & Individual Luggage Shipping Across Bangalore
               </motion.h1>
@@ -50,7 +48,6 @@ function Individual() {
                 className="text-black text-lg md:text-xl max-w-xl mb-6"
               >
                 Frisbi makes personal travel easier by taking the weight off your shoulders
-
               </motion.p>
 
               <motion.p
@@ -61,7 +58,6 @@ function Individual() {
                 className="text-black max-w-xl mb-8"
               >
                 Whether you're moving between cities, heading to a hotel, planning a pilgrimage, or exploring tourist spots, we pick up your luggage from your doorstep and deliver it safely to your destination so you can travel hands-free and stress-free.
-
               </motion.p>
 
               <motion.div
@@ -84,6 +80,7 @@ function Individual() {
                 alt="Individual Luggage Delivery"
                 fill
                 priority
+                fetchPriority="high"
                 sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-contain"
               />
@@ -92,41 +89,35 @@ function Individual() {
         </div>
       </section>
 
-
-
       {/* SECTIONS */}
       <PerfectFor />
       <WhyChoose />
       <Safety />
       <HowItWorks />
 
-      <section className="  mx-auto relative px-4 py-12 md:py-16  sm:px-6 lg:px-8">
+      <section className="mx-auto relative px-4 py-12 md:py-16 sm:px-6 lg:px-8">
         <Testimonials />
       </section>
-      <section className=" overflow-x-hidden ">
+      <section className="overflow-x-hidden">
         <div>
           <FAQSection />
         </div>
       </section>
-      <section className=" bg-[#F1F2F6] mx-auto overflow-x-hidden ">
+      <section className="bg-[#F1F2F6] mx-auto overflow-x-hidden">
         <ContactSection />
       </section>
 
-
-
-      <section className="px-4 py-12   md:py-20 md:pb-0 ">
+      <section className="w-full px-4 py-12 md:py-20 md:pb-0">
         <div className="relative container mx-auto rounded-3xl overflow-hidden">
           {/* Background Image */}
           <Image
             src={bg}
             alt="CTA background"
             fill
+            sizes="(max-width: 1220px) 100vw, 1220px"
             className="object-cover"
             priority
           />
-
-          {/* Gradient overlay */}
-          {/* <div className="absolute inset-0 bg-[#003BE3] " /> */}
 
           {/* CONTENT */}
           <motion.div
@@ -135,7 +126,7 @@ function Individual() {
             transition={{ duration: 0.5 }}
             className="relative z-10 text-center py-16 md:py-20 px-6"
           >
-            <h2 className=" text-white mb-4">Your next trip doesn't need to feel heavy.</h2>
+            <h2 className="text-white mb-4">Your next trip doesn't need to feel heavy.</h2>
 
             <p className="text-white mb-8 text-sm md:text-base">
               Thousands already ship their bags with us. Your turn.
@@ -147,7 +138,6 @@ function Individual() {
                 className="btn-white hover:scale-105 transition-all"
               >
                 Book Now
-
               </Link>
             </div>
           </motion.div>

@@ -81,8 +81,8 @@ export default function FAQ() {
                 type="button"
                 onClick={() => toggle(i)}
                 aria-expanded={isOpen}
-                aria-controls={`faq-answer-${i}`}
-                id={`faq-question-${i}`}
+                aria-controls={`corporate-faq-answer-${i}`}
+                id={`corporate-faq-question-${i}`}
                 className="w-full text-left flex justify-between items-center cursor-pointer select-none gap-4 focus:outline-none"
               >
                 <h3
@@ -102,9 +102,9 @@ export default function FAQ() {
               </button>
 
               <motion.div
-                id={`faq-answer-${i}`}
+                id={`corporate-faq-answer-${i}`}
                 role="region"
-                aria-labelledby={`faq-question-${i}`}
+                aria-labelledby={`corporate-faq-question-${i}`}
                 initial={false}
                 animate={{
                   height: isOpen ? "auto" : 0,

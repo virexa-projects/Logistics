@@ -14,12 +14,12 @@ export function Comparison() {
 
   const renderIcon = (value) => {
     if (value === true) {
-      return <Check className="w-6 h-6 text-green-600" />;
+      return <Check className="w-6 h-6 text-green-600" aria-label="Supported" />;
     }
     if (value === false) {
-      return <X className="w-6 h-6 text-red-500" />;
+      return <X className="w-6 h-6 text-red-500" aria-label="Not supported" />;
     }
-    return <AlertTriangle className="w-6 h-6 text-yellow-500" />;
+    return <AlertTriangle className="w-6 h-6 text-yellow-500" aria-label="Partially supported" />;
   };
 
   return (

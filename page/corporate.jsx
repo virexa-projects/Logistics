@@ -4,7 +4,7 @@ import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import MarqueeLogos from "@/components/MarqueeLogos";
-import bg from "@/asset/profiles/cta-banner.svg"; // <<< CHANGE TO YOUR BG IMAGE
+import bg from "@/asset/profiles/cta-banner.svg";
 import Link from "next/link";
 import Testimonials from "@/components/Testimonials";
 import herobg from "@/asset/service/corporate.svg";
@@ -16,9 +16,9 @@ import { HowItWorks } from "@/components/HowItWorks";
 import { Comparison } from "@/components/CorporateComparison";
 import { Scale } from "@/components/Scale";
 import { Safety } from "@/components/Safety";
-import CallToAction from "@/components/CallToActioncorporate";
 import FAQSection from "@/components/AccordionCorporate";
 import ContactSection from "@/components/ContactSection";
+
 function Corporate() {
   const fadeUp = {
     initial: { opacity: 0, y: 20 },
@@ -27,7 +27,7 @@ function Corporate() {
   };
 
   return (
-    <div className="-mt-28 ">
+    <div className="-mt-28">
       {/* HERO SECTION */}
       <section className="relative bg-white overflow-hidden">
         <div className="container mx-auto px-4 pt-28 pb-12 md:pt-28 md:pb-0">
@@ -56,15 +56,12 @@ function Corporate() {
                 className="text-black max-w-xl mb-7"
               >
                 Ideal for corporate travel managers, event planners, tour operators, and pilgrimage organizers managing large groups across locations.
-
               </motion.p>
 
-
-
               <motion.div {...fadeUp} transition={{ delay: 0.5 }}>
-                <a href="/rate-calculator" className="btn-primary hover:scale-105 transition-all pt-5">
+                <Link href="/rate-calculator" className="btn-primary hover:scale-105 transition-all pt-5">
                   Get a Custom Corporate Quote
-                </a>
+                </Link>
               </motion.div>
             </div>
 
@@ -75,17 +72,14 @@ function Corporate() {
                 alt="Corporate Luggage Delivery"
                 fill
                 priority
+                fetchPriority="high"
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-contain"
               />
-
-              {/* Optional gradient on image */}
-              {/* <div className="absolute inset-0 bg-gradient-to-l from-white/70 to-transparent"></div> */}
             </div>
           </div>
         </div>
       </section>
-
-
 
       <TrustedBy />
 
@@ -97,33 +91,29 @@ function Corporate() {
       <Scale />
       <Safety />
 
-      <section className="  mx-auto relative px-4 py-12 md:py-16  sm:px-6 lg:px-8">
+      <section className="mx-auto relative px-4 py-12 md:py-16 sm:px-6 lg:px-8">
         <Testimonials />
       </section>
-      <section className=" overflow-x-hidden ">
+      <section className="overflow-x-hidden">
         <div>
           <FAQSection />
         </div>
       </section>
-      <section className=" bg-[#F1F2F6] mx-auto overflow-x-hidden ">
+      <section className="bg-[#F1F2F6] mx-auto overflow-x-hidden">
         <ContactSection />
       </section>
 
-
-
-      <section className="w-full px-4 py-12   md:py-20 md:pb-0 ">
+      <section className="w-full px-4 py-12 md:py-20 md:pb-0">
         <div className="relative container mx-auto rounded-3xl overflow-hidden">
           {/* Background Image */}
           <Image
             src={bg}
             alt="CTA background"
             fill
+            sizes="(max-width: 1220px) 100vw, 1220px"
             className="object-cover"
             priority
           />
-
-          {/* Gradient overlay */}
-          {/* <div className="absolute inset-0 bg-[#003BE3] " /> */}
 
           {/* CONTENT */}
           <motion.div
@@ -132,7 +122,7 @@ function Corporate() {
             transition={{ duration: 0.5 }}
             className="relative z-10 text-center py-16 md:py-20 px-6"
           >
-            <h2 className=" text-white mb-4">Built for schedules that can’t slip</h2>
+            <h2 className="text-white mb-4">Built for schedules that can’t slip</h2>
 
             <p className="text-white mb-8 text-sm md:text-base">
               Planned pickups, committed delivery windows, and clear ownership throughout.
