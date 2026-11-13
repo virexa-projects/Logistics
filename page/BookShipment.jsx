@@ -2,7 +2,6 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import MarqueeLogos from "@/components/MarqueeLogos";
 import ShipmentForm from "@/components/ShipmentForm";
 import FAQ from "@/components/AccordionCorporate";
 import bookshipment from "@/asset/book-shipment.png";
@@ -13,7 +12,7 @@ import aboutmobile from "@/asset/shippment/book-shipment.svg";
 function BookShipment({ bookingData }) {
   return (
     <div>
-      <div className="-mt-24 -mt-16 ">
+      <div className="-mt-24">
         <motion.section
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -23,15 +22,14 @@ function BookShipment({ bookingData }) {
         >
           {/* Background Image */}
           <Image
-            src={bookshipment} // your hero image path
-            alt="About Background"
+            src={bookshipment}
+            alt="Book Luggage Shipment Online | Frisbi"
             fill
             priority
+            fetchPriority="high"
+            sizes="100vw"
             className="md:object-contain object-cover bg-center"
           />
-
-          {/* Gradient Overlay */}
-          {/* <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/40 to-blue-700/90"></div> */}
 
           {/* CONTENT */}
           <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 max-w-3xl mx-auto">
@@ -77,9 +75,11 @@ function BookShipment({ bookingData }) {
               <div className="relative w-full h-[260px] sm:h-[300px] md:h-[420px] flex justify-center">
                 <Image
                   src={aboutmobile}
-                  alt="Hero"
+                  alt="Book luggage shipment delivery online"
                   fill
                   priority
+                  fetchPriority="high"
+                  sizes="(max-width: 768px) 100vw, 420px"
                   className="object-contain"
                 />
               </div>

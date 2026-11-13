@@ -5,28 +5,24 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import servicesmobile from "@/asset/shippment/services-banner.svg";
-import bg from "@/asset/profiles/cta-banner.svg"; // <<< CHANGE TO YOUR BG IMAGE
+import bg from "@/asset/profiles/cta-banner.svg";
 
 // Assets
 import heroBg from "@/asset/services.png";
-import one from "@/asset/service/1.png";
-import two from "@/asset/service/2.png";
-import three from "@/asset/service/3.png";
 
 // Components
 import ServicesSection from "@/components/ServiceCard";
 import MarqueeLogos from "@/components/MarqueeLogos";
-
 import FAQSection from "@/components/AccordionServices";
 import ContactSection from "@/components/ContactSection";
-import CallToAction from "@/components/CallToAction";
 import Testimonials from "@/components/Testimonials";
 import Comparison from "@/components/ComparisonServices";
+
 export default function Services() {
   return (
     <div className="w-full">
       {/* ================= HERO ================= */}
-      <div className="-mt-24 -mt-16">
+      <div className="-mt-24">
         <motion.section
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -36,9 +32,11 @@ export default function Services() {
         >
           <Image
             src={heroBg}
-            alt="Services Hero"
+            alt="Reliable Luggage Shipping & Baggage Delivery Services | Frisbi"
             fill
             priority
+            fetchPriority="high"
+            sizes="100vw"
             className="md:object-contain object-cover bg-center"
           />
 
@@ -92,9 +90,11 @@ export default function Services() {
               <div className="relative w-full h-[260px] sm:h-[300px] md:h-[420px] flex justify-center">
                 <Image
                   src={servicesmobile}
-                  alt="Hero"
+                  alt="Reliable Luggage Shipping & Baggage Delivery Services in Bangalore"
                   fill
                   priority
+                  fetchPriority="high"
+                  sizes="(max-width: 768px) 100vw, 420px"
                   className="object-contain"
                 />
               </div>
@@ -103,43 +103,39 @@ export default function Services() {
         </section>
       </div>
 
-
-      <section className=" ">
+      <section>
         <Comparison />
       </section>
-      <section className="bg-[#F1F2F6] ">
+
+      <section className="bg-[#F1F2F6]">
         <ServicesSection
           showFeatures={true}
           heading="Five ways to move your luggage. One way to travel lighter."
         />
       </section>
 
-      <section className="  mx-auto relative px-4 py-12 md:py-16 lg:py-24 sm:px-6 lg:px-8">
+      <section className="container mx-auto relative px-4 py-12 md:py-16 lg:py-24 sm:px-6 lg:px-8">
         <Testimonials />
       </section>
 
-      <section className=" bg-[#F1F2F6] mx-auto overflow-x-hidden ">
+      <section className="bg-[#F1F2F6] mx-auto overflow-x-hidden">
         <ContactSection />
       </section>
-      <section className="">
+
+      <section>
         <FAQSection />
       </section>
 
-
-
-      <section className="w-full px-4 py-12   md:py-20 md:pb-0 ">
+      <section className="w-full px-4 py-12 md:py-20 md:pb-0">
         <div className="relative container mx-auto rounded-3xl overflow-hidden">
           {/* Background Image */}
           <Image
             src={bg}
             alt="CTA background"
             fill
+            sizes="(max-width: 1220px) 100vw, 1220px"
             className="object-cover"
-            priority
           />
-
-          {/* Gradient overlay */}
-          {/* <div className="absolute inset-0 bg-[#003BE3] " /> */}
 
           {/* CONTENT */}
           <motion.div
@@ -148,11 +144,10 @@ export default function Services() {
             transition={{ duration: 0.5 }}
             className="relative z-10 text-center py-16 md:py-20 px-6"
           >
-            <h2 className=" text-white mb-4">Your bags can travel smarter than you think.</h2>
+            <h2 className="text-white mb-4">Your bags can travel smarter than you think.</h2>
 
             <p className="text-white mb-8 text-sm md:text-base">
               Pick a service. Book online. Travel lighter.
-
             </p>
 
             <div className="flex flex-wrap justify-center gap-4">
