@@ -18,7 +18,6 @@ const HowToShip = dynamic(() => import("@/components/HowToShip"), { ssr: true })
 const Testimonials = dynamic(() => import("@/components/Testimonials"), { ssr: true });
 const HowYourBagsTravel = dynamic(() => import("@/components/HowYourBagsTravel"), { ssr: true });
 const MobileHome = dynamic(() => import("@/components/MobileHome"), { ssr: true });
-const MobileBottomNav = dynamic(() => import("@/components/mobile-home/MobileBottomNav"), { ssr: true });
 
 function Home() {
   return (
@@ -174,11 +173,6 @@ function Home() {
       </section>
 
       <MarqueeLogos />
-
-      {/* Mobile Fixed Navigation Bar (hidden on md+ screens) */}
-      <div className="block md:hidden">
-        <MobileBottomNav />
-      </div>
     </div>
   );
 }
