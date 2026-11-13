@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaInstagram, FaYoutube, FaFacebookF } from "react-icons/fa";
 import Logo from "@/asset/logo-black.svg";
-import MobileBookNow from "./MobileBookNow";
+import MobileBottomNav from "@/components/mobile-home/MobileBottomNav";
 import { usePathname } from "next/navigation";
 
 export default function Footer() {
@@ -207,7 +207,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <MobileBookNow />
+      <MobileBottomNav />
     </footer>
   );
 }
