@@ -2,7 +2,6 @@
 
 import React from "react";
 import Image from "next/image";
-import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { Check } from "lucide-react";
@@ -18,16 +17,16 @@ import Peace from "@/asset/icon/delivery.svg";
 import herobg from "@/asset/service/premium-banner-img.svg";
 import one from "@/asset/service/express-cover.png";
 
-// SSR-Safe Progressive Imports for Performance and Code Splitting
-const ContactSection = dynamic(() => import("@/components/ContactSection"), { ssr: true });
-const ServiceFAQSection = dynamic(() => import("@/components/ServiceAccordionPremium"), { ssr: true });
-const Comparison = dynamic(() => import("@/components/ComparisonPremium"), { ssr: true });
-const PricingStructure = dynamic(() => import("@/components/PricingStructurePremium"), { ssr: true });
-const Keyfuture = dynamic(() => import("@/components/KeyfutureexpressPremium"), { ssr: true });
-const HowItWorks = dynamic(() => import("@/components/OurProcesspremium"), { ssr: true });
-const Testimonials = dynamic(() => import("@/components/Testimonials"), { ssr: true });
-const TransformingCities = dynamic(() => import("@/components/Locations"), { ssr: true });
-const MarqueeLogos = dynamic(() => import("@/components/MarqueeLogos"), { ssr: true });
+// Components
+import ContactSection from "@/components/ContactSection";
+import ServiceFAQSection from "@/components/ServiceAccordionPremium";
+import Comparison from "@/components/ComparisonPremium";
+import PricingStructure from "@/components/PricingStructurePremium";
+import Keyfuture from "@/components/KeyfutureexpressPremium";
+import HowItWorks from "@/components/OurProcesspremium";
+import Testimonials from "@/components/Testimonials";
+import TransformingCities from "@/components/Locations";
+import MarqueeLogos from "@/components/MarqueeLogos";
 
 export default function PremiumServices() {
   // Enable SSR for SEO and Core Web Vitals (FCP, LCP, CLS)
@@ -87,20 +86,13 @@ export default function PremiumServices() {
   ];
 
   return (
-    <div className="-mt-24 -mt-16">
+    <div className="-mt-24">
       {/* ================= HERO ================= */}
       <section className="relative bg-white overflow-hidden">
         <div className="container mx-auto px-4 pt-28 pb-12 md:pt-28 md:pb-5">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             {/* LEFT — CONTENT (UNCHANGED) */}
             <div className="relative z-10">
-              {/* <motion.div
-                {...fadeUp}
-                transition={{ duration: 0.6 }}
-                className="inline-block bg-white/10 backdrop-blur border border-white/20 px-6 py-2 rounded-full mb-6"
-              >
-               
-              </motion.div> */}
               <p className="text-primary mb-5 text-center md:text-start">
                 ✨ Because some deliveries deserve more core
               </p>
@@ -186,8 +178,8 @@ export default function PremiumServices() {
             </p>
 
             <div className="grid lg:grid-cols-2 gap-6">
-              <div className="bg-blue-50 p-6 rounded-3xl ">
-                <h3 className="font-semibold mb-4 !text-[20px">Ideal for:</h3>
+              <div className="bg-blue-50 p-6 rounded-3xl">
+                <h3 className="font-semibold mb-4 !text-[20px]">Ideal for:</h3>
                 <ul className="space-y-3 font-semibold">
                   {idealFor.map((item, i) => (
                     <li key={i} className="flex gap-3">
@@ -198,8 +190,8 @@ export default function PremiumServices() {
                 </ul>
               </div>
 
-              <div className="bg-green-50 p-6 rounded-3xl ">
-                <h3 className="font-semibold mb-4 !text-[20px">This service ensures:</h3>
+              <div className="bg-green-50 p-6 rounded-3xl">
+                <h3 className="font-semibold mb-4 !text-[20px]">This service ensures:</h3>
                 <ul className="space-y-3 font-semibold">
                   {ensures.map((item, i) => (
                     <li key={i} className="flex gap-3">
@@ -225,7 +217,7 @@ export default function PremiumServices() {
       <TransformingCities />
 
       {/* ================= WHY PREMIUM ================= */}
-      <section className=" ">
+      <section>
         <div className="py-24 bg-white">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-center mb-4">Why Choose Premium Delivery?</h2>
@@ -236,11 +228,8 @@ export default function PremiumServices() {
                   <div className="flex flex-col items-center text-center">
                     <div className="relative mb-4">
                       <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center">
-                        <Image src={step.icon} alt="icon" width={28} height={28} />
+                        <Image src={step.icon} alt={step.title} width={28} height={28} />
                       </div>
-                      {/* <div className="absolute -top-3 -right-1 w-7 h-7 bg-white text-black rounded-full shadow-xl flex items-center justify-center text-xs font-semibold">
-                        {step.number}
-                      </div> */}
                     </div>
                     <h3 className="mb-2 !text-[20px]">{step.title}</h3>
                     <p className="text-second">{step.description}</p>
@@ -261,7 +250,7 @@ export default function PremiumServices() {
       </section>
 
       <section
-        className=" bg-[#F1F2F6] mx-auto overflow-x-hidden "
+        className="bg-[#F1F2F6] mx-auto overflow-x-hidden"
         id="contact"
       >
         <ContactSection />
@@ -269,21 +258,16 @@ export default function PremiumServices() {
 
       <ServiceFAQSection />
 
-
-      <section className="w-full px-4 py-12   md:py-20 md:pb-0 ">
+      <section className="w-full px-4 py-12 md:py-20 md:pb-0">
         <div className="relative container mx-auto rounded-3xl overflow-hidden">
           {/* Background Image */}
           <Image
             src={bg}
             alt="CTA background"
             fill
-            sizes="100vw"
+            sizes="(max-width: 1220px) 100vw, 1220px"
             className="object-cover"
-            loading="lazy"
           />
-
-          {/* Gradient overlay */}
-          {/* <div className="absolute inset-0 bg-[#003BE3] " /> */}
 
           {/* CONTENT */}
           <motion.div
@@ -292,11 +276,10 @@ export default function PremiumServices() {
             transition={{ duration: 0.5 }}
             className="relative z-10 text-center py-16 md:py-20 px-6"
           >
-            <h2 className=" text-white mb-4">Ready to ship your valuable luggage with complete confidence?</h2>
+            <h2 className="text-white mb-4">Ready to ship your valuable luggage with complete confidence?</h2>
 
             <p className="text-white mb-8 text-sm md:text-base">
               Free packaging, dedicated support, guaranteed timelines, and white-glove care from door to door.
-
             </p>
 
             <div className="flex flex-wrap justify-center gap-4">
@@ -310,7 +293,7 @@ export default function PremiumServices() {
           </motion.div>
         </div>
       </section>
-      <section className="">
+      <section>
         <MarqueeLogos />
       </section>
     </div>

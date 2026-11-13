@@ -1,13 +1,10 @@
 import {
-  DollarSign,
   MapPin,
   Ruler,
   Weight,
   Plus,
-  Sparkles,
 } from "lucide-react";
 import { motion } from "framer-motion";
-// import illsutration from "@/asset/illustration.svg";
 import Image from "next/image";
 import illsutration from "@/asset/common-illustrator.png";
 

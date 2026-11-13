@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronRight, ChevronDown } from "lucide-react";
@@ -247,7 +247,7 @@ function Faq() {
   const [openIndex, setOpenIndex] = useState(-1);
 
   return (
-    <div className="-mt-24 -mt-16">
+    <div className="md:-mt-24 -mt-12">
       {/* ---------------- DESKTOP HERO ---------------- */}
       <motion.section
         initial={{ opacity: 0, y: -20 }}
@@ -258,14 +258,16 @@ function Faq() {
       >
         <Image
           src={faqbg}
-          alt="FAQ Background"
+          alt="Frequently Asked Questions - Frisbi"
           fill
           priority
+          fetchPriority="high"
+          sizes="100vw"
           className="object-contain"
         />
 
         <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 max-w-3xl mx-auto">
-          <h1 className="text-black mb-4">Frequently Asked Questions </h1>
+          <h1 className="text-black mb-4">Frequently Asked Questions</h1>
           <p className="text-black mb-4 text-sm md:text-base">
             India’s trusted luggage delivery service built for stress-free travel.
           </p>
@@ -294,7 +296,14 @@ function Faq() {
           </Link>
 
           <div className="relative w-full h-[260px] mt-6">
-            <Image src={faqmobile} alt="FAQ" fill className="object-contain" />
+            <Image
+              src={faqmobile}
+              alt="Frequently Asked Questions - Frisbi"
+              fill
+              priority
+              sizes="(max-width: 768px) 100vw, 420px"
+              className="object-contain"
+            />
           </div>
         </div>
       </section>
@@ -329,46 +338,60 @@ function Faq() {
             </div>
           </div>
 
-          {/* RIGHT FAQ LIST */}
+          {/* RIGHT FAQ LIST - All 5 categories rendered in SSR DOM for SEO text-to-HTML ratio */}
           <div className="md:col-span-2">
-            <h3 className="font-semibold mb-6">{activeMenu}</h3>
+            {menuItems.map((category) => (
+              <div
+                key={category}
+                className={activeMenu === category ? "block" : "hidden"}
+              >
+                <h3 className="font-semibold mb-6">{category}</h3>
 
-            <div className="space-y-4">
-              {faqData[activeMenu].map((faq, index) => (
-                <div
-                  key={faq.q}
-                  className="bg-white p-4 rounded-xl border border-[#E6E8F0]"
-                >
-                  <button
-                    onClick={() =>
-                      setOpenIndex(openIndex === index ? -1 : index)
-                    }
-                    className="flex w-full justify-between text-left"
-                  >
-                    <span className="font-semibold text-black">
-                      {faq.q}
-                    </span>
-                    <ChevronDown
-                      className={`w-5 h-5 transition-transform ${openIndex === index ? "rotate-180" : ""
-                        }`}
-                    />
-                  </button>
-
-                  <AnimatePresence>
-                    {openIndex === index && (
-                      <motion.p
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: "auto" }}
-                        exit={{ opacity: 0, height: 0 }}
-                        className="text-sm text-gray-600 mt-3"
+                <div className="space-y-4">
+                  {faqData[category].map((faq, index) => {
+                    const isOpen = activeMenu === category && openIndex === index;
+                    return (
+                      <div
+                        key={faq.q}
+                        className="bg-white p-4 rounded-xl border border-[#E6E8F0]"
                       >
-                        {faq.a}
-                      </motion.p>
-                    )}
-                  </AnimatePresence>
+                        <button
+                          type="button"
+                          onClick={() =>
+                            setOpenIndex(isOpen ? -1 : index)
+                          }
+                          aria-expanded={isOpen}
+                          className="flex w-full justify-between text-left cursor-pointer focus:outline-none"
+                        >
+                          <span className="font-semibold text-black">
+                            {faq.q}
+                          </span>
+                          <ChevronDown
+                            className={`w-5 h-5 shrink-0 transition-transform duration-200 ${isOpen ? "rotate-180" : ""
+                              }`}
+                            aria-hidden="true"
+                          />
+                        </button>
+
+                        <motion.div
+                          initial={false}
+                          animate={{
+                            height: isOpen ? "auto" : 0,
+                            opacity: isOpen ? 1 : 0,
+                          }}
+                          transition={{ duration: 0.3, ease: [0.04, 0.62, 0.23, 0.98] }}
+                          className="overflow-hidden"
+                        >
+                          <p className="text-sm text-gray-600 mt-3 leading-relaxed">
+                            {faq.a}
+                          </p>
+                        </motion.div>
+                      </div>
+                    );
+                  })}
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -379,7 +402,13 @@ function Faq() {
       {/* ---------------- CTA ---------------- */}
       <section className="w-full px-4 py-12 md:py-20 md:pb-0">
         <div className="relative container mx-auto rounded-3xl overflow-hidden">
-          <Image src={bg} alt="CTA" fill className="object-cover" />
+          <Image
+            src={bg}
+            alt="CTA background"
+            fill
+            sizes="(max-width: 1220px) 100vw, 1220px"
+            className="object-cover"
+          />
 
           <div className="relative z-10 text-center py-16 px-6">
             <h2 className="text-white mb-4">From Your Door to Their Door</h2>

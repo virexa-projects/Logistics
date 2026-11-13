@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { ChevronDown, ChevronUp } from "lucide-react";
 
 const faqData = [
@@ -61,27 +61,32 @@ export default function FAQ() {
     setOpenIndex(openIndex === i ? null : i);
   };
 
-  const visibleFaqs = showAll ? faqData : faqData.slice(0, 5);
-
   return (
-    <div className="w-full max-w-3xl mx-auto py-12 md:pt-24  md:pb-16 px-4">
+    <div className="w-full max-w-3xl mx-auto py-12 md:pt-24 md:pb-16 px-4">
       <h2 className="text-center mb-10 md:mb-12 lg:mb-16">Frequently asked questions</h2>
 
       <div className="space-y-6">
-        {visibleFaqs.map((faq, i) => {
+        {faqData.map((faq, i) => {
           const isOpen = openIndex === i;
+          const isHidden = !showAll && i >= 5;
           return (
             <div
               key={i}
               className={`transition-all duration-300 rounded-2xl ${
+                isHidden ? "hidden" : "block"
+              } ${
                 isOpen
                   ? "bg-white p-6 shadow-2xl"
                   : "py-5 px-2 border-b border-gray-200"
               }`}
             >
-              <div
-                className="flex justify-between items-center cursor-pointer select-none gap-4"
+              <button
+                type="button"
                 onClick={() => toggle(i)}
+                aria-expanded={isOpen}
+                aria-controls={`services-faq-answer-${i}`}
+                id={`services-faq-question-${i}`}
+                className="w-full text-left flex justify-between items-center cursor-pointer select-none gap-4 focus:outline-none"
               >
                 <h5
                   className={`text-lg transition-colors duration-200 ${
@@ -92,29 +97,29 @@ export default function FAQ() {
                 </h5>
                 <div className="shrink-0 text-black">
                   {isOpen ? (
-                    <ChevronUp className="w-6 h-6 transition-transform duration-200" />
+                    <ChevronUp className="w-6 h-6 transition-transform duration-200" aria-hidden="true" />
                   ) : (
-                    <ChevronDown className="w-6 h-6 transition-transform duration-200" />
+                    <ChevronDown className="w-6 h-6 transition-transform duration-200" aria-hidden="true" />
                   )}
                 </div>
-              </div>
+              </button>
 
-              <AnimatePresence initial={false}>
-                {isOpen && (
-                  <motion.div
-                    key="content"
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3, ease: [0.04, 0.62, 0.23, 0.98] }}
-                    className="overflow-hidden"
-                  >
-                    <p className="mt-4 text-second leading-relaxed">
-                      {faq.answer}
-                    </p>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+              <motion.div
+                id={`services-faq-answer-${i}`}
+                role="region"
+                aria-labelledby={`services-faq-question-${i}`}
+                initial={false}
+                animate={{
+                  height: isOpen ? "auto" : 0,
+                  opacity: isOpen ? 1 : 0,
+                }}
+                transition={{ duration: 0.3, ease: [0.04, 0.62, 0.23, 0.98] }}
+                className="overflow-hidden"
+              >
+                <p className="mt-4 text-second leading-relaxed">
+                  {faq.answer}
+                </p>
+              </motion.div>
             </div>
           );
         })}

@@ -1,10 +1,8 @@
 import {
-  DollarSign,
   MapPin,
   Ruler,
   Weight,
   Plus,
-  Sparkles,
 } from "lucide-react";
 import { motion } from "framer-motion";
 import illsutration from "@/asset/common-illustrator.png";
@@ -36,13 +34,6 @@ function PricingStructure() {
       description: "Optional add-ons available.",
       gradient: "bg-primary",
     },
-  ];
-
-  const addOns = [
-    { name: "Special handling", icon: "📦" },
-    { name: "Fragile care", icon: "🔒" },
-    { name: "High-value insurance", icon: "🛡️" },
-    { name: "Return pickup", icon: "🔄" },
   ];
 
   return (

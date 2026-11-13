@@ -2,9 +2,8 @@
 
 import React from "react";
 import Image from "next/image";
-import dynamic from "next/dynamic";
 import { Check } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import Link from "next/link";
 
 import SaveTime from "@/asset/icon/save-time.svg";
@@ -16,17 +15,17 @@ import Peace from "@/asset/icon/delivery.svg";
 import herobg from "@/asset/service/express.svg";
 import one from "@/asset/service/express-cover.png";
 
-// SSR-Safe Progressive Imports
-const ContactSection = dynamic(() => import("@/components/ContactSection"), { ssr: true });
-const ServiceFAQSection = dynamic(() => import("@/components/ServiceAccordionExpress"), { ssr: true });
-const CallToAction = dynamic(() => import("@/components/CallToActionExpress"), { ssr: true });
-const Comparison = dynamic(() => import("@/components/Comparison"), { ssr: true });
-const PricingStructure = dynamic(() => import("@/components/PricingStructureExpress"), { ssr: true });
-const Keyfuture = dynamic(() => import("@/components/Keyfutureexpress"), { ssr: true });
-const HowItWorks = dynamic(() => import("@/components/OurProcessexpress"), { ssr: true });
-const Testimonials = dynamic(() => import("@/components/Testimonials"), { ssr: true });
-const TransformingCities = dynamic(() => import("@/components/Locations"), { ssr: true });
-const MarqueeLogos = dynamic(() => import("@/components/MarqueeLogos"), { ssr: true });
+// Components
+import ContactSection from "@/components/ContactSection";
+import ServiceFAQSection from "@/components/ServiceAccordionExpress";
+import CallToAction from "@/components/CallToActionExpress";
+import Comparison from "@/components/Comparison";
+import PricingStructure from "@/components/PricingStructureExpress";
+import Keyfuture from "@/components/Keyfutureexpress";
+import HowItWorks from "@/components/OurProcessexpress";
+import Testimonials from "@/components/Testimonials";
+import TransformingCities from "@/components/Locations";
+import MarqueeLogos from "@/components/MarqueeLogos";
 
 export default function ExpressServices() {
 
@@ -85,28 +84,20 @@ export default function ExpressServices() {
   };
 
   return (
-    <div className="-mt-24 -mt-16">
+    <div className="-mt-24">
       {/* HERO */}
       <section className="relative bg-white overflow-hidden">
         <div className="container mx-auto px-4 pt-28 pb-12 md:pt-28 md:pb-5">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             {/* LEFT — CONTENT (UNCHANGED) */}
             <div className="relative z-10">
-              {/* <motion.div
-                {...fadeUp}
-                transition={{ duration: 0.6 }}
-                className="inline-block bg-white/10 backdrop-blur-xl border border-white/20 px-8 py-2 rounded-full mb-6"
-              >
-               
-              </motion.div> */}
-
               <p className="text-primary mb-5 text-center md:text-start">
                 ✨ When time matters, choose Express
               </p>
               <motion.h1
                 {...fadeUp}
                 transition={{ duration: 0.6, delay: 0.1 }}
-                className="text-black -6 text-center md:text-start"
+                className="text-black mb-6 text-center md:text-start"
               >
                 Premium Luggage Handling & Travel Support 
               </motion.h1>
@@ -214,7 +205,7 @@ export default function ExpressServices() {
       <HowItWorks />
       <TransformingCities />
 
-      <section className=" ">
+      <section>
         <div className="py-24 pb-16 bg-white">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-center mb-4">Why Choose Express Delivery?</h2>
@@ -225,11 +216,8 @@ export default function ExpressServices() {
                   <div className="flex flex-col items-center text-center">
                     <div className="relative mb-4">
                       <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center">
-                        <Image src={step.icon} alt="icon" width={28} height={28} />
+                        <Image src={step.icon} alt={step.title} width={28} height={28} />
                       </div>
-                      {/* <div className="absolute -top-3 -right-1 w-7 h-7 bg-white text-black rounded-full shadow-xl flex items-center justify-center text-xs font-semibold">
-                        {step.number}
-                      </div> */}
                     </div>
                     <h3 className="!text-[20px] font-semibold mb-2">{step.title}</h3>
                     <p className="text-second">{step.description}</p>
@@ -249,13 +237,13 @@ export default function ExpressServices() {
         <Testimonials />
       </section>
       <section
-        className=" bg-[#F1F2F6] mx-auto overflow-x-hidden "
+        className="bg-[#F1F2F6] mx-auto overflow-x-hidden"
         id="contact"
       >
         <ContactSection />
       </section>
 
-      <section className="">
+      <section>
         <ServiceFAQSection />
       </section>
 

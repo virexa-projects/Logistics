@@ -1,5 +1,4 @@
 import { MousePointer, Calendar, Radar, PackageCheck } from 'lucide-react';
-import Link from 'next/link';
 const steps = [
   {
     icon: MousePointer,
@@ -47,9 +46,6 @@ export function HowItWorks() {
                     <div className="w-20 h-20 bg-primary rounded-full flex items-center justify-center">
                       <Icon className="w-10 h-10 text-white" />
                     </div>
-                    {/* <div className="absolute -top-2 -right-2 w-8 h-8 bg-white  rounded-full flex items-center justify-center">
-                      <span className="text-black font-semibold">{step.number}</span>
-                    </div> */}
                   </div>
                   
                   <h3 className="mb-2 !text-[20px]">{step.title}</h3>
