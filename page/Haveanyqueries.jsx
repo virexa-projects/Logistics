@@ -2,19 +2,18 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import dynamic from "next/dynamic";
 import ContactSection from "@/components/Contactmain";
 import contactmobile from "@/asset/shippment/contact-banner.svg";
 import ContactUs from "@/asset/contact-us.png";
 
-const TransformingCities = dynamic(() => import("@/components/Locations"), { ssr: true });
-const Testimonials = dynamic(() => import("@/components/Testimonials"), { ssr: true });
-const MarqueeLogos = dynamic(() => import("@/components/MarqueeLogos"), { ssr: true });
+import TransformingCities from "@/components/Locations";
+import Testimonials from "@/components/Testimonials";
+import MarqueeLogos from "@/components/MarqueeLogos";
 
 function Haveanyqueries() {
   return (
     <div>
-      <div className="-mt-24 -mt-16">
+      <div className="-mt-24">
         <motion.section
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -84,11 +83,11 @@ function Haveanyqueries() {
       <section className="py-12 md:pt-24 md:pb-24">
         <ContactSection />
       </section>
-      <section className="">
+      <section>
         <TransformingCities />
       </section>
 
-      <section className="  mx-auto relative px-4 py-12 md:pt-20 md:pb-0  sm:px-6 lg:px-8">
+      <section className="container mx-auto relative px-4 py-12 md:pt-20 md:pb-0 sm:px-6 lg:px-8">
         <Testimonials />
       </section>
       <MarqueeLogos />

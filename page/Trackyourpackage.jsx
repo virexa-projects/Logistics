@@ -3,10 +3,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import dynamic from "next/dynamic";
-import bg from "@/asset/profiles/cta-banner.svg"; // <<< CHANGE TO YOUR BG IMAGE
-import trackmobile from "@/asset/shippment/track-your-package.svg";
-
+import bg from "@/asset/profiles/cta-banner.svg";
 import { motion } from "framer-motion";
 import { Loader2 } from "lucide-react";
 
@@ -14,10 +11,10 @@ import trackbg from "@/asset/track-your-package.png";
 import tracking from "@/asset/shippment/track-your-package.svg";
 import { API_CONFIG } from "@/utils/apiConfig";
 
-const FAQ = dynamic(() => import("@/components/AccordionCorporate"), { ssr: true });
-const ContactSection = dynamic(() => import("@/components/ContactSection"), { ssr: true });
-const Testimonials = dynamic(() => import("@/components/Testimonials"), { ssr: true });
-const MarqueeLogos = dynamic(() => import("@/components/MarqueeLogos"), { ssr: true });
+import FAQ from "@/components/AccordionCorporate";
+import ContactSection from "@/components/ContactSection";
+import Testimonials from "@/components/Testimonials";
+import MarqueeLogos from "@/components/MarqueeLogos";
 
 function Trackyourpackage() {
   const trackSectionRef = useRef(null);
@@ -170,7 +167,7 @@ function Trackyourpackage() {
   return (
     <div>
       {/* HERO SECTION */}
-      <div className="-mt-24 -mt-16">
+      <div className="-mt-24">
         <motion.section
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -183,11 +180,13 @@ function Trackyourpackage() {
             alt="Track Package Background"
             fill
             priority
+            fetchPriority="high"
+            sizes="100vw"
             className="md:object-contain object-cover bg-center"
           />
 
           <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 max-w-3xl mx-auto">
-            <h1 className="text-black  mb-4">Track Your Luggage & Bag Shipment Summary </h1>
+            <h1 className="text-black mb-4">Track Your Luggage & Bag Shipment Summary</h1>
             <p className="text-black mb-8 text-sm md:text-base">
               India's trusted luggage delivery service, built to make travel lighter, smarter, and stress-free.
             </p>
@@ -230,10 +229,11 @@ function Trackyourpackage() {
               {/* RIGHT — IMAGE */}
               <div className="relative w-full h-[260px] sm:h-[300px] md:h-[420px] flex justify-center">
                 <Image
-                  src={trackmobile}
+                  src={tracking}
                   alt="Track your baggage shipment live"
                   fill
                   priority
+                  sizes="(max-width: 768px) 100vw, 420px"
                   className="object-contain"
                 />
               </div>
@@ -307,9 +307,6 @@ function Trackyourpackage() {
               </div>
 
               <div className="mt-6">
-
-                {/* {console.log("trackingData", trackingData)} */}
-
                 {trackingData && (
                   <div className="mt-6 bg-gray-100 p-4 rounded-lg">
                     <p><b>Status:</b> {trackingData?.data?.status}</p>
@@ -350,12 +347,8 @@ function Trackyourpackage() {
                     </div>
                   </div>
                 )}
-                {/* <h4 className="text-gray-900 font-semibold text-base">
-                  Can't Find Your Order Details?
-                </h4> */}
                 <p className="text-gray-500 text-sm mt-1 leading-relaxed">
                   Your AWB number was sent to you via Email and SMS at the time of order confirmation.
-
                 </p>
               </div>
             </div>
@@ -364,33 +357,28 @@ function Trackyourpackage() {
       </section>
 
       {/* FAQ */}
-      <section className="">
+      <section>
         <FAQ />
       </section>
 
-      <section className=" bg-[#F1F2F6] mx-auto overflow-x-hidden ">
+      <section className="bg-[#F1F2F6] mx-auto overflow-x-hidden">
         <ContactSection />
       </section>
 
-      <section className="  mx-auto relative px-4 py-12 md:py-16 sm:px-6 lg:px-8">
+      <section className="container mx-auto relative px-4 py-12 md:py-16 sm:px-6 lg:px-8">
         <Testimonials />
       </section>
 
-
-
-      <section className="w-full px-4 py-12   md:py-20 md:pb-0 ">
+      <section className="w-full px-4 py-12 md:py-20 md:pb-0">
         <div className="relative container mx-auto rounded-3xl overflow-hidden">
           {/* Background Image */}
           <Image
             src={bg}
             alt="CTA background"
             fill
+            sizes="(max-width: 1220px) 100vw, 1220px"
             className="object-cover"
-            priority
           />
-
-          {/* Gradient overlay */}
-          {/* <div className="absolute inset-0 bg-[#003BE3] " /> */}
 
           {/* CONTENT */}
           <motion.div
@@ -399,7 +387,7 @@ function Trackyourpackage() {
             transition={{ duration: 0.5 }}
             className="relative z-10 text-center py-16 md:py-20 px-6"
           >
-            <h2 className=" text-white mb-4">From Your Door to Their Door.</h2>
+            <h2 className="text-white mb-4">From Your Door to Their Door.</h2>
 
             <p className="text-white mb-8 text-sm md:text-base">
               Fast, safe, and affordable – trusted by thousands across India.

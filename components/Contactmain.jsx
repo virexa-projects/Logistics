@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { MapPin, Mail, Phone, Loader2 } from "lucide-react";
+import { Mail, Phone, Loader2 } from "lucide-react";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { API_CONFIG } from "@/utils/apiConfig";
@@ -15,6 +15,8 @@ function Input({ type = "text", name, value, onChange, placeholder, maxLength, i
       <input
         type={type}
         name={name}
+        id={`contact-${name}`}
+        aria-label={placeholder || name}
         value={value}
         onChange={onChange}
         placeholder={placeholder}
@@ -33,6 +35,8 @@ function Select({ name, value, onChange, options = [], placeholder, error }) {
     <div className="w-full">
       <select
         name={name}
+        id={`contact-${name}`}
+        aria-label={placeholder || name}
         value={value}
         onChange={onChange}
         className={`w-full bg-[#f5f5f5] text-black px-4 py-3 rounded-xl outline-none transition text-sm placeholder:text-xs placeholder:text-gray-600 border ${error ? "border-red-500 ring-1 ring-red-400" : "border-transparent focus:ring-1 focus:ring-[#013efe]"
@@ -57,6 +61,8 @@ function Textarea({ name, value, onChange, placeholder, error }) {
     <div className="w-full">
       <textarea
         name={name}
+        id={`contact-${name}`}
+        aria-label={placeholder || name}
         value={value}
         onChange={onChange}
         placeholder={placeholder}
