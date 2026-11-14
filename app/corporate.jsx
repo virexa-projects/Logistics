@@ -37,7 +37,7 @@ function Corporate() {
               <motion.h1
                 {...fadeUp}
                 transition={{ delay: 0.1 }}
-                className="text-black font-black mb-6 max-w-xl md:text-[36px] md:font-semibold md:leading-[40px]"
+                className="text-black text-[32px] font-semibold leading-[44.8px] mb-6 max-w-xl md:text-[36px] md:font-semibold md:leading-[40px]"
               >
                 Corporate Luggage Delivery Solutions
               </motion.h1>

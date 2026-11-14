@@ -94,7 +94,7 @@ export default function Services() {
                 Safe. Affordable. Reliable.
               </p>
 
-              <motion.h1 {...fadeUp} className="text-black mb-6 md:text-[36px] md:font-semibold md:leading-[40px]">
+              <motion.h1 {...fadeUp} className="text-black text-[32px] font-semibold leading-[44.8px] mb-6 md:text-[36px] md:font-semibold md:leading-[40px]">
                 Affordable Luggage Shipping for Planned Travel
               </motion.h1>
 

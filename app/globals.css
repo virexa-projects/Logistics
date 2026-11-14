@@ -166,7 +166,7 @@ body {
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 767px) {
   .-mt-16 {
     margin-top: -5rem;
   }
@@ -175,7 +175,7 @@ body {
     h1 {
       font-size: 32px;
       font-weight: 600;
-      line-height: 1.4em;
+      line-height: 44.8px;
     }
 
     h2 {

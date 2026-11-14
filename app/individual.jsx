@@ -35,7 +35,7 @@ function Individual() {
                 initial="hidden"
                 animate="visible"
                 transition={{ duration: 0.6, delay: 0.1 }}
-                className="text-black font-bold mb-6 md:text-[36px] md:font-semibold md:leading-[40px]"
+                className="text-black text-[32px] font-semibold leading-[44.8px] mb-6 md:text-[36px] md:font-semibold md:leading-[40px]"
               >
                 Personal Baggage Transport & Individual Luggage Shipping Across Bangalore
               </motion.h1>
