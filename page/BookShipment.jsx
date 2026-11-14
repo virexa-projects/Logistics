@@ -55,7 +55,7 @@ function BookShipment({ bookingData }) {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
               {/* LEFT — CONTENT */}
               <div className="relative z-10 mt-10 text-center md:text-left flex flex-col items-center md:items-start">
-                <p className="text-black mb-4 text-3xl">Book Shipment</p>
+                <h2 className="text-black text-[32px] font-semibold leading-[44.8px] mb-4">Book Shipment</h2>
 
                 <p className="text-black mb-4 text-sm md:text-base">
                   India’s trusted luggage delivery service, built to make travel

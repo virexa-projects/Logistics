@@ -207,10 +207,7 @@ function Trackyourpackage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
               {/* LEFT — CONTENT */}
               <div className="relative z-10 mt-10 text-center md:text-left flex flex-col items-center md:items-start">
-                <h2
-                  className="text-black font-semibold mb-4"
-                  style={{ fontSize: "32px", lineHeight: "1.40" }}
-                >
+                <h2 className="text-black text-[32px] font-semibold leading-[44.8px] mb-4">
                   Track Your Luggage & Bag Shipment Summary
                 </h2>
                 <p className="text-black mb-4 text-sm md:text-base">

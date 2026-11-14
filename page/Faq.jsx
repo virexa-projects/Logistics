@@ -281,10 +281,7 @@ function Faq() {
       {/* ---------------- MOBILE HERO ---------------- */}
       <section className="md:hidden px-4 py-20">
         <div className="text-center">
-          <h2
-            className="text-black font-semibold mb-4"
-            style={{ fontSize: "32px", lineHeight: "1.40" }}
-          >
+          <h2 className="text-black text-[32px] font-semibold leading-[44.8px] mb-4">
             FAQ About Luggage Delivery & Baggage Shipping in Bangalore
           </h2>
           <p className="text-black mb-4 text-sm">
