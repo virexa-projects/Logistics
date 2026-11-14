@@ -33,7 +33,7 @@ function BookShipment({ bookingData }) {
 
           {/* CONTENT */}
           <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 max-w-3xl mx-auto">
-            <h1 className="text-black mb-4">Book Shipment</h1>
+            <h1 className="text-black mb-4 md:text-[36px] md:font-semibold md:leading-[40px]">Book Shipment</h1>
             <p className="text-black mb-4 text-sm md:text-base">
               India’s trusted luggage delivery service, built to make travel
               lighter, smarter, and stress-free.

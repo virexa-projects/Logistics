@@ -24,17 +24,6 @@ export default function FloatingActions() {
 
   return (
     <div className="hidden md:flex fixed bottom-28 right-6 z-50 flex-col items-center gap-4">
-      {/* 🔼 Back to Top */}
-      {showTop && (
-        <button
-          onClick={scrollToTop}
-          aria-label="Back to top"
-          className="w-12 h-12 rounded-full bg-black text-white shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 animate-fade-in"
-        >
-          <FaArrowUp />
-        </button>
-      )}
-
       {/* 📞 CALL */}
       <a
         href="tel:7418152531"
@@ -63,6 +52,17 @@ export default function FloatingActions() {
       >
         <FaWhatsapp size={24} />
       </a>
+
+      {/* 🔼 Back to Top */}
+      {showTop && (
+        <button
+          onClick={scrollToTop}
+          aria-label="Back to top"
+          className="w-12 h-12 rounded-full bg-black text-white shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 animate-fade-in"
+        >
+          <FaArrowUp />
+        </button>
+      )}
     </div>
   );
 }

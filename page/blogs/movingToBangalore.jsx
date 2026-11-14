@@ -52,7 +52,7 @@ export default function MovingToBangalore() {
                 Relocation Guide
               </span>
 
-              <h1 className="mt-6 text-white text-4xl md:text-6xl font-bold leading-tight">
+              <h1 className="mt-6 text-white text-4xl font-bold leading-tight md:text-[36px] md:font-semibold md:leading-[40px]">
                 Moving to Bangalore? Here's the Easiest Way to Transport Your
                 Luggage
               </h1>

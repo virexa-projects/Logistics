@@ -100,7 +100,7 @@ export default function PremiumServices() {
               <motion.h1
                 {...fadeUp}
                 transition={{ duration: 0.6, delay: 0.1 }}
-                className="text-black text-4xl md:text-5xl font-bold mb-6 text-center md:text-start"
+                className="text-black text-4xl font-bold mb-6 text-center md:text-start md:text-[36px] md:font-semibold md:leading-[40px]"
               >
                    Travel with less hassle with Frisbi's premium option
               </motion.h1>

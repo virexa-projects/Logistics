@@ -97,7 +97,7 @@ export default function ExpressServices() {
               <motion.h1
                 {...fadeUp}
                 transition={{ duration: 0.6, delay: 0.1 }}
-                className="text-black mb-6 text-center md:text-start"
+                className="text-black mb-6 text-center md:text-start md:text-[36px] md:font-semibold md:leading-[40px]"
               >
                 Premium Luggage Handling & Travel Support 
               </motion.h1>

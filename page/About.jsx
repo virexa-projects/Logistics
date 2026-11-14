@@ -39,7 +39,7 @@ function Aboutus() {
         />
         {/* CONTENT */}
         <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 max-w-3xl mx-auto">
-          <h1 className="text-black text-3xl md:text-4xl font-semibold mb-4">
+          <h1 className="text-black text-3xl font-semibold mb-4 md:text-[36px] md:font-semibold md:leading-[40px]">
             Bengaluru’s Trusted Luggage Logistics & Delivery Partner
           </h1>
 

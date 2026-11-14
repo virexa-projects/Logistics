@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { Home as HomeIcon, Calculator as CalcIcon, Phone } from "lucide-react";
+import { CalendarCheck, Calculator as CalcIcon, Phone } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 
 export default function MobileBottomNav() {
@@ -39,16 +39,16 @@ export default function MobileBottomNav() {
           : "translate-y-0 opacity-100"
       }`}
     >
-      {/* Home Tab */}
+      {/* Book Now Tab */}
       <Link
-        href="/"
-        aria-label="Home"
+        href="/book-shipment"
+        aria-label="Book Now"
         className="flex flex-col items-center gap-1 text-[#013EFE] group"
       >
         <div className="w-10 h-10 rounded-full bg-[#013EFE] flex items-center justify-center text-white shadow-md shadow-blue-500/20 group-hover:scale-105 transition">
-          <HomeIcon className="w-5 h-5" aria-hidden="true" />
+          <CalendarCheck className="w-5 h-5" aria-hidden="true" />
         </div>
-        <span className="text-[11px] font-bold">Home</span>
+        <span className="text-[11px] font-bold">Book Now</span>
       </Link>
 
       {/* Calculator Tab */}
