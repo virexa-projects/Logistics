@@ -34,7 +34,7 @@ function Haveanyqueries() {
 
           {/* CONTENT */}
           <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 max-w-3xl mx-auto">
-            <h1 className="text-black mb-4">
+            <h1 className="text-black text-[32px] font-semibold leading-[44.8px] mb-4 md:text-[36px] md:font-semibold md:leading-[40px]">
               Contact Frisbi
             </h1>
             <p className="text-black  text-sm md:text-base">
@@ -49,10 +49,7 @@ function Haveanyqueries() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
               {/* LEFT — CONTENT */}
               <div className="relative z-10 mt-10 text-center md:text-left flex flex-col items-center md:items-start">
-                <h2
-                  className="text-black font-semibold mb-4"
-                  style={{ fontSize: "32px", lineHeight: "1.40" }}
-                >
+                <h2 className="text-black text-[32px] font-semibold leading-[44.8px] mb-4">
                   Baggage Shipping & Luggage Pickup Support in Bangalore
                 </h2>
                 <p className="text-black mb-4 text-sm md:text-base">

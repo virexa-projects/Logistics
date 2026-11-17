@@ -86,7 +86,7 @@ function RateCalculator({ pickupFromUrl, dropFromUrl }) {
 
           {/* CONTENT */}
           <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 max-w-3xl mx-auto">
-            <h1 className="text-black mb-4">Calculate Your Luggage Delivery Cost</h1>
+            <h1 className="text-black text-[32px] font-semibold leading-[44.8px] mb-4 md:text-[36px] md:font-semibold md:leading-[40px]">Calculate Your Luggage Delivery Cost</h1>
             <p className="text-black mb-4 text-sm md:text-base">
               Calculate now. Book when ready. Travel lighter tomorrow.
             </p>
@@ -112,10 +112,7 @@ function RateCalculator({ pickupFromUrl, dropFromUrl }) {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
               {/* LEFT — CONTENT */}
               <div className="relative z-10 mt-10 text-center md:text-left flex flex-col items-center md:items-start">
-                <h2
-                  className="text-black font-semibold mb-4"
-                  style={{ fontSize: "32px", lineHeight: "1.40" }}
-                >
+                <h2 className="text-black text-[32px] font-semibold leading-[44.8px] mb-4">
                   Instant Luggage Shipping Cost & Rate Calculator in Bangalore
                 </h2>
                 <p className="text-black mb-4 text-sm md:text-base">

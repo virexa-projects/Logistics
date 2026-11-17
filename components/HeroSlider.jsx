@@ -61,7 +61,7 @@ export default function HeroSlider() {
             transition={{ duration: 0.6 }}
             className="max-w-xl text-white text-center md:text-left"
           >
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight">
+            <h1 className="text-2xl sm:text-3xl font-bold leading-tight mb-4 md:text-[36px] md:font-semibold md:leading-[40px]">
               {slides[index].title}
             </h1>
             <p className="text-sm sm:text-base md:text-lg mb-6 text-gray-100">
