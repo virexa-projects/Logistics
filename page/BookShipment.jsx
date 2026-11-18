@@ -3,7 +3,7 @@ import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import ShipmentForm from "@/components/ShipmentForm";
-import FAQ from "@/components/AccordionCorporate";
+import FAQ from "@/components/AccordionBook";
 import bookshipment from "@/asset/book-shipment.png";
 import Link from "next/link";
 import aboutmobile from "@/asset/shippment/book-shipment.svg";
