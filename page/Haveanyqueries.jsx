@@ -9,6 +9,7 @@ import ContactUs from "@/asset/contact-us.png";
 import TransformingCities from "@/components/Locations";
 import Testimonials from "@/components/Testimonials";
 import MarqueeLogos from "@/components/MarqueeLogos";
+import AccordionContact from "@/components/AccordionContact";
 
 function Haveanyqueries() {
   return (
@@ -82,6 +83,11 @@ function Haveanyqueries() {
       </section>
       <section>
         <TransformingCities />
+      </section>
+
+      {/* FAQ SECTION */}
+      <section>
+        <AccordionContact />
       </section>
 
       <section className="container mx-auto relative px-4 py-12 md:pt-20 md:pb-0 sm:px-6 lg:px-8">

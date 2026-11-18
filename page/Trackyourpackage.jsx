@@ -11,7 +11,7 @@ import trackbg from "@/asset/track-your-package.png";
 import tracking from "@/asset/shippment/track-your-package.svg";
 import { API_CONFIG } from "@/utils/apiConfig";
 
-import FAQ from "@/components/AccordionCorporate";
+import FAQ from "@/components/AccordionTrack";
 import ContactSection from "@/components/ContactSection";
 import Testimonials from "@/components/Testimonials";
 import MarqueeLogos from "@/components/MarqueeLogos";

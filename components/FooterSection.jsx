@@ -191,9 +191,21 @@ export default function Footer() {
       {/* BOTTOM LINE */}
       <div className="border-t border-gray-700 mt-12 pt-6">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-start md:justify-between text-sm text-gray-400 gap-4 items-start md:items-center">
-          <span className="text-[14px] text-black text-sm font-medium">
-            Copyright © 2026 – All Right Reserved
-          </span>
+          <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 text-[14px] text-black font-medium">
+            <span>Copyright © 2026 – All Right Reserved</span>
+            <span className="hidden sm:inline">|</span>
+            <span>
+              Designed &amp; Developed by{" "}
+              <a
+                href="https://www.virexa.in/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-blue-900 underline font-semibold transition-colors"
+              >
+                Virexa Technologies Pvt Ltd
+              </a>
+            </span>
+          </div>
 
           <div className="flex items-center text-black text-sm font-medium gap-4 flex-wrap justify-start">
             <Link href="/terms-and-conditions" className="hover:text-blue-900">Terms and Condition</Link>
